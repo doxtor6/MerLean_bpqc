@@ -7269,9 +7269,9 @@ follows from Steps 2, 3, and 1 respectively (using $\beta'' > 0$ in Step 2, and 
 \begin{remark}[Paper Corrections]
 \textbf{\color{red}Errata.} The following errors were identified in the original paper and corrected in this formalization:
 \begin{itemize}
-  \item Paper states |S| ≤ 2α|X₁| = (4α/s)|X₀|, but the correct derivation using the handshaking lemma 2|X₁| = s|X₀| gives 2α|X₁| = αs|X₀|, so α' should be αs, not 4α/s.
-  \item Paper uses b = d_L in Lemma 3 (defining A = {v ∈ S | |(δS)_v| ≥ s - d_L}), but the violated-check argument requires the local view weight to be strictly less than d_L (i.e., ≤ d_L - 1). This needs b = d_L - 1 (giving A = {v | |(δS)_v| ≥ s - d_L + 1}), so that within-S edges ≤ d_L - 1 < d_L guarantees the nonzero local view is not a codeword.
-  \item Consequently, β'' should be ((d_L - 1 - λ₂) - αs(s - λ₂))/(d_L - 1), not ((d_L - λ₂) - (4α/s)(s - λ₂))/d_L as stated in the paper. The formalization's formula is correct.
+  \item Paper states $|S| \leq 2\alpha|X_1| = (4\alpha/s)|X_0|$, but the correct derivation using the handshaking lemma $2|X_1| = s|X_0|$ gives $2\alpha|X_1| = \alpha s|X_0|$, so $\alpha'$ should be $\alpha s$, not $4\alpha/s$.
+  \item Paper uses $b = d_L$ in Lemma 3 (defining $A = \{v \in S \mid |(\delta S)_v| \geq s - d_L\}$), but the violated-check argument requires the local view weight to be strictly less than $d_L$ (i.e., $\leq d_L - 1$). This needs $b = d_L - 1$ (giving $A = \{v \mid |(\delta S)_v| \geq s - d_L + 1\}$), so that within-$S$ edges $\leq d_L - 1 < d_L$ guarantees the nonzero local view is not a codeword.
+  \item Consequently, $\beta''$ should be $((d_L - 1 - \lambda_2) - \alpha s(s - \lambda_2))/(d_L - 1)$, not $((d_L - \lambda_2) - (4\alpha/s)(s - \lambda_2))/d_L$ as stated in the paper. The formalization's formula is correct.
 \end{itemize}
 \end{remark}
 
@@ -12045,7 +12045,7 @@ This is a direct application of Theorem~\ref{thm:SubsystemCodeParameters.subsyst
 \begin{remark}[Paper Corrections]
 \textbf{\color{red}Errata.} The following errors were identified in the original paper and corrected in this formalization:
 \begin{itemize}
-  \item Paper Corollary (cor:distanceboundssybsystemcode) states D_X ≥ min{α_co|X₁|, α_co|X₁|/2, ℓα_co/(4s), ℓα_coβ_co/(4s)} but the second term is missing β_co. From Theorem thm:distco Case 1, |x| ≥ |X₀|s·min{α_co/2, α_coβ_co/4}. Substituting |X₀|s = 2|X₁| gives min{α_co|X₁|, α_coβ_co|X₁|/2}, so the correct second term should be α_coβ_co|X₁|/2, not α_co|X₁|/2.
+  \item Paper Corollary (cor:distanceboundssybsystemcode) states $D_X \geq \min\{\alpha_{\mathrm{co}}|X_1|,\, \alpha_{\mathrm{co}}|X_1|/2,\, \ell\alpha_{\mathrm{co}}/(4s),\, \ell\alpha_{\mathrm{co}}\beta_{\mathrm{co}}/(4s)\}$ but the second term is missing $\beta_{\mathrm{co}}$. From Theorem thm:distco Case 1, $|x| \geq |X_0|s \cdot \min\{\alpha_{\mathrm{co}}/2,\, \alpha_{\mathrm{co}}\beta_{\mathrm{co}}/4\}$. Substituting $|X_0|s = 2|X_1|$ gives $\min\{\alpha_{\mathrm{co}}|X_1|,\, \alpha_{\mathrm{co}}\beta_{\mathrm{co}}|X_1|/2\}$, so the correct second term should be $\alpha_{\mathrm{co}}\beta_{\mathrm{co}}|X_1|/2$, not $\alpha_{\mathrm{co}}|X_1|/2$.
 \end{itemize}
 \end{remark}
 
@@ -12615,7 +12615,7 @@ For the upper bound: $D_Z \leq N$ is the content of the lemma \texttt{dZ\_le\_co
 \begin{remark}[Paper Corrections]
 \textbf{\color{red}Errata.} The following errors were identified in the original paper and corrected in this formalization:
 \begin{itemize}
-  \item In Corollary (cor:distanceboundssybsystemcode), the D_X formula has second term α_co|X_1|/2 but should be α_co·β_co·|X_1|/2, derived from Theorem distco Case 1: |X_0|s·α_co·β_co/4 = 2|X_1|·α_co·β_co/4 = α_co·β_co·|X_1|/2. The β_co factor was dropped. This is a typo that does not affect the asymptotic result since the minimum is dominated by the ℓ·α_co·β_co/(4s) = Θ(q) terms, not the Θ(q³) terms.
+  \item In Corollary (cor:distanceboundssybsystemcode), the $D_X$ formula has second term $\alpha_{\mathrm{co}}|X_1|/2$ but should be $\alpha_{\mathrm{co}} \cdot \beta_{\mathrm{co}} \cdot |X_1|/2$, derived from Theorem distco Case 1: $|X_0|s \cdot \alpha_{\mathrm{co}} \cdot \beta_{\mathrm{co}}/4 = 2|X_1| \cdot \alpha_{\mathrm{co}} \cdot \beta_{\mathrm{co}}/4 = \alpha_{\mathrm{co}} \cdot \beta_{\mathrm{co}} \cdot |X_1|/2$. The $\beta_{\mathrm{co}}$ factor was dropped. This is a typo that does not affect the asymptotic result since the minimum is dominated by the $\ell \cdot \alpha_{\mathrm{co}} \cdot \beta_{\mathrm{co}}/(4s) = \Theta(q)$ terms, not the $\Theta(q^3)$ terms.
 \end{itemize}
 \end{remark}
 

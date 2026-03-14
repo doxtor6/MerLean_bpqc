@@ -1932,11 +1932,11 @@
 </div>
 <p>[Paper Corrections] <b class="bfseries"><span style="None"></span>redErrata.</b> The following errors were identified in the original paper and corrected in this formalization: </p>
 <ul class="itemize">
-  <li><p>Paper states |S| ≤ 2α|X₁| = (4α/s)|X₀|, but the correct derivation using the handshaking lemma 2|X₁| = s|X₀| gives 2α|X₁| = αs|X₀|, so α’ should be αs, not 4α/s. </p>
+  <li><p>Paper states \(|S| \leq 2\alpha |X_1| = (4\alpha /s)|X_0|\), but the correct derivation using the handshaking lemma \(2|X_1| = s|X_0|\) gives \(2\alpha |X_1| = \alpha s|X_0|\), so \(\alpha '\) should be \(\alpha s\), not \(4\alpha /s\). </p>
 </li>
-  <li><p>Paper uses b = d_L in Lemma 3 (defining A = v ∈ S | |(δS)_v| ≥ s - d_L), but the violated-check argument requires the local view weight to be strictly less than d_L (i.e., ≤ d_L - 1). This needs b = d_L - 1 (giving A = v | |(δS)_v| ≥ s - d_L + 1), so that within-S edges ≤ d_L - 1 &lt; d_L guarantees the nonzero local view is not a codeword. </p>
+  <li><p>Paper uses \(b = d_L\) in Lemma 3 (defining \(A = \{ v \in S \mid |(\delta S)_v| \geq s - d_L\} \)), but the violated-check argument requires the local view weight to be strictly less than \(d_L\) (i.e., \(\leq d_L - 1\)). This needs \(b = d_L - 1\) (giving \(A = \{ v \mid |(\delta S)_v| \geq s - d_L + 1\} \)), so that within-\(S\) edges \(\leq d_L - 1 {\lt} d_L\) guarantees the nonzero local view is not a codeword. </p>
 </li>
-  <li><p>Consequently, β” should be ((d_L - 1 - λ₂) - αs(s - λ₂))/(d_L - 1), not ((d_L - λ₂) - (4α/s)(s - λ₂))/d_L as stated in the paper. The formalization’s formula is correct. </p>
+  <li><p>Consequently, \(\beta ''\) should be \(((d_L - 1 - \lambda _2) - \alpha s(s - \lambda _2))/(d_L - 1)\), not \(((d_L - \lambda _2) - (4\alpha /s)(s - \lambda _2))/d_L\) as stated in the paper. The formalization’s formula is correct. </p>
 </li>
 </ul>
 
