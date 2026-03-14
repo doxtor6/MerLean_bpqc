@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</title>
+<link rel="next" href="sect0030.html" title="Lem 2: Edge-to-Vertex Expansion" />
+<link rel="prev" href="sect0028.html" title="Cor 1: Alon–Chung Contrapositive" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000030">29 Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.edgeBoundaryCell">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">330</span>
+    <span class="definition_thmtitle">Edge Boundary of a Vertex Subset</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#def:CellComplex.edgeBoundaryCell">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.edgeBoundaryCell" class="lean_decl">CellComplex.edgeBoundaryCell</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(X\) be a cell complex and let \(S \subseteq X_0\) be a subset of vertices (0-cells). The <em>edge boundary</em> of \(S\) is the set </p>
+<div class="displaymath" id="a0000000602">
+  \[  \delta S \; =\;  \bigl\{ \,  e \in X_1 \; \big|\;  (\exists \,  u \in \partial _1 e,\;  u \in S) \; \land \;  (\exists \,  w \in \partial _1 e,\;  w \notin S) \, \bigr\} .  \]
+</div>
+<p> That is, an edge \(e \in X_1\) belongs to \(\delta S\) if and only if its boundary \(\partial _1 e\) intersects both \(S\) and its complement \(S^c\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.mem_edgeBoundaryCell">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">331</span>
+    <span class="theorem_thmtitle">Membership in the Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.mem_edgeBoundaryCell">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000603"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.mem_edgeBoundaryCell" class="lean_decl">CellComplex.mem_edgeBoundaryCell</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), and \(e \in X_1\). Then </p>
+<div class="displaymath" id="a0000000604">
+  \[  e \in \delta S \; \Longleftrightarrow \;  \bigl(\exists \,  u \in \partial _1 e,\;  u \in S\bigr) \; \land \;  \bigl(\exists \,  w \in \partial _1 e,\;  w \notin S\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000603">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This follows immediately by unfolding the definition of \(\delta S\) and applying <span class="ttfamily">simp</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CellComplex.edgeBoundaryCell_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">332</span>
+    <span class="lemma_thmtitle">Edge Boundary Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#lem:CellComplex.edgeBoundaryCell_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000605"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryCell">Theorem 331</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryCell">Theorem 331</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.edgeBoundaryCell_nonempty" class="lean_decl">CellComplex.edgeBoundaryCell_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(X\) be a cell complex and \(S \subseteq X_0\). If there exists an edge \(e \in X_1\) such that \(\partial _1 e\) contains a vertex in \(S\) and a vertex not in \(S\), then \(\delta S\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000605">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Assume there exists \(e \in X_1\) with \((\exists \,  u \in \partial _1 e,\;  u \in S)\) and \((\exists \,  w \in \partial _1 e,\;  w \notin S)\). From the hypothesis \(h\), we obtain such an edge \(e\) together with the witness \(h_e\) of both conditions. By the membership characterization \(\texttt{mem\_ edgeBoundaryCell}\), we have \(e \in \delta S\), so \(\delta S\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.incidentVerticesCell">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">333</span>
+    <span class="definition_thmtitle">Vertices Incident to a Set of Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#def:CellComplex.incidentVerticesCell">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.incidentVerticesCell" class="lean_decl">CellComplex.incidentVerticesCell</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(X\) be a cell complex and let \(E \subseteq X_1\) be a set of edges (1-cells). The <em>set of vertices incident to \(E\)</em> is </p>
+<div class="displaymath" id="a0000000606">
+  \[  \Gamma (E) \; =\;  \bigl\{ \,  v \in X_0 \; \big|\;  \exists \,  e \in E,\;  v \in \partial _1 e \, \bigr\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.mem_incidentVerticesCell">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">334</span>
+    <span class="theorem_thmtitle">Membership in Incident Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.mem_incidentVerticesCell">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000607"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentVerticesCell">Definition 333</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentVerticesCell">Definition 333</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.mem_incidentVerticesCell" class="lean_decl">CellComplex.mem_incidentVerticesCell</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(E \subseteq X_1\), and \(v \in X_0\). Then </p>
+<div class="displaymath" id="a0000000608">
+  \[  v \in \Gamma (E) \; \Longleftrightarrow \;  \exists \,  e \in E,\;  v \in \partial _1 e.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000607">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This follows immediately by unfolding the definition of \(\Gamma (E)\) and applying <span class="ttfamily">simp</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CellComplex.incidentVerticesCell_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">335</span>
+    <span class="lemma_thmtitle">Incident Vertices Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#lem:CellComplex.incidentVerticesCell_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000609"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentVerticesCell">Definition 333</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_incidentVerticesCell">Theorem 334</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentVerticesCell">Definition 333</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_incidentVerticesCell">Theorem 334</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.incidentVerticesCell_nonempty" class="lean_decl">CellComplex.incidentVerticesCell_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(X\) be a cell complex and \(E \subseteq X_1\). If there exists an edge \(e \in E\) with a vertex \(v \in X_0\) such that \(v \in \partial _1 e\), then \(\Gamma (E)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000609">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From the hypothesis \(h\), we obtain \(e \in E\) and \(v \in X_0\) with \(v \in \partial _1 e\). By the membership characterization \(\texttt{mem\_ incidentVerticesCell}\), we conclude \(v \in \Gamma (E)\), so \(\Gamma (E)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.incidentEdges">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">336</span>
+    <span class="definition_thmtitle">Edges Incident to a Vertex (Star)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#def:CellComplex.incidentEdges">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.incidentEdges" class="lean_decl">CellComplex.incidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(X\) be a cell complex and \(v \in X_0\) a vertex. The <em>set of edges incident to \(v\)</em> (the star of \(v\)) is </p>
+<div class="displaymath" id="a0000000610">
+  \[  \delta v \; =\;  \bigl\{ \,  e \in X_1 \; \big|\;  v \in \partial _1 e \, \bigr\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.mem_incidentEdges">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">337</span>
+    <span class="theorem_thmtitle">Membership in Incident Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.mem_incidentEdges">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000611"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.mem_incidentEdges" class="lean_decl">CellComplex.mem_incidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(v \in X_0\), and \(e \in X_1\). Then </p>
+<div class="displaymath" id="a0000000612">
+  \[  e \in \delta v \; \Longleftrightarrow \;  v \in \partial _1 e.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000611">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This follows immediately by unfolding the definition of \(\delta v\) and applying <span class="ttfamily">simp</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CellComplex.incidentEdges_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">338</span>
+    <span class="lemma_thmtitle">Incident Edges Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#lem:CellComplex.incidentEdges_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000613"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_incidentEdges">Theorem 337</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_incidentEdges">Theorem 337</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.incidentEdges_nonempty" class="lean_decl">CellComplex.incidentEdges_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(X\) be a cell complex and \(v \in X_0\). If there exists \(e \in X_1\) such that \(v \in \partial _1 e\), then \(\delta v\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000613">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From the hypothesis \(h\), we obtain \(e \in X_1\) with \(v \in \partial _1 e\). By the membership characterization \(\texttt{mem\_ incidentEdges}\), we conclude \(e \in \delta v\), so \(\delta v\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.edgeBoundaryVertex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">339</span>
+    <span class="definition_thmtitle">Edge Boundary at a Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#def:CellComplex.edgeBoundaryVertex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.edgeBoundaryVertex" class="lean_decl">CellComplex.edgeBoundaryVertex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), and \(v \in X_0\). The <em>edge boundary of \(S\) at vertex \(v\)</em> is the intersection </p>
+<div class="displaymath" id="a0000000614">
+  \[  (\delta S)_v \; =\;  \delta S \cap \delta v \; =\;  \bigl\{ \,  e \in X_1 \; \big|\;  e \in \delta S \; \land \;  v \in \partial _1 e \, \bigr\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.mem_edgeBoundaryVertex">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">340</span>
+    <span class="theorem_thmtitle">Membership in the Edge Boundary at a Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.mem_edgeBoundaryVertex">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000615"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.mem_edgeBoundaryVertex" class="lean_decl">CellComplex.mem_edgeBoundaryVertex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), \(v \in X_0\), and \(e \in X_1\). Then </p>
+<div class="displaymath" id="a0000000616">
+  \[  e \in (\delta S)_v \; \Longleftrightarrow \;  e \in \delta S \; \land \;  v \in \partial _1 e.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000615">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This follows immediately by unfolding the definition of \((\delta S)_v\) and applying <span class="ttfamily">simp</span>. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.edgeBoundaryVertex_subset">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">341</span>
+    <span class="theorem_thmtitle">Edge Boundary at Vertex is Subset of Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.edgeBoundaryVertex_subset">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000617"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.edgeBoundaryVertex_subset" class="lean_decl">CellComplex.edgeBoundaryVertex_subset</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), and \(v \in X_0\). Then </p>
+<div class="displaymath" id="a0000000618">
+  \[  (\delta S)_v \; \subseteq \;  \delta S.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000617">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Since \((\delta S)_v\) is defined as the filter of \(\delta S\) by the predicate \(v \in \partial _1 e\), the inclusion \((\delta S)_v \subseteq \delta S\) holds by the general fact that a filtered finset is a subset of the original finset (<span class="ttfamily">Finset.filter_subset</span>). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.edgeBoundaryVertex_subset_incidentEdges">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">342</span>
+    <span class="theorem_thmtitle">Edge Boundary at Vertex is Subset of Incident Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.edgeBoundaryVertex_subset_incidentEdges">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000619"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.incidentEdges">Definition 336</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryVertex">Theorem 340</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_incidentEdges">Theorem 337</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.edgeBoundaryVertex_subset_incidentEdges" class="lean_decl">CellComplex.edgeBoundaryVertex_subset_incidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), and \(v \in X_0\). Then </p>
+<div class="displaymath" id="a0000000620">
+  \[  (\delta S)_v \; \subseteq \;  \delta v.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000619">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Let \(e\) be arbitrary and assume \(e \in (\delta S)_v\). Rewriting using the membership characterization \(\texttt{mem\_ edgeBoundaryVertex}\), we obtain \(e \in \delta S\) and \(v \in \partial _1 e\). Rewriting the goal using \(\texttt{mem\_ incidentEdges}\), it suffices to show \(v \in \partial _1 e\), which is precisely the second component of the hypothesis. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CellComplex.edgeBoundaryVertex_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">343</span>
+    <span class="lemma_thmtitle">Edge Boundary at Vertex Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#lem:CellComplex.edgeBoundaryVertex_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000621"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryVertex">Theorem 340</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryVertex">Theorem 340</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.edgeBoundaryVertex_nonempty" class="lean_decl">CellComplex.edgeBoundaryVertex_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), and \(v \in X_0\). If there exists \(e \in X_1\) such that \(e \in \delta S\) and \(v \in \partial _1 e\), then \((\delta S)_v\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000621">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From the hypothesis \(h\), we obtain \(e \in X_1\) with the witness \(h_e\) satisfying \(e \in \delta S\) and \(v \in \partial _1 e\). By the membership characterization \(\texttt{mem\_ edgeBoundaryVertex}\), we conclude \(e \in (\delta S)_v\), so \((\delta S)_v\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.mem_edgeBoundaryVertex_iff">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">344</span>
+    <span class="theorem_thmtitle">Alternate Characterization of Edge Boundary at Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0029.html#thm:CellComplex.mem_edgeBoundaryVertex_iff">#</a>
+    
+    <a class="icon proof" href="sect0029.html#a0000000622"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryVertex">Definition 339</a></li>
+          
+          <li><a href="sect0029.html#def:CellComplex.edgeBoundaryCell">Definition 330</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryVertex">Theorem 340</a></li>
+          
+          <li><a href="sect0029.html#thm:CellComplex.mem_edgeBoundaryCell">Theorem 331</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.mem_edgeBoundaryVertex_iff" class="lean_decl">CellComplex.mem_edgeBoundaryVertex_iff</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(X\) be a cell complex, \(S \subseteq X_0\), \(v \in X_0\), and \(e \in X_1\). Then </p>
+<div class="displaymath" id="a0000000623">
+  \[  e \in (\delta S)_v \; \Longleftrightarrow \;  v \in \partial _1 e \; \land \;  \bigl(\exists \,  u \in \partial _1 e,\;  u \in S\bigr) \; \land \;  \bigl(\exists \,  w \in \partial _1 e,\;  w \notin S\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000622">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Rewriting with \(\texttt{mem\_ edgeBoundaryVertex}\), the left-hand side becomes \((e \in \delta S) \land (v \in \partial _1 e)\). Rewriting with \(\texttt{mem\_ edgeBoundaryCell}\), the condition \(e \in \delta S\) expands to \((\exists \,  u \in \partial _1 e,\;  u \in S) \land (\exists \,  w \in \partial _1 e,\;  w \notin S)\). The equivalence with the right-hand side then follows by propositional logic (<span class="ttfamily">tauto</span>). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0028.html" title="Cor 1: Alon–Chung Contrapositive"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0030.html" title="Lem 2: Edge-to-Vertex Expansion"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

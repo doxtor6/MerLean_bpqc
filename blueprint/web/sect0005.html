@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 2: Cochains and Cohomology</title>
+<link rel="next" href="sect0006.html" title="Def 3: Classical Code" />
+<link rel="prev" href="sect0004.html" title="Def 1: Chain Complex" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000006">5 Def 2: Cochains and Cohomology</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.coboundaryMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">27</span>
+    <span class="definition_thmtitle">Coboundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.coboundaryMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.incomingDifferential">Definition 20</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.coboundaryMap" class="lean_decl">ChainComplex𝔽₂.coboundaryMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(C = (C_\bullet , \partial )\) be a chain complex over \(\mathbb {F}_2\). For each \(i \in \mathbb {Z}\), the <em>coboundary map</em> \(\delta ^i : \operatorname {Dual}(C_i) \to \operatorname {Dual}(C_{i+1})\) is defined as the dual (transpose) of the incoming differential \(\partial _{i+1} : C_{i+1} \to C_i\): </p>
+<div class="displaymath" id="a0000000085">
+  \[  \delta ^i \; =\;  (\partial _{i+1})^{\mathrm{tr}} \; :=\;  \operatorname {dualMap}(C.\operatorname {incomingDifferential}(i)).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.incomingCoboundaryMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">28</span>
+    <span class="definition_thmtitle">Incoming Coboundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.incomingCoboundaryMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.differential">Definition 19</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.incomingCoboundaryMap" class="lean_decl">ChainComplex𝔽₂.incomingCoboundaryMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(C = (C_\bullet , \partial )\) be a chain complex over \(\mathbb {F}_2\). For each \(i \in \mathbb {Z}\), the <em>incoming coboundary map</em> \(\delta ^{i-1} : \operatorname {Dual}(C_{i-1}) \to \operatorname {Dual}(C_i)\) is defined as the dual (transpose) of the differential \(\partial _i : C_i \to C_{i-1}\): </p>
+<div class="displaymath" id="a0000000086">
+  \[  \delta ^{i-1} \; =\;  (\partial _i)^{\mathrm{tr}} \; :=\;  \operatorname {dualMap}(C.\operatorname {differential}(i)).  \]
+</div>
+<p> This formulation avoids index-arithmetic issues by using \(C.\operatorname {differential}(i)\) directly. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.cocycles">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">29</span>
+    <span class="definition_thmtitle">Cocycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.cocycles">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaryMap">Definition 27</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.cocycles" class="lean_decl">ChainComplex𝔽₂.cocycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\). The <em>cocycles</em> in degree \(i\) are the kernel of the coboundary map \(\delta ^i\): </p>
+<div class="displaymath" id="a0000000087">
+  \[  Z^i(C) \; =\;  \ker \delta ^i \; \subseteq \;  \operatorname {Dual}(C_i),  \]
+</div>
+<p> viewed as a submodule of \(\operatorname {Dual}(C_i)\) over \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.coboundaries">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">30</span>
+    <span class="definition_thmtitle">Coboundaries</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.coboundaries">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.incomingCoboundaryMap">Definition 28</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.coboundaries" class="lean_decl">ChainComplex𝔽₂.coboundaries</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\). The <em>coboundaries</em> in degree \(i\) are the image (range) of the incoming coboundary map \(\delta ^{i-1}\): </p>
+<div class="displaymath" id="a0000000088">
+  \[  B^i(C) \; =\;  \operatorname {im}\, \delta ^{i-1} \; \subseteq \;  \operatorname {Dual}(C_i),  \]
+</div>
+<p> viewed as a submodule of \(\operatorname {Dual}(C_i)\) over \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ChainComplexF2.coboundaryMap_comp_incomingCoboundaryMap">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">31</span>
+    <span class="theorem_thmtitle">Coboundary Composition is Zero</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#thm:ChainComplexF2.coboundaryMap_comp_incomingCoboundaryMap">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000089"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaryMap">Definition 27</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.incomingCoboundaryMap">Definition 28</a></li>
+          
+          <li><a href="sect0004.html#thm:ChainComplexF2.differential_comp_incomingDifferential">Theorem 23</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaryMap">Definition 27</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.incomingCoboundaryMap">Definition 28</a></li>
+          
+          <li><a href="sect0004.html#thm:ChainComplexF2.differential_comp_incomingDifferential">Theorem 23</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.coboundaryMap_comp_incomingCoboundaryMap" class="lean_decl">ChainComplex𝔽₂.coboundaryMap_comp_incomingCoboundaryMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\). For each \(i \in \mathbb {Z}\), the composition of coboundary maps satisfies: </p>
+<div class="displaymath" id="a0000000090">
+  \[  \delta ^i \circ \delta ^{i-1} \; =\;  0 \; :\;  \operatorname {Dual}(C_{i-1}) \; \to \;  \operatorname {Dual}(C_{i+1}).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000089">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definitions of \(\delta ^i = \operatorname {dualMap}(\partial _{i+1})\) and \(\delta ^{i-1} = \operatorname {dualMap}(\partial _i)\), we apply the identity \(\operatorname {dualMap}(f) \circ \operatorname {dualMap}(g) = \operatorname {dualMap}(g \circ f)\) (i.e., \(\operatorname {dualMap}\) is contravariant). Thus </p>
+<div class="displaymath" id="a0000000091">
+  \[  \delta ^i \circ \delta ^{i-1} \; =\;  \operatorname {dualMap}(\partial _i \circ \partial _{i+1}).  \]
+</div>
+<p> Rewriting using the chain complex relation \(\partial _i \circ \partial _{i+1} = 0\) (which holds by <span class="ttfamily">differential_comp_incomingDifferential</span>), we obtain \(\operatorname {dualMap}(0) = 0\), which follows from the fact that any linear map sends zero to zero. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ChainComplexF2.coboundaries_le_cocycles">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">32</span>
+    <span class="theorem_thmtitle">Coboundaries are Contained in Cocycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#thm:ChainComplexF2.coboundaries_le_cocycles">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000092"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.cocycles">Definition 29</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaryMap_comp_incomingCoboundaryMap">Theorem 31</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.cocycles">Definition 29</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaryMap_comp_incomingCoboundaryMap">Theorem 31</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.coboundaries_le_cocycles" class="lean_decl">ChainComplex𝔽₂.coboundaries_le_cocycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\). For each \(i \in \mathbb {Z}\): </p>
+<div class="displaymath" id="a0000000093">
+  \[  B^i(C) \; \subseteq \;  Z^i(C).  \]
+</div>
+<p> Every coboundary is a cocycle. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000092">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definitions of \(B^i(C) = \operatorname {im}\, \delta ^{i-1}\) and \(Z^i(C) = \ker \delta ^i\), we apply the standard criterion: \(\operatorname {im}(f) \subseteq \ker (g)\) if and only if \(g \circ f = 0\). Rewriting using the range–kernel inclusion lemma, it suffices to show \(\delta ^i \circ \delta ^{i-1} = 0\), which is exactly the content of <span class="ttfamily">coboundaryMap_comp_incomingCoboundaryMap</span>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.coboundariesSubCocycles">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">33</span>
+    <span class="definition_thmtitle">Coboundaries as Submodule of Cocycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.coboundariesSubCocycles">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.cocycles">Definition 29</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaries_le_cocycles">Theorem 32</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.coboundariesSubCocycles" class="lean_decl">ChainComplex𝔽₂.coboundariesSubCocycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Since \(B^i(C) \subseteq Z^i(C)\), we define \(B^i(C)\) as a submodule of \(Z^i(C)\) by taking the preimage of \(B^i(C)\) under the subtype embedding \(Z^i(C) \hookrightarrow \operatorname {Dual}(C_i)\): </p>
+<div class="displaymath" id="a0000000094">
+  \[  B^i(C)|_{Z^i} \; :=\;  \operatorname {comap}\bigl(\iota _{Z^i}\bigr)\bigl(B^i(C)\bigr) \; \subseteq \;  Z^i(C),  \]
+</div>
+<p> where \(\iota _{Z^i} : Z^i(C) \to \operatorname {Dual}(C_i)\) is the canonical inclusion. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.cohomology">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">34</span>
+    <span class="definition_thmtitle">Cohomology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.cohomology">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.cocycles">Definition 29</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundariesSubCocycles">Definition 33</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.cohomology" class="lean_decl">ChainComplex𝔽₂.cohomology</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\). The <em>\(i\)-th cohomology</em> of \(C\) is the quotient \(\mathbb {F}_2\)-vector space: </p>
+<div class="displaymath" id="a0000000095">
+  \[  H^i(C) \; =\;  Z^i(C) \, /\,  B^i(C).  \]
+</div>
+<p> More precisely, it is the quotient of \(Z^i(C)\) by the submodule \(B^i(C)|_{Z^i}\) of \(Z^i(C)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ChainComplexF2.cocycles_eq_dualAnnihilator_boundaries">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">35</span>
+    <span class="theorem_thmtitle">Cocycles are the Dual Annihilator of Boundaries</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#thm:ChainComplexF2.cocycles_eq_dualAnnihilator_boundaries">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000096"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.cocycles">Definition 29</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundaries">Definition 22</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.cocycles">Definition 29</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaryMap">Definition 27</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundaries">Definition 22</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.cocycles_eq_dualAnnihilator_boundaries" class="lean_decl">ChainComplex𝔽₂.cocycles_eq_dualAnnihilator_boundaries</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\). For each \(i \in \mathbb {Z}\): </p>
+<div class="displaymath" id="a0000000097">
+  \[  Z^i(C) \; =\;  B_i(C)^{\mathrm{ann}},  \]
+</div>
+<p> where \(B_i(C)^{\mathrm{ann}} \subseteq \operatorname {Dual}(C_i)\) denotes the dual annihilator of the homological boundaries \(B_i(C) = \operatorname {im}\, \partial _{i+1}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000096">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definitions \(Z^i(C) = \ker \delta ^i = \ker \bigl(\operatorname {dualMap}(\partial _{i+1})\bigr)\) and \(B_i(C) = \operatorname {im}\, \partial _{i+1}\), the result follows directly from the identity \(\ker (f^{\mathrm{tr}}) = (\operatorname {im}\, f)^{\mathrm{ann}}\), which holds over any commutative ring. Specifically, we apply <span class="ttfamily">LinearMap.ker_dualMap_eq_dualAnnihilator_range</span> to the incoming differential \(\partial _{i+1} = C.\operatorname {incomingDifferential}(i)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ChainComplexF2.coboundaries_eq_dualAnnihilator_cycles">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">36</span>
+    <span class="theorem_thmtitle">Coboundaries are the Dual Annihilator of Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#thm:ChainComplexF2.coboundaries_eq_dualAnnihilator_cycles">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000098"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.cycles">Definition 21</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.incomingCoboundaryMap">Definition 28</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.cycles">Definition 21</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.differential">Definition 19</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.coboundaries_eq_dualAnnihilator_cycles" class="lean_decl">ChainComplex𝔽₂.coboundaries_eq_dualAnnihilator_cycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\), and assume \(C_i\) and \(C_{i-1}\) are finite-dimensional over \(\mathbb {F}_2\). For each \(i \in \mathbb {Z}\): </p>
+<div class="displaymath" id="a0000000099">
+  \[  B^i(C) \; =\;  Z_i(C)^{\mathrm{ann}},  \]
+</div>
+<p> where \(Z_i(C)^{\mathrm{ann}} \subseteq \operatorname {Dual}(C_i)\) is the dual annihilator of the homological cycles \(Z_i(C) = \ker \, \partial _i\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000098">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definitions \(B^i(C) = \operatorname {im}\, \delta ^{i-1} = \operatorname {im}\bigl(\operatorname {dualMap}(\partial _i)\bigr)\) and \(Z_i(C) = \ker \, \partial _i\), the result follows from the identity \(\operatorname {im}(f^{\mathrm{tr}}) = (\ker f)^{\mathrm{ann}}\) for linear maps between finite-dimensional vector spaces over a field. Specifically, we apply <span class="ttfamily">LinearMap.range_dualMap_eq_dualAnnihilator_ker</span> to the differential \(\partial _i = C.\operatorname {differential}(i)\). Finite-dimensionality of \(C_i\) and \(C_{i-1}\) is used to ensure the field-theoretic transpose identity holds. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ChainComplexF2.finrank_boundariesSubCycles_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">37</span>
+    <span class="lemma_thmtitle">Finrank of Boundaries Sub-Cycles Equals Finrank of Boundaries</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#lem:ChainComplexF2.finrank_boundariesSubCycles_eq">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000100"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundariesSubCycles">Definition 25</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundaries">Definition 22</a></li>
+          
+          <li><a href="sect0004.html#thm:ChainComplexF2.boundaries_le_cycles">Theorem 24</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundariesSubCycles">Definition 25</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundaries">Definition 22</a></li>
+          
+          <li><a href="sect0004.html#thm:ChainComplexF2.boundaries_le_cycles">Theorem 24</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.finrank_boundariesSubCycles_eq" class="lean_decl">ChainComplex𝔽₂.finrank_boundariesSubCycles_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\) with \(C_i\) and \(C_{i+1}\) finite-dimensional. Then: </p>
+<div class="displaymath" id="a0000000101">
+  \[  \operatorname {finrank}_{\mathbb {F}_2}\bigl(B_i(C)|_{Z_i}\bigr) \; =\;  \operatorname {finrank}_{\mathbb {F}_2}\bigl(B_i(C)\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000100">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(h_{\le }\) denote the inclusion \(B_i(C) \subseteq Z_i(C)\) from <span class="ttfamily">boundaries_le_cycles</span>. Unfolding \(B_i(C)|_{Z_i} = \operatorname {comap}(\iota _{Z_i})(B_i(C))\), we apply the identity </p>
+<div class="displaymath" id="a0000000102">
+  \[  \operatorname {finrank}\bigl(\operatorname {comap}(\iota _{Z_i})(B_i)\bigr) \; =\;  \operatorname {finrank}\bigl(\operatorname {map}(\iota _{Z_i})\bigl(\operatorname {comap}(\iota _{Z_i})(B_i)\bigr)\bigr)  \]
+</div>
+<p> using <span class="ttfamily">Submodule.finrank_map_subtype_eq</span>. Next, we apply <span class="ttfamily">Submodule.map_comap_subtype</span> to obtain \(\operatorname {map}(\iota _{Z_i})(\operatorname {comap}(\iota _{Z_i})(B_i)) = Z_i \sqcap B_i\). Since \(B_i \subseteq Z_i\) (i.e., \(h_{\le }\) holds), we conclude \(Z_i \sqcap B_i = B_i\) by <span class="ttfamily">inf_eq_right</span>, completing the proof. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ChainComplexF2.finrank_coboundariesSubCocycles_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">38</span>
+    <span class="lemma_thmtitle">Finrank of Coboundaries Sub-Cocycles Equals Finrank of Coboundaries</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#lem:ChainComplexF2.finrank_coboundariesSubCocycles_eq">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000103"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundariesSubCocycles">Definition 33</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaries_le_cocycles">Theorem 32</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundariesSubCocycles">Definition 33</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundaries">Definition 30</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaries_le_cocycles">Theorem 32</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.finrank_coboundariesSubCocycles_eq" class="lean_decl">ChainComplex𝔽₂.finrank_coboundariesSubCocycles_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\) with \(C_i\), \(C_{i-1}\), and \(C_{i+1}\) finite-dimensional. Then: </p>
+<div class="displaymath" id="a0000000104">
+  \[  \operatorname {finrank}_{\mathbb {F}_2}\bigl(B^i(C)|_{Z^i}\bigr) \; =\;  \operatorname {finrank}_{\mathbb {F}_2}\bigl(B^i(C)\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000103">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(h_{\le }\) denote the inclusion \(B^i(C) \subseteq Z^i(C)\) from <span class="ttfamily">coboundaries_le_cocycles</span>. Unfolding \(B^i(C)|_{Z^i} = \operatorname {comap}(\iota _{Z^i})(B^i(C))\), we apply <span class="ttfamily">Submodule.finrank_map_subtype_eq</span> to obtain </p>
+<div class="displaymath" id="a0000000105">
+  \[  \operatorname {finrank}\bigl(\operatorname {comap}(\iota _{Z^i})(B^i)\bigr) \; =\;  \operatorname {finrank}\bigl(\operatorname {map}(\iota _{Z^i})(\operatorname {comap}(\iota _{Z^i})(B^i))\bigr).  \]
+</div>
+<p> By <span class="ttfamily">Submodule.map_comap_subtype</span>, this equals \(\operatorname {finrank}(Z^i \sqcap B^i)\). Since \(B^i \subseteq Z^i\), we have \(Z^i \sqcap B^i = B^i\) by <span class="ttfamily">inf_eq_right</span>, completing the proof. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ChainComplexF2.finrank_homology_eq_finrank_cohomology">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">39</span>
+    <span class="theorem_thmtitle">Homology and Cohomology Have Equal Finrank</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#thm:ChainComplexF2.finrank_homology_eq_finrank_cohomology">#</a>
+    
+    <a class="icon proof" href="sect0005.html#a0000000106"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.boundariesSubCycles">Definition 25</a></li>
+          
+          <li><a href="sect0005.html#def:ChainComplexF2.coboundariesSubCocycles">Definition 33</a></li>
+          
+          <li><a href="sect0005.html#lem:ChainComplexF2.finrank_boundariesSubCycles_eq">Lemma 37</a></li>
+          
+          <li><a href="sect0005.html#lem:ChainComplexF2.finrank_coboundariesSubCocycles_eq">Lemma 38</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaries_eq_dualAnnihilator_cycles">Theorem 36</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.cocycles_eq_dualAnnihilator_boundaries">Theorem 35</a></li>
+          
+          <li><a href="sect0005.html#lem:ChainComplexF2.finrank_boundariesSubCycles_eq">Lemma 37</a></li>
+          
+          <li><a href="sect0005.html#lem:ChainComplexF2.finrank_coboundariesSubCocycles_eq">Lemma 38</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.coboundaries_eq_dualAnnihilator_cycles">Theorem 36</a></li>
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.cocycles_eq_dualAnnihilator_boundaries">Theorem 35</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.finrank_homology_eq_finrank_cohomology" class="lean_decl">ChainComplex𝔽₂.finrank_homology_eq_finrank_cohomology</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\) with \(C_i\), \(C_{i-1}\), and \(C_{i+1}\) finite-dimensional. Then: </p>
+<div class="displaymath" id="a0000000107">
+  \[  \operatorname {finrank}_{\mathbb {F}_2}\bigl(H_i(C)\bigr) \; =\;  \operatorname {finrank}_{\mathbb {F}_2}\bigl(H^i(C)\bigr),  \]
+</div>
+<p> where \(H_i(C) = Z_i(C)/B_i(C)\) is homology and \(H^i(C) = Z^i(C)/B^i(C)\) is cohomology. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000106">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We apply the dimension formula \(\operatorname {finrank}(M/N) + \operatorname {finrank}(N) = \operatorname {finrank}(M)\) twice: </p>
+<div class="displaymath" id="a0000000108">
+  \begin{align*}  \operatorname {finrank}(H_i) + \operatorname {finrank}(B_i|_{Z_i}) & = \operatorname {finrank}(Z_i), \\ \operatorname {finrank}(H^i) + \operatorname {finrank}(B^i|_{Z^i}) & = \operatorname {finrank}(Z^i). \end{align*}
+</div>
+<p> By <span class="ttfamily">finrank_boundariesSubCycles_eq</span>, \(\operatorname {finrank}(B_i|_{Z_i}) = \operatorname {finrank}(B_i)\). By <span class="ttfamily">finrank_coboundariesSubCocycles_eq</span>, \(\operatorname {finrank}(B^i|_{Z^i}) = \operatorname {finrank}(B^i)\). </p>
+<p>We then apply the dual annihilator dimension formula \(\operatorname {finrank}(W) + \operatorname {finrank}(W^{\mathrm{ann}}) = \operatorname {finrank}(V)\) (for \(W \subseteq V\) finite-dimensional) to both \(B_i(C)\) and \(Z_i(C)\): </p>
+<div class="displaymath" id="a0000000109">
+  \begin{align*}  \operatorname {finrank}(B_i) + \operatorname {finrank}(B_i^{\mathrm{ann}}) & = \operatorname {finrank}(C_i), \\ \operatorname {finrank}(Z_i) + \operatorname {finrank}(Z_i^{\mathrm{ann}}) & = \operatorname {finrank}(C_i). \end{align*}
+</div>
+<p> By <span class="ttfamily">cocycles_eq_dualAnnihilator_boundaries</span>, \(\operatorname {finrank}(Z^i) = \operatorname {finrank}(B_i^{\mathrm{ann}})\). By <span class="ttfamily">coboundaries_eq_dualAnnihilator_cycles</span>, \(\operatorname {finrank}(B^i) = \operatorname {finrank}(Z_i^{\mathrm{ann}})\). Combining all four equations, the equality \(\operatorname {finrank}(H_i) = \operatorname {finrank}(H^i)\) follows by integer arithmetic (<span class="ttfamily">omega</span>). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2.homologyCohomologyEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">40</span>
+    <span class="definition_thmtitle">Homology–Cohomology Isomorphism</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0005.html#def:ChainComplexF2.homologyCohomologyEquiv">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#thm:ChainComplexF2.finrank_homology_eq_finrank_cohomology">Theorem 39</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂.homologyCohomologyEquiv" class="lean_decl">ChainComplex𝔽₂.homologyCohomologyEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(C\) be a chain complex over \(\mathbb {F}_2\) with \(C_i\), \(C_{i-1}\), and \(C_{i+1}\) finite-dimensional. There is a linear isomorphism of \(\mathbb {F}_2\)-vector spaces: </p>
+<div class="displaymath" id="a0000000110">
+  \[  H_i(C) \; \simeq _{\mathbb {F}_2}\;  H^i(C).  \]
+</div>
+<p> This isomorphism is constructed via <span class="ttfamily">LinearEquiv.ofFinrankEq</span>, using the fact that both spaces are finite-dimensional \(\mathbb {F}_2\)-vector spaces of equal dimension, as established by <span class="ttfamily">finrank_homology_eq_finrank_cohomology</span>. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0004.html" title="Def 1: Chain Complex"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0006.html" title="Def 3: Classical Code"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

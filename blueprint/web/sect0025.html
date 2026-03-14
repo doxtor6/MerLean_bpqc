@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lem 1: Relative Cheeger Inequality</title>
+<link rel="next" href="sect0026.html" title="Thm 5: Alon–Boppana Bound" />
+<link rel="prev" href="sect0024.html" title="Def 18: Cheeger Constant" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000026">25 Lem 1: Relative Cheeger Inequality</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeCheeger.card_ge_two_of_subset">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">287</span>
+    <span class="lemma_thmtitle">Cardinality at Least Two from Subset Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0025.html#lem:RelativeCheeger.card_ge_two_of_subset">#</a>
+    
+    <a class="icon proof" href="sect0025.html#a0000000503"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeCheeger.card_ge_two_of_subset" class="lean_decl">RelativeCheeger.card_ge_two_of_subset</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(V\) be a finite type, \(S \subseteq V\) a finset, and \(\alpha \in \mathbb {R}\) with \(\alpha {\lt} 1\). If \(0 {\lt} |S|\) and \(|S| {\lt} \alpha \cdot |V|\), then \(|V| \geq 2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000503">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We argue by contradiction. Suppose \(|V| {\lt} 2\). Since \(|V|\) is a natural number, \(|V| \leq 1\). Since \(S \subseteq V\), we have \(|S| \leq |V| \leq 1\), so combined with \(0 {\lt} |S|\) we get \(|S| = 1\) and thus \(|V| = 1\). Substituting into \(|S| {\lt} \alpha \cdot |V|\) yields \(1 {\lt} \alpha \cdot 1 = \alpha \), but this contradicts \(\alpha {\lt} 1\). Hence \(|V| \geq 2\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:RelativeCheeger.spectralLaplacianBound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">288</span>
+    <span class="theorem_thmtitle">Axiom: Spectral Laplacian Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0025.html#thm:RelativeCheeger.spectralLaplacianBound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeCheeger.spectralLaplacianBound" class="lean_decl">RelativeCheeger.spectralLaplacianBound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(G = (V, E)\) be a finite, connected, \(s\)-regular simple graph with \(|V| \geq 2\), and let \(\lambda _2\) denote its second-largest adjacency eigenvalue. For any nonempty proper subset \(S \subsetneq V\) (i.e., \(0 {\lt} |S| {\lt} |V|\)), the edge boundary \(\delta S\) satisfies: </p>
+<div class="displaymath" id="a0000000504">
+  \[  (s - \lambda _2) \cdot |S| \cdot \left(1 - \frac{|S|}{|V|}\right) \leq |\delta S|.  \]
+</div>
+<p><i class="itshape">Note: This is stated as an axiom because the proof requires eigenvalue decomposition and the Courant–Fischer variational characterization of \(\lambda _2\), which are not currently available in Mathlib. The proof strategy is: (Step 1) Set \(f = \mathbf{1}_S\), decompose \(f = \bar{f}\cdot \mathbf{1} + g\) where \(\bar{f} = |S|/|V|\); (Step 2) By the spectral theorem, \(g^\top (sI - M)g \geq (s - \lambda _2)\, g^\top g\); (Step 3) Compute \(g^\top g = |S|(1 - |S|/|V|)\) and \(f^\top (sI-M)f = |\delta S|\); (Step 4) Since \((sI-M)\cdot \mathbf{1} = 0\), we have \(g^\top (sI-M)g = f^\top (sI-M)f\), completing the bound. This follows the same convention as <span class="ttfamily">cheegerInequalities</span> in the Cheeger constant file.</i> </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeCheeger.spectralLaplacianBound_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">289</span>
+    <span class="lemma_thmtitle">Satisfiability Witness for Spectral Laplacian Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0025.html#lem:RelativeCheeger.spectralLaplacianBound_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0025.html#a0000000505"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0025.html#thm:RelativeCheeger.spectralLaplacianBound">Theorem 288</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeCheeger.spectralLaplacianBound_satisfiable" class="lean_decl">RelativeCheeger.spectralLaplacianBound_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G = (V, E)\) be a finite, connected simple graph with \(|V| \geq 2\). Then there exists a finset \(S \subseteq V\) with \(0 {\lt} |S|\) and \(|S| {\lt} |V|\), confirming that the hypotheses of the spectral Laplacian bound axiom are satisfiable. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000505">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Since \(|V| \geq 2 {\gt} 0\), the type \(V\) is nonempty; obtain any vertex \(v \in V\). Take \(S = \{ v\} \). Then \(|S| = 1 {\gt} 0\), and \(|S| = 1 {\lt} |V|\) because \(|V| \geq 2\). This provides the required witness. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeCheeger.card_div_lt_alpha">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">290</span>
+    <span class="lemma_thmtitle">Card Ratio Less Than Alpha</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0025.html#lem:RelativeCheeger.card_div_lt_alpha">#</a>
+    
+    <a class="icon proof" href="sect0025.html#a0000000506"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeCheeger.card_div_lt_alpha" class="lean_decl">RelativeCheeger.card_div_lt_alpha</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(S \subseteq V\) be a finset, \(\alpha \in \mathbb {R}\) with \(\alpha {\gt} 0\), and \(|V| {\gt} 0\). If \(|S| {\lt} \alpha \cdot |V|\), then \(|S| / |V| {\lt} \alpha \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000506">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Since \(|V| {\gt} 0\), we have \((|V| : \mathbb {R}) {\gt} 0\). Using the equivalence \(|S|/|V| {\lt} \alpha \Leftrightarrow |S| {\lt} \alpha \cdot |V|\) (valid for positive \(|V|\)), the result follows directly from the hypothesis \(|S| {\lt} \alpha \cdot |V|\) by dividing both sides by \(|V|\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeCheeger.card_lt_of_alpha">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">291</span>
+    <span class="lemma_thmtitle">Card Strictly Less Than Total From Alpha Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0025.html#lem:RelativeCheeger.card_lt_of_alpha">#</a>
+    
+    <a class="icon proof" href="sect0025.html#a0000000507"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeCheeger.card_lt_of_alpha" class="lean_decl">RelativeCheeger.card_lt_of_alpha</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(S \subseteq V\) be a finset, \(\alpha \in \mathbb {R}\) with \(\alpha {\lt} 1\). If \((|S| : \mathbb {R}) {\lt} \alpha \cdot |V|\), then \(|S| {\lt} |V|\) (as natural numbers). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000507">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We show \((|S| : \mathbb {R}) {\lt} |V|\) and then cast to natural numbers. We have: </p>
+<div class="displaymath" id="a0000000508">
+  \[  (|S| : \mathbb {R}) {\lt} \alpha \cdot |V| {\lt} 1 \cdot |V| = |V|,  \]
+</div>
+<p> where the second inequality holds because \(\alpha {\lt} 1\) and \(|V| {\gt} 0\) (the latter follows since \(|S| {\lt} \alpha \cdot |V|\) with \(\alpha {\gt} 0\) and \(|S| \geq 0\) implies \(|V| {\gt} 0\); if \(|V| = 0\) then the right-hand side \(\alpha \cdot 0 = 0\) and \(|S| \geq 0\), which combined with \(|S| {\lt} 0\) gives a contradiction). Casting back to natural numbers gives \(|S| {\lt} |V|\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:RelativeCheeger.relativeCheeger">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">292</span>
+    <span class="theorem_thmtitle">Relative Cheeger Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0025.html#thm:RelativeCheeger.relativeCheeger">#</a>
+    
+    <a class="icon proof" href="sect0025.html#a0000000509"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0025.html#thm:RelativeCheeger.spectralLaplacianBound">Theorem 288</a></li>
+          
+          <li><a href="sect0025.html#lem:RelativeCheeger.card_ge_two_of_subset">Lemma 287</a></li>
+          
+          <li><a href="sect0025.html#lem:RelativeCheeger.card_lt_of_alpha">Lemma 291</a></li>
+          
+          <li><a href="sect0025.html#lem:RelativeCheeger.card_div_lt_alpha">Lemma 290</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeCheeger.relativeCheeger" class="lean_decl">RelativeCheeger.relativeCheeger</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G = (V, E)\) be a finite, connected, \(s\)-regular simple graph, and let \(\lambda _2\) denote its second-largest adjacency eigenvalue (well-defined since \(|V| \geq 2\)). Let \(\alpha \in (0,1)\) and let \(S \subseteq V\) with \(0 {\lt} |S|\) and \(|S| {\lt} \alpha \cdot |V|\). Then: </p>
+<div class="displaymath" id="a0000000510">
+  \[  (1 - \alpha )(s - \lambda _2) \leq \frac{|\delta S|}{|S|}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000509">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(h_{\mathrm{card}} : |V| \geq 2\) be the witness obtained from \(|S| {\lt} \alpha \cdot |V|\), \(0 {\lt} |S|\), \(\alpha {\lt} 1\) via the lemma <span class="ttfamily">card_ge_two_of_subset</span>, so that \(\lambda _2\) is well-defined. </p>
+<p>We establish the following auxiliary facts: </p>
+<ul class="itemize">
+  <li><p>\((|S| : \mathbb {R}) {\gt} 0\) by casting \(0 {\lt} |S|\). </p>
+</li>
+  <li><p>\((|V| : \mathbb {R}) {\gt} 0\) since \(|V| \geq 2\). </p>
+</li>
+  <li><p>\(|S| {\lt} |V|\) (as natural numbers) by <span class="ttfamily">card_lt_of_alpha</span>. </p>
+</li>
+  <li><p>\(|S|/|V| {\lt} \alpha \) by <span class="ttfamily">card_div_lt_alpha</span>. </p>
+</li>
+  <li><p>\(1 - \alpha {\lt} 1 - |S|/|V|\) by linear arithmetic from \(|S|/|V| {\lt} \alpha \). </p>
+</li>
+  <li><p>\(1 - \alpha {\gt} 0\) by linear arithmetic from \(\alpha {\lt} 1\). </p>
+</li>
+</ul>
+<p>We invoke the spectral Laplacian bound axiom \((\texttt{spectralLaplacianBound})\) to obtain: </p>
+<div class="displaymath" id="a0000000511">
+  \[  (s - \lambda _2) \cdot |S| \cdot \left(1 - \frac{|S|}{|V|}\right) \leq |\delta S|. \tag {$*$}  \]
+</div>
+<p>We also note \(|\delta S| \geq 0\) and \(1 - |S|/|V| {\gt} 0\) (since \(|S| {\lt} |V|\) and \(|V| {\gt} 0\)). </p>
+<p>We now split on the sign of \(s - \lambda _2\). </p>
+<p><b class="bfseries">Case 1: \(s - \lambda _2 \geq 0\).</b> We multiply out and rewrite the goal \((1 - \alpha )(s - \lambda _2) \leq |\delta S|/|S|\) equivalently (multiplying both sides by \(|S| {\gt} 0\)) as \((1 - \alpha )(s - \lambda _2) \cdot |S| \leq |\delta S|\). We compute: </p>
+<div class="displaymath" id="a0000000512">
+  \begin{align*}  (1 - \alpha )(s - \lambda _2) \cdot |S| & = (s - \lambda _2) \cdot |S| \cdot (1 - \alpha ) \quad \text{(by ring)} \\ & \leq (s - \lambda _2) \cdot |S| \cdot \left(1 - \frac{|S|}{|V|}\right) \quad \text{(since $1 - \alpha \leq 1 - |S|/|V|$ and $(s-\lambda _2)\cdot |S| \geq 0$)} \\ & \leq |\delta S| \quad \text{(by $(*)$)}. \end{align*}
+</div>
+<p><b class="bfseries">Case 2: \(s - \lambda _2 {\lt} 0\).</b> Then \((1-\alpha )(s - \lambda _2) {\lt} 0\) (product of positive \(1-\alpha {\gt} 0\) and negative \(s - \lambda _2 {\lt} 0\)). We have: </p>
+<div class="displaymath" id="a0000000513">
+  \[  (1 - \alpha )(s - \lambda _2) \leq 0 \leq \frac{|\delta S|}{|S|},  \]
+</div>
+<p> where the second inequality holds since \(|\delta S| \geq 0\) and \(|S| {\gt} 0\). </p>
+<p>In both cases the inequality is established. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0024.html" title="Def 18: Cheeger Constant"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0026.html" title="Thm 5: Alon–Boppana Bound"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

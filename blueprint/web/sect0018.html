@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 13: Augmented Complex</title>
+<link rel="next" href="sect0019.html" title="Thm 4: Projection Induces Isomorphism" />
+<link rel="prev" href="sect0017.html" title="Thm 3: Fiber Bundle Homology" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000019">18 Def 13: Augmented Complex</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.AugmentedComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">213</span>
+    <span class="definition_thmtitle">Augmented Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.AugmentedComplex">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.AugmentedComplex" class="lean_decl">FiberBundle.AugmentedComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>A complex \(F = (F_1 \xrightarrow {\partial ^F} F_0)\) is <em>augmented</em> if there exists a linear map \(\varepsilon : F_0 \to \mathbb {F}_2\) such that \(\varepsilon \circ \partial ^F = 0\). Concretely, for fixed natural numbers \(n_2, m_2\) and a linear map \(\partial ^F : (\operatorname {Fin} n_2 \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin} m_2 \to \mathbb {F}_2)\), an <span class="ttfamily">AugmentedComplex</span> consists of: </p>
+<ul class="itemize">
+  <li><p>A linear map \(\varepsilon : (\operatorname {Fin} m_2 \to \mathbb {F}_2) \to _{\mathbb {F}_2} \mathbb {F}_2\) (the augmentation map), </p>
+</li>
+  <li><p>A proof that \(\varepsilon \circ \partial ^F = 0\) (the chain map condition). </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.augMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">214</span>
+    <span class="definition_thmtitle">Augmentation Map at Each Degree</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.augMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberSize">Definition 186</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.augMap" class="lean_decl">FiberBundle.augMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a differential \(\partial ^F : (\operatorname {Fin} n_2 \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin} m_2 \to \mathbb {F}_2)\) and an augmented complex \(\mathtt{aug}\), the augmentation map at fiber degree \(q \in \mathbb {Z}\) is defined as: </p>
+<div class="displaymath" id="a0000000364">
+  \[  \operatorname {augMap}(\partial ^F, \mathtt{aug}, q) := \begin{cases}  \varepsilon &  \text{if } q = 0,\\ 0 &  \text{otherwise.} \end{cases}  \]
+</div>
+<p> This defines a linear map \((\operatorname {Fin}(\operatorname {fiberSize}(n_2, m_2, q)) \to \mathbb {F}_2) \to _{\mathbb {F}_2} \mathbb {F}_2\), corresponding to \(\pi _0 = \varepsilon \) and \(\pi _q = 0\) for \(q \ne 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarSummandLin">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">215</span>
+    <span class="definition_thmtitle">Summand Linear Map for \(\pi _*\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.piStarSummandLin">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.augMap">Definition 214</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.baseSize">Definition 185</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberSize">Definition 186</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarSummandLin" class="lean_decl">FiberBundle.piStarSummandLin</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For integers \(p, q \in \mathbb {Z}\), the linear map underlying the \((p,q)\)-summand of \(\pi _*\) is: </p>
+<div class="displaymath" id="a0000000365">
+  \[  \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, p, q) : \Bigl(\operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,p)) \to \mathbb {F}_2\Bigr) \otimes _{\mathbb {F}_2} \Bigl(\operatorname {Fin}(\operatorname {fiberSize}(n_2,m_2,q)) \to \mathbb {F}_2\Bigr) \; \to _{\mathbb {F}_2}\;  \Bigl(\operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,p)) \to \mathbb {F}_2\Bigr),  \]
+</div>
+<p> given by \(b \otimes f \mapsto \pi _q(f) \cdot b\), where \(\pi _q = \operatorname {augMap}(\partial ^F, \mathtt{aug}, q)\). Concretely, this is the composition </p>
+<div class="displaymath" id="a0000000366">
+  \[  (\operatorname {TensorProduct.rid})_{\mathbb {F}_2} \circ (\operatorname {id} \otimes \operatorname {augMap}(\partial ^F, \mathtt{aug}, q)).  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarSummandLin_tmul_q0">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">216</span>
+    <span class="lemma_thmtitle">Summand Map at \(q = 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#lem:FiberBundle.piStarSummandLin_tmul_q0">#</a>
+    
+    <a class="icon proof" href="sect0018.html#a0000000367"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.augMap">Definition 214</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.baseSize">Definition 185</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberSize">Definition 186</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.augMap">Definition 214</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarSummandLin_tmul_q0" class="lean_decl">FiberBundle.piStarSummandLin_tmul_q0</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(b : \operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,p)) \to \mathbb {F}_2\) and \(f : \operatorname {Fin}(\operatorname {fiberSize}(n_2,m_2,0)) \to \mathbb {F}_2\), </p>
+<div class="displaymath" id="a0000000368">
+  \[  \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, p, 0)(b \otimes f) = \varepsilon (f) \cdot b.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000367">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By simplification using the definitions of <span class="ttfamily">piStarSummandLin</span>, <span class="ttfamily">augMap_zero</span>, and the \(\mathbb {F}_2\)-module isomorphism \(\operatorname {TensorProduct.rid}\), together with the formula for \(\operatorname {lTensor}\) on pure tensors, the result follows by reflexivity. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarSummandLin_q_ne_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">217</span>
+    <span class="lemma_thmtitle">Summand Map Vanishes for \(q \ne 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#lem:FiberBundle.piStarSummandLin_q_ne_zero">#</a>
+    
+    <a class="icon proof" href="sect0018.html#a0000000369"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.augMap">Definition 214</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.augMap">Definition 214</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarSummandLin_q_ne_zero" class="lean_decl">FiberBundle.piStarSummandLin_q_ne_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(q \ne 0\), </p>
+<div class="displaymath" id="a0000000370">
+  \[  \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, p, q) = 0.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000369">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By simplification using the definitions of <span class="ttfamily">piStarSummandLin</span> and <span class="ttfamily">augMap</span> with the conditional <span class="ttfamily">dif_neg hq</span> (since \(q \ne 0\)), the augmentation map at degree \(q\) is zero, so the composition \(\operatorname {TensorProduct.rid} \circ (\operatorname {id} \otimes 0)\) reduces to zero by \(\operatorname {LinearMap.comp_zero}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarSummandMor">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">218</span>
+    <span class="definition_thmtitle">Summand Morphism for \(\pi _*\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.piStarSummandMor">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.fbObj">Definition 187</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.baseSize">Definition 185</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarSummandMor" class="lean_decl">FiberBundle.piStarSummandMor</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(n, p, q \in \mathbb {Z}\) with \(p + q = n\), the \((p,q)\)-component of \(\pi _*\) is a morphism in \(\operatorname {ModuleCat}_{\mathbb {F}_2}\): </p>
+<div class="displaymath" id="a0000000371">
+  \[  \operatorname {piStarSummandMor}(\partial ^F, \mathtt{aug}, n, p, q) : \operatorname {fbObj}(n_1,m_1,n_2,m_2,(p,q)) \; \longrightarrow \;  \mathbb {F}_2^{\operatorname {baseSize}(n_1,m_1,n)},  \]
+</div>
+<p> defined by: </p>
+<ul class="itemize">
+  <li><p>If \(q = 0\): the map \(b \otimes f \mapsto \varepsilon (f) \cdot b\), composed with a type transport via \(\operatorname {Fin.cast}\) using the equality \(p = n\) (from \(p + 0 = n\)), </p>
+</li>
+  <li><p>If \(q \ne 0\): the zero morphism. </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarMor">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">219</span>
+    <span class="definition_thmtitle">Chain Map \(\pi _*\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.piStarMor">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.Connection">Definition 180</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberBundleDoubleComplex">Definition 192</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandMor">Definition 218</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.baseSize">Definition 185</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarMor" class="lean_decl">FiberBundle.piStarMor</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The chain map \(\pi _* : \operatorname {Tot}(B \boxtimes _\varphi F)_n \to \mathbb {F}_2^{\operatorname {baseSize}(n_1,m_1,n)}\) at degree \(n\) is assembled from the summand maps using \(\operatorname {totalDesc}\): </p>
+<div class="displaymath" id="a0000000372">
+  \[  \operatorname {piStarMor}(\partial ^B, \partial ^F, \varphi , \mathtt{aug}, n) : \bigl(\operatorname {fiberBundleDoubleComplex}(\partial ^B, \partial ^F, \varphi )\bigr).\operatorname {totalComplex}.X_n \; \longrightarrow \;  \mathbb {F}_2^{\operatorname {baseSize}(n_1,m_1,n)},  \]
+</div>
+<p> given by summing the contributions \(\operatorname {piStarSummandMor}(\partial ^F, \mathtt{aug}, n, p, q)\) over all \((p, q)\) with \(p + q = n\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.baseDiff">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">220</span>
+    <span class="definition_thmtitle">Base Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.baseDiff">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.baseSize">Definition 185</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.baseDiff" class="lean_decl">FiberBundle.baseDiff</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(n, n' \in \mathbb {Z}\), the base differential is: </p>
+<div class="displaymath" id="a0000000373">
+  \[  \operatorname {baseDiff}(n_1, m_1, \partial ^B, n, n') := \begin{cases}  \partial ^B &  \text{if } n = 1 \text{ and } n’ = 0,\\ 0 &  \text{otherwise,} \end{cases}  \]
+</div>
+<p> as a linear map \((\operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,n)) \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,n')) \to \mathbb {F}_2)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.aug_comp__0_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">221</span>
+    <span class="lemma_thmtitle">Augmentation Preserved by Chain Automorphism</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#lem:FiberBundle.aug_comp__0_eq">#</a>
+    
+    <a class="icon proof" href="sect0018.html#a0000000374"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ChainAutomorphism.ActsAsIdOnHomology">Definition 194</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ChainAutomorphism.ActsAsIdOnHomology">Definition 194</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.aug_comp_α₀_eq" class="lean_decl">FiberBundle.aug_comp_α₀_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\psi \) be a chain automorphism of \(F\) and suppose \(\psi \) acts as the identity on homology (i.e., \(\psi .\operatorname {ActsAsIdOnHomology}\) holds). Then </p>
+<div class="displaymath" id="a0000000375">
+  \[  \varepsilon \circ \alpha _0 = \varepsilon ,  \]
+</div>
+<p> where \(\alpha _0 = \psi .\alpha _0\) is the degree-\(0\) component of \(\psi \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000374">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We proceed by extensionality: it suffices to show \(\varepsilon (\alpha _0(y)) = \varepsilon (y)\) for an arbitrary \(y\). By the degree-\(0\) condition of \(\operatorname {ActsAsIdOnHomology}\), we have \(\alpha _0(y) - y \in \operatorname {im}(\partial ^F)\); that is, there exists \(z\) such that \(\partial ^F(z) = \alpha _0(y) - y\). Since \(\varepsilon \circ \partial ^F = 0\), we rewrite to obtain </p>
+<div class="displaymath" id="a0000000376">
+  \[  \varepsilon (\alpha _0(y) - y) = \varepsilon (\partial ^F(z)) = 0.  \]
+</div>
+<p> Applying \(\varepsilon \) to the difference and using linearity of \(\varepsilon \): </p>
+<div class="displaymath" id="a0000000377">
+  \[  \varepsilon (\alpha _0(y)) - \varepsilon (y) = 0,  \]
+</div>
+<p> which gives \(\varepsilon (\alpha _0(y)) = \varepsilon (y)\) by \(\operatorname {sub_eq_zero}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.aug_preserved_by_connection">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">222</span>
+    <span class="lemma_thmtitle">Augmentation Preserved by Connection</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#lem:FiberBundle.aug_preserved_by_connection">#</a>
+    
+    <a class="icon proof" href="sect0018.html#a0000000378"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.Connection">Definition 180</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0018.html#lem:FiberBundle.aug_comp__0_eq">Lemma 221</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0018.html#lem:FiberBundle.aug_comp__0_eq">Lemma 221</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.aug_preserved_by_connection" class="lean_decl">FiberBundle.aug_preserved_by_connection</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\varphi \) be a connection and suppose \(\varphi \) acts as the identity on homology (i.e., \(\operatorname {ActsAsIdentityOnHomology}(\partial ^B, \partial ^F, \varphi )\) holds). For any \(b_1 : \operatorname {Fin}(n_1)\) and \(b_0 : \operatorname {Fin}(m_1)\) with \(\partial ^B(\delta _{b_1})(b_0) \ne 0\), </p>
+<div class="displaymath" id="a0000000379">
+  \[  \varepsilon \circ (\varphi \,  b_1\,  b_0).\alpha _0 = \varepsilon .  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000378">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This is an immediate consequence of <span class="ttfamily">aug_comp_\(\alpha _0\)_eq</span> applied to the chain automorphism \(\varphi \,  b_1\,  b_0\), using the fact that \(\operatorname {ActsAsIdentityOnHomology}\) implies \((\varphi \,  b_1\,  b_0).\operatorname {ActsAsIdOnHomology}\) whenever \(\partial ^B(\delta _{b_1})(b_0) \ne 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarChainMap_q0_horizontal">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">223</span>
+    <span class="lemma_thmtitle">\(\pi _*\) Intertwines Horizontal Differential at \(q = 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#lem:FiberBundle.piStarChainMap_q0_horizontal">#</a>
+    
+    <a class="icon proof" href="sect0018.html#a0000000380"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.Connection">Definition 180</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.twistedDhLin">Definition 182</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.autAtDeg">Definition 190</a></li>
+          
+          <li><a href="sect0016.html#lem:FiberBundle.twistedDhLin_tmul">Lemma 183</a></li>
+          
+          <li><a href="sect0018.html#lem:FiberBundle.aug_preserved_by_connection">Lemma 222</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.twistedDhLin">Definition 182</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.autAtDeg">Definition 190</a></li>
+          
+          <li><a href="sect0016.html#lem:FiberBundle.twistedDhLin_tmul">Lemma 183</a></li>
+          
+          <li><a href="sect0018.html#lem:FiberBundle.aug_preserved_by_connection">Lemma 222</a></li>
+          
+          <li><a href="sect0018.html#lem:FiberBundle.piStarSummandLin_tmul_q0">Lemma 216</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarChainMap_q0_horizontal" class="lean_decl">FiberBundle.piStarChainMap_q0_horizontal</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Assume \(\operatorname {ActsAsIdentityOnHomology}(\partial ^B, \partial ^F, \varphi )\). On the \((p,0)\)-summand, \(\pi _*\) intertwines the horizontal twisted differential with the base differential: </p>
+<div class="displaymath" id="a0000000381">
+  \[  \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, 0, 0) \circ \operatorname {twistedDhLin}\! \Bigl(\partial ^B,\;  b_1,b_0 \mapsto \operatorname {autAtDeg}(\partial ^F,\varphi ,0,b_1,b_0)\Bigr) \; =\;  \partial ^B \circ \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, 1, 0).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000380">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We apply tensor product extensionality: it suffices to verify the equality on pure tensors \(b \otimes f\). Let \(b : \operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,1)) \to \mathbb {F}_2\) and \(f : \operatorname {Fin}(\operatorname {fiberSize}(n_2,m_2,0)) \to \mathbb {F}_2\) be arbitrary. </p>
+<p>By <span class="ttfamily">twistedDhLin_tmul</span>, we expand the left-hand side: </p>
+<div class="displaymath" id="a0000000382">
+  \[  \operatorname {twistedDhLin}(\partial ^B, \alpha )(b \otimes f) = \sum _{b_1, b_0} \partial ^B(\delta _{b_1})(b_0) \cdot \bigl(\delta _{b_0} \otimes \alpha _{b_1,b_0}(f)\bigr).  \]
+</div>
+<p> Applying \(\operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, 0, 0)\) and using <span class="ttfamily">piStarSummandLin_tmul_q0</span>, each summand becomes \(\varepsilon (\alpha _{b_1,b_0}(f)) \cdot \partial ^B(\delta _{b_1})(b_0) \cdot \delta _{b_0}\). </p>
+<p>We then simplify using \(\operatorname {map_sum}\) and \(\operatorname {map_smul}\), and evaluate pointwise at an arbitrary index \(j \in \operatorname {Fin}(m_1)\). The sum collapses via \(\operatorname {Pi.single_apply}\) and \(\operatorname {Finset.sum_ite_eq}\), yielding: </p>
+<div class="displaymath" id="a0000000383">
+  \[  \sum _{b_1} b(b_1) \cdot \partial ^B(\delta _{b_1})(j) \cdot \varepsilon \bigl(\alpha _{b_1,j}(f)\bigr).  \]
+</div>
+<p> For each pair \((b_1, j)\), we distinguish two cases: </p>
+<ul class="itemize">
+  <li><p>If \(\partial ^B(\delta _{b_1})(j) = 0\), the contribution is zero on both sides. </p>
+</li>
+  <li><p>If \(\partial ^B(\delta _{b_1})(j) \ne 0\), by <span class="ttfamily">aug_preserved_by_connection</span> and <span class="ttfamily">autAtDeg_zero</span>, we have \(\varepsilon \circ \alpha _{b_1,j} = \varepsilon \), so \(\varepsilon (\alpha _{b_1,j}(f)) = \varepsilon (f)\). </p>
+</li>
+</ul>
+<p> Thus each summand equals \(b(b_1) \cdot \partial ^B(\delta _{b_1})(j) \cdot \varepsilon (f)\), and we can factor out \(\varepsilon (f)\): </p>
+<div class="displaymath" id="a0000000384">
+  \[  \sum _{b_1} b(b_1) \cdot \partial ^B(\delta _{b_1})(j) \cdot \varepsilon (f) = \varepsilon (f) \cdot \sum _{b_1} (b(b_1) \cdot \partial ^B(\delta _{b_1}))(j).  \]
+</div>
+<p> By linearity of \(\partial ^B\) and the expansion \(b = \sum _{b_1} b(b_1) \cdot \delta _{b_1}\), we obtain \((\partial ^B(b))(j) \cdot \varepsilon (f)\). </p>
+<p>For the right-hand side, \(\operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, 1, 0)(b \otimes f) = \varepsilon (f) \cdot b\) by <span class="ttfamily">piStarSummandLin_tmul_q0</span>, and then \(\partial ^B(\varepsilon (f) \cdot b) = \varepsilon (f) \cdot \partial ^B(b)\) by linearity. Both sides agree at every index \(j\), completing the proof. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarChainMap_q1_vertical">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">224</span>
+    <span class="lemma_thmtitle">\(\pi _*\) Vanishes on Vertical Differential at \(q = 1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#lem:FiberBundle.piStarChainMap_q1_vertical">#</a>
+    
+    <a class="icon proof" href="sect0018.html#a0000000385"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberDiff">Definition 188</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberDiff">Definition 188</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarSummandLin">Definition 215</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0018.html#lem:FiberBundle.piStarSummandLin_tmul_q0">Lemma 216</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarChainMap_q1_vertical" class="lean_decl">FiberBundle.piStarChainMap_q1_vertical</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The composition of \(\pi _*\) on the \((p,0)\)-summand with \(\operatorname {id} \otimes \partial ^F\) (the vertical differential from degree \((p,1)\)) is zero: </p>
+<div class="displaymath" id="a0000000386">
+  \[  \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, p, 0) \circ (\operatorname {id} \otimes \operatorname {fiberDiff}(n_2, m_2, \partial ^F, 1, 0)) = 0.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000385">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We apply tensor product extensionality on pure tensors \(b \otimes f\). By <span class="ttfamily">lTensor_tmul</span>, the left-hand side evaluates to: </p>
+<div class="displaymath" id="a0000000387">
+  \[  \operatorname {piStarSummandLin}(\partial ^F, \mathtt{aug}, p, 0)\bigl(b \otimes \operatorname {fiberDiff}(n_2, m_2, \partial ^F, 1, 0)(f)\bigr).  \]
+</div>
+<p> Since \(\operatorname {fiberDiff}(n_2, m_2, \partial ^F, 1, 0)(f) = \partial ^F(f)\) by unfolding the definition of <span class="ttfamily">fiberDiff</span> and using reflexivity, and by <span class="ttfamily">piStarSummandLin_tmul_q0</span>, this equals \(\varepsilon (\partial ^F(f)) \cdot b\). Since \(\varepsilon \circ \partial ^F = 0\) (the chain map condition of the augmented complex), we have \(\varepsilon (\partial ^F(f)) = 0\), and therefore \(0 \cdot b = 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.cochainPiStar">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">225</span>
+    <span class="definition_thmtitle">Cochain Map \(\pi ^*\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0018.html#def:FiberBundle.cochainPiStar">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.Connection">Definition 180</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberBundleDoubleComplex">Definition 192</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.piStarMor">Definition 219</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.baseSize">Definition 185</a></li>
+          
+          <li><a href="sect0018.html#def:FiberBundle.AugmentedComplex">Definition 213</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.autAtDeg">Definition 190</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.fiberDiff">Definition 188</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.twistedDhLin">Definition 182</a></li>
+          
+          <li><a href="sect0016.html#lem:FiberBundle.twistedDhLin_tmul">Lemma 183</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.cochainPiStar" class="lean_decl">FiberBundle.cochainPiStar</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The cochain map \(\pi ^* : B^*_n \to \operatorname {Tot}(B \boxtimes _\varphi F)^*_n\) at degree \(n\) is defined as the \(\mathbb {F}_2\)-dual (transpose) of the chain map \(\pi _*\): </p>
+<div class="displaymath" id="a0000000388">
+  \[  \operatorname {cochainPiStar}(\partial ^B, \partial ^F, \varphi , \mathtt{aug}, n) := \operatorname {Module.Dual.transpose}_{\mathbb {F}_2}\bigl(\operatorname {piStarMor}(\partial ^B, \partial ^F, \varphi , \mathtt{aug}, n).\operatorname {hom}\bigr),  \]
+</div>
+<p> which is a linear map </p>
+<div class="displaymath" id="a0000000389">
+  \[  \operatorname {Module.Dual}_{\mathbb {F}_2}\! \bigl(\operatorname {Fin}(\operatorname {baseSize}(n_1,m_1,n)) \to \mathbb {F}_2\bigr) \; \to _{\mathbb {F}_2}\;  \operatorname {Module.Dual}_{\mathbb {F}_2}\! \bigl(\operatorname {Tot}(B \boxtimes _\varphi F)_n\bigr).  \]
+</div>
+<p> On a cochain \(\beta \in B^*_p\), this gives \(\pi ^*(\beta )(b \otimes f) = \beta (b) \cdot \varepsilon (f)\) for \(f \in F_0\), and \(\pi ^*(\beta )(b \otimes f) = 0\) for \(f \in F_1\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0017.html" title="Thm 3: Fiber Bundle Homology"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0019.html" title="Thm 4: Projection Induces Isomorphism"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

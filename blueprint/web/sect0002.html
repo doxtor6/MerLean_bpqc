@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rem 2: Notation Conventions</title>
+<link rel="next" href="sect0003.html" title="Rem 3: Expanding Matrix Definition" />
+<link rel="prev" href="sect0001.html" title="Rem 1: Base Field" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000003">2 Rem 2: Notation Conventions</h1>
+<p>This chapter establishes the notation conventions used throughout the formalization, documenting the precise correspondence between paper notation and Mathlib definitions. </p>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ChainComplexF2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">6</span>
+    <span class="definition_thmtitle">Chain Complex over \(\mathbb {F}_2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:ChainComplexF2">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ChainComplex𝔽₂" class="lean_decl">ChainComplex𝔽₂</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>chain complex of \(\mathbb {F}_2\)-vector spaces</em> indexed by \(\mathbb {Z}\) is defined as </p>
+<div class="displaymath" id="a0000000061">
+  \[  \operatorname {ChainComplex}(\operatorname {ModuleCat}\, \mathbb {F}_2,\, \mathbb {Z}).  \]
+</div>
+<p> The differential \(\partial _i : C_i \to C_{i-1}\) is given by \(\mathtt{d}\, i\, j\) in Mathlib where the complex shape satisfies \(j + 1 = i\) (i.e. \(j = i - 1\)). This corresponds to the paper’s \((C_\bullet , \partial )\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CochainComplexF2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">7</span>
+    <span class="definition_thmtitle">Cochain Complex over \(\mathbb {F}_2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:CochainComplexF2">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CochainComplex𝔽₂" class="lean_decl">CochainComplex𝔽₂</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>cochain complex of \(\mathbb {F}_2\)-vector spaces</em> indexed by \(\mathbb {Z}\) is defined as </p>
+<div class="displaymath" id="a0000000062">
+  \[  \operatorname {CochainComplex}(\operatorname {ModuleCat}\, \mathbb {F}_2,\, \mathbb {Z}).  \]
+</div>
+<p> The differential \(\delta ^i : C^i \to C^{i+1}\) is given by \(\mathtt{d}\, i\, j\) in Mathlib where \(i + 1 = j\). In the paper, the coboundary \(\delta ^i\) is the transpose of \(\partial _{i+1}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:NotationConventions.boundary">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">8</span>
+    <span class="definition_thmtitle">Boundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:NotationConventions.boundary">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.boundary" class="lean_decl">NotationConventions.boundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a chain complex \(C \in \operatorname {ChainComplex}_{\mathbb {F}_2}\) and indices \(i, j \in \mathbb {Z}\), the <em>boundary map</em> \(\partial _i : C_i \to C_{i-1}\) is defined as </p>
+<div class="displaymath" id="a0000000063">
+  \[  \operatorname {boundary}(C, i, j) \; :=\;  C.\mathtt{d}\, i\, j.  \]
+</div>
+<p> This is the paper’s differential \(\partial \) accessed via the Mathlib API <span class="ttfamily">HomologicalComplex.d</span>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:NotationConventions.coboundary">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">9</span>
+    <span class="definition_thmtitle">Coboundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:NotationConventions.coboundary">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:CochainComplexF2">Definition 7</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.coboundary" class="lean_decl">NotationConventions.coboundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a cochain complex \(C \in \operatorname {CochainComplex}_{\mathbb {F}_2}\) and indices \(i, j \in \mathbb {Z}\), the <em>coboundary map</em> \(\delta ^i : C^i \to C^{i+1}\) is defined as </p>
+<div class="displaymath" id="a0000000064">
+  \[  \operatorname {coboundary}(C, i, j) \; :=\;  C.\mathtt{d}\, i\, j.  \]
+</div>
+<p> This corresponds to the paper’s coboundary \(\delta \), accessed via <span class="ttfamily">HomologicalComplex.d</span> on cochain complexes. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:NotationConventions.im">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">10</span>
+    <span class="definition_thmtitle">Image of a Linear Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:NotationConventions.im">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.im" class="lean_decl">NotationConventions.im</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(\mathbb {F}_2\)-modules \(M\) and \(N\) and a linear map \(f : M \to _{\mathbb {F}_2} N\), the <em>image</em> of \(f\), denoted \(\operatorname {im}(f)\) in the paper, is defined as </p>
+<div class="displaymath" id="a0000000065">
+  \[  \operatorname {im}(f) \; :=\;  \operatorname {LinearMap.range}(f).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:NotationConventions.idMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">11</span>
+    <span class="definition_thmtitle">Identity Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:NotationConventions.idMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.idMap" class="lean_decl">NotationConventions.idMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For an \(\mathbb {F}_2\)-module \(M\), the <em>identity linear map</em>, denoted \(\operatorname {id}\) in the paper, is defined as </p>
+<div class="displaymath" id="a0000000066">
+  \[  \operatorname {idMap}(M) \; :=\;  \operatorname {LinearMap.id}_{\mathbb {F}_2,\, M}.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:NotationConventions.transpose">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">12</span>
+    <span class="definition_thmtitle">Transpose of a Linear Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#def:NotationConventions.transpose">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.transpose" class="lean_decl">NotationConventions.transpose</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(\mathbb {F}_2\)-modules \(M\) and \(N\) and a linear map \(f : M \to _{\mathbb {F}_2} N\), the <em>transpose</em> (dual) of \(f\) is defined as </p>
+<div class="displaymath" id="a0000000067">
+  \[  \operatorname {transpose}(f) \; :=\;  \operatorname {Module.Dual.transpose}(f) : N^* \to M^*.  \]
+</div>
+<p> In the paper, the coboundary satisfies \(\delta = \partial ^\top \). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:NotationConventions.boundary_comp_boundary">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">13</span>
+    <span class="theorem_thmtitle">Boundary Squares to Zero</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#thm:NotationConventions.boundary_comp_boundary">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000068"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+          <li><a href="sect0002.html#def:NotationConventions.boundary">Definition 8</a></li>
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.boundary_comp_boundary" class="lean_decl">NotationConventions.boundary_comp_boundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For any chain complex \(C \in \operatorname {ChainComplex}_{\mathbb {F}_2}\) and indices \(i, j, k \in \mathbb {Z}\), </p>
+<div class="displaymath" id="a0000000069">
+  \[  \partial _j \circ \partial _i \; =\;  0,  \]
+</div>
+<p> i.e. \(C.\mathtt{d}\, i\, j \, \gg \,  C.\mathtt{d}\, j\, k = 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000068">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows directly from the Mathlib lemma <span class="ttfamily">HomologicalComplex.d_comp_d</span>, applied to \(C\) at indices \(i\), \(j\), \(k\). Specifically, we have \(C.\mathtt{d\_ comp\_ d}\, i\, j\, k = 0\) by the axioms of a homological complex, which states that consecutive differentials compose to zero. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:NotationConventions.coboundary_comp_coboundary">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">14</span>
+    <span class="theorem_thmtitle">Coboundary Squares to Zero</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#thm:NotationConventions.coboundary_comp_coboundary">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000070"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:CochainComplexF2">Definition 7</a></li>
+          
+          <li><a href="sect0002.html#def:NotationConventions.coboundary">Definition 9</a></li>
+          
+          <li><a href="sect0002.html#def:CochainComplexF2">Definition 7</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.coboundary_comp_coboundary" class="lean_decl">NotationConventions.coboundary_comp_coboundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For any cochain complex \(C \in \operatorname {CochainComplex}_{\mathbb {F}_2}\) and indices \(i, j, k \in \mathbb {Z}\), </p>
+<div class="displaymath" id="a0000000071">
+  \[  \delta ^j \circ \delta ^i \; =\;  0,  \]
+</div>
+<p> i.e. \(C.\mathtt{d}\, i\, j \, \gg \,  C.\mathtt{d}\, j\, k = 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000070">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows directly from the Mathlib lemma <span class="ttfamily">HomologicalComplex.d_comp_d</span>, applied to the cochain complex \(C\) at indices \(i\), \(j\), \(k\). Consecutive coboundary maps compose to zero by the axioms of a homological complex. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:NotationConventions.im_eq_range">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">15</span>
+    <span class="theorem_thmtitle">Image Equals Range</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#thm:NotationConventions.im_eq_range">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000072"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:NotationConventions.im">Definition 10</a></li>
+          
+          <li><a href="sect0002.html#def:NotationConventions.im">Definition 10</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.im_eq_range" class="lean_decl">NotationConventions.im_eq_range</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For \(\mathbb {F}_2\)-modules \(M\), \(N\) and a linear map \(f : M \to _{\mathbb {F}_2} N\), </p>
+<div class="displaymath" id="a0000000073">
+  \[  \operatorname {im}(f) \; =\;  \operatorname {LinearMap.range}(f).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000072">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, since \(\operatorname {im}(f)\) is defined to be \(\operatorname {LinearMap.range}(f)\) by definition. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:NotationConventions.idMap_eq_id">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">16</span>
+    <span class="theorem_thmtitle">Identity Map Equals <span class="ttfamily">LinearMap.id</span></span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#thm:NotationConventions.idMap_eq_id">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000074"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0002.html#def:NotationConventions.idMap">Definition 11</a></li>
+          
+          <li><a href="sect0002.html#def:NotationConventions.idMap">Definition 11</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/NotationConventions.idMap_eq_id" class="lean_decl">NotationConventions.idMap_eq_id</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For any \(\mathbb {F}_2\)-module \(M\), </p>
+<div class="displaymath" id="a0000000075">
+  \[  \operatorname {idMap}(M) \; =\;  \operatorname {LinearMap.id}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000074">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, since \(\operatorname {idMap}(M)\) is defined to be \(\operatorname {LinearMap.id}_{\mathbb {F}_2,\, M}\) by definition. </p>
+
+  </div>
+</div>
+<p>[Mathlib Correspondence for Homological Algebra] The following Mathlib definitions correspond to the paper’s notation: </p>
+<ul class="itemize">
+  <li><p>\(\partial \) or \(\delta \) (differential): <span class="ttfamily">HomologicalComplex.d i j</span> </p>
+</li>
+  <li><p>\(Z_i(C)\) (cycles \(= \ker \partial _i\)): <span class="ttfamily">HomologicalComplex.cycles C i</span> </p>
+</li>
+  <li><p>\(B_i(C)\) (boundaries \(= \operatorname {im}\, \partial _{i+1}\)): image of the incoming differential </p>
+</li>
+  <li><p>\(H_i(C)\) (homology \(= Z_i(C)/B_i(C)\)): <span class="ttfamily">HomologicalComplex.homology C i</span> </p>
+</li>
+  <li><p>\(\operatorname {im}(f)\) (image): <span class="ttfamily">LinearMap.range f</span> </p>
+</li>
+  <li><p>\(\delta = \partial ^\top \) (coboundary as transpose): <span class="ttfamily">Module.Dual.transpose</span> </p>
+</li>
+  <li><p>\(\operatorname {id}\) (identity): <span class="ttfamily">LinearMap.id</span> </p>
+</li>
+  <li><p>\(\operatorname {Tot}\) (total complex functor): <span class="ttfamily">HomologicalComplex.total</span> </p>
+</li>
+</ul>
+<p> The same Mathlib API applies to cochains (\(Z^i\), \(B^i\), \(H^i\)) via <span class="ttfamily">CochainComplex</span>.  </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0001.html" title="Rem 1: Base Field"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0003.html" title="Rem 3: Expanding Matrix Definition"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

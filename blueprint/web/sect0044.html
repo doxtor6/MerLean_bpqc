@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 26: Balanced Product Tanner Cycle Code</title>
+<link rel="next" href="sect0045.html" title="Def 27: Horizontal/Vertical Homology Splitting" />
+<link rel="prev" href="sect0043.html" title="Def 25: Invariant Labeling" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000045">44 Def 26: Balanced Product Tanner Cycle Code</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.cellLocalView">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">571</span>
+    <span class="definition_thmtitle">Cell Local View</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.cellLocalView">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.cellLocalView" class="lean_decl">BalancedProductTannerCycleCode.cellLocalView</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group acting on a graph with group action \(X\), and let \(\Lambda \) be a cell labeling of \(X\) with \(s\) labels. For a vertex \(v \in C_0(X)\) (a 0-cell of \(X\)), the <em>cell local view</em> at \(v\) is the linear map </p>
+<div class="displaymath" id="a0000001005">
+  \[  \operatorname {cellLocalView}(v) : (C_1(X) \to \mathbb {F}_2) \to (\operatorname {Fin}(s) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \(\operatorname {cellLocalView}(v)(c)(i) = c\! \left(\Lambda (v)^{-1}(i)\right)\), where \(\Lambda (v)^{-1}(i)\) denotes the preimage of \(i\) under the labeling bijection at \(v\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.tannerDifferential">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">572</span>
+    <span class="definition_thmtitle">Tanner Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.tannerDifferential">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.cellLocalView">Definition 571</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.tannerDifferential" class="lean_decl">BalancedProductTannerCycleCode.tannerDifferential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>Tanner differential</em> is the linear map </p>
+<div class="displaymath" id="a0000001006">
+  \[  \partial ^{\mathrm{Tan}} : (C_1(X) \to \mathbb {F}_2) \to (C_0(X) \to \operatorname {Fin}(s) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \(\partial ^{\mathrm{Tan}}(c)(v) = \operatorname {cellLocalView}(v)(c)\), i.e., </p>
+<div class="displaymath" id="a0000001007">
+  \[  \partial ^{\mathrm{Tan}}(c)(v)(i) = c\! \left(\Lambda (v)^{-1}(i)\right).  \]
+</div>
+<p> This map assembles the local views at all vertices. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.tannerCodeComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">573</span>
+    <span class="definition_thmtitle">Tanner Code Chain Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.tannerCodeComplex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.tannerDifferential">Definition 572</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.tannerCodeComplex" class="lean_decl">BalancedProductTannerCycleCode.tannerCodeComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>Tanner code chain complex</em> \(C(X, \Lambda )\) is the chain complex over \(\mathbb {F}_2\) defined by: </p>
+<div class="displaymath" id="a0000001008">
+  \[  \cdots \to 0 \to C_1(X,\Lambda ) \xrightarrow {\partial ^{\mathrm{Tan}}} C_0(X,\Lambda ) \to 0 \to \cdots  \]
+</div>
+<p> where </p>
+<ul class="itemize">
+  <li><p>\(C_1(X,\Lambda ) = (C_1(X) \to \mathbb {F}_2)\), the \(\mathbb {F}_2\)-module of functions on 1-cells of \(X\), </p>
+</li>
+  <li><p>\(C_0(X,\Lambda ) = (C_0(X) \to \operatorname {Fin}(s) \to \mathbb {F}_2)\), the \(\mathbb {F}_2\)-module of labeled functions on 0-cells, </p>
+</li>
+  <li><p>the differential at degrees \((1,0)\) is \(\partial ^{\mathrm{Tan}}\), and all other differentials are zero, </p>
+</li>
+  <li><p>all modules outside degrees \(0\) and \(1\) are the trivial module \(\{ *\} \). </p>
+</li>
+</ul>
+<p> The chain complex condition \(\partial ^{\mathrm{Tan}} \circ \partial ^{\mathrm{Tan}} = 0\) holds trivially since the complex is concentrated in two consecutive degrees. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.actionC1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">574</span>
+    <span class="definition_thmtitle">\(H\)-Action on \(C_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.actionC1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.actionC1" class="lean_decl">BalancedProductTannerCycleCode.actionC1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>\(H\)-representation on \(C_1(X,\Lambda )\)</em> is the \(\mathbb {F}_2\)-linear group action </p>
+<div class="displaymath" id="a0000001009">
+  \[  \rho _1 : H \to \operatorname {GL}(C_1(X) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \((\rho _1(h) \cdot c)(e) = c(h^{-1} \cdot e)\) for \(h \in H\) and \(e \in C_1(X)\). This is the standard permutation representation by precomposition with the inverse group action. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.actionC0">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">575</span>
+    <span class="definition_thmtitle">\(H\)-Action on \(C_0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.actionC0">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.actionC0" class="lean_decl">BalancedProductTannerCycleCode.actionC0</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>\(H\)-representation on \(C_0(X,\Lambda )\)</em> is the \(\mathbb {F}_2\)-linear group action </p>
+<div class="displaymath" id="a0000001010">
+  \[  \rho _0 : H \to \operatorname {GL}(C_0(X) \to \operatorname {Fin}(s) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \((\rho _0(h) \cdot f)(v) = f(h^{-1} \cdot v)\) for \(h \in H\) and \(v \in C_0(X)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.tannerCodeHEquivariant">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">576</span>
+    <span class="definition_thmtitle">Tanner Code \(H\)-Equivariant Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.tannerCodeHEquivariant">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.tannerCodeComplex">Definition 573</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.actionC1">Definition 574</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.actionC0">Definition 575</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.tannerCodeHEquivariant" class="lean_decl">BalancedProductTannerCycleCode.tannerCodeHEquivariant</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given an \(H\)-invariant labeling \(\Lambda \) (i.e., \(\Lambda \) satisfies the invariance condition \(\operatorname {IsInvariantLabeling}(\Lambda )\)), the Tanner code chain complex \(C(X, \Lambda )\) equipped with the \(H\)-representations \(\rho _1\) on \(C_1\) and \(\rho _0\) on \(C_0\) forms an <em>\(H\)-equivariant chain complex</em> \(\widetilde{C}(X,\Lambda ) \in \operatorname {HEquivariantChainComplex}(H)\). </p>
+<p>The equivariance condition requires that \(\partial ^{\mathrm{Tan}} \circ \rho _1(h) = \rho _0(h) \circ \partial ^{\mathrm{Tan}}\) for all \(h \in H\), i.e., the Tanner differential commutes with the \(H\)-action. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.cycleComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">577</span>
+    <span class="definition_thmtitle">Cycle Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.cycleComplex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.cycleComplex" class="lean_decl">BalancedProductTannerCycleCode.cycleComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(\ell \geq 1\), the <em>cycle graph chain complex</em> \(C(C_\ell )\) is the chain complex over \(\mathbb {F}_2\) defined by: </p>
+<div class="displaymath" id="a0000001011">
+  \[  \cdots \to 0 \to (\operatorname {Fin}(\ell ) \to \mathbb {F}_2) \xrightarrow {\partial _{C_\ell }} (\operatorname {Fin}(\ell ) \to \mathbb {F}_2) \to 0 \to \cdots  \]
+</div>
+<p> where both degree-\(1\) and degree-\(0\) components equal \((\operatorname {Fin}(\ell ) \to \mathbb {F}_2)\), the differential at \((1,0)\) is the cycle graph differential \(\partial _{C_\ell }\), and all modules outside degrees \(0\) and \(1\) are the trivial module. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.CycleCompatibleAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">578</span>
+    <span class="definition_thmtitle">Cycle Compatible Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.CycleCompatibleAction" class="lean_decl">BalancedProductTannerCycleCode.CycleCompatibleAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>cycle compatible \(H\)-action</em> on \(\operatorname {Fin}(\ell )\) is an \(H\)-action satisfying the compatibility condition: for all \(h \in H\) and \(i \in \operatorname {Fin}(\ell )\), </p>
+<div class="displaymath" id="a0000001012">
+  \[  h \cdot \left\langle (i + \ell - 1) \bmod \ell \right\rangle = \left\langle (h \cdot i + \ell - 1) \bmod \ell \right\rangle ,  \]
+</div>
+<p> where \(\langle k \rangle \) denotes the element of \(\operatorname {Fin}(\ell )\) with value \(k\). In other words, the \(H\)-action commutes with taking the predecessor modulo \(\ell \). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.cycleChainAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">579</span>
+    <span class="definition_thmtitle">Cycle Chain Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.cycleChainAction">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.cycleChainAction" class="lean_decl">BalancedProductTannerCycleCode.cycleChainAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>cycle chain \(H\)-representation</em> is the \(\mathbb {F}_2\)-linear group action </p>
+<div class="displaymath" id="a0000001013">
+  \[  \rho _C : H \to \operatorname {GL}(\operatorname {Fin}(\ell ) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \((\rho _C(h) \cdot f)(i) = f(h^{-1} \cdot i)\) for \(h \in H\) and \(i \in \operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.cycleGraphHEquivariant">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">580</span>
+    <span class="definition_thmtitle">Cycle Graph \(H\)-Equivariant Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.cycleGraphHEquivariant">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.cycleComplex">Definition 577</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.cycleChainAction">Definition 579</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.cycleGraphHEquivariant" class="lean_decl">BalancedProductTannerCycleCode.cycleGraphHEquivariant</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a cycle compatible \(H\)-action on \(\operatorname {Fin}(\ell )\), the cycle graph chain complex \(C(C_\ell )\) equipped with the \(H\)-representation \(\rho _C\) on both degrees \(0\) and \(1\) forms an <em>\(H\)-equivariant chain complex</em> \(\widetilde{C}(C_\ell ) \in \operatorname {HEquivariantChainComplex}(H)\). </p>
+<p>The equivariance condition requires \(\partial _{C_\ell } \circ \rho _C(h) = \rho _C(h) \circ \partial _{C_\ell }\) for all \(h \in H\), which follows from the cycle compatible action hypothesis. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">581</span>
+    <span class="definition_thmtitle">Balanced Product Tanner Cycle Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.tannerCodeHEquivariant">Definition 576</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.cycleGraphHEquivariant">Definition 580</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex.balancedProductComplex">Definition 522</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.balancedProductTannerCycleCode" class="lean_decl">BalancedProductTannerCycleCode.balancedProductTannerCycleCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>balanced product Tanner cycle code</em> is the chain complex </p>
+<div class="displaymath" id="a0000001014">
+  \[  C(X,\Lambda ) \otimes _{\mathbb {Z}_\ell } C(C_\ell )  \]
+</div>
+<p> defined as the balanced product complex of the \(H\)-equivariant Tanner code complex and the \(H\)-equivariant cycle graph complex: </p>
+<div class="displaymath" id="a0000001015">
+  \[  \operatorname {balancedProductTannerCycleCode}(X, \Lambda , \ell ) = \widetilde{C}(X,\Lambda ) \otimes _H \widetilde{C}(C_\ell ).  \]
+</div>
+<p> This requires \(\ell \geq 3\), \(\ell \) odd, an \(H\)-invariant labeling \(\Lambda \), and a cycle compatible \(H\)-action on \(\operatorname {Fin}(\ell )\). </p>
+<p>The total complex has three non-trivial degrees: </p>
+<div class="displaymath" id="a0000001016">
+  \begin{align*}  C_2 & = C_1(X,\Lambda ) \otimes _H C_1(C_\ell ), \\ C_1 & = \bigl(C_1(X,\Lambda ) \otimes _H C_0(C_\ell )\bigr) \oplus \bigl(C_0(X,\Lambda ) \otimes _H C_1(C_\ell )\bigr), \\ C_0 & = C_0(X,\Lambda ) \otimes _H C_0(C_\ell ), \end{align*}
+</div>
+<p> where physical qubits correspond to \(C_1\), Z-checks are given by \(\partial _2 : C_2 \to C_1\), and X-checks are given by \(\partial _1 : C_1 \to C_0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.iotaC1_tanner_component">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">582</span>
+    <span class="definition_thmtitle">Inclusion of Tanner Component into \(C_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.iotaC1_tanner_component">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.iotaC1_tanner_component" class="lean_decl">BalancedProductTannerCycleCode.iotaC1_tanner_component</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The canonical inclusion map </p>
+<div class="displaymath" id="a0000001017">
+  \[  \iota _{\mathrm{Tan}} : C_1(X,\Lambda ) \otimes _H C_0(C_\ell ) \hookrightarrow \bigl(\text{balancedProductTannerCycleCode}\bigr)_1  \]
+</div>
+<p> is the map into the total complex at degree \(1\) corresponding to the \((1,0)\)-summand of the balanced product double complex. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.iotaC1_cycle_component">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">583</span>
+    <span class="definition_thmtitle">Inclusion of Cycle Component into \(C_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.iotaC1_cycle_component">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.iotaC1_cycle_component" class="lean_decl">BalancedProductTannerCycleCode.iotaC1_cycle_component</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The canonical inclusion map </p>
+<div class="displaymath" id="a0000001018">
+  \[  \iota _{\mathrm{Cyc}} : C_0(X,\Lambda ) \otimes _H C_1(C_\ell ) \hookrightarrow \bigl(\text{balancedProductTannerCycleCode}\bigr)_1  \]
+</div>
+<p> is the map into the total complex at degree \(1\) corresponding to the \((0,1)\)-summand of the balanced product double complex. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.iotaC2_component">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">584</span>
+    <span class="definition_thmtitle">Inclusion into \(C_2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.iotaC2_component">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.iotaC2_component" class="lean_decl">BalancedProductTannerCycleCode.iotaC2_component</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The canonical inclusion map </p>
+<div class="displaymath" id="a0000001019">
+  \[  \iota _2 : C_1(X,\Lambda ) \otimes _H C_1(C_\ell ) \hookrightarrow \bigl(\text{balancedProductTannerCycleCode}\bigr)_2  \]
+</div>
+<p> is the map into the total complex at degree \(2\) corresponding to the \((1,1)\)-summand of the balanced product double complex. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.iotaC0_component">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">585</span>
+    <span class="definition_thmtitle">Inclusion into \(C_0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.iotaC0_component">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.iotaC0_component" class="lean_decl">BalancedProductTannerCycleCode.iotaC0_component</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The canonical inclusion map </p>
+<div class="displaymath" id="a0000001020">
+  \[  \iota _0 : C_0(X,\Lambda ) \otimes _H C_0(C_\ell ) \hookrightarrow \bigl(\text{balancedProductTannerCycleCode}\bigr)_0  \]
+</div>
+<p> is the map into the total complex at degree \(0\) corresponding to the \((0,0)\)-summand of the balanced product double complex. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.zCheckMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">586</span>
+    <span class="definition_thmtitle">Z-Check Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.zCheckMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.zCheckMap" class="lean_decl">BalancedProductTannerCycleCode.zCheckMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>Z-check map</em> of the balanced product Tanner cycle code is the differential </p>
+<div class="displaymath" id="a0000001021">
+  \[  \partial _2 : \bigl(\text{balancedProductTannerCycleCode}\bigr)_2 \to \bigl(\text{balancedProductTannerCycleCode}\bigr)_1,  \]
+</div>
+<p> i.e., the chain complex differential from degree \(2\) to degree \(1\). Z-errors are detected by this map. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:BalancedProductTannerCycleCode.xCheckMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">587</span>
+    <span class="definition_thmtitle">X-Check Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#def:BalancedProductTannerCycleCode.xCheckMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.xCheckMap" class="lean_decl">BalancedProductTannerCycleCode.xCheckMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>X-check map</em> of the balanced product Tanner cycle code is the differential </p>
+<div class="displaymath" id="a0000001022">
+  \[  \partial _1 : \bigl(\text{balancedProductTannerCycleCode}\bigr)_1 \to \bigl(\text{balancedProductTannerCycleCode}\bigr)_0,  \]
+</div>
+<p> i.e., the chain complex differential from degree \(1\) to degree \(0\). X-errors are detected by this map. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C2_eq">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">588</span>
+    <span class="theorem_thmtitle">Tensor Product Identification at \(C_2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#thm:BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C2_eq">#</a>
+    
+    <a class="icon proof" href="sect0044.html#a0000001023"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex.bpObj">Definition 518</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex.bpObj">Definition 518</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C2_eq" class="lean_decl">BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C2_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The degree-\((1,1)\) entry of the balanced product double complex equals the balanced product object at \((1,1)\): </p>
+<div class="displaymath" id="a0000001024">
+  \[  \bigl(\widetilde{C}(X,\Lambda ) \boxtimes _H \widetilde{C}(C_\ell )\bigr)_{1,1} = \operatorname {bpObj}(1, 1) = C_1(X,\Lambda ) \otimes _H C_1(C_\ell ).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001023">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, i.e., definitional equality of the two expressions. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C0_eq">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">589</span>
+    <span class="theorem_thmtitle">Tensor Product Identification at \(C_0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#thm:BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C0_eq">#</a>
+    
+    <a class="icon proof" href="sect0044.html#a0000001025"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex.bpObj">Definition 518</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex.bpObj">Definition 518</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C0_eq" class="lean_decl">BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C0_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The degree-\((0,0)\) entry of the balanced product double complex equals the balanced product object at \((0,0)\): </p>
+<div class="displaymath" id="a0000001026">
+  \[  \bigl(\widetilde{C}(X,\Lambda ) \boxtimes _H \widetilde{C}(C_\ell )\bigr)_{0,0} = \operatorname {bpObj}(0, 0) = C_0(X,\Lambda ) \otimes _H C_0(C_\ell ).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001025">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, i.e., definitional equality of the two expressions. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:BalancedProductTannerCycleCode.css_condition">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">590</span>
+    <span class="theorem_thmtitle">CSS Condition</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0044.html#thm:BalancedProductTannerCycleCode.css_condition">#</a>
+    
+    <a class="icon proof" href="sect0044.html#a0000001027"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.zCheckMap">Definition 586</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.xCheckMap">Definition 587</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.zCheckMap">Definition 586</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.xCheckMap">Definition 587</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/BalancedProductTannerCycleCode.css_condition" class="lean_decl">BalancedProductTannerCycleCode.css_condition</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The composition of the Z-check map and the X-check map is zero: </p>
+<div class="displaymath" id="a0000001028">
+  \[  \partial _1 \circ \partial _2 = 0 : C_2 \to C_1 \to C_0.  \]
+</div>
+<p> This is the fundamental CSS condition ensuring that Z-stabilizers are orthogonal to X-stabilizers, making the balanced product Tanner cycle code a valid quantum CSS code. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001027">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By the chain complex condition applied to the balanced product Tanner cycle code, the composition of consecutive differentials vanishes. Specifically, we apply \(\texttt{d\_ comp\_ d}\) at degrees \(2\), \(1\), \(0\) to the chain complex \(\operatorname {balancedProductTannerCycleCode}(X, \Lambda , \ell )\), yielding \(\partial _1 \circ \partial _2 = 0\) directly. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0043.html" title="Def 25: Invariant Labeling"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0045.html" title="Def 27: Horizontal/Vertical Homology Splitting"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cor 2: Subsystem Code Parameters</title>
+<link rel="next" href="sect0052.html" title="Def 30: Unipotent Subgroup for LPS Graphs" />
+<link rel="prev" href="sect0050.html" title="Thm 14: Cohomological Distance Bound" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000052">51 Cor 2: Subsystem Code Parameters</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.numQubits_eq">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">672</span>
+    <span class="theorem_thmtitle">Number of Physical Qubits</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.numQubits_eq">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001143"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode">Definition 581</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.numQubits_eq" class="lean_decl">SubsystemCodeParameters.numQubits_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(H\) be a finite group acting on \(\mathbb {F}_\ell \) for some \(\ell \geq 3\) odd, let \(X\) be a graph with \(H\)-action, let \(\Lambda \) be an \(s\)-regular \(H\)-invariant cell labeling, and let the action be cycle-compatible. Suppose: </p>
+<ul class="itemize">
+  <li><p>\(\operatorname {hdim_components}\): \(\dim _{\mathbb {F}_2}(\operatorname {Tot}_1) = |X_1| + s \cdot |X_0|\), where \(\operatorname {Tot}_1\) denotes the degree-\(1\) component of the balanced product Tanner cycle complex; </p>
+</li>
+  <li><p>\(\operatorname {hreg}\): \(2|X_1| = s \cdot |X_0|\) (i.e. the graph \(X\) is \(s\)-regular). </p>
+</li>
+</ul>
+<p> Then </p>
+<div class="displaymath" id="a0000001144">
+  \[  \dim _{\mathbb {F}_2}(\operatorname {Tot}_1) = 3|X_1|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001143">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Rewriting with the hypothesis \(\operatorname {hdim_components}\), the goal becomes \(|X_1| + s \cdot |X_0| = 3|X_1|\). By the regularity hypothesis \(\operatorname {hreg}\), we have \(s \cdot |X_0| = 2|X_1|\), so \(|X_1| + s \cdot |X_0| = |X_1| + 2|X_1| = 3|X_1|\). This follows by linear integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_K">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">673</span>
+    <span class="theorem_thmtitle">Logical Qubit Count</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_K">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001145"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embH">Definition 640</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incH">Definition 638</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embH">Definition 640</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incH">Definition 638</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_K" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_K</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>The horizontal subsystem logical qubit space satisfies </p>
+<div class="displaymath" id="a0000001146">
+  \[  \dim _{\mathbb {F}_2}\bigl(\operatorname {HL}(X, \Lambda , \ell )\bigr) = \dim _{\mathbb {F}_2}\bigl(H_1^h(X, \Lambda , \ell )\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001145">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Unfolding the definition of \(\operatorname {HL}\) as the range of the embedding map \(\operatorname {embH}\), it suffices to show that \(\operatorname {embH}\) is injective, and then apply the fact that the rank of the range of an injective linear map equals the rank of the domain. </p>
+<p>We show injectivity of \(\operatorname {embH} = \operatorname {kunnethIso}^{-1} \circ \operatorname {incH}\). Suppose \(\operatorname {embH}(a) = \operatorname {embH}(b)\). Unfolding, we have \(\operatorname {kunnethIso}^{-1}(\operatorname {incH}(a)) = \operatorname {kunnethIso}^{-1}(\operatorname {incH}(b))\). By injectivity of \(\operatorname {kunnethIso}^{-1}\) (as a linear equivalence), we obtain \(\operatorname {incH}(a) = \operatorname {incH}(b)\). Unfolding \(\operatorname {incH}\) as the direct sum inclusion \(\operatorname {DirectSum.lof}(\cdot , 1)\), injectivity of direct sum inclusions then gives \(a = b\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_K_lowerBound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">674</span>
+    <span class="theorem_thmtitle">Logical Qubit Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_K_lowerBound">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001147"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_K">Theorem 673</a></li>
+          
+          <li><a href="sect0047.html#thm:EncodingRateCircle.encodingRateCircle">Theorem 636</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerDifferential">Definition 613</a></li>
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_K">Theorem 673</a></li>
+          
+          <li><a href="sect0047.html#thm:EncodingRateCircle.encodingRateCircle">Theorem 636</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerDifferential">Definition 613</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_K_lowerBound" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_K_lowerBound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(k_L = \dim _{\mathbb {F}_2}(\ker (\partial ^{\mathrm{quot}}))\) be the local code dimension, and let \(m = |(X/H)_1|\) be the number of edges of the quotient graph, satisfying \(m = |X_1|/\ell \) (the free action hypothesis). Assume \(s \geq 1\) and that the quotient Tanner code homology satisfies the Sipser–Spielman bound </p>
+<div class="displaymath" id="a0000001148">
+  \[  \dim _{\mathbb {F}_2}\bigl(H_1(C(X/H, L))\bigr) \geq \Bigl(\frac{2k_L}{s} - 1\Bigr) \cdot m.  \]
+</div>
+<p> Then </p>
+<div class="displaymath" id="a0000001149">
+  \[  \dim _{\mathbb {F}_2}\bigl(\operatorname {HL}(X, \Lambda , \ell )\bigr) \geq \Bigl(\frac{2k_L}{s} - 1\Bigr) \cdot \frac{|X_1|}{\ell }.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001147">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We proceed in three steps. </p>
+<p><b class="bfseries">Step 1.</b> By Theorem&#160;<a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_K">673</a>, </p>
+<div class="displaymath" id="a0000001150">
+  \[  \dim _{\mathbb {F}_2}(\operatorname {HL}) = \dim _{\mathbb {F}_2}(H_1^h).  \]
+</div>
+<p><b class="bfseries">Step 2.</b> By Theorem&#160;<a href="sect0047.html#thm:EncodingRateCircle.encodingRateCircle">636</a> (encoding rate for the circle complex), </p>
+<div class="displaymath" id="a0000001151">
+  \[  \dim _{\mathbb {F}_2}(H_1^h) = \dim _{\mathbb {F}_2}(H_1(C(X/H, L))).  \]
+</div>
+<p> Combining steps 1 and 2, we obtain </p>
+<div class="displaymath" id="a0000001152">
+  \[  \dim _{\mathbb {F}_2}(\operatorname {HL}) = \dim _{\mathbb {F}_2}(H_1(C(X/H, L))).  \]
+</div>
+<p><b class="bfseries">Step 3.</b> Substituting the hypothesis \(m = |X_1|/\ell \) (i.e. \(\operatorname {hQuotEdges}\)) into the assumed Sipser–Spielman lower bound \(\operatorname {hQuotHomology}\), and combining with step 2 via the chain of equalities (cast to \(\mathbb {R}\)), the conclusion follows directly. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_DZ">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">675</span>
+    <span class="theorem_thmtitle">Z-Distance Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DZ">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001153"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0049.html#def:HomologicalDistanceBound.IsExpandingLinMap">Definition 653</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.tannerDifferential">Definition 572</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projH">Definition 600</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.homologicalDistanceBound_horizontal">Theorem 659</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.homologicalDistanceBound_horizontal">Theorem 659</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_DZ" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_DZ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(\alpha _{\mathrm{ho}}, \beta _{\mathrm{ho}} {\gt} 0\) and suppose the Tanner differential \(\partial ^{\mathrm{Tanner}}\) is \((\alpha _{\mathrm{ho}}, \beta _{\mathrm{ho}})\)-expanding. For every nontrivial homology class \(x \in H_1 \setminus \{ 0\} \) whose horizontal projection \(\pi _H(x) \neq 0\), </p>
+<div class="displaymath" id="a0000001154">
+  \[  \operatorname {wt}(x) \geq |X_1| \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{ho}}}{2},\,  \frac{\alpha _{\mathrm{ho}} \beta _{\mathrm{ho}}}{4}\Bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001153">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This is a direct application of Theorem&#160;<a href="sect0049.html#thm:HomologicalDistanceBound.homologicalDistanceBound_horizontal">659</a> (homological distance bound, horizontal case) with the given expansion parameters and the hypotheses \(x \neq 0\) and \(\pi _H(x) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_DX_vertical">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">676</span>
+    <span class="theorem_thmtitle">X-Distance Bound, Vertical Case</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_vertical">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001155"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">Definition 607</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">Theorem 668</a></li>
+          
+          <li><a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">Theorem 668</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_DX_vertical" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_DX_vertical</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(\alpha _{\mathrm{co}}, \beta _{\mathrm{co}} {\gt} 0\) and suppose the coboundary map is \((\alpha _{\mathrm{co}}, \beta _{\mathrm{co}})\)-expanding. For every nontrivial cohomology class \(x \in H_1 \setminus \{ 0\} \) whose vertical co-projection \(\tilde{\pi }_V(x) \neq 0\), </p>
+<div class="displaymath" id="a0000001156">
+  \[  \operatorname {wt}(x) \geq (|X_0| \cdot s) \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{2},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4}\Bigr).  \]
+</div>
+<p> Since \(s\)-regularity gives \(s \cdot |X_0| = 2|X_1|\), this is equivalent to </p>
+<div class="displaymath" id="a0000001157">
+  \[  \operatorname {wt}(x) \geq \min \! \Bigl(\alpha _{\mathrm{co}} |X_1|,\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}} |X_1|}{2}\Bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001155">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This is a direct application of Theorem&#160;<a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">668</a> (cohomological distance bound, vertical case) with the given expansion parameters and the hypotheses \(x \neq 0\) and \(\tilde{\pi }_V(x) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">677</span>
+    <span class="theorem_thmtitle">X-Distance Bound, Horizontal Case</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001158"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">Definition 607</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">Theorem 669</a></li>
+          
+          <li><a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">Theorem 669</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(\alpha _{\mathrm{co}}, \beta _{\mathrm{co}} {\gt} 0\), \(s \geq 1\), and suppose the coboundary map is \((\alpha _{\mathrm{co}}, \beta _{\mathrm{co}})\)-expanding. For every nontrivial cohomology class \(x \in H_1 \setminus \{ 0\} \) whose vertical co-projection satisfies \(\tilde{\pi }_V(x) = 0\) (purely horizontal class), </p>
+<div class="displaymath" id="a0000001159">
+  \[  \operatorname {wt}(x) \geq \ell \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{4s},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4s}\Bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001158">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This is a direct application of Theorem&#160;<a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">669</a> (cohomological distance bound, horizontal case) with the given expansion parameters and the hypotheses \(x \neq 0\) and \(\tilde{\pi }_V(x) = 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_DX_combined">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">678</span>
+    <span class="theorem_thmtitle">Combined X-Distance Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_combined">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001160"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_vertical">Theorem 676</a></li>
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal">Theorem 677</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_vertical">Theorem 676</a></li>
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal">Theorem 677</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_DX_combined" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_DX_combined</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(\alpha _{\mathrm{co}}, \beta _{\mathrm{co}} {\gt} 0\), \(s \geq 1\), and suppose the coboundary map is \((\alpha _{\mathrm{co}}, \beta _{\mathrm{co}})\)-expanding. For every nontrivial homology class \(x \in H_1 \setminus \{ 0\} \), </p>
+<div class="displaymath" id="a0000001161">
+  \[  \operatorname {wt}(x) \geq \min \! \left( (|X_0| \cdot s) \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{2},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4}\Bigr),\;  \ell \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{4s},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4s}\Bigr) \right).  \]
+</div>
+<p> Using \(s\)-regularity \(s \cdot |X_0| = 2|X_1|\), this gives </p>
+<div class="displaymath" id="a0000001162">
+  \[  D_X \geq \min \! \Bigl(\alpha _{\mathrm{co}} |X_1|,\;  \tfrac {\alpha _{\mathrm{co}} \beta _{\mathrm{co}} |X_1|}{2},\;  \tfrac {\ell \alpha _{\mathrm{co}}}{4s},\;  \tfrac {\ell \alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4s}\Bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001160">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We perform a case analysis on whether the vertical co-projection \(\tilde{\pi }_V(x)\) is zero or not. </p>
+<p><b class="bfseries">Case 1: \(\tilde{\pi }_V(x) = 0\) (purely horizontal).</b> We apply Theorem&#160;<a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_horizontal">677</a> to obtain </p>
+<div class="displaymath" id="a0000001163">
+  \[  \operatorname {wt}(x) \geq \ell \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{4s},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4s}\Bigr).  \]
+</div>
+<p> Since the right-hand side equals the second term of the outer minimum, the conclusion follows from \(\min (A, B) \leq B\). </p>
+<p><b class="bfseries">Case 2: \(\tilde{\pi }_V(x) \neq 0\) (nontrivial vertical component).</b> We apply Theorem&#160;<a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_vertical">676</a> to obtain </p>
+<div class="displaymath" id="a0000001164">
+  \[  \operatorname {wt}(x) \geq (|X_0| \cdot s) \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{2},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4}\Bigr).  \]
+</div>
+<p> Since the right-hand side equals the first term of the outer minimum, the conclusion follows from \(\min (A, B) \leq A\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCodeParameters.subsystemCodeParameters_DX_for_nontrivial">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">679</span>
+    <span class="theorem_thmtitle">Combined X-Distance Bound for Nontrivial Classes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_for_nontrivial">#</a>
+    
+    <a class="icon proof" href="sect0051.html#a0000001165"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_combined">Theorem 678</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_combined">Theorem 678</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCodeParameters.subsystemCodeParameters_DX_for_nontrivial" class="lean_decl">SubsystemCodeParameters.subsystemCodeParameters_DX_for_nontrivial</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Under the same hypotheses as Theorem&#160;<a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_combined">678</a>, for every nontrivial homology class \(x \in H_1 \setminus \{ 0\} \), </p>
+<div class="displaymath" id="a0000001166">
+  \[  \operatorname {wt}(x) \geq \min \! \left( (|X_0| \cdot s) \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{2},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4}\Bigr),\;  \ell \cdot \min \! \Bigl(\frac{\alpha _{\mathrm{co}}}{4s},\,  \frac{\alpha _{\mathrm{co}} \beta _{\mathrm{co}}}{4s}\Bigr) \right).  \]
+</div>
+<p><i class="itshape">Note: The existence of nontrivial homology classes for specific graph families (Cayley expanders) is a constructive combinatorial result from the balanced product code construction <span class="cite">
+	[
+</span>.</i> </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001165">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This is a direct application of Theorem&#160;<a href="sect0051.html#thm:SubsystemCodeParameters.subsystemCodeParameters_DX_combined">678</a> with the given expansion parameters and the hypothesis \(x \neq 0\). </p>
+
+  </div>
+</div>
+<p>[Paper Corrections] <b class="bfseries"><span style="None"></span>redErrata.</b> The following errors were identified in the original paper and corrected in this formalization: </p>
+<ul class="itemize">
+  <li><p>Paper Corollary (cor:distanceboundssybsystemcode) states D_X ≥ minα_co|X₁|, α_co|X₁|/2, ℓα_co/(4s), ℓα_coβ_co/(4s) but the second term is missing β_co. From Theorem thm:distco Case 1, |x| ≥ |X₀|s·minα_co/2, α_coβ_co/4. Substituting |X₀|s = 2|X₁| gives minα_co|X₁|, α_coβ_co|X₁|/2, so the correct second term should be α_coβ_co|X₁|/2, not α_co|X₁|/2. </p>
+</li>
+</ul>
+
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0050.html" title="Thm 14: Cohomological Distance Bound"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0052.html" title="Def 30: Unipotent Subgroup for LPS Graphs"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

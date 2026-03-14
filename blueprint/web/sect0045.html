@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 27: Horizontal/Vertical Homology Splitting</title>
+<link rel="next" href="sect0046.html" title="Def 28: Iota and Pi Maps" />
+<link rel="prev" href="sect0044.html" title="Def 26: Balanced Product Tanner Cycle Code" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000046">45 Def 27: Horizontal/Vertical Homology Splitting</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.tannerHEq">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">591</span>
+    <span class="definition_thmtitle">Tanner Code H-Equivariant Chain Complex (local abbreviation)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.tannerCodeHEquivariant">Definition 576</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.tannerHEq" class="lean_decl">HorizontalVerticalHomologySplitting.tannerHEq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(H\) be a finite group acting on a graph \(X\) with cell labeling \(\Lambda \) that is invariant under the action. The <em>Tanner code \(H\)-equivariant chain complex</em> is defined as </p>
+<div class="displaymath" id="a0000001029">
+  \[  \operatorname {tannerHEq}(X, \Lambda , h_\Lambda ) \; :=\;  \operatorname {tannerCodeHEquivariant}(X, \Lambda , h_\Lambda ),  \]
+</div>
+<p> the \(H\)-equivariant chain complex associated to the Tanner code on the graph with group action \(X\) and labeling \(\Lambda \). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.cycleHEq">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">592</span>
+    <span class="definition_thmtitle">Cycle Graph H-Equivariant Chain Complex (local abbreviation)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.cycleGraphHEquivariant">Definition 580</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.cycleHEq" class="lean_decl">HorizontalVerticalHomologySplitting.cycleHEq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(\ell \geq 3\) be an odd natural number with \(H\) acting on \(\operatorname {Fin}(\ell )\) via a cycle-compatible action \(h_{\mathrm{compat}}\). The <em>cycle graph \(H\)-equivariant chain complex</em> is defined as </p>
+<div class="displaymath" id="a0000001030">
+  \[  \operatorname {cycleHEq}(\ell , h_{\mathrm{compat}}) \; :=\;  \operatorname {cycleGraphHEquivariant}(\ell , h_{\mathrm{compat}}),  \]
+</div>
+<p> the \(H\)-equivariant chain complex associated to the cycle graph \(C_\ell \). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.bpComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">593</span>
+    <span class="definition_thmtitle">Balanced Product Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.bpComplex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex.balancedProductComplex">Definition 522</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.bpComplex" class="lean_decl">HorizontalVerticalHomologySplitting.bpComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>balanced product complex</em> \(C(X, \Lambda ) \otimes _H C(C_\ell )\) is defined as </p>
+<div class="displaymath" id="a0000001031">
+  \[  \operatorname {bpComplex}(X, \Lambda , \ell , h_\Lambda , h_{\mathrm{compat}}) \; :=\;  \operatorname {tannerHEq}(X, \Lambda , h_\Lambda ).\operatorname {balancedProductComplex}\! \bigl(\operatorname {cycleHEq}(\ell , h_{\mathrm{compat}})\bigr),  \]
+</div>
+<p> the balanced product of the Tanner code complex and the cycle graph complex over \(H\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.H1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">594</span>
+    <span class="definition_thmtitle">Degree-1 Homology of the Balanced Product</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.bpComplex">Definition 593</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.homologyPrime">Definition 26</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.H1" class="lean_decl">HorizontalVerticalHomologySplitting.H1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>degree-1 homology</em> of the balanced product complex is defined as </p>
+<div class="displaymath" id="a0000001032">
+  \[  H_1 \; :=\;  \operatorname {bpComplex}(X, \Lambda , \ell , h_\Lambda , h_{\mathrm{compat}}).\operatorname {homology}'(1),  \]
+</div>
+<p> the first homology group of \(C(X, \Lambda ) \otimes _H C(C_\ell )\) over \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.H1h">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">595</span>
+    <span class="definition_thmtitle">Horizontal Homology \(H_1^h\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.H1h" class="lean_decl">HorizontalVerticalHomologySplitting.H1h</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>horizontal homology</em> is the balanced Künneth summand at indices \(p = 1\), \(q = 0\): </p>
+<div class="displaymath" id="a0000001033">
+  \[  H_1^h \; :=\;  \operatorname {balancedKunnethSummand}\! \bigl(\operatorname {tannerHEq}(X, \Lambda , h_\Lambda ),\;  \operatorname {cycleHEq}(\ell , h_{\mathrm{compat}}),\;  1,\;  1\bigr) \; =\;  H_1\! \bigl(C(X, \Lambda )\bigr) \otimes _H H_0\! \bigl(C_\ell \bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.H1v">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">596</span>
+    <span class="definition_thmtitle">Vertical Homology \(H_1^v\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.H1v" class="lean_decl">HorizontalVerticalHomologySplitting.H1v</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>vertical homology</em> is the balanced Künneth summand at indices \(p = 0\), \(q = 1\): </p>
+<div class="displaymath" id="a0000001034">
+  \[  H_1^v \; :=\;  \operatorname {balancedKunnethSummand}\! \bigl(\operatorname {tannerHEq}(X, \Lambda , h_\Lambda ),\;  \operatorname {cycleHEq}(\ell , h_{\mathrm{compat}}),\;  1,\;  0\bigr) \; =\;  H_0\! \bigl(C(X, \Lambda )\bigr) \otimes _H H_1\! \bigl(C_\ell \bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.kunnethIso">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">597</span>
+    <span class="definition_thmtitle">Künneth Isomorphism at Degree 1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#thm:HEquivariantChainComplex.kunnethBalancedProduct">Theorem 534</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.kunnethIso" class="lean_decl">HorizontalVerticalHomologySplitting.kunnethIso</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Assuming \(|H|\) is odd, the <em>Künneth isomorphism at degree \(1\)</em> is the \(\mathbb {F}_2\)-linear equivalence </p>
+<div class="displaymath" id="a0000001035">
+  \[  \phi \; :\;  H_1\! \bigl(C(X,\Lambda ) \otimes _H C(C_\ell )\bigr) \; \xrightarrow {\; \sim \; } \bigoplus _{p \in \mathbb {Z}} H_p\! \bigl(C(X,\Lambda )\bigr) \otimes _H H_{1-p}\! \bigl(C_\ell \bigr),  \]
+</div>
+<p> defined as \(\phi := \operatorname {kunnethBalancedProduct}\! \bigl(\operatorname {tannerHEq}(X, \Lambda , h_\Lambda ),\;  \operatorname {cycleHEq}(\ell , h_{\mathrm{compat}}),\;  h_{\mathrm{odd}},\;  1\bigr)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.directSumProj">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">598</span>
+    <span class="definition_thmtitle">Direct Sum Projection onto \(p\)-th Summand</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumProj">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.directSumProj" class="lean_decl">HorizontalVerticalHomologySplitting.directSumProj</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For each integer \(p \in \mathbb {Z}\), the <em>canonical projection onto the \(p\)-th summand</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001036">
+  \[  \pi _p \; :\;  \bigoplus _{q} H_q\! \bigl(C(X,\Lambda )\bigr) \otimes _H H_{1-q}\! \bigl(C_\ell \bigr) \; \longrightarrow \;  H_p\! \bigl(C(X,\Lambda )\bigr) \otimes _H H_{1-p}\! \bigl(C_\ell \bigr),  \]
+</div>
+<p> defined as \(\pi _p := \operatorname {DirectSum.component}_{\mathbb {F}_2}(-)(p)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.directSumInc">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">599</span>
+    <span class="definition_thmtitle">Direct Sum Inclusion from \(p\)-th Summand</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.directSumInc" class="lean_decl">HorizontalVerticalHomologySplitting.directSumInc</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For each integer \(p \in \mathbb {Z}\), the <em>canonical inclusion of the \(p\)-th summand</em> into the direct sum is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001037">
+  \[  \iota _p \; :\;  H_p\! \bigl(C(X,\Lambda )\bigr) \otimes _H H_{1-p}\! \bigl(C_\ell \bigr) \; \longrightarrow \;  \bigoplus _{q} H_q\! \bigl(C(X,\Lambda )\bigr) \otimes _H H_{1-q}\! \bigl(C_\ell \bigr),  \]
+</div>
+<p> defined as \(\iota _p := \operatorname {DirectSum.lof}_{\mathbb {F}_2}(-)(p)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.projH">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">600</span>
+    <span class="definition_thmtitle">Horizontal Projection \(p^h\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.projH">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumProj">Definition 598</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.projH" class="lean_decl">HorizontalVerticalHomologySplitting.projH</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>horizontal projection</em> \(p^h : H_1 \to H_1^h\) is the \(\mathbb {F}_2\)-linear map defined as the composition of the Künneth isomorphism with the canonical projection onto the \(p = 1\) summand: </p>
+<div class="displaymath" id="a0000001038">
+  \[  p^h \; :=\;  \pi _1 \circ \phi ,  \]
+</div>
+<p> where \(\phi : H_1 \xrightarrow {\sim } \bigoplus _p H_p \otimes _H H_{1-p}\) is the Künneth isomorphism and \(\pi _1\) is the projection onto the \(p = 1\) component. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.projV">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">601</span>
+    <span class="definition_thmtitle">Vertical Projection \(p^v\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.projV">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumProj">Definition 598</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.projV" class="lean_decl">HorizontalVerticalHomologySplitting.projV</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>vertical projection</em> \(p^v : H_1 \to H_1^v\) is the \(\mathbb {F}_2\)-linear map defined as the composition of the Künneth isomorphism with the canonical projection onto the \(p = 0\) summand: </p>
+<div class="displaymath" id="a0000001039">
+  \[  p^v \; :=\;  \pi _0 \circ \phi ,  \]
+</div>
+<p> where \(\phi : H_1 \xrightarrow {\sim } \bigoplus _p H_p \otimes _H H_{1-p}\) is the Künneth isomorphism and \(\pi _0\) is the projection onto the \(p = 0\) component. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.IsHorizontal">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">602</span>
+    <span class="definition_thmtitle">Horizontal Homology Class</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.IsHorizontal">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projV">Definition 601</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.IsHorizontal" class="lean_decl">HorizontalVerticalHomologySplitting.IsHorizontal</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>A homology class \(x \in H_1\) is <em>horizontal</em> if its vertical projection vanishes: </p>
+<div class="displaymath" id="a0000001040">
+  \[  \operatorname {IsHorizontal}(x) \; :\Leftrightarrow \;  p^v(x) = 0.  \]
+</div>
+<p> Equivalently, under the Künneth isomorphism, \(x\) lies entirely in the horizontal summand \(H_1^h \oplus \{ 0\} \). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.IsVertical">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">603</span>
+    <span class="definition_thmtitle">Vertical Homology Class</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.IsVertical">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projH">Definition 600</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.IsVertical" class="lean_decl">HorizontalVerticalHomologySplitting.IsVertical</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>A homology class \(x \in H_1\) is <em>vertical</em> if its horizontal projection vanishes: </p>
+<div class="displaymath" id="a0000001041">
+  \[  \operatorname {IsVertical}(x) \; :\Leftrightarrow \;  p^h(x) = 0.  \]
+</div>
+<p> Equivalently, under the Künneth isomorphism, \(x\) lies entirely in the vertical summand \(\{ 0\}  \oplus H_1^v\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.coH1h">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">604</span>
+    <span class="definition_thmtitle">Horizontal Cohomology \(H^1_h\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.coH1h">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.coH1h" class="lean_decl">HorizontalVerticalHomologySplitting.coH1h</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>horizontal cohomology</em> is the balanced Künneth summand at indices \(p = 1\), \(q = 0\): </p>
+<div class="displaymath" id="a0000001042">
+  \[  H^1_h \; :=\;  \operatorname {balancedKunnethSummand}\! \bigl(\operatorname {tannerHEq}(X, \Lambda , h_\Lambda ),\;  \operatorname {cycleHEq}(\ell , h_{\mathrm{compat}}),\;  1,\;  1\bigr) \; =\;  H^1\! \bigl(C(X, \Lambda )\bigr) \otimes _H H^0\! \bigl(C_\ell \bigr).  \]
+</div>
+<p> By the homology-cohomology equivalence over \(\mathbb {F}_2\), this coincides with \(H_1^h\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.coH1v">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">605</span>
+    <span class="definition_thmtitle">Vertical Cohomology \(H^1_v\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.coH1v">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.coH1v" class="lean_decl">HorizontalVerticalHomologySplitting.coH1v</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>vertical cohomology</em> is the balanced Künneth summand at indices \(p = 0\), \(q = 1\): </p>
+<div class="displaymath" id="a0000001043">
+  \[  H^1_v \; :=\;  \operatorname {balancedKunnethSummand}\! \bigl(\operatorname {tannerHEq}(X, \Lambda , h_\Lambda ),\;  \operatorname {cycleHEq}(\ell , h_{\mathrm{compat}}),\;  1,\;  0\bigr) \; =\;  H^0\! \bigl(C(X, \Lambda )\bigr) \otimes _H H^1\! \bigl(C_\ell \bigr).  \]
+</div>
+<p> By the homology-cohomology equivalence over \(\mathbb {F}_2\), this coincides with \(H_1^v\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.coprojH">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">606</span>
+    <span class="definition_thmtitle">Cohomology Horizontal Projection \(p_h\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojH">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projH">Definition 600</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coH1h">Definition 604</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.coprojH" class="lean_decl">HorizontalVerticalHomologySplitting.coprojH</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>cohomology horizontal projection</em> \(p_h : H^1 \to H^1_h\) is defined as </p>
+<div class="displaymath" id="a0000001044">
+  \[  p_h \; :=\;  p^h,  \]
+</div>
+<p> identifying \(\operatorname {coprojH}\) with \(\operatorname {projH}\) via the homology-cohomology equivalence over \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalVerticalHomologySplitting.coprojV">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">607</span>
+    <span class="definition_thmtitle">Cohomology Vertical Projection \(p_v\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projV">Definition 601</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coH1v">Definition 605</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.coprojV" class="lean_decl">HorizontalVerticalHomologySplitting.coprojV</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>cohomology vertical projection</em> \(p_v : H^1 \to H^1_v\) is defined as </p>
+<div class="displaymath" id="a0000001045">
+  \[  p_v \; :=\;  p^v,  \]
+</div>
+<p> identifying \(\operatorname {coprojV}\) with \(\operatorname {projV}\) via the homology-cohomology equivalence over \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HorizontalVerticalHomologySplitting.projH_projV_jointly_surjective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">608</span>
+    <span class="lemma_thmtitle">Horizontal and Vertical Projections are Jointly Surjective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#lem:HorizontalVerticalHomologySplitting.projH_projV_jointly_surjective">#</a>
+    
+    <a class="icon proof" href="sect0045.html#a0000001046"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projH">Definition 600</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.projV">Definition 601</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumProj">Definition 598</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.projH_projV_jointly_surjective" class="lean_decl">HorizontalVerticalHomologySplitting.projH_projV_jointly_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For every pair of elements \(y_h \in H_1^h\) and \(y_v \in H_1^v\), there exists \(x \in H_1\) such that </p>
+<div class="displaymath" id="a0000001047">
+  \[  p^h(x) = y_h \quad \text{and} \quad p^v(x) = y_v.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001046">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Let \(\phi : H_1 \xrightarrow {\sim } \bigoplus _p H_p \otimes _H H_{1-p}\) be the Künneth isomorphism. We use the inverse \(\phi ^{-1}\). </p>
+<p>Construct the element </p>
+<div class="displaymath" id="a0000001048">
+  \[  z \; :=\;  \iota _1(y_h) + \iota _0(y_v) \; \in \;  \bigoplus _p H_p \otimes _H H_{1-p},  \]
+</div>
+<p> where \(\iota _1\) and \(\iota _0\) are the canonical inclusions of the \(p = 1\) and \(p = 0\) summands respectively. Set \(x := \phi ^{-1}(z)\). </p>
+<p>We verify both projections. For the horizontal projection, simplifying using the definitions of \(\operatorname {projH}\), \(\pi _1\), \(\iota _1\), \(\iota _0\), and the fact that \(\phi \circ \phi ^{-1} = \operatorname {id}\): </p>
+<div class="displaymath" id="a0000001049">
+  \begin{align*}  p^h(x) & = \pi _1\! \bigl(\phi (\phi ^{-1}(z))\bigr) = \pi _1(z) \\ & = \pi _1\! \bigl(\iota _1(y_h) + \iota _0(y_v)\bigr) \\ & = \pi _1(\iota _1(y_h)) + \pi _1(\iota _0(y_v)). \end{align*}
+</div>
+<p> By the defining properties of direct sum components, \(\pi _1(\iota _1(y_h)) = y_h\) and \(\pi _1(\iota _0(y_v)) = 0\) since \(0 \neq 1\) (verified by integer arithmetic). Hence \(p^h(x) = y_h\). </p>
+<p>For the vertical projection, by the same reasoning with \(\pi _0\): </p>
+<div class="displaymath" id="a0000001050">
+  \begin{align*}  p^v(x) & = \pi _0(z) = \pi _0(\iota _1(y_h)) + \pi _0(\iota _0(y_v)) = 0 + y_v = y_v, \end{align*}
+</div>
+<p> since \(1 \neq 0\) (verified by integer arithmetic) implies \(\pi _0(\iota _1(y_h)) = 0\), and \(\pi _0(\iota _0(y_v)) = y_v\). Thus \(p^v(x) = y_v\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HorizontalVerticalHomologySplitting.H1h_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">609</span>
+    <span class="lemma_thmtitle">Horizontal Homology is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#lem:HorizontalVerticalHomologySplitting.H1h_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0045.html#a0000001051"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.H1h_nonempty" class="lean_decl">HorizontalVerticalHomologySplitting.H1h_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The type \(H_1^h\) is nonempty; it contains the zero element. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001051">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>The zero element \(0 \in H_1^h\) witnesses nonemptiness. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HorizontalVerticalHomologySplitting.H1v_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">610</span>
+    <span class="lemma_thmtitle">Vertical Homology is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#lem:HorizontalVerticalHomologySplitting.H1v_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0045.html#a0000001052"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.H1v_nonempty" class="lean_decl">HorizontalVerticalHomologySplitting.H1v_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The type \(H_1^v\) is nonempty; it contains the zero element. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001052">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>The zero element \(0 \in H_1^v\) witnesses nonemptiness. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HorizontalVerticalHomologySplitting.H1_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">611</span>
+    <span class="lemma_thmtitle">Degree-1 Homology is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0045.html#lem:HorizontalVerticalHomologySplitting.H1_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0045.html#a0000001053"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalVerticalHomologySplitting.H1_nonempty" class="lean_decl">HorizontalVerticalHomologySplitting.H1_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The type \(H_1\) is nonempty; it contains the zero element. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001053">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>The zero element \(0 \in H_1\) witnesses nonemptiness. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0044.html" title="Def 26: Balanced Product Tanner Cycle Code"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0046.html" title="Def 28: Iota and Pi Maps"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

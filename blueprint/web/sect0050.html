@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 14: Cohomological Distance Bound</title>
+<link rel="next" href="sect0051.html" title="Cor 2: Subsystem Code Parameters" />
+<link rel="prev" href="sect0049.html" title="Thm 13: Homological Distance Bound" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000051">50 Thm 14: Cohomological Distance Bound</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CohomologicalDistanceBound.coboundaryMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">665</span>
+    <span class="definition_thmtitle">Coboundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.coboundaryMap" class="lean_decl">CohomologicalDistanceBound.coboundaryMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(H\) be a finite group, \(X\) a graph with \(H\)-action, and \(\Lambda \) a cell labeling of \(X\) with \(s\) labels. The <em>coboundary map</em> (or transpose Tanner differential) </p>
+<div class="displaymath" id="a0000001134">
+  \[  \delta = \partial ^T : C_0(X, \Lambda ) \longrightarrow C_1(X, \Lambda )  \]
+</div>
+<p> is the linear map \(\delta : (X_0 \to \operatorname {Fin}(s) \to \mathbb {F}_2) \to (X_1 \to \mathbb {F}_2)\) defined by </p>
+<div class="displaymath" id="a0000001135">
+  \[  \delta (y)(e) = \sum _{v \in X_0} \begin{cases}  y\bigl(v,\,  \Lambda _v(e)\bigr) &  \text{if } e \in \operatorname {cellIncidentEdges}(v), \\ 0 &  \text{otherwise.} \end{cases}  \]
+</div>
+<p> Here \(X_0\) denotes the \(0\)-cells (vertices) and \(X_1\) the \(1\)-cells (edges) of \(X\). This map is \(\mathbb {F}_2\)-linear, being the transpose of the Tanner differential \(\partial : C_1(X,\Lambda ) \to C_0(X,\Lambda )\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CohomologicalDistanceBound.IsExpandingCoboundary">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">666</span>
+    <span class="definition_thmtitle">Expanding Coboundary Property</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0049.html#def:HomologicalDistanceBound.IsExpandingLinMap">Definition 653</a></li>
+          
+          <li><a href="sect0049.html#def:HomologicalDistanceBound.hammingWeight">Definition 651</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.IsExpandingCoboundary" class="lean_decl">CohomologicalDistanceBound.IsExpandingCoboundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(A\), \(B\), \(C\) be finite types with decidable equality, and let \(f : (A \to B \to \mathbb {F}_2) \to _{\mathbb {F}_2} (C \to \mathbb {F}_2)\) be a linear map over \(\mathbb {F}_2\). We say \(f\) is <em>\((\alpha , \beta )\)-expanding</em> (written \(\operatorname {IsExpandingCoboundary}(f, \alpha , \beta )\)) if: </p>
+<ol class="enumerate">
+  <li><p>\(0 {\lt} \alpha \leq 1\) and \(0 {\lt} \beta \), </p>
+</li>
+  <li><p>For every \(x : A \to B \to \mathbb {F}_2\) with </p>
+<div class="displaymath" id="a0000001136">
+  \[  \bigl|\{ (a,b) \in A \times B \mid x(a,b) \neq 0\} \bigr| \leq \alpha \cdot |A| \cdot |B|,  \]
+</div>
+<p> we have </p>
+<div class="displaymath" id="a0000001137">
+  \[  \bigl|\{ c \in C \mid f(x)(c) \neq 0\} \bigr| \geq \beta \cdot \bigl|\{ (a,b) \in A \times B \mid x(a,b) \neq 0\} \bigr|.  \]
+</div>
+</li>
+</ol>
+<p> This is the expanding property for a map whose domain is a matrix-shaped space \((A \to B \to \mathbb {F}_2)\), dual to the \(\operatorname {IsExpandingLinMap}\) condition of Definition&#160;<a href="sect0049.html#def:HomologicalDistanceBound.IsExpandingLinMap">653</a>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CohomologicalDistanceBound.numVertices">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">667</span>
+    <span class="definition_thmtitle">Number of Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#def:CohomologicalDistanceBound.numVertices">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.numVertices" class="lean_decl">CohomologicalDistanceBound.numVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(H\) be a finite group and \(X\) a graph with \(H\)-action. The <em>number of \(0\)-cells (vertices)</em> of \(X\) is </p>
+<div class="displaymath" id="a0000001138">
+  \[  |X_0| := \bigl|\operatorname {Fintype.card}(X\text{.graph.cells}(0))\bigr|.  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">668</span>
+    <span class="theorem_thmtitle">Axiom: Cohomological Distance Bound, Case 1 (Vertical)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">Definition 607</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.cohomologicalDistanceBound_vertical" class="lean_decl">CohomologicalDistanceBound.cohomologicalDistanceBound_vertical</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(H\) be a finite group, \(X\) a graph with \(H\)-action, \(\Lambda \) a cell labeling with \(s\) labels, \(\ell \geq 3\) an odd integer with \(H \curvearrowright \operatorname {Fin}(\ell )\), \(\Lambda \) invariant, the action cycle-compatible, and \(|H|\) odd. Let \(\alpha _{\mathrm{co}}, \beta _{\mathrm{co}} \in \mathbb {R}\) be such that the coboundary map \(\delta = \partial ^T\) is \((\alpha _{\mathrm{co}}, \beta _{\mathrm{co}})\)-expanding. Let \([x] \in H^1\) be a nontrivial cohomology class (i.e. \(x \neq 0\)) with nontrivial vertical cohomological projection: \(p^v([x]) \neq 0\). </p>
+<p>Then the minimum Hamming weight of a cycle representative satisfies </p>
+<div class="displaymath" id="a0000001139">
+  \[  |x| \; \geq \;  |X_0| \cdot s \cdot \min \! \Bigl(\tfrac {\alpha _{\mathrm{co}}}{2},\;  \tfrac {\alpha _{\mathrm{co}} \cdot \beta _{\mathrm{co}}}{4}\Bigr).  \]
+</div>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization. It is the cohomological dual of Theorem&#160;<a href="sect0049.html#thm:HomologicalDistanceBound.homologicalDistanceBound_vertical">660</a>, obtained by transposing the roles of boundary and coboundary. The factor \(|X_0| \cdot s\) arises because the domain of \(\delta \) is \(C_0(X,\Lambda ) \cong \mathbb {F}_2^{X_0 \times [s]}\).</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">669</span>
+    <span class="theorem_thmtitle">Axiom: Cohomological Distance Bound, Case 2 (Horizontal)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">Definition 607</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal" class="lean_decl">CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(H\), \(X\), \(\Lambda \), \(\ell \), \(\alpha _{\mathrm{co}}\), \(\beta _{\mathrm{co}}\) be as in Theorem&#160;<a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">668</a>, with the additional assumption \(s \geq 1\). Let \([x] \in H^1\) be a nontrivial cohomology class with <em>trivial</em> vertical projection: \(p^v([x]) = 0\) (i.e. \([x]\) is purely horizontal). </p>
+<p>Then </p>
+<div class="displaymath" id="a0000001140">
+  \[  |x| \; \geq \;  \ell \cdot \min \! \Bigl(\tfrac {\alpha _{\mathrm{co}}}{4s},\;  \tfrac {\alpha _{\mathrm{co}} \cdot \beta _{\mathrm{co}}}{4s}\Bigr).  \]
+</div>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization. It is the cohomological dual of Theorem&#160;<a href="sect0049.html#thm:HomologicalDistanceBound.homologicalDistanceBound_horizontal">659</a>, with the coboundary expansion applied fiber-by-fiber along the \(\ell \) edges of \(C_\ell \).</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical_satisfiable">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">670</span>
+    <span class="theorem_thmtitle">Axiom: Satisfiability Witness for Vertical Cohomological Distance Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical_satisfiable">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">Definition 607</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">Theorem 668</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.cohomologicalDistanceBound_vertical_satisfiable" class="lean_decl">CohomologicalDistanceBound.cohomologicalDistanceBound_vertical_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>The hypotheses of Theorem&#160;<a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_vertical">668</a> are jointly satisfiable. That is, there exist a finite group \(H\), a graph \(X\) with \(H\)-action, a cell labeling \(\Lambda \) with \(s\) labels, an odd \(\ell \geq 3\) with cycle-compatible \(H\)-action on \(\operatorname {Fin}(\ell )\), invariant labeling, odd \(|H|\), parameters \(\alpha _{\mathrm{co}}, \beta _{\mathrm{co}} {\gt} 0\) with the coboundary \(\delta \) being \((\alpha _{\mathrm{co}}, \beta _{\mathrm{co}})\)-expanding, and a nonzero cohomology class \(x \in H^1\) with \(p^v(x) \neq 0\), such that </p>
+<div class="displaymath" id="a0000001141">
+  \[  |x| \; \geq \;  |X_0| \cdot s \cdot \min \! \Bigl(\tfrac {\alpha _{\mathrm{co}}}{2},\;  \tfrac {\alpha _{\mathrm{co}} \cdot \beta _{\mathrm{co}}}{4}\Bigr).  \]
+</div>
+<p><i class="itshape">Note: This axiom serves as a satisfiability witness confirming the premises of the vertical cohomological distance bound are consistent.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal_satisfiable">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">671</span>
+    <span class="theorem_thmtitle">Axiom: Satisfiability Witness for Horizontal Cohomological Distance Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal_satisfiable">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.coboundaryMap">Definition 665</a></li>
+          
+          <li><a href="sect0050.html#def:CohomologicalDistanceBound.IsExpandingCoboundary">Definition 666</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coprojV">Definition 607</a></li>
+          
+          <li><a href="sect0049.html#thm:HomologicalDistanceBound.cycleRepWeight">Theorem 655</a></li>
+          
+          <li><a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">Theorem 669</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal_satisfiable" class="lean_decl">CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>The hypotheses of Theorem&#160;<a href="sect0050.html#thm:CohomologicalDistanceBound.cohomologicalDistanceBound_horizontal">669</a> are jointly satisfiable. That is, there exist a finite group \(H\), a graph \(X\) with \(H\)-action, integers \(s \geq 1\) and \(\ell \geq 3\) odd, a cell labeling \(\Lambda \), cycle-compatible \(H\)-action on \(\operatorname {Fin}(\ell )\), invariant labeling, odd \(|H|\), parameters \(\alpha _{\mathrm{co}}, \beta _{\mathrm{co}} {\gt} 0\) with the coboundary \(\delta \) being \((\alpha _{\mathrm{co}}, \beta _{\mathrm{co}})\)-expanding, and a nonzero cohomology class \(x \in H^1\) with \(p^v(x) = 0\) (purely horizontal), such that </p>
+<div class="displaymath" id="a0000001142">
+  \[  |x| \; \geq \;  \ell \cdot \min \! \Bigl(\tfrac {\alpha _{\mathrm{co}}}{4s},\;  \tfrac {\alpha _{\mathrm{co}} \cdot \beta _{\mathrm{co}}}{4s}\Bigr).  \]
+</div>
+<p><i class="itshape">Note: This axiom serves as a satisfiability witness confirming the premises of the horizontal cohomological distance bound are consistent, including the requirement \(s \geq 1\) needed for the \(\frac{1}{4s}\) factors.</i> </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0049.html" title="Thm 13: Homological Distance Bound"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0051.html" title="Cor 2: Subsystem Code Parameters"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

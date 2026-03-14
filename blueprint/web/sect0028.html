@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cor 1: Alon–Chung Contrapositive</title>
+<link rel="next" href="sect0029.html" title="Def 19: Edge Boundary and Vertex Incidence for Cell Complexes" />
+<link rel="prev" href="sect0027.html" title="Thm 6: Alon–Chung Bound" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000029">28 Cor 1: Alon–Chung Contrapositive</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:AlonChungContrapositive.incidentVertices">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">323</span>
+    <span class="definition_thmtitle">Incident Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#def:AlonChungContrapositive.incidentVertices">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.incidentVertices" class="lean_decl">AlonChungContrapositive.incidentVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(E \subseteq X_1\) be a set of edges in a simple graph \(G\) on vertex type \(V\). The <em>set of vertices incident to \(E\)</em> is defined as </p>
+<div class="displaymath" id="a0000000585">
+  \[  \Gamma (E) \; =\;  \{ v \in V \mid \exists \,  e \in E,\;  v \in e\} .  \]
+</div>
+<p> That is, \(\Gamma (E)\) consists of all vertices that appear as an endpoint of some edge in \(E\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChungContrapositive.mem_incidentVertices">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">324</span>
+    <span class="lemma_thmtitle">Membership in Incident Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">#</a>
+    
+    <a class="icon proof" href="sect0028.html#a0000000586"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.mem_incidentVertices" class="lean_decl">AlonChungContrapositive.mem_incidentVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any edge set \(E\) and vertex \(v\), </p>
+<div class="displaymath" id="a0000000587">
+  \[  v \in \Gamma (E) \; \Longleftrightarrow \;  \exists \,  e \in E,\;  v \in e.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000586">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by unfolding the definition of \(\Gamma (E)\) and simplifying. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChungContrapositive.incidentVertices_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">325</span>
+    <span class="lemma_thmtitle">Incident Vertices Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#lem:AlonChungContrapositive.incidentVertices_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0028.html#a0000000588"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.incidentVertices_nonempty" class="lean_decl">AlonChungContrapositive.incidentVertices_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(E\) is a set of edges such that some edge in \(E\) has a vertex, then \(\Gamma (E)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000588">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose there exists \(e \in E\) and \(v \in e\). We obtain \(e\), \(v\), and the membership proof. By the membership characterization of \(\Gamma (E)\), \(v \in \Gamma (E)\), so \(\Gamma (E)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">326</span>
+    <span class="lemma_thmtitle">Edges Contained in Induced Edges of Incident Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">#</a>
+    
+    <a class="icon proof" href="sect0028.html#a0000000589"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.subset_inducedEdges_incidentVertices" class="lean_decl">AlonChungContrapositive.subset_inducedEdges_incidentVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a simple graph and \(E \subseteq \operatorname {edgeFinset}(G)\). Then </p>
+<div class="displaymath" id="a0000000590">
+  \[  E \; \subseteq \;  \operatorname {inducedEdges}(G,\,  \Gamma (E)).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000589">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(e \in E\) be arbitrary. We must show \(e \in \operatorname {inducedEdges}(G, \Gamma (E))\). Rewriting via the membership criterion for \(\operatorname {inducedEdges}\), we need: (1) \(e \in \operatorname {edgeFinset}(G)\), which holds since \(e \in E \subseteq \operatorname {edgeFinset}(G)\); and (2) every vertex \(v \in e\) lies in \(\Gamma (E)\). For any such \(v\), rewriting via the membership criterion for \(\Gamma (E)\), we exhibit \(e \in E\) and \(v \in e\), establishing \(v \in \Gamma (E)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChungContrapositive.alpha_mono">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">327</span>
+    <span class="lemma_thmtitle">Monotonicity of the Alon–Chung Bound Function</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#lem:AlonChungContrapositive.alpha_mono">#</a>
+    
+    <a class="icon proof" href="sect0028.html#a0000000591"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.alpha_mono" class="lean_decl">AlonChungContrapositive.alpha_mono</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(c \in \mathbb {R}\) with \(0 \leq c \leq 1\), and let \(0 \leq a \leq b\). Then </p>
+<div class="displaymath" id="a0000000592">
+  \[  a^2 + c \cdot a \cdot (1 - a) \; \leq \;  b^2 + c \cdot b \cdot (1 - b).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000591">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Define \(f(t) = t^2 + c \cdot t(1-t) = (1-c)t^2 + ct\). Then </p>
+<div class="displaymath" id="a0000000593">
+  \[  f(b) - f(a) = (1-c)(b^2 - a^2) + c(b - a) = (b - a)\bigl[(1-c)(b+a) + c\bigr].  \]
+</div>
+<p> Since \(b \geq a \geq 0\) and \(0 \leq c \leq 1\), we have \(b - a \geq 0\), \((1-c) \geq 0\), \(b + a \geq 0\), and \(c \geq 0\), so \((b-a)[(1-c)(b+a)+c] \geq 0\). This is verified by nonlinear arithmetic using \(a^2 \geq 0\), \(b^2 \geq 0\), \((b-a)^2 \geq 0\), and the nonnegativity of \((b-a)\cdot [(1-c)(b+a)+c]\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonChungContrapositive.alonChungContrapositive_direct">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">328</span>
+    <span class="theorem_thmtitle">Alon–Chung Contrapositive, Direct Form</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#thm:AlonChungContrapositive.alonChungContrapositive_direct">#</a>
+    
+    <a class="icon proof" href="sect0028.html#a0000000594"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">Lemma 316</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.alonChung">Theorem 322</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">Lemma 316</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.alonChung">Theorem 322</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">Lemma 326</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.alpha_mono">Lemma 327</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.alonChungContrapositive_direct" class="lean_decl">AlonChungContrapositive.alonChungContrapositive_direct</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a \(s\)-regular simple graph on \(V\) with \(|V| \geq 2\) and \(s \geq 1\). Let \(\lambda _2\) denote the second-largest adjacency eigenvalue of \(G\) with \(\lambda _2 \geq 0\). Let \(E \subseteq \operatorname {edgeFinset}(G)\) and \(0 {\lt} \gamma {\lt} 1\). If </p>
+<div class="displaymath" id="a0000000595">
+  \[  |\Gamma (E)| \; \leq \;  \gamma \cdot |V|,  \]
+</div>
+<p> then </p>
+<div class="displaymath" id="a0000000596">
+  \[  |E| \; \leq \;  \left(\gamma ^2 + \frac{\lambda _2}{s}\, \gamma (1-\gamma )\right) |\operatorname {edgeFinset}(G)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000594">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(S = \Gamma (E)\). We consider two cases. </p>
+<p><b class="bfseries">Case 1: \(S = \emptyset \).</b> We claim \(E = \emptyset \). Indeed, suppose for contradiction that \(E\) is nonempty; pick \(e \in E\). Since \(e \in \operatorname {edgeFinset}(G)\), writing \(e = s(v,w)\) via the induction principle for \(\operatorname {Sym2}\), we have \(v \in S\) by definition of \(\Gamma (E)\) (since \(v \in e \in E\)), contradicting \(S = \emptyset \). Thus \(|E| = 0 \leq \alpha \cdot |\operatorname {edgeFinset}(G)|\), where \(\alpha = \gamma ^2 + (\lambda _2/s)\gamma (1-\gamma ) \geq 0\) (since \(\lambda _2/s \geq 0\), \(\gamma {\gt} 0\), and \(1 - \gamma {\gt} 0\), this follows by nonlinear arithmetic). </p>
+<p><b class="bfseries">Case 2: \(S \neq \emptyset \).</b> Set \(n = |V|\) and \(\gamma ' = |S|/n\). Then \(\gamma ' {\gt} 0\) (since \(S\) is nonempty and \(n {\gt} 0\)) and \(\gamma ' \leq \gamma \) (from the hypothesis \(|S| \leq \gamma n\)). Moreover, \(|S| {\lt} |V|\): if \(|S| \geq |V|\), then \(|V| \leq |S| \leq \gamma |V|\), giving \(1 \leq \gamma \), contradicting \(\gamma {\lt} 1\). </p>
+<p>By Lemma&#160;<a href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">326</a>, \(E \subseteq \operatorname {inducedEdges}(G, S)\), so \(|E| \leq |\operatorname {inducedEdges}(G,S)|\). </p>
+<p>Applying the Alon–Chung theorem (Theorem&#160;<a href="sect0027.html#thm:AlonChung.alonChung">322</a>) to \(S\): </p>
+<div class="displaymath" id="a0000000597">
+  \[  |\operatorname {inducedEdges}(G,S)| \; \leq \;  \alpha ' \cdot |\operatorname {edgeFinset}(G)|,  \]
+</div>
+<p> where \(\alpha ' = {\gamma ’}^2 + (\lambda _2/s)\, \gamma '(1-\gamma ')\). </p>
+<p>We verify \(\lambda _2/s \leq 1\): by Lemma&#160;<a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">316</a>, the largest eigenvalue equals \(s\), and by antitonicity of adjacency eigenvalues (Theorem&#160;<a href="sect0020.html#thm:GraphExpansion.adjEigenvalues_antitone">241</a>), \(\lambda _2 \leq s\), so \(\lambda _2/s \leq 1\). </p>
+<p>By Lemma&#160;<a href="sect0028.html#lem:AlonChungContrapositive.alpha_mono">327</a> applied with \(c = \lambda _2/s \in [0,1]\) and \(0 {\lt} \gamma ' \leq \gamma \), we obtain \(\alpha ' \leq \alpha = \gamma ^2 + (\lambda _2/s)\gamma (1-\gamma )\). </p>
+<p>Combining via a calculation: </p>
+<div class="displaymath" id="a0000000598">
+  \[  |E| \; \leq \;  |\operatorname {inducedEdges}(G,S)| \; \leq \;  \alpha ' \cdot |\operatorname {edgeFinset}(G)| \; \leq \;  \alpha \cdot |\operatorname {edgeFinset}(G)|,  \]
+</div>
+<p> where the last step uses \(\alpha ' \leq \alpha \) and \(|\operatorname {edgeFinset}(G)| \geq 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonChungContrapositive.alonChungContrapositive">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">329</span>
+    <span class="theorem_thmtitle">Alon–Chung Contrapositive</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0028.html#thm:AlonChungContrapositive.alonChungContrapositive">#</a>
+    
+    <a class="icon proof" href="sect0028.html#a0000000599"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">Lemma 316</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.alonChung">Theorem 322</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">Lemma 316</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.alonChung">Theorem 322</a></li>
+          
+          <li><a href="sect0028.html#thm:AlonChungContrapositive.alonChungContrapositive_direct">Theorem 328</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChungContrapositive.alonChungContrapositive" class="lean_decl">AlonChungContrapositive.alonChungContrapositive</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a \(s\)-regular simple graph on \(V\) with \(|V| \geq 2\) and \(s \geq 1\). Let \(\lambda _2 \geq 0\) be the second-largest adjacency eigenvalue. Let \(E \subseteq \operatorname {edgeFinset}(G)\) and \(0 {\lt} \gamma {\lt} 1\). Set \(\alpha = \gamma ^2 + \tfrac {\lambda _2}{s}\, \gamma (1-\gamma )\). If </p>
+<div class="displaymath" id="a0000000600">
+  \[  |E| \; {\gt}\;  \alpha \cdot |\operatorname {edgeFinset}(G)|,  \]
+</div>
+<p> then </p>
+<div class="displaymath" id="a0000000601">
+  \[  |\Gamma (E)| \; {\gt}\;  \gamma \cdot |V|.  \]
+</div>
+<p> In other words, if \(E\) is a large fraction of edges, then \(E\) is incident to many vertices. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000599">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We argue by contradiction. Suppose \(|\Gamma (E)| \leq \gamma \cdot |V|\). Then by Theorem&#160;<a href="sect0028.html#thm:AlonChungContrapositive.alonChungContrapositive_direct">328</a>, we have \(|E| \leq \alpha \cdot |\operatorname {edgeFinset}(G)|\). This contradicts the hypothesis \(|E| {\gt} \alpha \cdot |\operatorname {edgeFinset}(G)|\), so by linear arithmetic we obtain a contradiction. Therefore \(|\Gamma (E)| {\gt} \gamma \cdot |V|\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0027.html" title="Thm 6: Alon–Chung Bound"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0029.html" title="Def 19: Edge Boundary and Vertex Incidence for Cell Complexes"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

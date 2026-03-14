@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 25: Invariant Labeling</title>
+<link rel="next" href="sect0044.html" title="Def 26: Balanced Product Tanner Cycle Code" />
+<link rel="prev" href="sect0042.html" title="Def 24: Quotient Graph Trivialization" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000044">43 Def 25: Invariant Labeling</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.cellIncidentEdges">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">557</span>
+    <span class="definition_thmtitle">Cell Incident Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.cellIncidentEdges" class="lean_decl">GraphWithGroupAction.cellIncidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(X\) be a graph with a group action by \(H\). The set of edges incident to a vertex \(v \in X_0\) in the cell complex is defined as </p>
+<div class="displaymath" id="a0000000984">
+  \[  \delta v = \{  e \in X_1 \mid v \in \partial e \} .  \]
+</div>
+<p> Formally, \(\operatorname {cellIncidentEdges}(v) = \{  e \in X_1 \mid v \in X.\operatorname {graph}.\operatorname {bdry}(e) \} \). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:GraphWithGroupAction.mem_cellIncidentEdges">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">558</span>
+    <span class="theorem_thmtitle">Membership in Cell Incident Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000985"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.mem_cellIncidentEdges" class="lean_decl">GraphWithGroupAction.mem_cellIncidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For a vertex \(v \in X_0\) and an edge \(e \in X_1\), we have </p>
+<div class="displaymath" id="a0000000986">
+  \[  e \in \delta v \iff v \in \partial e.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000985">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately by simplification using the definition of \(\operatorname {cellIncidentEdges}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.cellIncidentEdges_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">559</span>
+    <span class="lemma_thmtitle">Cell Incident Edges Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#lem:GraphWithGroupAction.cellIncidentEdges_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000987"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.cellIncidentEdges_nonempty" class="lean_decl">GraphWithGroupAction.cellIncidentEdges_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For a vertex \(v \in X_0\) and an edge \(e \in X_1\) with \(v \in \partial e\), the set \(\delta v\) is non-empty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000987">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The element \(e\) witnesses non-emptiness: since \(v \in \partial e\), by the membership characterization we have \(e \in \delta v\), so \(\langle e, \cdot \rangle \) provides the required element. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.CellLabeling">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">560</span>
+    <span class="definition_thmtitle">Cell Complex Labeling</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#def:GraphWithGroupAction.CellLabeling">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.CellLabeling" class="lean_decl">GraphWithGroupAction.CellLabeling</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>cell complex labeling of degree \(s\)</em> on \(X\) is a family \(\Lambda = \{ \Lambda _v\} _{v \in X_0}\) assigning to each vertex \(v \in X_0\) a bijection </p>
+<div class="displaymath" id="a0000000988">
+  \[  \Lambda _v : \delta v \xrightarrow {\sim } \operatorname {Fin}(s).  \]
+</div>
+<p> Formally, \(\operatorname {CellLabeling}(s) = \prod _{v : X_0} (\delta v \simeq \operatorname {Fin}(s))\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.smul_incident_of_incident">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">561</span>
+    <span class="lemma_thmtitle">Group Action Preserves Incidence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#lem:GraphWithGroupAction.smul_incident_of_incident">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000989"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0042.html#lem:GraphWithGroupAction.bdry_orbit_compat">Lemma 543</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+          <li><a href="sect0042.html#lem:GraphWithGroupAction.bdry_orbit_compat">Lemma 543</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.smul_incident_of_incident" class="lean_decl">GraphWithGroupAction.smul_incident_of_incident</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(e \in \delta v\) (i.e., \(e\) is incident to \(v\)), then \(h \cdot e \in \delta (h \cdot v)\) for all \(h \in H\). That is, the \(H\)-action preserves incidence. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000989">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Rewriting using the membership characterization of \(\operatorname {cellIncidentEdges}\) on both sides, it suffices to show \(h \cdot v \in \partial (h \cdot e)\). This follows directly from the boundary orbit compatibility lemma \(\operatorname {bdry_orbit_compat}\), which states that \(v \in \partial e \Rightarrow h \cdot v \in \partial (h \cdot e)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.smulIncidentEdge">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">562</span>
+    <span class="definition_thmtitle">Transported Incident Edge</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#def:GraphWithGroupAction.smulIncidentEdge">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#lem:GraphWithGroupAction.smul_incident_of_incident">Lemma 561</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.smulIncidentEdge" class="lean_decl">GraphWithGroupAction.smulIncidentEdge</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a vertex \(v \in X_0\), a group element \(h \in H\), and an incident edge \(e \in \delta v\), define the transported incident edge </p>
+<div class="displaymath" id="a0000000990">
+  \[  h \cdot e \in \delta (h \cdot v)  \]
+</div>
+<p> as the pair \(\langle h \cdot e.{\operatorname {val}},\,  \operatorname {smul_incident_of_incident}(v, e.{\operatorname {val}}, h, e.{\operatorname {prop}})\rangle \). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.IsInvariantLabeling">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">563</span>
+    <span class="definition_thmtitle">\(H\)-Invariant Labeling</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.smulIncidentEdge">Definition 562</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.IsInvariantLabeling" class="lean_decl">GraphWithGroupAction.IsInvariantLabeling</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A cell complex labeling \(\Lambda \) is <em>\(H\)-invariant</em> if for all vertices \(v \in X_0\), all group elements \(h \in H\), and all incident edges \(e \in \delta v\), </p>
+<div class="displaymath" id="a0000000991">
+  \[  \Lambda _{h \cdot v}(h \cdot e) = \Lambda _v(e).  \]
+</div>
+<p> Formally, \(\operatorname {IsInvariantLabeling}(\Lambda )\) is the proposition </p>
+<div class="displaymath" id="a0000000992">
+  \[  \forall \,  v \in X_0,\;  \forall \,  h \in H,\;  \forall \,  e \in \delta v,\quad \Lambda (h \cdot v)(\operatorname {smulIncidentEdge}(v, h, e)) = \Lambda (v)(e).  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.isInvariantLabeling_trivial_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">564</span>
+    <span class="lemma_thmtitle">Invariance Condition is Satisfiable</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#lem:GraphWithGroupAction.isInvariantLabeling_trivial_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000993"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.isInvariantLabeling_trivial_satisfiable" class="lean_decl">GraphWithGroupAction.isInvariantLabeling_trivial_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    There exist a group \(H\), a graph with \(H\)-action \(X\), a degree \(s \in \mathbb {N}\), a cell labeling \(\Lambda : X.\operatorname {CellLabeling}(s)\), and a proof that \(\Lambda \) is \(H\)-invariant. In other words, the invariance premises are satisfiable. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000993">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We take \(H = \operatorname {Unit}\) (the trivial group) with \(s = 0\). We construct \(X\) as the graph with trivial action in which all cell types are \(\operatorname {PEmpty}\) (no vertices or edges), all structure maps are vacuously defined, and the vertex/edge actions are trivial. The boundary map sends every edge (of which there are none) to the empty set, and the boundary-of-boundary condition holds vacuously by simplification. </p>
+<p>We provide the labeling \(\Lambda \) and the invariance proof vacuously: since there are no vertices (\(X_0 = \operatorname {PEmpty}\)), the universal quantifiers in both the labeling and invariance condition hold trivially via \(\operatorname {PEmpty.elim}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.quotientIncidentEdges">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">565</span>
+    <span class="definition_thmtitle">Quotient Incident Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.edgeQuot">Definition 542</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.vertexQuot">Definition 541</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientEdges">Definition 540</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientVertices">Definition 539</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientIncidentEdges" class="lean_decl">GraphWithGroupAction.quotientIncidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a vertex orbit \([v] \in X/H\), the <em>quotient incident edges</em> are the edge orbits \([e] \in X_1/H\) such that some representative edge has a boundary vertex in the orbit of \([v]\): </p>
+<div class="displaymath" id="a0000000994">
+  \[  \delta [v] = \bigl\{  [e] \in X_1/H \mid \exists \,  e \in [e],\;  \exists \,  v' \in [v],\;  v' \in \partial e \bigr\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:GraphWithGroupAction.mem_quotientIncidentEdges">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">566</span>
+    <span class="theorem_thmtitle">Membership in Quotient Incident Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#thm:GraphWithGroupAction.mem_quotientIncidentEdges">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000995"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.mem_quotientIncidentEdges" class="lean_decl">GraphWithGroupAction.mem_quotientIncidentEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For a vertex orbit \([v] \in X/H\) and an edge orbit \([e] \in X_1/H\), </p>
+<div class="displaymath" id="a0000000996">
+  \[  [e] \in \delta [v] \iff \exists \,  e' \in [e],\;  \exists \,  v' \in [v],\;  v' \in \partial e'.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000995">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately by simplification using the definition of \(\operatorname {quotientIncidentEdges}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.quotientIncident_of_incident">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">567</span>
+    <span class="lemma_thmtitle">Quotient Incidence from Incidence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#lem:GraphWithGroupAction.quotientIncident_of_incident">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000997"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_quotientIncidentEdges">Theorem 566</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_quotientIncidentEdges">Theorem 566</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientIncident_of_incident" class="lean_decl">GraphWithGroupAction.quotientIncident_of_incident</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(e \in \delta v\) (i.e., \(e\) is incident to \(v\) in the cell complex), then the edge orbit \([e]\) is incident to the vertex orbit \([v]\) in the quotient graph: </p>
+<div class="displaymath" id="a0000000998">
+  \[  [e] \in \delta [v].  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000997">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Rewriting using the membership characterization of \(\operatorname {quotientIncidentEdges}\), we provide the witnesses: \(e\) itself as the edge representative, \(v\) as the vertex representative, the reflexivity proofs \([e] = [e]\) and \([v] = [v]\), and the boundary membership \(v \in \partial e\) extracted from \(e \in \delta v\) via the membership characterization of \(\operatorname {cellIncidentEdges}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.quotientIncidentEdges_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">568</span>
+    <span class="lemma_thmtitle">Quotient Incident Edges Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#lem:GraphWithGroupAction.quotientIncidentEdges_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000000999"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#lem:GraphWithGroupAction.quotientIncident_of_incident">Lemma 567</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#lem:GraphWithGroupAction.quotientIncident_of_incident">Lemma 567</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientIncidentEdges_nonempty" class="lean_decl">GraphWithGroupAction.quotientIncidentEdges_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any vertex \(v \in X_0\) and edge \(e \in X_1\) with \(v \in \partial e\), the quotient incident edge set \(\delta [v]\) is non-empty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000999">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The edge orbit \([e]\) witnesses non-emptiness: since \(v \in \partial e\), by the membership characterization of \(\operatorname {cellIncidentEdges}\) we have \(e \in \delta v\), and then by \(\operatorname {quotientIncident_of_incident}\) we obtain \([e] \in \delta [v]\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.quotientLabeling">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">569</span>
+    <span class="definition_thmtitle">Quotient Labeling</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#def:GraphWithGroupAction.quotientLabeling">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000001000"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.smulIncidentEdge">Definition 562</a></li>
+          
+          <li><a href="sect0043.html#lem:GraphWithGroupAction.quotientIncident_of_incident">Lemma 567</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientIncidentEdges">Definition 565</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.smulIncidentEdge">Definition 562</a></li>
+          
+          <li><a href="sect0043.html#lem:GraphWithGroupAction.quotientIncident_of_incident">Lemma 567</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_quotientIncidentEdges">Theorem 566</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+          <li><a href="sect0042.html#lem:GraphWithGroupAction.bdry_orbit_compat">Lemma 543</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientLabeling" class="lean_decl">GraphWithGroupAction.quotientLabeling</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given an \(H\)-invariant labeling \(\Lambda \) (i.e., \(\operatorname {IsInvariantLabeling}(\Lambda )\) holds), the <em>quotient labeling</em> \(\bar{\Lambda }\) is a well-defined bijection </p>
+<div class="displaymath" id="a0000001001">
+  \[  \bar{\Lambda }_{[v]} : \delta [v] \xrightarrow {\sim } \operatorname {Fin}(s)  \]
+</div>
+<p> for each vertex orbit \([v] \in X/H\), defined by \(\bar{\Lambda }_{[v]}([e]) = \Lambda _v(e)\) for any representatives \(v \in [v]\) and \(e \in [e]\) with \(e \in \delta v\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001000">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We construct the bijection as follows. Given a vertex orbit \([v]\), we choose a representative vertex \(v\) using \(\operatorname {Quotient.exists_rep}\), obtaining \(v\) and the proof \([v] = [v]\). </p>
+<p>We define a translation map: for each quotient incident edge \([e] \in \delta [v]\), we produce an incident edge in \(\delta v\). By the membership characterization of \(\operatorname {quotientIncidentEdges}\), there exists a representative edge \(e\) with \([e'] = [e]\) and a vertex \(v'\) with \([v'] = [v]\) and \(v' \in \partial e'\). Since \([v'] = [v]\), by \(\operatorname {Quotient.exact}\) there exists \(g \in H\) with \(g \cdot v = v'\). Then \(g^{-1} \cdot e'\) is incident to \(v\): indeed \(v = g^{-1} \cdot v' \in \partial (g^{-1} \cdot e')\) by the boundary equivariance of \(X\). We thus obtain the element \(\langle g^{-1} \cdot e', \cdot \rangle \in \delta v\), and it lies in the orbit \([e]\) since \(g \cdot (g^{-1} \cdot e') = e'\) has the same quotient. </p>
+<p>We define \(\operatorname {pickEdge}([e])\) to be this translated incident edge. We verify: </p>
+<p><b class="bfseries">Injectivity of pickEdge:</b> If \(\operatorname {pickEdge}([e_1]) = \operatorname {pickEdge}([e_2])\), then both have the same underlying edge, hence the same image under \(\operatorname {edgeQuot}\) (by \(\operatorname {pickEdge_spec}\)), so \([e_1] = [e_2]\) as elements of \(\delta [v]\). </p>
+<p><b class="bfseries">Surjectivity of pickEdge:</b> For any \(e \in \delta v\), the quotient edge \([e] \in \delta [v]\) (by \(\operatorname {quotientIncident_of_incident}\)). We have \(\operatorname {pickEdge}([e]) = \) some \(e' \in \delta v\) with \([e'] = [e]\). By \(\operatorname {Quotient.exact}\), there exists \(g\) with \(g \cdot e' = e\) (or \(g \cdot e = e'\)). Both \(e\) and \(e'\) are in \(\delta v\), so \(v \in \partial e\) and \(v \in \partial e'\). From \(g \cdot e' = e\) and equivariance, \(g^{-1} \cdot v \in \partial e'\), and by the quotient condition \(\operatorname {quotientCondition}\) (which states that if \(v\) and \(g^{-1} \cdot v\) both lie in \(\partial e'\) then \(g^{-1} = 1\)), we get \(g = 1\), hence \(e = e'\). </p>
+<p>The composition \(\Lambda _v \circ \operatorname {pickEdge}\) is therefore a bijection \(\delta [v] \to \operatorname {Fin}(s)\): it is injective as a composition of two injections (\(\operatorname {pickEdge}\) injective and \(\Lambda _v\) injective), and surjective as a composition of two surjections (\(\operatorname {pickEdge}\) surjective and \(\Lambda _v\) surjective). We conclude by \(\operatorname {Equiv.ofBijective}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:GraphWithGroupAction.quotientLabeling_well_defined">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">570</span>
+    <span class="theorem_thmtitle">Quotient Labeling is Well-Defined</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0043.html#thm:GraphWithGroupAction.quotientLabeling_well_defined">#</a>
+    
+    <a class="icon proof" href="sect0043.html#a0000001002"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.cellIncidentEdges">Definition 557</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.smulIncidentEdge">Definition 562</a></li>
+          
+          <li><a href="sect0043.html#thm:GraphWithGroupAction.mem_cellIncidentEdges">Theorem 558</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientLabeling_well_defined" class="lean_decl">GraphWithGroupAction.quotientLabeling_well_defined</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(\Lambda \) be an \(H\)-invariant labeling. For any vertex \(v \in X_0\), edge \(e \in X_1\) with \(v \in \partial e\), and \(h \in H\) (so that \(h \cdot v \in \partial (h \cdot e)\)), the labeling value is independent of the representative: </p>
+<div class="displaymath" id="a0000001003">
+  \[  \Lambda _{h \cdot v}\bigl(\langle h \cdot e,\,  \cdot \rangle \bigr) = \Lambda _v\bigl(\langle e,\,  \cdot \rangle \bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001002">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We apply the \(H\)-invariance condition to \(v\), \(h\), and the incident edge \(\langle e, \cdot \rangle \in \delta v\), obtaining </p>
+<div class="displaymath" id="a0000001004">
+  \[  \Lambda (h \cdot v)\bigl(\operatorname {smulIncidentEdge}(v, h, \langle e, \cdot \rangle )\bigr) = \Lambda (v)\bigl(\langle e, \cdot \rangle \bigr).  \]
+</div>
+<p> We observe that the underlying cell of \(\operatorname {smulIncidentEdge}(v, h, \langle e, \cdot \rangle )\) is definitionally equal to \(h \cdot e\). Rewriting with the \(H\)-invariance equation and using congruence of the subtype (since the values agree), we conclude the result. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0042.html" title="Def 24: Quotient Graph Trivialization"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0044.html" title="Def 26: Balanced Product Tanner Cycle Code"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

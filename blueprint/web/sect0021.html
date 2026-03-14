@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 15: Tanner Code Local System</title>
+<link rel="next" href="sect0022.html" title="Def 16: Dual Code" />
+<link rel="prev" href="sect0020.html" title="Def 14: Graph Expansion" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000022">21 Def 15: Tanner Code Local System</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:Labeling">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">246</span>
+    <span class="definition_thmtitle">Labeling</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#def:Labeling">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/Labeling" class="lean_decl">Labeling</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(G\) be a simple graph on a finite vertex type \(V\), and let \(s \in \mathbb {N}\). A <em>labeling</em> for the Tanner code on \(G\) is a collection </p>
+<div class="displaymath" id="a0000000431">
+  \[  \Lambda = \{ \Lambda _v\} _{v \in V}, \quad \Lambda _v : N(v) \xrightarrow {\; \sim \; } \operatorname {Fin}(s),  \]
+</div>
+<p> where \(N(v) = G.\operatorname {neighborSet}(v)\) is the set of neighbors of \(v\) and \(\Lambda _v\) is a bijection. The neighbor \((\Lambda _v)^{-1}(i)\) corresponds to the \(i\)-th position in the local code. The existence of such a labeling requires \(|N(v)| = s\) for all \(v\), which holds when \(G\) is \(s\)-regular. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:localView">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">247</span>
+    <span class="definition_thmtitle">Local View</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#def:localView">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/localView" class="lean_decl">localView</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(\Lambda \) be a labeling, \(v \in V\) a vertex, and \(c \in C_1(X) = (G.\operatorname {edgeSet} \to \mathbb {F}_2)\) a 1-chain. The <em>local view at \(v\)</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000000432">
+  \[  \operatorname {localView}_\Lambda (v) : (G.\operatorname {edgeSet} \to \mathbb {F}_2) \to (\operatorname {Fin}(s) \to \mathbb {F}_2),  \]
+</div>
+<p> defined by </p>
+<div class="displaymath" id="a0000000433">
+  \[  \bigl(\operatorname {localView}_\Lambda (v)\, (c)\bigr)(i) = c\bigl(\{ v,\,  (\Lambda _v)^{-1}(i)\} \bigr),  \]
+</div>
+<p> where \((\Lambda _v)^{-1}(i) \in N(v)\) is the neighbor of \(v\) labeled \(i\). This gives the restriction of \(c\) to the star of \(v\), viewed as an element of \(\mathbb {F}_2^s\) via the labeling. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:localView_apply">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">248</span>
+    <span class="lemma_thmtitle">Local View Evaluation</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#lem:localView_apply">#</a>
+    
+    <a class="icon proof" href="sect0021.html#a0000000434"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/localView_apply" class="lean_decl">localView_apply</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any vertex \(v \in V\), 1-chain \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\), and index \(i \in \operatorname {Fin}(s)\), </p>
+<div class="displaymath" id="a0000000435">
+  \[  \operatorname {localView}_\Lambda (v)\, (c)\, (i) = c\bigl(\{ v,\,  (\Lambda _v)^{-1}(i)\} \bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000434">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, as it is the definitional unfolding of \(\operatorname {localView}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:differential">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">249</span>
+    <span class="definition_thmtitle">Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#def:differential">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/differential" class="lean_decl">differential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(m \in \mathbb {N}\) and let \(H : (\operatorname {Fin}(s) \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin}(m) \to \mathbb {F}_2)\) be a parity-check map. The <em>differential</em> </p>
+<div class="displaymath" id="a0000000436">
+  \[  \partial _\Lambda ^H : (G.\operatorname {edgeSet} \to \mathbb {F}_2) \to _{\mathbb {F}_2} (V \to \operatorname {Fin}(m) \to \mathbb {F}_2)  \]
+</div>
+<p> is defined by </p>
+<div class="displaymath" id="a0000000437">
+  \[  \partial _\Lambda ^H(c)(v) = H\bigl(\operatorname {localView}_\Lambda (v)\, (c)\bigr).  \]
+</div>
+<p> This is the component form of the differential \(\partial : C_1(X) \to C_0(X) \otimes L_0\) from the paper, using the canonical isomorphism \((V \to \mathbb {F}_2) \otimes (\operatorname {Fin}(m) \to \mathbb {F}_2) \cong V \to \operatorname {Fin}(m) \to \mathbb {F}_2\). For an edge \(e = \{ v,w\} \), the formula \(\partial (e) = e_v \otimes \partial ^L(e_{\Lambda _v(w)}) + e_w \otimes \partial ^L(e_{\Lambda _w(v)})\) becomes \(\partial (e)(v) = \partial ^L(e_{\Lambda _v(w)})\) and \(\partial (e)(w) = \partial ^L(e_{\Lambda _w(v)})\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:differential_apply">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">250</span>
+    <span class="lemma_thmtitle">Differential Evaluation</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#lem:differential_apply">#</a>
+    
+    <a class="icon proof" href="sect0021.html#a0000000438"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/differential_apply" class="lean_decl">differential_apply</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any parity-check map \(H\), 1-chain \(c\), and vertex \(v \in V\), </p>
+<div class="displaymath" id="a0000000439">
+  \[  \partial _\Lambda ^H(c)(v) = H\bigl(\operatorname {localView}_\Lambda (v)\, (c)\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000438">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, as it is the definitional unfolding of \(\partial _\Lambda ^H\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:tannerCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">251</span>
+    <span class="definition_thmtitle">Tanner Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#def:tannerCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/tannerCode" class="lean_decl">tannerCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(m \in \mathbb {N}\) and \(H : (\operatorname {Fin}(s) \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin}(m) \to \mathbb {F}_2)\) be a parity-check map. The <em>Tanner code</em> is the submodule </p>
+<div class="displaymath" id="a0000000440">
+  \[  C(X, L, \Lambda ) := \ker \bigl(\partial _\Lambda ^H\bigr) \subseteq C_1(X),  \]
+</div>
+<p> where \(C_1(X) = G.\operatorname {edgeSet} \to \mathbb {F}_2\) is the space of 1-chains. A 1-chain \(c = \sum _e a_e \cdot e\) is a codeword if and only if for every vertex \(v\), the restriction of the \(a_e\) to edges incident to \(v\), read via \(\Lambda _v\), is a codeword of the local code \(L = \ker (H)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:mem_tannerCode_iff">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">252</span>
+    <span class="theorem_thmtitle">Codeword Characterization</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#thm:mem_tannerCode_iff">#</a>
+    
+    <a class="icon proof" href="sect0021.html#a0000000441"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/mem_tannerCode_iff" class="lean_decl">mem_tannerCode_iff</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(H : (\operatorname {Fin}(s) \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin}(m) \to \mathbb {F}_2)\) be a parity-check map. A 1-chain \(c \in C_1(X)\) belongs to the Tanner code if and only if for every vertex \(v \in V\), </p>
+<div class="displaymath" id="a0000000442">
+  \[  \operatorname {localView}_\Lambda (v)\, (c) \in \ker (H).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000441">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We unfold the definitions: \(c \in C(X, L, \Lambda )\) means \(\partial _\Lambda ^H(c) = 0\), i.e., the function \(v \mapsto H(\operatorname {localView}_\Lambda (v)\, c)\) is the zero function. </p>
+<p>\((\Rightarrow )\): Assume \(\partial _\Lambda ^H(c) = 0\). For an arbitrary vertex \(v\), applying \(\operatorname {congr_fun}\) to the equality yields \(H(\operatorname {localView}_\Lambda (v)\, c) = 0\), so \(\operatorname {localView}_\Lambda (v)\, c \in \ker (H)\). </p>
+<p>\((\Leftarrow )\): Assume that for every \(v\), \(\operatorname {localView}_\Lambda (v)\, c \in \ker (H)\). By function extensionality, for each \(v\) the hypothesis gives \(H(\operatorname {localView}_\Lambda (v)\, c) = 0\). Therefore \(\partial _\Lambda ^H(c) = 0\), i.e., \(c \in C(X, L, \Lambda )\). </p>
+<p>By simplification using the definitions of \(\operatorname {tannerCode}\), \(\operatorname {LinearMap.mem_ker}\), and \(\operatorname {differential}\), both directions are established. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:mem_tannerCode_iff_localCode">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">253</span>
+    <span class="theorem_thmtitle">Codeword Characterization via Classical Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#thm:mem_tannerCode_iff_localCode">#</a>
+    
+    <a class="icon proof" href="sect0021.html#a0000000443"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.ofParityCheck">Definition 45</a></li>
+          
+          <li><a href="sect0006.html#thm:ClassicalCode.code_eq_ker">Theorem 48</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.ofParityCheck">Definition 45</a></li>
+          
+          <li><a href="sect0006.html#thm:ClassicalCode.code_eq_ker">Theorem 48</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/mem_tannerCode_iff_localCode" class="lean_decl">mem_tannerCode_iff_localCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(H : (\operatorname {Fin}(s) \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin}(m) \to \mathbb {F}_2)\) be a parity-check map. A 1-chain \(c \in C_1(X)\) belongs to the Tanner code if and only if for every vertex \(v \in V\), </p>
+<div class="displaymath" id="a0000000444">
+  \[  \operatorname {localView}_\Lambda (v)\, (c) \in \operatorname {ofParityCheck}(H).\operatorname {code},  \]
+</div>
+<p> where \(\operatorname {ofParityCheck}(H)\) is the classical code (Definition&#160;<a href="sect0006.html#def:ClassicalCode">41</a>) associated to the parity-check matrix \(H\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000443">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We rewrite using \(\operatorname {mem_tannerCode_iff}\) (Theorem&#160;<a href="sect0021.html#thm:mem_tannerCode_iff">252</a>). It then suffices to show that \(\operatorname {localView}_\Lambda (v)\, c \in \ker (H)\) if and only if \(\operatorname {localView}_\Lambda (v)\, c \in \operatorname {ofParityCheck}(H).\operatorname {code}\). By simplification using the definitions of \(\operatorname {ClassicalCode.ofParityCheck}\) and \(\operatorname {ClassicalCode.code_eq_ker}\) (Theorem&#160;<a href="sect0006.html#thm:ClassicalCode.code_eq_ker">48</a>), these two conditions are definitionally equal. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:tannerCode_eq_iInf">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">254</span>
+    <span class="theorem_thmtitle">Intersection Characterization of Tanner Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0021.html#thm:tannerCode_eq_iInf">#</a>
+    
+    <a class="icon proof" href="sect0021.html#a0000000445"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/tannerCode_eq_iInf" class="lean_decl">tannerCode_eq_iInf</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(H : (\operatorname {Fin}(s) \to \mathbb {F}_2) \to _{\mathbb {F}_2} (\operatorname {Fin}(m) \to \mathbb {F}_2)\) be a parity-check map. The Tanner code equals the intersection of pullbacks of the local code along all local views: </p>
+<div class="displaymath" id="a0000000446">
+  \[  C(X, L, \Lambda ) = \bigcap _{v \in V} \bigl(\operatorname {localView}_\Lambda (v)\bigr)^{-1}\! \bigl(\ker (H)\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000445">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality, it suffices to show that for any \(c \in C_1(X)\), \(c \in C(X, L, \Lambda )\) if and only if \(c \in \bigcap _{v \in V} (\operatorname {localView}_\Lambda (v))^{-1}(\ker (H))\). </p>
+<p>By simplification using \(\operatorname {Submodule.mem_iInf}\), \(\operatorname {Submodule.mem_comap}\), and \(\operatorname {LinearMap.mem_ker}\), the right-hand side states: for all \(v\), \(H(\operatorname {localView}_\Lambda (v)\, c) = 0\). </p>
+<p>\((\Rightarrow )\): Assume \(c \in C(X, L, \Lambda )\). For any \(v\), by Theorem&#160;<a href="sect0021.html#thm:mem_tannerCode_iff">252</a>, \(\operatorname {localView}_\Lambda (v)\, c \in \ker (H)\), so applying \(\operatorname {LinearMap.mem_ker}\) gives \(H(\operatorname {localView}_\Lambda (v)\, c) = 0\). </p>
+<p>\((\Leftarrow )\): Assume that for all \(v\), \(H(\operatorname {localView}_\Lambda (v)\, c) = 0\). Then for each \(v\), \(\operatorname {localView}_\Lambda (v)\, c \in \ker (H)\) by \(\operatorname {LinearMap.mem_ker}\). By Theorem&#160;<a href="sect0021.html#thm:mem_tannerCode_iff">252</a>, \(c \in C(X, L, \Lambda )\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0020.html" title="Def 14: Graph Expansion"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0022.html" title="Def 16: Dual Code"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

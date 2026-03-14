@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lem 4: Künneth Formula for Balanced Products</title>
+<link rel="next" href="sect0042.html" title="Def 24: Quotient Graph Trivialization" />
+<link rel="prev" href="sect0040.html" title="Def 23: Balanced Product Chain Complex" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000042">41 Lem 4: Künneth Formula for Balanced Products</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.cyclesAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">527</span>
+    <span class="definition_thmtitle">Cycles Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.cyclesAction">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000945"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.cyclesAction" class="lean_decl">HEquivariantChainComplex.cyclesAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group and \(C\) an \(H\)-equivariant chain complex over \(\mathbb {F}_2\). For each \(p \in \mathbb {Z}\), the group \(H\) acts on the cycles \(Z_p(C) = \ker \partial _p\) by the <em>cycles action</em> </p>
+<div class="displaymath" id="a0000000946">
+  \[ \rho ^Z_p : H \to \operatorname {End}_{\mathbb {F}_2}(Z_p(C)),\quad h \cdot [z] = [\rho _p(h)(z)], \]
+</div>
+<p> where \(\rho _p\) is the given \(H\)-action on \(C_p\). This is well-defined: if \(z \in \ker \partial _p\) then \(\partial _p(\rho _p(h)(z)) = \rho _{p-1}(h)(\partial _p(z)) = \rho _{p-1}(h)(0) = 0\), using the \(H\)-equivariance of \(\partial _p\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000945">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(z \in Z_p(C)\), so \(\partial _p(z) = 0\). We must show \(\rho _p(h)(z) \in Z_p(C)\). By the equivariance hypothesis \(\partial _p \circ \rho _p(h) = \rho _{p-1}(h) \circ \partial _p\), evaluating at \(z\) gives \(\partial _p(\rho _p(h)(z)) = \rho _{p-1}(h)(\partial _p(z)) = \rho _{p-1}(h)(0) = 0\). The map \(h \mapsto \rho ^Z_p(h)\) is a group homomorphism: \(\rho ^Z_p(1) = \mathrm{id}\) follows from \(\rho _p(1) = \mathrm{id}\), and \(\rho ^Z_p(g_1 g_2) = \rho ^Z_p(g_1) \circ \rho ^Z_p(g_2)\) follows from \(\rho _p(g_1 g_2) = \rho _p(g_1) \circ \rho _p(g_2)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.boundariesAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">528</span>
+    <span class="definition_thmtitle">Boundaries Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.boundariesAction">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000947"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.boundariesAction" class="lean_decl">HEquivariantChainComplex.boundariesAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group and \(C\) an \(H\)-equivariant chain complex over \(\mathbb {F}_2\). For each \(p \in \mathbb {Z}\), the group \(H\) acts on the boundaries \(B_p(C) = \operatorname {im} \partial _{p+1}\) by the <em>boundaries action</em> </p>
+<div class="displaymath" id="a0000000948">
+  \[ \rho ^B_p : H \to \operatorname {End}_{\mathbb {F}_2}(B_p(C)),\quad h \cdot [\partial _{p+1}(x)] = [\partial _{p+1}(\rho _{p+1}(h)(x))], \]
+</div>
+<p> using \(H\)-equivariance of \(\partial _{p+1}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000947">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(b \in B_p(C)\), so there exists \(x \in C_{p+1}\) with \(b = \partial _{p+1}(x)\). We must show \(\rho _p(h)(b) \in B_p(C)\). We claim \(\rho _p(h)(b) = \partial _{p+1}(\rho _{p+1}(h)(x))\). By the equivariance condition \(\partial _{p+1} \circ \rho _{p+1}(h) = \rho _p(h) \circ \partial _{p+1}\), evaluating at \(x\) gives \(\partial _{p+1}(\rho _{p+1}(h)(x)) = \rho _p(h)(\partial _{p+1}(x)) = \rho _p(h)(b)\). The homomorphism property follows from that of \(\rho _p\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.boundariesSubCyclesAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">529</span>
+    <span class="definition_thmtitle">Boundaries-in-Cycles Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.boundariesSubCyclesAction">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000949"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.boundariesSubCyclesAction" class="lean_decl">HEquivariantChainComplex.boundariesSubCyclesAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group and \(C\) an \(H\)-equivariant chain complex over \(\mathbb {F}_2\). For each \(p \in \mathbb {Z}\), the group \(H\) acts on the submodule \(B_p(C) \subseteq Z_p(C)\) (boundaries viewed inside cycles) by the <em>boundaries-sub-cycles action</em>, induced from \(\rho ^Z_p\) and \(\rho ^B_p\) compatibly: for \(z \in Z_p(C)\) with \(z \in B_p(C)\), one sets \(h \cdot z = \rho _p(h)(z)\), which lies in both \(Z_p(C)\) and \(B_p(C)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000949">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(z\) be an element of \(C.complex.boundariesSubCycles\  p\), meaning \(z\) is a cycle and a boundary. The image \(\rho _p(h)(z)\) is a cycle by the cycles action, and it is a boundary by the boundaries action. The \(\mathbb {F}_2\)-linearity and group homomorphism property follow from those of \(\rho _p\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.homologyAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">530</span>
+    <span class="definition_thmtitle">Homology Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.homologyAction">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000950"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.homologyAction" class="lean_decl">HEquivariantChainComplex.homologyAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group and \(C\) an \(H\)-equivariant chain complex over \(\mathbb {F}_2\). For each \(p \in \mathbb {Z}\), the <em>induced \(H\)-action on homology</em> \(H_p(C) = Z_p(C)/B_p(C)\) is the representation </p>
+<div class="displaymath" id="a0000000951">
+  \[ \rho ^{H_p} : H \to \operatorname {End}_{\mathbb {F}_2}(H_p(C)),\quad h \cdot [z] = [\rho _p(h)(z)], \]
+</div>
+<p> defined via the quotient map \(\operatorname {mapQ}\) applied to the cycles action \(\rho ^Z_p(h)\), using the fact that \(\rho _p(h)\) preserves \(B_p(C)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000950">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We define the action using \(\operatorname {mapQ}\): for each \(h \in H\), the linear endomorphism \(\rho ^Z_p(h)\) of \(Z_p(C)\) sends \(B_p(C)\) into itself (since \(\rho ^B_p(h)\) is well-defined), so it descends to a well-defined linear map on the quotient \(H_p(C) = Z_p(C)/B_p(C)\). For the homomorphism property, \(\rho ^{H_p}(1) = \mathrm{id}\): on a quotient representative \([z]\), \([\rho _p(1)(z)] = [z]\) since \(\rho _p(1) = \mathrm{id}\). For \(g_1, g_2 \in H\), \([\rho _p(g_1 g_2)(z)] = [\rho _p(g_1)(\rho _p(g_2)(z))]\) by \(\rho _p(g_1 g_2) = \rho _p(g_1) \circ \rho _p(g_2)\), verified on each quotient element by surjectivity. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.balancedKunnethSummand">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">531</span>
+    <span class="definition_thmtitle">Balanced Künneth Summand</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.balancedKunnethSummand" class="lean_decl">HEquivariantChainComplex.balancedKunnethSummand</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group and \(C\), \(D\) \(H\)-equivariant chain complexes over \(\mathbb {F}_2\). For \(n, p \in \mathbb {Z}\), the <em>balanced Künneth summand</em> at index \(p\) is </p>
+<div class="displaymath" id="a0000000952">
+  \[ K_{n,p}(C,D) := H_p(C) \otimes _H H_{n-p}(D), \]
+</div>
+<p> defined as the coinvariants of the tensor product representation \(\rho ^{H_p}_C \otimes \rho ^{H_{n-p}}_D\) of \(H\) on \(H_p(C) \otimes _{\mathbb {F}_2} H_{n-p}(D)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.balancedKunnethSum">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">532</span>
+    <span class="definition_thmtitle">Balanced Künneth Sum</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.balancedKunnethSum" class="lean_decl">HEquivariantChainComplex.balancedKunnethSum</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group and \(C\), \(D\) \(H\)-equivariant chain complexes over \(\mathbb {F}_2\). For \(n \in \mathbb {Z}\), the <em>balanced Künneth sum</em> is </p>
+<div class="displaymath" id="a0000000953">
+  \[ K_n(C,D) := \bigoplus _{p \in \mathbb {Z}} H_p(C) \otimes _H H_{n-p}(D), \]
+</div>
+<p> the direct sum of all balanced Künneth summands. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HEquivariantChainComplex.invertible_card_of_odd_order">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">533</span>
+    <span class="definition_thmtitle">Invertible Cardinality in Odd Order</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#def:HEquivariantChainComplex.invertible_card_of_odd_order">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000954"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.invertible_card_of_odd_order" class="lean_decl">HEquivariantChainComplex.invertible_card_of_odd_order</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group of odd order. Then the cardinality \(|H|\) is invertible in \(\mathbb {F}_2\), i.e. \(|H| \equiv 1 \pmod{2}\) means \((|H| : \mathbb {F}_2) = 1\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000954">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(|H|\) is odd, write \(|H| = 2k + 1\) for some \(k \in \mathbb {N}\). Then in \(\mathbb {F}_2\): \((|H| : \mathbb {F}_2) = (2k + 1 : \mathbb {F}_2) = 2k + 1 = 0 \cdot k + 1 = 1,\) using \((2 : \mathbb {F}_2) = 0\) (verified by computation). Hence \((|H| : \mathbb {F}_2) = 1\), which is invertible (with \(\operatorname {Invertible} 1\) given by the standard instance for units). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:HEquivariantChainComplex.kunnethBalancedProduct">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">534</span>
+    <span class="theorem_thmtitle">Axiom: Künneth Formula for Balanced Products</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#thm:HEquivariantChainComplex.kunnethBalancedProduct">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.homologyAction">Definition 530</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.kunnethBalancedProduct" class="lean_decl">HEquivariantChainComplex.kunnethBalancedProduct</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(H\) be a finite group of odd order, and let \(C\), \(D\) be \(H\)-equivariant chain complexes over \(\mathbb {F}_2\). Then for every \(n \in \mathbb {Z}\) there is a linear isomorphism </p>
+<div class="displaymath" id="a0000000955">
+  \[ H_n(C \otimes _H D) \; \cong _{\mathbb {F}_2}\;  \bigoplus _{p \in \mathbb {Z}} H_p(C) \otimes _H H_{n-p}(D). \]
+</div>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof requires infrastructure not available in Mathlib: specifically, (1) identifying the balanced product complex \(C \otimes _H D\) (from \(\operatorname {balancedProductComplex}\), Def. 23) with the coinvariants of the tensor product complex \((C \otimes D)_H\) at the chain complex level; (2) showing that over \(\mathbb {F}_2\) with \(|H|\) odd the coinvariants functor \((-)_H\) is exact (so it commutes with homology); and (3) combining with the ordinary Künneth formula (Thm. 1) and the fact that \((-)_H\) commutes with finite direct sums. The proof sketch is: \(H_n(C \otimes _H D) \cong H_n((C \otimes D)_H) \cong (H_n(C \otimes D))_H \cong \bigoplus _{p+q=n}(H_p(C) \otimes H_q(D))_H = \bigoplus _{p+q=n} H_p(C) \otimes _H H_q(D)\).</i> </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HEquivariantChainComplex.kunnethBalancedProduct_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">535</span>
+    <span class="lemma_thmtitle">Satisfiability Witness for Künneth Balanced Product</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#lem:HEquivariantChainComplex.kunnethBalancedProduct_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000956"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+          <li><a href="sect0041.html#thm:HEquivariantChainComplex.kunnethBalancedProduct">Theorem 534</a></li>
+          
+          <li><a href="sect0040.html#def:HEquivariantChainComplex">Definition 517</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.kunnethBalancedProduct_satisfiable" class="lean_decl">HEquivariantChainComplex.kunnethBalancedProduct_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The premises of <span class="ttfamily">kunnethBalancedProduct</span> are satisfiable: there exist a finite group \(H\), \(H\)-equivariant chain complexes \(C\) and \(D\) over \(\mathbb {F}_2\), and a proof that \(|H|\) is odd. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000956">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Take \(H = \mathbf{1}\) (the trivial group). Then \(|H| = 1\), which is odd. Let \(C = D\) be the trivial \(H\)-equivariant chain complex given by the single-object chain complex concentrated at degree \(0\) with value \(\mathbb {F}_2\), equipped with the trivial \(H\)-action (the only possible action since \(H\) is trivial). This is equivariant vacuously. Thus the witness is \((H, C, D)\) with \(\operatorname {Odd}(|\mathbf{1}|)\) witnessed by \(1 = 2 \cdot 0 + 1\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HEquivariantChainComplex.balancedKunnethSummand_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">536</span>
+    <span class="lemma_thmtitle">Balanced Künneth Summand is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#lem:HEquivariantChainComplex.balancedKunnethSummand_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000957"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.balancedKunnethSummand_nonempty" class="lean_decl">HEquivariantChainComplex.balancedKunnethSummand_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(n, p \in \mathbb {Z}\), the balanced Künneth summand \(H_p(C) \otimes _H H_{n-p}(D)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000957">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The zero element \(0\) belongs to every module, so \(H_p(C) \otimes _H H_{n-p}(D)\) contains at least \(0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HEquivariantChainComplex.balancedKunnethSum_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">537</span>
+    <span class="lemma_thmtitle">Balanced Künneth Sum is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0041.html#lem:HEquivariantChainComplex.balancedKunnethSum_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0041.html#a0000000958"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HEquivariantChainComplex.balancedKunnethSum_nonempty" class="lean_decl">HEquivariantChainComplex.balancedKunnethSum_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(n \in \mathbb {Z}\), the balanced Künneth sum \(\bigoplus _{p \in \mathbb {Z}} H_p(C) \otimes _H H_{n-p}(D)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000958">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The zero element \(0\) belongs to every direct sum of modules, so the balanced Künneth sum contains at least \(0\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0040.html" title="Def 23: Balanced Product Chain Complex"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0042.html" title="Def 24: Quotient Graph Trivialization"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 24: Quotient Graph Trivialization</title>
+<link rel="next" href="sect0043.html" title="Def 25: Invariant Labeling" />
+<link rel="prev" href="sect0041.html" title="Lem 4: Künneth Formula for Balanced Products" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000043">42 Def 24: Quotient Graph Trivialization</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">538</span>
+    <span class="definition_thmtitle">Graph with Group Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction" class="lean_decl">GraphWithGroupAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>graph with group action</em> consists of a finite graph \(X\) (given as a 1-dimensional cell complex, i.e., a <span class="ttfamily">CellComplex</span>) equipped with a free right action of a finite group \(H\) on both vertices \(X_0\) and edges \(X_1\), compatible with the boundary map, and satisfying a quotient condition. </p>
+<p>Formally, it is a structure \(\mathtt{GraphWithGroupAction}(H)\) for a group \(H\) with \(|H| {\lt} \infty \), comprising: </p>
+<ul class="itemize">
+  <li><p>A cell complex \(\mathtt{graph} : \mathtt{CellComplex}\) (the underlying graph). </p>
+</li>
+  <li><p>A right \(H\)-action \(\mathtt{vertexAction}\) on the vertices \(X.\mathtt{graph}.\mathtt{cells}(0)\), modeled as a left <span class="ttfamily">MulAction</span> via \(h \cdot v = v \cdot h^{-1}\). </p>
+</li>
+  <li><p>A right \(H\)-action \(\mathtt{edgeAction}\) on the edges \(X.\mathtt{graph}.\mathtt{cells}(1)\). </p>
+</li>
+  <li><p>Freeness of the vertex action: for all \(h \in H\) and \(v \in X_0\), if \(h \cdot v = v\) then \(h = 1\). </p>
+</li>
+  <li><p>Freeness of the edge action: for all \(h \in H\) and \(e \in X_1\), if \(h \cdot e = e\) then \(h = 1\). </p>
+</li>
+  <li><p>Boundary equivariance: for all \(e \in X_1\), \(h \in H\), and \(\tau \in X_0\), </p>
+<div class="displaymath" id="a0000000959">
+  \[  \tau \in \partial (h \cdot e) \iff h^{-1} \cdot \tau \in \partial e.  \]
+</div>
+</li>
+  <li><p>Quotient condition: for all \(e \in X_1\), \(v \in X_0\), and \(h \in H\), if \(v \in \partial e\) and \(h \cdot v \in \partial e\), then \(h = 1\). (No edge connects a vertex to a nontrivially translated copy of itself.) </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.quotientVertices">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">539</span>
+    <span class="definition_thmtitle">Quotient Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.quotientVertices">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientVertices" class="lean_decl">GraphWithGroupAction.quotientVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(X : \mathtt{GraphWithGroupAction}(H)\). The <em>quotient vertices</em> of \(X\) by \(H\) are the orbits of the \(H\)-action on \(X_0\): </p>
+<div class="displaymath" id="a0000000960">
+  \[  (X/H)_0 \; :=\;  X_0 \, /\,  H \; =\;  \mathtt{MulAction.orbitRel.Quotient}\,  H\,  (X.\mathtt{graph}.\mathtt{cells}\,  0).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.quotientEdges">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">540</span>
+    <span class="definition_thmtitle">Quotient Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.quotientEdges">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientEdges" class="lean_decl">GraphWithGroupAction.quotientEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(X : \mathtt{GraphWithGroupAction}(H)\). The <em>quotient edges</em> of \(X\) by \(H\) are the orbits of the \(H\)-action on \(X_1\): </p>
+<div class="displaymath" id="a0000000961">
+  \[  (X/H)_1 \; :=\;  X_1 \, /\,  H \; =\;  \mathtt{MulAction.orbitRel.Quotient}\,  H\,  (X.\mathtt{graph}.\mathtt{cells}\,  1).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.vertexQuot">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">541</span>
+    <span class="definition_thmtitle">Vertex Quotient Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.vertexQuot">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.vertexQuot" class="lean_decl">GraphWithGroupAction.vertexQuot</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>vertex quotient map</em> \(\pi _0 : X_0 \to (X/H)_0\) sends a vertex \(v\) to its \(H\)-orbit: </p>
+<div class="displaymath" id="a0000000962">
+  \[  \pi _0(v) \; :=\;  [v] \; \in \;  X_0/H.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.edgeQuot">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">542</span>
+    <span class="definition_thmtitle">Edge Quotient Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.edgeQuot">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.edgeQuot" class="lean_decl">GraphWithGroupAction.edgeQuot</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>edge quotient map</em> \(\pi _1 : X_1 \to (X/H)_1\) sends an edge \(e\) to its \(H\)-orbit: </p>
+<div class="displaymath" id="a0000000963">
+  \[  \pi _1(e) \; :=\;  [e] \; \in \;  X_1/H.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.bdry_orbit_compat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">543</span>
+    <span class="lemma_thmtitle">Boundary Orbit Compatibility</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.bdry_orbit_compat">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000964"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.bdry_orbit_compat" class="lean_decl">GraphWithGroupAction.bdry_orbit_compat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(X : \mathtt{GraphWithGroupAction}(H)\), \(e \in X_1\), \(h \in H\), and \(\tau \in X_0\). If \(\tau \in \partial e\), then \(h \cdot \tau \in \partial (h \cdot e)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000964">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We must show \(h \cdot \tau \in \partial (h \cdot e)\). By boundary equivariance, \(h \cdot \tau \in \partial (h \cdot e)\) if and only if \(h^{-1} \cdot (h \cdot \tau ) \in \partial e\). Since \(h^{-1} \cdot (h \cdot \tau ) = \tau \) and \(\tau \in \partial e\) by hypothesis, the result follows by simplification. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.quotientBdry">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">544</span>
+    <span class="definition_thmtitle">Quotient Boundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.quotientBdry">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientBdry" class="lean_decl">GraphWithGroupAction.quotientBdry</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>quotient boundary map</em> on the quotient graph assigns to each edge orbit \(E \in (X/H)_1\) a finite set of vertex orbits: </p>
+<div class="displaymath" id="a0000000965">
+  \[  \partial _{X/H}(E) \; :=\;  \bigl\{ \,  \pi _0(\tau ) \; \mid \;  \tau \in \partial e \, \bigr\}   \]
+</div>
+<p> where \(e\) is any representative of \(E\). This is well-defined: if \(e_1, e_2\) represent the same orbit, so \(\exists \,  g \in H,\;  g \cdot e_2 = e_1\), then for any \(\tau \in \partial e_1\), we have \(g^{-1} \cdot \tau \in \partial e_2\) by boundary equivariance, and \(\pi _0(g^{-1} \cdot \tau ) = \pi _0(\tau )\) since they are in the same \(H\)-orbit; and vice versa. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.quotientBdry_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">545</span>
+    <span class="lemma_thmtitle">Quotient Boundary is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.quotientBdry_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000966"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientBdry_nonempty" class="lean_decl">GraphWithGroupAction.quotientBdry_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(X : \mathtt{GraphWithGroupAction}(H)\), and suppose every edge has at least one boundary vertex: \(\forall \,  e \in X_1,\;  \partial e \neq \emptyset \). Then for every edge orbit \(E \in (X/H)_1\), the quotient boundary \(\partial _{X/H}(E)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000966">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By induction on \(E\) using a representative \(e\). By the unfolding of \(\mathtt{quotientBdry}\), we have \(\partial _{X/H}([e]) = \{ \pi _0(\tau ) \mid \tau \in \partial e\} \). Since \(\partial e\) is nonempty by hypothesis, choose \(\tau \in \partial e\). Then \(\pi _0(\tau ) \in \partial _{X/H}([e])\), so the set is nonempty. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.Trivialization">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">546</span>
+    <span class="definition_thmtitle">Trivialization</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.Trivialization">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.Trivialization" class="lean_decl">GraphWithGroupAction.Trivialization</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>trivialization</em> of the vertex quotient map \(\pi _0 : X_0 \to (X/H)_0\) is a section, i.e., a function </p>
+<div class="displaymath" id="a0000000967">
+  \[  R : (X/H)_0 \; \longrightarrow \;  X_0  \]
+</div>
+<p> such that for every vertex orbit \(V \in (X/H)_0\), the representative \(R(V)\) lies in \(V\): </p>
+<div class="displaymath" id="a0000000968">
+  \[  \pi _0(R(V)) = V \quad \forall \,  V \in (X/H)_0.  \]
+</div>
+<p> The set \(\{ R(V) \mid V \in (X/H)_0\}  \subseteq X_0\) contains exactly one representative from each \(H\)-orbit of vertices. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:GraphWithGroupAction.trivialization_exists">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">547</span>
+    <span class="theorem_thmtitle">Trivialization Exists</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#thm:GraphWithGroupAction.trivialization_exists">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000969"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.trivialization_exists" class="lean_decl">GraphWithGroupAction.trivialization_exists</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For any \(X : \mathtt{GraphWithGroupAction}(H)\), a trivialization exists: \(\mathtt{Nonempty}(X.\mathtt{Trivialization})\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000969">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We first observe that for every vertex orbit \(V \in (X/H)_0\), there exists a vertex \(v \in X_0\) with \(\pi _0(v) = V\): this follows by induction on \(V\) using a representative. Specifically, if \(V = [v]\) for some \(v \in X_0\), then \(\pi _0(v) = [v] = V\) by reflexivity. </p>
+<p>Having shown existence for each orbit, we apply the axiom of choice to obtain a selection function \(V \mapsto \varepsilon (V)\) where \(\varepsilon (V)\) is a chosen representative with \(\pi _0(\varepsilon (V)) = V\). This selection defines a trivialization \(R = \langle \varepsilon , \text{(the proof of representativeness)} \rangle \), so \(X.\mathtt{Trivialization}\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.trivialization_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">548</span>
+    <span class="lemma_thmtitle">Trivialization is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.trivialization_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000970"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.trivialization_nonempty" class="lean_decl">GraphWithGroupAction.trivialization_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(X : \mathtt{GraphWithGroupAction}(H)\), \(\mathtt{Nonempty}(X.\mathtt{Trivialization})\). This follows immediately from <span class="ttfamily">trivialization_exists</span>. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000970">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This is an immediate consequence of \(X.\mathtt{trivialization\_ exists}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.vertexGroupElement">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">549</span>
+    <span class="definition_thmtitle">Vertex Group Element</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.vertexGroupElement">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.vertexGroupElement" class="lean_decl">GraphWithGroupAction.vertexGroupElement</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a trivialization \(R\) of \(X\) and a vertex \(v \in X_0\), the <em>vertex group element</em> \(g_v \in H\) is the unique group element such that </p>
+<div class="displaymath" id="a0000000971">
+  \[  g_v \cdot R(\pi _0(v)) = v.  \]
+</div>
+<p> Since \(\pi _0(R(\pi _0(v))) = \pi _0(v)\), the vertices \(R(\pi _0(v))\) and \(v\) lie in the same \(H\)-orbit, so such a \(g_v\) exists (chosen via the axiom of choice). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.vertexGroupElement_spec">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">550</span>
+    <span class="lemma_thmtitle">Vertex Group Element Specification</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.vertexGroupElement_spec">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000972"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.vertexGroupElement_spec" class="lean_decl">GraphWithGroupAction.vertexGroupElement_spec</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any trivialization \(R\) and vertex \(v \in X_0\): </p>
+<div class="displaymath" id="a0000000973">
+  \[  g_v \cdot R(\pi _0(v)) = v,  \]
+</div>
+<p> where \(g_v = \mathtt{vertexGroupElement}(R, v)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000972">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows directly from the definition of \(\mathtt{vertexGroupElement}\) as the chosen witness of the existential statement, whose proof gives \(g_v \cdot R(\pi _0(v)) = v\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.connectionOnEdge">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">551</span>
+    <span class="definition_thmtitle">Connection on Edge</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.connectionOnEdge">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.connectionOnEdge" class="lean_decl">GraphWithGroupAction.connectionOnEdge</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a trivialization \(R\), an edge \(e \in X_1\), and two boundary vertices \(\tau _1, \tau _2 \in \partial e\) lying in distinct vertex orbits (\(\pi _0(\tau _1) \neq \pi _0(\tau _2)\)), the <em>connection</em> of \(e\) relative to \(\tau _1\) and \(\tau _2\) is the group element </p>
+<div class="displaymath" id="a0000000974">
+  \[  \phi _R(e;\, \tau _1,\tau _2) \; :=\;  g_{\tau _1}^{-1} \cdot g_{\tau _2} \; \in \;  H,  \]
+</div>
+<p> where \(g_{\tau _i} = \mathtt{vertexGroupElement}(R, \tau _i)\) is the unique element satisfying \(g_{\tau _i} \cdot R(\pi _0(\tau _i)) = \tau _i\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.connectionOnEdge_orbit_compat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">552</span>
+    <span class="lemma_thmtitle">Connection is Constant on Orbits</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.connectionOnEdge_orbit_compat">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000975"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.connectionOnEdge_orbit_compat" class="lean_decl">GraphWithGroupAction.connectionOnEdge_orbit_compat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(R\) be a trivialization, \(e \in X_1\), \(g \in H\), and \(\tau _1, \tau _2 \in \partial e\) with \(\pi _0(\tau _1) \neq \pi _0(\tau _2)\). Then the connection is invariant under the \(H\)-action: </p>
+<div class="displaymath" id="a0000000976">
+  \[  \phi _R(g \cdot e;\;  g \cdot \tau _1,\;  g \cdot \tau _2) \; =\;  \phi _R(e;\;  \tau _1,\;  \tau _2).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000975">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We unfold \(\mathtt{connectionOnEdge}\) on both sides. It suffices to show that for any \(v \in X_0\), </p>
+<div class="displaymath" id="a0000000977">
+  \[  \mathtt{vertexGroupElement}(R, g \cdot v) \; =\;  g \cdot \mathtt{vertexGroupElement}(R, v).  \]
+</div>
+<p> Let \(h = \mathtt{vertexGroupElement}(R, v)\), so \(h \cdot R(\pi _0(v)) = v\). </p>
+<p>First, note \(\pi _0(g \cdot v) = \pi _0(v)\), since \(g \cdot v\) and \(v\) are in the same \(H\)-orbit (with \(\pi _0\) sending each element to its orbit, which is a sound quotient relation via \(\exists g, g \cdot v' = v\)). Hence \(R(\pi _0(g \cdot v)) = R(\pi _0(v))\). </p>
+<p>Let \(h' = \mathtt{vertexGroupElement}(R, g \cdot v)\), so \(h' \cdot R(\pi _0(v)) = g \cdot v\). Also \((g \cdot h) \cdot R(\pi _0(v)) = g \cdot (h \cdot R(\pi _0(v))) = g \cdot v\). Thus </p>
+<div class="displaymath" id="a0000000978">
+  \[  h' \cdot R(\pi _0(v)) = (g \cdot h) \cdot R(\pi _0(v)).  \]
+</div>
+<p> By freeness of the vertex action applied to \((h')^{-1} \cdot (g \cdot h) \in H\) acting on \(R(\pi _0(v))\), we get \((h')^{-1} \cdot (g \cdot h) = 1\), i.e., \(h' = g \cdot h\). </p>
+<p>Substituting back, \(\phi _R(g \cdot e; g \cdot \tau _1, g \cdot \tau _2) = (g \cdot g_{\tau _1})^{-1} \cdot (g \cdot g_{\tau _2}) = g_{\tau _1}^{-1} \cdot g^{-1} \cdot g \cdot g_{\tau _2} = g_{\tau _1}^{-1} \cdot g_{\tau _2} = \phi _R(e; \tau _1, \tau _2)\), using commutativity of the inverse and simplification by linear arithmetic. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:GraphWithGroupAction.inducedConnection">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">553</span>
+    <span class="definition_thmtitle">Induced Connection</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#def:GraphWithGroupAction.inducedConnection">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.inducedConnection" class="lean_decl">GraphWithGroupAction.inducedConnection</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a trivialization \(R\) of \(X\), the <em>induced connection</em> is a map </p>
+<div class="displaymath" id="a0000000979">
+  \[  \phi _R : (X/H)_1 \; \longrightarrow \;  H  \]
+</div>
+<p> defined as follows. For an edge orbit \(E \in (X/H)_1\), let \(e = \mathtt{out}(E)\) be a chosen representative edge with boundary \(\partial e\). If there exist \(\tau _1, \tau _2 \in \partial e\) with \(\pi _0(\tau _1) \neq \pi _0(\tau _2)\), we set </p>
+<div class="displaymath" id="a0000000980">
+  \[  \phi _R(E) \; :=\;  g_{\tau _1}^{-1} \cdot g_{\tau _2},  \]
+</div>
+<p> where \(\tau _1, \tau _2\) are chosen witnesses and \(g_{\tau _i} = \mathtt{vertexGroupElement}(R,\tau _i)\). Otherwise (all boundary vertices are in the same orbit, or the boundary is small), we set \(\phi _R(E) := 1\). </p>
+<p>By the orbit compatibility lemma, this is independent of the choice of representative edge. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:GraphWithGroupAction.inducedConnection_spec">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">554</span>
+    <span class="theorem_thmtitle">Induced Connection Specification</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#thm:GraphWithGroupAction.inducedConnection_spec">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000981"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.inducedConnection_spec" class="lean_decl">GraphWithGroupAction.inducedConnection_spec</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(R\) be a trivialization of \(X\), let \(e \in X_1\), and let \(\tau _1, \tau _2 \in \partial e\) with \(\pi _0(\tau _1) \neq \pi _0(\tau _2)\). Then there exists an edge \(e' \in X_1\) such that: </p>
+<ol class="enumerate">
+  <li><p>\(\pi _1(e') = \pi _1(e)\) (i.e., \(e'\) is in the same orbit as \(e\)), </p>
+</li>
+  <li><p>\(R(\pi _0(\tau _1)) \in \partial e'\), </p>
+</li>
+  <li><p>\(\phi _R(e;\tau _1,\tau _2) \cdot R(\pi _0(\tau _2)) \in \partial e'\). </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000981">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(g_1 = \mathtt{vertexGroupElement}(R, \tau _1)\), so that \(g_1 \cdot R(\pi _0(\tau _1)) = \tau _1\). Set \(e' := g_1^{-1} \cdot e\). </p>
+<p><b class="bfseries">(1) Same orbit:</b> We have \(\pi _1(e') = \pi _1(g_1^{-1} \cdot e) = \pi _1(e)\), since \(e'\) and \(e\) are related by \(g_1^{-1} \in H\), giving a sound quotient relation (i.e., \(\exists \,  h,\,  h \cdot e = e'\) with \(h = g_1^{-1}\)). </p>
+<p><b class="bfseries">(2) First boundary vertex:</b> We must show \(R(\pi _0(\tau _1)) \in \partial (g_1^{-1} \cdot e)\). By boundary equivariance, \(R(\pi _0(\tau _1)) \in \partial (g_1^{-1} \cdot e)\) iff \((g_1^{-1})^{-1} \cdot R(\pi _0(\tau _1)) = g_1 \cdot R(\pi _0(\tau _1)) \in \partial e\). Since \(g_1 \cdot R(\pi _0(\tau _1)) = \tau _1\) by the specification of \(\mathtt{vertexGroupElement}\), and \(\tau _1 \in \partial e\) by hypothesis, this holds. </p>
+<p><b class="bfseries">(3) Second boundary vertex:</b> We must show \(\phi _R(e;\tau _1,\tau _2) \cdot R(\pi _0(\tau _2)) \in \partial (g_1^{-1} \cdot e)\). Unfolding \(\mathtt{connectionOnEdge}\), we have \(\phi _R(e;\tau _1,\tau _2) = g_1^{-1} \cdot g_2\) where \(g_2 = \mathtt{vertexGroupElement}(R,\tau _2)\). By boundary equivariance, \((g_1^{-1} \cdot g_2) \cdot R(\pi _0(\tau _2)) \in \partial (g_1^{-1} \cdot e)\) iff \(g_1 \cdot (g_1^{-1} \cdot g_2) \cdot R(\pi _0(\tau _2)) = g_2 \cdot R(\pi _0(\tau _2)) = \tau _2 \in \partial e\), which holds by hypothesis. Rewriting using \(g_1 \cdot g_1^{-1} \cdot \tau _2 = \tau _2\) completes the argument. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.quotientVertices_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">555</span>
+    <span class="lemma_thmtitle">Quotient Vertices Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.quotientVertices_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000982"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientVertices_nonempty" class="lean_decl">GraphWithGroupAction.quotientVertices_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(X_0\) is nonempty, then \((X/H)_0\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000982">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(X_0\) is nonempty, choose an arbitrary vertex \(v \in X_0\) by \(\mathtt{Classical.arbitrary}\). Then \([v] \in X_0/H\) witnesses that \((X/H)_0\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:GraphWithGroupAction.quotientEdges_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">556</span>
+    <span class="lemma_thmtitle">Quotient Edges Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0042.html#lem:GraphWithGroupAction.quotientEdges_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0042.html#a0000000983"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/GraphWithGroupAction.quotientEdges_nonempty" class="lean_decl">GraphWithGroupAction.quotientEdges_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(X_1\) is nonempty, then \((X/H)_1\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000983">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(X_1\) is nonempty, choose an arbitrary edge \(e \in X_1\) by \(\mathtt{Classical.arbitrary}\). Then \([e] \in X_1/H\) witnesses that \((X/H)_1\) is nonempty. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0041.html" title="Lem 4: Künneth Formula for Balanced Products"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0043.html" title="Def 25: Invariant Labeling"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

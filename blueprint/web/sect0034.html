@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 9: Expander Bit Degree</title>
+<link rel="next" href="sect0035.html" title="Thm 10: Gilbert–Varshamov Plus" />
+<link rel="prev" href="sect0033.html" title="Thm 8: Expander Violated Checks" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000035">34 Thm 9: Expander Bit Degree</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderBitDegree.totalWeight">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">406</span>
+    <span class="definition_thmtitle">Total Hamming Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#def:ExpanderBitDegree.totalWeight">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.totalWeight" class="lean_decl">ExpanderBitDegree.totalWeight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(V\) be a finite type and \(m \in \mathbb {N}\). For a vector \(y : V \to (\operatorname {Fin} m \to \mathbb {F}_2)\), the <em>total Hamming weight</em> is </p>
+<div class="displaymath" id="a0000000763">
+  \[  \operatorname {totalWeight}(y) \; =\;  \sum _{v \in V} \operatorname {wt}(y_v) \; \in \;  \mathbb {N},  \]
+</div>
+<p> where \(\operatorname {wt}(y_v)\) denotes the Hamming weight of the fiber \(y_v \in \mathbb {F}_2^m\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderBitDegree.vertexSupport">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">407</span>
+    <span class="definition_thmtitle">Vertex Support</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#def:ExpanderBitDegree.vertexSupport">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.vertexSupport" class="lean_decl">ExpanderBitDegree.vertexSupport</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(y : V \to (\operatorname {Fin} m \to \mathbb {F}_2)\), the <em>vertex support</em> is </p>
+<div class="displaymath" id="a0000000764">
+  \[  S(y) \; =\;  \{ v \in V \mid y_v \neq 0\}  \; \subseteq \;  V.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.vertexSupport_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">408</span>
+    <span class="lemma_thmtitle">Vertex Support is Nonempty for Nonzero Vectors</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.vertexSupport_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000765"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.vertexSupport_nonempty" class="lean_decl">ExpanderBitDegree.vertexSupport_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(y : V \to (\operatorname {Fin} m \to \mathbb {F}_2)\) satisfies \(y \neq 0\), then \(S(y) \neq \emptyset \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000765">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We proceed by contradiction. Suppose \(S(y) = \emptyset \). Then for every \(v \in V\) we have \(y_v = 0\): indeed, if \(y_v \neq 0\) then \(v \in S(y)\), contradicting \(S(y) = \emptyset \). Hence \(y(v)(i) = 0\) for all \(v\) and \(i\), giving \(y = 0\), a contradiction. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.card_vertexSupport_le_totalWeight">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">409</span>
+    <span class="lemma_thmtitle">Card of Vertex Support Bounds Total Weight from Below</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.card_vertexSupport_le_totalWeight">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000766"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.totalWeight">Definition 406</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.totalWeight">Definition 406</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.card_vertexSupport_le_totalWeight" class="lean_decl">ExpanderBitDegree.card_vertexSupport_le_totalWeight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(y : V \to (\operatorname {Fin} m \to \mathbb {F}_2)\), </p>
+<div class="displaymath" id="a0000000767">
+  \[  |S(y)| \; \leq \;  \operatorname {totalWeight}(y).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000766">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We compute: </p>
+<div class="displaymath" id="a0000000768">
+  \[  |S(y)| = \sum _{v \in S(y)} 1 \; \leq \;  \sum _{v \in S(y)} \operatorname {wt}(y_v) \; \leq \;  \sum _{v \in V} \operatorname {wt}(y_v) = \operatorname {totalWeight}(y).  \]
+</div>
+<p> The first inequality holds because for \(v \in S(y)\) we have \(y_v \neq 0\), so \(\operatorname {wt}(y_v) \geq 1\). The second holds by extending the sum to all of \(V\) (all terms are non-negative). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.totalWeight_le_mul_card">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">410</span>
+    <span class="lemma_thmtitle">Total Weight Bounded by Degree Times Card</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.totalWeight_le_mul_card">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000769"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.totalWeight">Definition 406</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.totalWeight">Definition 406</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.totalWeight_le_mul_card" class="lean_decl">ExpanderBitDegree.totalWeight_le_mul_card</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(y : V \to (\operatorname {Fin} m \to \mathbb {F}_2)\), </p>
+<div class="displaymath" id="a0000000770">
+  \[  \operatorname {totalWeight}(y) \; \leq \;  m \cdot |S(y)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000769">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We split the sum \(\sum _{v \in V} \operatorname {wt}(y_v) = \sum _{v \in S(y)} \operatorname {wt}(y_v) + \sum _{v \notin S(y)} \operatorname {wt}(y_v)\). For \(v \notin S(y)\) we have \(y_v = 0\) so \(\operatorname {wt}(y_v) = 0\), hence the second sum vanishes. Then </p>
+<div class="displaymath" id="a0000000771">
+  \[  \sum _{v \in S(y)} \operatorname {wt}(y_v) \; \leq \;  \sum _{v \in S(y)} m \; =\;  m \cdot |S(y)|,  \]
+</div>
+<p> since the Hamming weight of any \(\mathbb {F}_2^m\)-vector is at most \(m\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.totalWeight_div_le_card">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">411</span>
+    <span class="lemma_thmtitle">Total Weight Divided by \(m\) Bounds Vertex Support Card</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.totalWeight_div_le_card">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000772"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.totalWeight">Definition 406</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.totalWeight_le_mul_card">Lemma 410</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.totalWeight">Definition 406</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.vertexSupport">Definition 407</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.totalWeight_le_mul_card">Lemma 410</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.totalWeight_div_le_card" class="lean_decl">ExpanderBitDegree.totalWeight_div_le_card</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(m {\gt} 0\), then for any \(y : V \to (\operatorname {Fin} m \to \mathbb {F}_2)\), </p>
+<div class="displaymath" id="a0000000773">
+  \[  \frac{\operatorname {totalWeight}(y)}{m} \; \leq \;  |S(y)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000772">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(m {\gt} 0\), we may divide both sides of \(\operatorname {totalWeight}(y) \leq m \cdot |S(y)|\) by \(m\) to obtain the result. More precisely, rewriting the inequality as \(\operatorname {totalWeight}(y) \leq |S(y)| \cdot m\) and dividing by \(m\) (which is positive) yields \(\operatorname {totalWeight}(y)/m \leq |S(y)|\) over \(\mathbb {R}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderBitDegree.coboundary">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">412</span>
+    <span class="definition_thmtitle">Coboundary Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#def:ExpanderBitDegree.coboundary">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.coboundary" class="lean_decl">ExpanderBitDegree.coboundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G\) be a simple graph on \(V\), \(\Lambda \) a labeling of \(G\) with parameter \(s\), and \(H : \mathbb {F}_2^s \to \mathbb {F}_2^m\) a parity-check linear map. The <em>coboundary map</em> \(\delta \) applied to \(y : V \to \mathbb {F}_2^m\) is the function on edge-set of \(G\) given by </p>
+<div class="displaymath" id="a0000000774">
+  \[  \delta (y)(e) \; =\;  \sum _{v \in V} \langle y_v,\;  \partial _\Lambda ^H(\mathbf{1}_e)(v)\rangle \; \in \;  \mathbb {F}_2,  \]
+</div>
+<p> where \(\mathbf{1}_e\) denotes the indicator of edge \(e\) and \(\partial _\Lambda ^H\) is the Tanner differential. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderBitDegree.coboundaryWeight">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">413</span>
+    <span class="definition_thmtitle">Coboundary Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#def:ExpanderBitDegree.coboundaryWeight">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.coboundary">Definition 412</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.coboundaryWeight" class="lean_decl">ExpanderBitDegree.coboundaryWeight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>coboundary weight</em> of \(y\) is </p>
+<div class="displaymath" id="a0000000775">
+  \[  \operatorname {wt}(\delta (y)) \; =\;  |\{ e \in E(G) \mid \delta (y)(e) \neq 0\} |.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderBitDegree.parityCheckTranspose">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">414</span>
+    <span class="definition_thmtitle">Transpose of Parity Check</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.parityCheckTranspose" class="lean_decl">ExpanderBitDegree.parityCheckTranspose</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be a linear map. The <em>transpose</em> \(H^\top : \mathbb {F}_2^m \to \mathbb {F}_2^s\) is defined by </p>
+<div class="displaymath" id="a0000000776">
+  \[  (H^\top y)(j) \; =\;  \langle y,\,  H(e_j)\rangle \; \in \;  \mathbb {F}_2,  \]
+</div>
+<p> for \(j \in \{ 0,\ldots ,s-1\} \), where \(e_j = \mathbf{1}_j\) denotes the \(j\)-th standard basis vector. This is a linear map: additivity follows since the dot product is \(\mathbb {F}_2\)-bilinear, and scalar compatibility follows since \(\mathbb {F}_2\) is a field of characteristic 2. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.parityCheckTranspose_injective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">415</span>
+    <span class="lemma_thmtitle">Transpose is Injective when Parity Check is Surjective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_injective">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000777"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">Definition 414</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">Definition 414</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.parityCheckTranspose_injective" class="lean_decl">ExpanderBitDegree.parityCheckTranspose_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(H : \mathbb {F}_2^s \to \mathbb {F}_2^m\) is surjective, then \(H^\top : \mathbb {F}_2^m \to \mathbb {F}_2^s\) is injective. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000777">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We show \(\ker (H^\top ) = \{ 0\} \). Suppose \(H^\top y = 0\), i.e., \(\langle y, H(e_j)\rangle = 0\) for all \(j\). We must show \(y = 0\). For any index \(i\), since \(H\) is surjective, there exists \(x \in \mathbb {F}_2^s\) with \(H(x) = e_i\) (the \(i\)-th standard basis vector). Writing \(x = \sum _j x_j e_j\) and using linearity of \(H\), </p>
+<div class="displaymath" id="a0000000778">
+  \[  \langle y, e_i\rangle = \langle y, H(x)\rangle = \left\langle y, \sum _j x_j H(e_j)\right\rangle = \sum _j x_j \langle y, H(e_j)\rangle = 0,  \]
+</div>
+<p> since each \(\langle y, H(e_j)\rangle = (H^\top y)(j) = 0\). But \(\langle y, e_i\rangle = y(i)\), so \(y(i) = 0\) for all \(i\), giving \(y = 0\). The converse (\(y = 0 \Rightarrow H^\top y = 0\)) is immediate. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.parityCheckTranspose_mem_dualCode">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">416</span>
+    <span class="lemma_thmtitle">Transpose Image Lies in Dual Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_mem_dualCode">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000779"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">Definition 414</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">Definition 414</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.parityCheckTranspose_mem_dualCode" class="lean_decl">ExpanderBitDegree.parityCheckTranspose_mem_dualCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(y \in \mathbb {F}_2^m\), we have \(H^\top y \in C^\perp \), where \(C^\perp \) is the dual of the classical code \(C = \ker (H)\) associated to parity-check map \(H\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000779">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We need to show that for every \(c \in C = \ker (H)\), \(\langle H^\top y, c\rangle = 0\). We have </p>
+<div class="displaymath" id="a0000000780">
+  \[  \langle H^\top y, c\rangle = \sum _j (H^\top y)(j) \cdot c_j = \sum _j \langle y, H(e_j)\rangle c_j.  \]
+</div>
+<p> Rewriting the double sum and exchanging order of summation, </p>
+<div class="displaymath" id="a0000000781">
+  \[  = \sum _i y_i \left(\sum _j H(e_j)_i \cdot c_j\right) = \sum _i y_i \cdot H(c)_i = \langle y, H(c)\rangle .  \]
+</div>
+<p> Since \(c \in \ker (H)\), we have \(H(c) = 0\), so \(\langle y, H(c)\rangle = 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.parityCheckTranspose_weight_ge">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">417</span>
+    <span class="lemma_thmtitle">Transpose Weight Bounds Dual Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_weight_ge">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000782"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_injective">Lemma 415</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_mem_dualCode">Lemma 416</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">Definition 414</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_injective">Lemma 415</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_mem_dualCode">Lemma 416</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.parityCheckTranspose">Definition 414</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.parityCheckTranspose_weight_ge" class="lean_decl">ExpanderBitDegree.parityCheckTranspose_weight_ge</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(H : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be surjective, and let \(d_{L^\perp }\) be the minimum distance of the dual code \(C^\perp \). For any nonzero \(y \in \mathbb {F}_2^m\), </p>
+<div class="displaymath" id="a0000000783">
+  \[  d_{L^\perp } \; \leq \;  \operatorname {wt}(H^\top y).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000782">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(H\) is surjective, by Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_injective">415</a>, \(H^\top \) is injective. Because \(y \neq 0\), we have \(H^\top y \neq 0\) (otherwise \(y = H^\top (0) = 0\) by injectivity). By Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_mem_dualCode">416</a>, \(H^\top y \in C^\perp \). Therefore \(H^\top y\) is a nonzero codeword of \(C^\perp \), and so its Hamming weight is at least \(d_{L^\perp }\) (by definition of minimum distance as the infimum of weights of nonzero codewords). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.coboundary_eq_sum">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">418</span>
+    <span class="lemma_thmtitle">Coboundary as Sum Formula</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.coboundary_eq_sum">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000784"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.coboundary">Definition 412</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.coboundary">Definition 412</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.coboundary_eq_sum" class="lean_decl">ExpanderBitDegree.coboundary_eq_sum</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any edge \(e \in E(G)\), </p>
+<div class="displaymath" id="a0000000785">
+  \[  \delta (y)(e) \; =\;  \sum _{v \in V} \langle y_v,\;  \partial _\Lambda ^H(\mathbf{1}_e)(v)\rangle .  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000784">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by definition (reflexivity). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.coboundary_boundary_vertex">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">419</span>
+    <span class="lemma_thmtitle">Coboundary at Boundary Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.coboundary_boundary_vertex">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000786"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.coboundary">Definition 412</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#lem:differential_apply">Lemma 250</a></li>
+          
+          <li><a href="sect0034.html#def:ExpanderBitDegree.coboundary">Definition 412</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#lem:differential_apply">Lemma 250</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.coboundary_boundary_vertex" class="lean_decl">ExpanderBitDegree.coboundary_boundary_vertex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(e = \{ v, w\}  \in E(G)\) be an edge such that for every \(u \in e\) with \(u \neq v\), \(y_u = 0\). Then </p>
+<div class="displaymath" id="a0000000787">
+  \[  \delta (y)(e) \; =\;  \langle y_v,\;  \partial _\Lambda ^H(\mathbf{1}_e)(v)\rangle .  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000786">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We write \(\delta (y)(e) = \langle y_v, \partial _\Lambda ^H(\mathbf{1}_e)(v)\rangle + \sum _{u \neq v} \langle y_u, \partial _\Lambda ^H(\mathbf{1}_e)(u)\rangle \) by extracting the \(v\)-term from the full sum. It suffices to show the remaining sum is zero. For \(u \neq v\), we consider two cases. If \(u \in e\) (i.e., \(u\) is the other endpoint), then by hypothesis \(y_u = 0\), so \(\langle y_u, \partial _\Lambda ^H(\mathbf{1}_e)(u)\rangle = 0\). If \(u \notin e\), then the local view \(\mathcal{L}_\Lambda (u)(\mathbf{1}_e) = 0\), because the edge \(\{ u, (\Lambda _u)^{-1}(i)\} \) (for any label \(i\)) is not equal to \(e\) (since \(u \notin e\)); hence \(\partial _\Lambda ^H(\mathbf{1}_e)(u) = H(0) = 0\) by applying Lemma&#160;<a href="sect0021.html#lem:differential_apply">250</a>, so the dot product vanishes. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderBitDegree.nonBdyPos_add_boundary_le_degree">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">420</span>
+    <span class="lemma_thmtitle">Non-Boundary Positions Plus Boundary Edges at Most \(s\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#lem:ExpanderBitDegree.nonBdyPos_add_boundary_le_degree">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000788"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">Lemma 361</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">Lemma 361</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.nonBdyPos_add_boundary_le_degree" class="lean_decl">ExpanderBitDegree.nonBdyPos_add_boundary_le_degree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be \(s\)-regular with labeling \(\Lambda \), and let \(S \subseteq V\), \(v \in S\). Define the set of label positions corresponding to \(S\)-neighbors: </p>
+<div class="displaymath" id="a0000000789">
+  \[  P_S(v) \; =\;  \{ j \in \operatorname {Fin} s \mid (\Lambda _v)^{-1}(j) \in S\} .  \]
+</div>
+<p> Then </p>
+<div class="displaymath" id="a0000000790">
+  \[  |P_S(v)| + |(\partial _e S)_v| \; \leq \;  s,  \]
+</div>
+<p> where \((\partial _e S)_v\) is the set of edges in \(\partial _e S\) incident to \(v\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000788">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Define the complementary set \(P_{\bar{S}}(v) = \{ j \in \operatorname {Fin} s \mid (\Lambda _v)^{-1}(j) \notin S\} \). Since \(P_S(v)\) and \(P_{\bar{S}}(v)\) partition \(\operatorname {Fin} s\), we have \(|P_S(v)| + |P_{\bar{S}}(v)| = s\). Thus it suffices to show \(|(\partial _e S)_v| \leq |P_{\bar{S}}(v)|\), i.e., there is an injection from boundary edges at \(v\) into \(P_{\bar{S}}(v)\). </p>
+<p>If \(s = 0\), then there are no edges and the boundary at \(v\) is empty, so the inequality is trivial by Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">361</a>. </p>
+<p>For \(s {\gt} 0\), we define a map \(f : \partial _e S \to \operatorname {Fin} s\) by sending a boundary edge \(e\) (with \(v \in e\)) to \((\Lambda _v)(\text{other endpoint of } e)\). We show: </p>
+<p><em>\(f\) maps into \(P_{\bar{S}}(v)\)</em>: For a boundary edge \(e \in \partial _e S\), there exist \(a \in S\) and \(b \notin S\) with \(e = \{ a, b\} \). Since \(v \in S\), we have \(v = a\) and the other endpoint is \(b \notin S\), so \(f(e)\) corresponds to a neighbor outside \(S\). </p>
+<p><em>\(f\) is injective</em>: If \(f(e_1) = f(e_2)\), then both edges have the same other endpoint \(w\) at \(v\) (by injectivity of \(\Lambda _v\)), and both edges equal \(\{ v, w\} \), so \(e_1 = e_2\). </p>
+<p>Thus \(|(\partial _e S)_v| \leq |P_{\bar{S}}(v)|\), giving \(|P_S(v)| + |(\partial _e S)_v| \leq |P_S(v)| + |P_{\bar{S}}(v)| = s\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExpanderBitDegree.expanderBitDegree">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">421</span>
+    <span class="theorem_thmtitle">Expander Bit Degree</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0034.html#thm:ExpanderBitDegree.expanderBitDegree">#</a>
+    
+    <a class="icon proof" href="sect0034.html#a0000000791"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">Lemma 361</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0021.html#lem:differential_apply">Lemma 250</a></li>
+          
+          <li><a href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">Theorem 364</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">Lemma 361</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0021.html#lem:differential_apply">Lemma 250</a></li>
+          
+          <li><a href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">Theorem 364</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.card_vertexSupport_le_totalWeight">Lemma 409</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.totalWeight_div_le_card">Lemma 411</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_weight_ge">Lemma 417</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.coboundary_boundary_vertex">Lemma 419</a></li>
+          
+          <li><a href="sect0034.html#lem:ExpanderBitDegree.nonBdyPos_add_boundary_le_degree">Lemma 420</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderBitDegree.expanderBitDegree" class="lean_decl">ExpanderBitDegree.expanderBitDegree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(G\) be a connected \(s\)-regular simple graph on a finite vertex set \(V\) with \(|V| \geq 2\) and \(s \geq 1\). Let \(\lambda _2 = \lambda _2(G)\) be its second largest eigenvalue. Let \(H : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be a surjective linear parity-check map, and let \(\Lambda \) be a labeling of \(G\). Write \(k_L + m = s\) (so \(k_L\) is the dimension of the local code \(\ker (H)\)). </p>
+<p>Let \(d_{L^\perp } \geq 2\) be the minimum distance of the dual local code \(C^\perp \), with \(d_{L^\perp } \leq s\). Let \(\alpha {\gt} 0\) with \(\alpha m {\lt} 1\). Define \(b = d_{L^\perp } - 1 {\gt} 0\). </p>
+<p>For any \(y : V \to \mathbb {F}_2^m\) with </p>
+<div class="displaymath" id="a0000000792">
+  \[  \operatorname {totalWeight}(y) \; \leq \;  \alpha \cdot |V| \cdot m,  \]
+</div>
+<p> setting </p>
+<div class="displaymath" id="a0000000793">
+  \[  \beta \; =\;  \frac{(d_{L^\perp } - 1 - \lambda _2) - \alpha m (s - \lambda _2)}{m(d_{L^\perp } - 1)},  \]
+</div>
+<p> we have </p>
+<div class="displaymath" id="a0000000794">
+  \[  \beta \cdot \operatorname {totalWeight}(y) \; \leq \;  \operatorname {wt}(\delta (y)).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000791">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries">Base case.</b> If \(y = 0\), then \(\operatorname {totalWeight}(y) = 0\) and \(\operatorname {wt}(\delta (y)) = 0\), so \(\beta \cdot 0 \leq 0\) holds trivially. </p>
+<p><b class="bfseries">Setup for \(y \neq 0\).</b> Let \(S = S(y)\) be the vertex support of \(y\). Since \(y \neq 0\), the support \(S\) is nonempty, so \(|S| {\gt} 0\). Since \(y \neq 0\) and \(y\) takes values in \(\mathbb {F}_2^m\), we must have \(m {\gt} 0\) (otherwise \(y\) would be \(0\) by vacuity). </p>
+<p>Set \(\alpha ' = \alpha m\) and \(b = d_{L^\perp } - 1\). Then \(\alpha ' {\gt} 0\) (since \(\alpha {\gt} 0\) and \(m {\gt} 0\)), \(\alpha ' {\lt} 1\) (by hypothesis), and \(b {\gt} 0\) (since \(d_{L^\perp } \geq 2\)) and \(b \leq s\) (since \(d_{L^\perp } \leq s\)). </p>
+<p>By Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.card_vertexSupport_le_totalWeight">409</a>, \(|S| \leq \operatorname {totalWeight}(y)\), and by the hypothesis \(\operatorname {totalWeight}(y) \leq \alpha \cdot |V| \cdot m = \alpha ' \cdot |V|\), we get \(|S| \leq \alpha ' \cdot |V|\). </p>
+<p><b class="bfseries">Applying the relative vertex-to-edge expansion theorem.</b> Let \(A = A_b(S)\) be the set of high-expansion vertices (those \(v \in S\) with \(|(\partial _e S)_v| \geq s - b\)). By Theorem&#160;<a href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">364</a> applied with parameters \(\alpha '\), \(b\), \(S\), </p>
+<div class="displaymath" id="a0000000795">
+  \[  \frac{b - \lambda _2 - \alpha '(s - \lambda _2)}{b} \cdot |S| \; \leq \;  |A|.  \]
+</div>
+<p> By Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.totalWeight_div_le_card">411</a>, \(\operatorname {totalWeight}(y)/m \leq |S|\). </p>
+<p><b class="bfseries">Reducing to \(|A| \leq \operatorname {wt}(\delta (y))\).</b> We claim it suffices to show \(|A| \leq \operatorname {wt}(\delta (y))\). To derive the stated inequality from this: </p>
+<ul class="itemize">
+  <li><p>If \(\frac{b - \lambda _2 - \alpha '(s - \lambda _2)}{b} \geq 0\), then </p>
+<div class="displaymath" id="a0000000796">
+  \[  \beta \cdot \operatorname {totalWeight}(y) = \frac{b - \lambda _2 - \alpha '(s - \lambda _2)}{mb} \cdot \operatorname {totalWeight}(y) = \frac{b - \lambda _2 - \alpha '(s - \lambda _2)}{b} \cdot \frac{\operatorname {totalWeight}(y)}{m} \leq \frac{b - \lambda _2 - \alpha '(s - \lambda _2)}{b} \cdot |S| \leq |A| \leq \operatorname {wt}(\delta (y)).  \]
+</div>
+</li>
+  <li><p>If \(\frac{b - \lambda _2 - \alpha '(s - \lambda _2)}{b} {\lt} 0\), then \(\beta {\lt} 0\), so \(\beta \cdot \operatorname {totalWeight}(y) \leq 0 \leq \operatorname {wt}(\delta (y))\). </p>
+</li>
+</ul>
+<p><b class="bfseries">Proving \(|A| \leq \operatorname {wt}(\delta (y))\).</b> We construct an injection \(g : A \to \{ e \in E(G) \mid \delta (y)(e) \neq 0\} \). </p>
+<p>Note that \(G\) is connected with \(|V| \geq 2\) and \(s\)-regular with \(s \geq 1\), so \(G\) has at least one edge. </p>
+<p>For each \(v \in A\), we show there exists an edge \(e\) incident to \(v\) in \(\partial _e S\) with \(\delta (y)(e) \neq 0\): </p>
+<p>By Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">358</a>, \(A \subseteq S\), so \(y_v \neq 0\) for all \(v \in A\). </p>
+<p>Let \(v \in A\). By definition of \(A\), vertex \(v\) has \(|(\partial _e S)_v| \geq s - b\). Consider the transpose vector \(t_v = H^\top (y_v) \in \mathbb {F}_2^s\). By Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.parityCheckTranspose_weight_ge">417</a>, \(\operatorname {wt}(t_v) \geq d_{L^\perp }\). </p>
+<p>Let \(\operatorname {supp}(t_v) = \{ j \in \operatorname {Fin} s \mid t_v(j) \neq 0\} \) with \(|\operatorname {supp}(t_v)| \geq d_{L^\perp } = b + 1\). Define the set of label positions pointing into \(S\): </p>
+<div class="displaymath" id="a0000000797">
+  \[  P_S(v) = \{ j \in \operatorname {Fin} s \mid (\Lambda _v)^{-1}(j) \in S\} .  \]
+</div>
+<p> By Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.nonBdyPos_add_boundary_le_degree">420</a>, \(|P_S(v)| \leq s - |(\partial _e S)_v| \leq s - (s - b) = b\). Since \(|\operatorname {supp}(t_v)| \geq b + 1 {\gt} b \geq |P_S(v)|\), there exists \(j \in \operatorname {supp}(t_v) \setminus P_S(v)\). </p>
+<p>For this \(j\), let \(w = (\Lambda _v)^{-1}(j)\) (the neighbor of \(v\) at label \(j\)) and let \(e = \{ v, w\}  \in E(G)\). Since \(j \notin P_S(v)\), we have \(w \notin S\). Hence \(e\) is a boundary edge (\(v \in S\), \(w \notin S\)). </p>
+<p>We show \(\delta (y)(e) \neq 0\): Since \(w \notin S = S(y)\), we have \(y_w = 0\). By Lemma&#160;<a href="sect0034.html#lem:ExpanderBitDegree.coboundary_boundary_vertex">419</a>, \(\delta (y)(e) = \langle y_v, \partial _\Lambda ^H(\mathbf{1}_e)(v)\rangle \). Applying Lemma&#160;<a href="sect0021.html#lem:differential_apply">250</a> and computing the local view, the local view of \(v\) at edge \(e\) is the standard basis vector \(e_j\) (since \(\Lambda _v\) assigns label \(j\) to \(w\)). Thus </p>
+<div class="displaymath" id="a0000000798">
+  \[  \delta (y)(e) = \langle y_v, H(e_j)\rangle = (H^\top y_v)(j) = t_v(j) \neq 0  \]
+</div>
+<p> since \(j \in \operatorname {supp}(t_v)\). </p>
+<p><b class="bfseries">Injectivity of the assignment.</b> Choose for each \(v \in A\) a witness edge \(g(v)\) incident to \(v\) in \(\partial _e S\) with \(\delta (y)(g(v)) \neq 0\). We show the map \(v \mapsto g(v)\) is injective on \(A\). Suppose \(g(v_1) = g(v_2) = e\) for \(v_1, v_2 \in A\). The edge \(e \in \partial _e S\) has one endpoint \(a \in S\) and one endpoint \(b \notin S\). Both \(v_1, v_2 \in A \subseteq S\) are incident to \(e\), so both equal \(a\), giving \(v_1 = v_2\). </p>
+<p><b class="bfseries">Conclusion.</b> By Finset cardinality bounds, \(|A| \leq |\{ e \in E(G) \mid \delta (y)(e) \neq 0\} | = \operatorname {wt}(\delta (y))\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0033.html" title="Thm 8: Expander Violated Checks"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0035.html" title="Thm 10: Gilbert–Varshamov Plus"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

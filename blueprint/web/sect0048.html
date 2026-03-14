@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 29: Horizontal Subsystem Balanced Product Code</title>
+<link rel="next" href="sect0049.html" title="Thm 13: Homological Distance Bound" />
+<link rel="prev" href="sect0047.html" title="Thm 12: Encoding Rate (Circle Case)" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000049">48 Def 29: Horizontal Subsystem Balanced Product Code</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.incH">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">638</span>
+    <span class="definition_thmtitle">Horizontal Künneth Inclusion</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incH">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.incH" class="lean_decl">HorizontalSubsystemBalancedProductCode.incH</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(H\) be a finite group acting on a graph-with-group-action \(X\) with cell labeling \(\Lambda \), and let \(\ell \geq 3\) be an odd integer with a compatible cycle action. The <em>horizontal Künneth inclusion</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001090">
+  \[  \operatorname {incH} : H_1^h \; \longrightarrow \;  \bigoplus _{p} H_p(\mathcal{C}(X,\Lambda )) \otimes _H H_{1-p}(\mathcal{C}_\ell ),  \]
+</div>
+<p> defined as the direct sum inclusion at index \(p = 1\). Here \(H_1^h\) denotes the horizontal homology summand of the balanced product complex. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.incV">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">639</span>
+    <span class="definition_thmtitle">Vertical Künneth Inclusion</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incV">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.incV" class="lean_decl">HorizontalSubsystemBalancedProductCode.incV</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>vertical Künneth inclusion</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001091">
+  \[  \operatorname {incV} : H_1^v \; \longrightarrow \;  \bigoplus _{p} H_p(\mathcal{C}(X,\Lambda )) \otimes _H H_{1-p}(\mathcal{C}_\ell ),  \]
+</div>
+<p> defined as the direct sum inclusion at index \(p = 0\). Here \(H_1^v\) denotes the vertical homology summand of the balanced product complex. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.embH">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">640</span>
+    <span class="definition_thmtitle">Horizontal Embedding into \(H_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embH">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incH">Definition 638</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.embH" class="lean_decl">HorizontalSubsystemBalancedProductCode.embH</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>horizontal embedding</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001092">
+  \[  \operatorname {embH} : H_1^h \; \longrightarrow \;  H_1,  \]
+</div>
+<p> defined as the composition </p>
+<div class="displaymath" id="a0000001093">
+  \[  \operatorname {embH} = \kappa ^{-1} \circ \operatorname {incH},  \]
+</div>
+<p> where \(\kappa : H_1 \xrightarrow {\sim } \bigoplus _p H_p(\mathcal{C}(X,\Lambda )) \otimes _H H_{1-p}(\mathcal{C}_\ell )\) is the Künneth isomorphism (Def. 27). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.embV">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">641</span>
+    <span class="definition_thmtitle">Vertical Embedding into \(H_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embV">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incV">Definition 639</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1">Definition 594</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.embV" class="lean_decl">HorizontalSubsystemBalancedProductCode.embV</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>vertical embedding</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001094">
+  \[  \operatorname {embV} : H_1^v \; \longrightarrow \;  H_1,  \]
+</div>
+<p> defined as the composition </p>
+<div class="displaymath" id="a0000001095">
+  \[  \operatorname {embV} = \kappa ^{-1} \circ \operatorname {incV},  \]
+</div>
+<p> where \(\kappa \) is the Künneth isomorphism. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.HL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">642</span>
+    <span class="definition_thmtitle">Logical Submodule \(H_1^L\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embH">Definition 640</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.HL" class="lean_decl">HorizontalSubsystemBalancedProductCode.HL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>logical submodule</em> \(H_1^L \subseteq H_1\) is defined as the image of the horizontal embedding: </p>
+<div class="displaymath" id="a0000001096">
+  \[  H_1^L := \operatorname {im}(\operatorname {embH}) = \operatorname {embH}(H_1^h) \subseteq H_1.  \]
+</div>
+<p> Logical \(Z\)-operators of the subsystem code correspond to nontrivial elements of the horizontal homology \(H_1^h\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.HG">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">643</span>
+    <span class="definition_thmtitle">Gauge Submodule \(H_1^G\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embV">Definition 641</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.HG" class="lean_decl">HorizontalSubsystemBalancedProductCode.HG</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>gauge submodule</em> \(H_1^G \subseteq H_1\) is defined as the image of the vertical embedding: </p>
+<div class="displaymath" id="a0000001097">
+  \[  H_1^G := \operatorname {im}(\operatorname {embV}) = \operatorname {embV}(H_1^v) \subseteq H_1.  \]
+</div>
+<p> Gauge \(Z\)-operators correspond to elements of the vertical homology \(H_1^v\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:HorizontalSubsystemBalancedProductCode.logicalQubits">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">644</span>
+    <span class="definition_thmtitle">Number of Logical Qubits</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.logicalQubits">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.logicalQubits" class="lean_decl">HorizontalSubsystemBalancedProductCode.logicalQubits</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>number of logical qubits</em> of the horizontal subsystem balanced product code is the \(\mathbb {F}_2\)-rank of the logical submodule: </p>
+<div class="displaymath" id="a0000001098">
+  \[  k := \dim _{\mathbb {F}_2} H_1^L.  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:HorizontalSubsystemBalancedProductCode.hcompl">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">645</span>
+    <span class="theorem_thmtitle">Complementarity of Logical and Gauge Submodules</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#thm:HorizontalSubsystemBalancedProductCode.hcompl">#</a>
+    
+    <a class="icon proof" href="sect0048.html#a0000001099"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">Definition 643</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSum">Definition 532</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">Definition 643</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embH">Definition 640</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embV">Definition 641</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incH">Definition 638</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.incV">Definition 639</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.kunnethIso">Definition 597</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.directSumInc">Definition 599</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.hcompl" class="lean_decl">HorizontalSubsystemBalancedProductCode.hcompl</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The logical and gauge submodules form a complementary pair in \(H_1\): </p>
+<div class="displaymath" id="a0000001100">
+  \[  H_1 = H_1^L \oplus H_1^G,  \]
+</div>
+<p> i.e., \(H_1^L\) and \(H_1^G\) are complementary submodules (\(\operatorname {IsCompl}(H_1^L, H_1^G)\)). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001099">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We verify both conditions for complementarity. </p>
+<p><b class="bfseries">Disjointness</b> (\(H_1^L \cap H_1^G = \{ 0\} \)): We use the submodule disjointness criterion. Let \(x \in H_1^L \cap H_1^G\). Then by definition of \(H_1^L = \operatorname {im}(\operatorname {embH})\) and \(H_1^G = \operatorname {im}(\operatorname {embV})\), there exist \(a \in H_1^h\) and \(b \in H_1^v\) such that \(x = \operatorname {embH}(a) = \operatorname {embV}(b)\). </p>
+<p>Let \(\kappa \) denote the Künneth isomorphism. Applying \(\kappa \) to both sides, we obtain </p>
+<div class="displaymath" id="a0000001101">
+  \[  \kappa (\operatorname {embH}(a)) = \kappa (\operatorname {embV}(b)).  \]
+</div>
+<p> Since \(\operatorname {embH} = \kappa ^{-1} \circ \operatorname {incH}\) and \(\operatorname {embV} = \kappa ^{-1} \circ \operatorname {incV}\), applying \(\kappa \) gives \(\kappa \circ \kappa ^{-1} = \operatorname {id}\), so: </p>
+<div class="displaymath" id="a0000001102">
+  \[  \operatorname {incH}(a) = \operatorname {incV}(b).  \]
+</div>
+<p> Now \(\operatorname {incH}\) includes into the direct summand at index \(p = 1\), and \(\operatorname {incV}\) includes into the summand at \(p = 0\). Applying the component projection at \(p = 1\) to both sides: </p>
+<div class="displaymath" id="a0000001103">
+  \[  a = \pi _1(\operatorname {incH}(a)) = \pi _1(\operatorname {incV}(b)) = 0,  \]
+</div>
+<p> since \(\pi _1(\operatorname {incV}(b)) = 0\) as \(\operatorname {incV}\) maps into the \(p = 0\) summand. Thus \(a = 0\), and by simplification \(x = \operatorname {embH}(0) = 0\). </p>
+<p><b class="bfseries">Codisjointness</b> (\(H_1^L + H_1^G = H_1\)): We show every \(x \in H_1\) can be written as a sum of an element of \(H_1^L\) and an element of \(H_1^G\). Let \(z = \kappa (x)\) be the image of \(x\) under the Künneth isomorphism. Since the balanced Künneth sum at degree 1 decomposes over the summands at \(p = 0\) and \(p = 1\) (all other summands are trivial, as the Tanner and cycle complexes have PUnit modules outside degrees \(\{ 0,1\} \)), we have </p>
+<div class="displaymath" id="a0000001104">
+  \[  z = \iota _1(z_h) + \iota _0(z_v),  \]
+</div>
+<p> where \(z_h = \pi _1(z) \in H_1^h\) and \(z_v = \pi _0(z) \in H_1^v\) are the components at \(p = 1\) and \(p = 0\) respectively, and \(\iota _p = \operatorname {directSumInc}(-,p)\) are the canonical inclusions. </p>
+<p>Set \(x_h = \operatorname {embH}(z_h) \in H_1^L\) and \(x_v = \operatorname {embV}(z_v) \in H_1^G\). We claim \(x = x_h + x_v\). Indeed, applying \(\kappa \) (which is injective): </p>
+<div class="displaymath" id="a0000001105">
+  \[  \kappa (x_h + x_v) = \kappa (\operatorname {embH}(z_h)) + \kappa (\operatorname {embV}(z_v)) = \operatorname {incH}(z_h) + \operatorname {incV}(z_v) = z = \kappa (x).  \]
+</div>
+<p> By injectivity of \(\kappa \), we conclude \(x = x_h + x_v\), completing the proof. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:HorizontalSubsystemBalancedProductCode.cohomology_iscompl">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">646</span>
+    <span class="theorem_thmtitle">Cohomology Complementarity</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#thm:HorizontalSubsystemBalancedProductCode.cohomology_iscompl">#</a>
+    
+    <a class="icon proof" href="sect0048.html#a0000001106"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#thm:HorizontalSubsystemBalancedProductCode.hcompl">Theorem 645</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coH1h">Definition 604</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.coH1v">Definition 605</a></li>
+          
+          <li><a href="sect0048.html#thm:HorizontalSubsystemBalancedProductCode.hcompl">Theorem 645</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.cohomology_iscompl" class="lean_decl">HorizontalSubsystemBalancedProductCode.cohomology_iscompl</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The cohomological logical submodule \(H^1_L\) and gauge submodule \(H^1_G\) are complementary: </p>
+<div class="displaymath" id="a0000001107">
+  \[  H^1 = H^1_L \oplus H^1_G.  \]
+</div>
+<p> Over \(\mathbb {F}_2\), the cohomology and homology splitting are identified via Def. 2 and Def. 27, so \(H^1_L = H_1^L\) and \(H^1_G = H_1^G\) definitionally. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001106">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since over \(\mathbb {F}_2\) the cohomology summands \(\operatorname {coH}1h\) and \(\operatorname {coH}1v\) defined in Def. 27 coincide definitionally with the homology summands \(H_1^h\) and \(H_1^v\) respectively, the cohomology logical and gauge submodules \(\operatorname {coHL}\) and \(\operatorname {coHG}\) are definitionally equal to \(H_1^L\) and \(H_1^G\). The result therefore follows immediately from the homology complementarity theorem \(\operatorname {hcompl}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:HorizontalSubsystemBalancedProductCode.HL_eq_bot_of_quotient_ker_trivial">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">647</span>
+    <span class="theorem_thmtitle">Logical Submodule Vanishes When Quotient Differential is Injective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#thm:HorizontalSubsystemBalancedProductCode.HL_eq_bot_of_quotient_ker_trivial">#</a>
+    
+    <a class="icon proof" href="sect0048.html#a0000001108"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerDifferential">Definition 613</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0046.html#thm:IotaPiMaps.iotaMap_comp_piMap">Theorem 619</a></li>
+          
+          <li><a href="sect0046.html#thm:IotaPiMaps.iotaMap">Theorem 616</a></li>
+          
+          <li><a href="sect0046.html#thm:IotaPiMaps.piMap">Theorem 617</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embH">Definition 640</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerDifferential">Definition 613</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerComplex">Definition 614</a></li>
+          
+          <li><a href="sect0046.html#thm:IotaPiMaps.iotaMap_comp_piMap">Theorem 619</a></li>
+          
+          <li><a href="sect0046.html#thm:IotaPiMaps.piMap">Theorem 617</a></li>
+          
+          <li><a href="sect0046.html#thm:IotaPiMaps.iotaMap">Theorem 616</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.HL_eq_bot_of_quotient_ker_trivial" class="lean_decl">HorizontalSubsystemBalancedProductCode.HL_eq_bot_of_quotient_ker_trivial</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Suppose \(\ell \) is odd (\(\ell \equiv 1 \pmod{2}\)) and \(|H|\) is odd. If the kernel of the quotient Tanner differential \(\partial : C_1(X/H, \Lambda ) \to C_0(X/H, \Lambda )\) is trivial, i.e., </p>
+<div class="displaymath" id="a0000001109">
+  \[  \ker (\partial _{\mathrm{quot}}) = \{ 0\} ,  \]
+</div>
+<p> then the logical submodule vanishes: \(H_1^L = \{ 0\} \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001108">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We show that \(H_1^L = \operatorname {im}(\operatorname {embH}) = \{ 0\} \) by proving every element in the image is zero. </p>
+<p>Let \(x \in H_1^L\), so there exists \(a \in H_1^h\) with \(x = \operatorname {embH}(a)\). We claim \(a = 0\). </p>
+<p>First, note that the cycles at degree 1 of the quotient Tanner complex equal the kernel of the quotient differential: \(Z_1(\mathcal{C}(X/H,\Lambda )) = \ker (\partial _{\mathrm{quot}})\). Since \(\ker (\partial _{\mathrm{quot}}) = \{ 0\} \) by hypothesis, the cycles submodule is trivial, and consequently the quotient Tanner homology \(H_1(\mathcal{C}(X/H, \Lambda ))\) is trivial (every element equals zero, since the homology is a quotient of a trivial submodule). </p>
+<p>By the iota/pi isomorphism of Def. 28 (\(\ell \) odd, \(|H|\) odd), we have \(\operatorname {iota} \circ \operatorname {pi} = \operatorname {id}\) on \(H_1^h\). Applying this identity to \(a\): </p>
+<div class="displaymath" id="a0000001110">
+  \[  a = \operatorname {iota}\! \left(\operatorname {pi}(a)\right).  \]
+</div>
+<p> Since \(H_1(\mathcal{C}(X/H,\Lambda ))\) is trivial, \(\operatorname {pi}(a) = 0\), and therefore </p>
+<div class="displaymath" id="a0000001111">
+  \[  a = \operatorname {iota}(0) = 0.  \]
+</div>
+<p> Thus \(x = \operatorname {embH}(0) = 0\), completing the proof that \(H_1^L = \{ 0\} \). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:HorizontalSubsystemBalancedProductCode.HG_eq_bot_of_tanner_H0_subsingleton">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">648</span>
+    <span class="theorem_thmtitle">Gauge Submodule Vanishes When \(H_0\) of Tanner Complex is Trivial</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#thm:HorizontalSubsystemBalancedProductCode.HG_eq_bot_of_tanner_H0_subsingleton">#</a>
+    
+    <a class="icon proof" href="sect0048.html#a0000001112"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">Definition 643</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+          <li><a href="sect0041.html#def:HEquivariantChainComplex.balancedKunnethSummand">Definition 531</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.tannerHEq">Definition 591</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.cycleHEq">Definition 592</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">Definition 643</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.embV">Definition 641</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1v">Definition 596</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.HG_eq_bot_of_tanner_H0_subsingleton" class="lean_decl">HorizontalSubsystemBalancedProductCode.HG_eq_bot_of_tanner_H0_subsingleton</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Suppose \(H_0(\mathcal{C}(X,\Lambda ))\) is trivial (i.e., a subsingleton). Then the gauge submodule vanishes: \(H_1^G = \{ 0\} \). </p>
+<p><i class="itshape">Note:</i> The paper derives this from the weaker condition \(H_0(\mathcal{C}(X/H,\Lambda )) = 0\) (surjectivity of the quotient differential). The present formalization uses the stronger hypothesis \(H_0(\mathcal{C}(X,\Lambda )) = 0\) because the degree-0 iota/pi maps connecting quotient \(H_0\) to equivariant \(H_0\) coinvariants are not yet formalized. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001112">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We show \(H_1^G = \operatorname {im}(\operatorname {embV}) = \{ 0\} \) by proving every element in the image is zero. </p>
+<p>Let \(x \in H_1^G\), so there exists \(a \in H_1^v\) with \(x = \operatorname {embV}(a)\). We claim \(a = 0\). </p>
+<p>Recall that \(H_1^v\) is the balanced Künneth summand at \(p = 0\): </p>
+<div class="displaymath" id="a0000001113">
+  \[  H_1^v = \operatorname {Coinv}_H\! \left(H_0(\mathcal{C}(X,\Lambda )) \otimes _{\mathbb {F}_2} H_1(\mathcal{C}_\ell )\right).  \]
+</div>
+<p> Since \(H_0(\mathcal{C}(X,\Lambda ))\) is subsingleton by hypothesis, the tensor product \(H_0(\mathcal{C}(X,\Lambda )) \otimes _{\mathbb {F}_2} H_1(\mathcal{C}_\ell )\) is also subsingleton. Indeed, any element of the tensor product can be written as a sum of pure tensors \(m \otimes n\); since \(m \in H_0(\mathcal{C}(X,\Lambda ))\) is forced to be zero (the module is subsingleton), each pure tensor equals \(0 \otimes n = 0\), so the entire element is zero. </p>
+<p>Since the coinvariants module is a quotient of a subsingleton module, it is itself subsingleton. Therefore \(H_1^v\) is subsingleton, which forces \(a = 0\). </p>
+<p>Hence \(x = \operatorname {embV}(0) = 0\), so \(H_1^G = \{ 0\} \). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HorizontalSubsystemBalancedProductCode.HL_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">649</span>
+    <span class="lemma_thmtitle">Logical Submodule is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#lem:HorizontalSubsystemBalancedProductCode.HL_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0048.html#a0000001114"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HL">Definition 642</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.HL_nonempty" class="lean_decl">HorizontalSubsystemBalancedProductCode.HL_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The carrier of the logical submodule \(H_1^L\) is nonempty: \(H_1^L \neq \emptyset \). In particular, \(0 \in H_1^L\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001114">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(H_1^L\) is a submodule of \(H_1\), it contains the zero element. Therefore its carrier is nonempty, witnessed by \(0 \in H_1^L\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:HorizontalSubsystemBalancedProductCode.HG_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">650</span>
+    <span class="lemma_thmtitle">Gauge Submodule is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0048.html#lem:HorizontalSubsystemBalancedProductCode.HG_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0048.html#a0000001115"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">Definition 643</a></li>
+          
+          <li><a href="sect0048.html#def:HorizontalSubsystemBalancedProductCode.HG">Definition 643</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/HorizontalSubsystemBalancedProductCode.HG_nonempty" class="lean_decl">HorizontalSubsystemBalancedProductCode.HG_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The carrier of the gauge submodule \(H_1^G\) is nonempty: \(H_1^G \neq \emptyset \). In particular, \(0 \in H_1^G\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001115">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(H_1^G\) is a submodule of \(H_1\), it contains the zero element. Therefore its carrier is nonempty, witnessed by \(0 \in H_1^G\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0047.html" title="Thm 12: Encoding Rate (Circle Case)"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0049.html" title="Thm 13: Homological Distance Bound"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

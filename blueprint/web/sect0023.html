@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 17: Binary Entropy Function</title>
+<link rel="next" href="sect0024.html" title="Def 18: Cheeger Constant" />
+<link rel="prev" href="sect0022.html" title="Def 16: Dual Code" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000024">23 Def 17: Binary Entropy Function</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:binaryEntropy">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">261</span>
+    <span class="definition_thmtitle">Binary Entropy Function</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#def:binaryEntropy">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy" class="lean_decl">binaryEntropy</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The binary entropy function \(H_2 : \mathbb {R} \to \mathbb {R}\) is defined by </p>
+<div class="displaymath" id="a0000000459">
+  \[  H_2(\delta ) = -\delta \log _2(\delta ) - (1-\delta )\log _2(1-\delta ).  \]
+</div>
+<p> For \(\delta \in (0,1)\), this gives the Shannon entropy of a Bernoulli\((\delta )\) distribution measured in bits. Outside \((0,1)\), the function extends by continuity, with \(\log _2(0) = 0\) by Mathlib’s convention. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:key_nat_ineq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">262</span>
+    <span class="lemma_thmtitle">Key Natural Number Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:key_nat_ineq">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000460"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/key_nat_ineq" class="lean_decl">key_nat_ineq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    We have the following natural number inequality: </p>
+<div class="displaymath" id="a0000000461">
+  \[  100^{100} {\lt} 2^{50} \cdot 11^{11} \cdot 89^{89}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000460">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>This is verified by computation (<span class="ttfamily">native_decide</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:key_frac_ineq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">263</span>
+    <span class="lemma_thmtitle">Key Fractional Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:key_frac_ineq">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000462"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#lem:key_nat_ineq">Lemma 262</a></li>
+          
+          <li><a href="sect0023.html#lem:key_nat_ineq">Lemma 262</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/key_frac_ineq" class="lean_decl">key_frac_ineq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    We have the following inequality in \(\mathbb {R}\): </p>
+<div class="displaymath" id="a0000000463">
+  \[  \left(\frac{100}{11}\right)^{11} \cdot \left(\frac{100}{89}\right)^{89} {\lt} 2^{50}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000462">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Rewriting using \(\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}\) and combining fractions, the inequality \(\frac{100^{11} \cdot 100^{89}}{11^{11} \cdot 89^{89}} {\lt} 2^{50}\) is equivalent (after clearing the positive denominator \(11^{11} \cdot 89^{89}\)) to \(100^{11} \cdot 100^{89} {\lt} 2^{50} \cdot 11^{11} \cdot 89^{89}\). By the ring identity \(100^{11} \cdot 100^{89} = 100^{100}\), this reduces to \(100^{100} {\lt} 2^{50} \cdot 11^{11} \cdot 89^{89}\), which holds by casting <span class="ttfamily">key_nat_ineq</span> to \(\mathbb {R}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:binaryEntropy_at_eleven_hundredths">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">264</span>
+    <span class="lemma_thmtitle">\(H_2(11/100) {\lt} 1/2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:binaryEntropy_at_eleven_hundredths">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000464"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:key_frac_ineq">Lemma 263</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:key_frac_ineq">Lemma 263</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy_at_eleven_hundredths" class="lean_decl">binaryEntropy_at_eleven_hundredths</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The binary entropy function satisfies \(H_2(11/100) {\lt} 1/2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000464">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition of \(H_2\), the goal becomes </p>
+<div class="displaymath" id="a0000000465">
+  \[  -\frac{11}{100}\log _2\! \left(\frac{11}{100}\right) - \frac{89}{100}\log _2\! \left(\frac{89}{100}\right) {\lt} \frac{1}{2}.  \]
+</div>
+<p> We establish auxiliary facts: \(11/100 {\gt} 0\), \(89/100 {\gt} 0\), \(\log _2(11/100) {\lt} 0\) (since \(11/100 {\lt} 1\) and the base is \({\gt} 1\)), and \(\log _2(89/100) {\lt} 0\) similarly. Using the identity \(\log _2(a/b) = \log _2 a - \log _2 b\), we rewrite: </p>
+<div class="displaymath" id="a0000000466">
+  \[  \log _2\! \left(\frac{11}{100}\right) = -\log _2\! \left(\frac{100}{11}\right), \qquad \log _2\! \left(\frac{89}{100}\right) = -\log _2\! \left(\frac{100}{89}\right).  \]
+</div>
+<p> After substitution and ring normalization, the goal becomes </p>
+<div class="displaymath" id="a0000000467">
+  \[  \frac{11}{100}\log _2\! \left(\frac{100}{11}\right) + \frac{89}{100}\log _2\! \left(\frac{100}{89}\right) {\lt} \frac{1}{2}.  \]
+</div>
+<p> We establish the key step: \(11 \cdot \log _2(100/11) + 89 \cdot \log _2(100/89) {\lt} 50\). Indeed, taking \(\log _2\) of the inequality \(\left(\frac{100}{11}\right)^{11}\cdot \left(\frac{100}{89}\right)^{89} {\lt} 2^{50}\) from <span class="ttfamily">key_frac_ineq</span>, and using \(\log _2(x^n) = n\log _2 x\) and \(\log _2(2^{50}) = 50\), we obtain: </p>
+<div class="displaymath" id="a0000000468">
+  \[  11\log _2\! \left(\frac{100}{11}\right) + 89\log _2\! \left(\frac{100}{89}\right) {\lt} 50.  \]
+</div>
+<p> Since \(\log _2(100/11) {\gt} 0\) and \(\log _2(100/89) {\gt} 0\), we conclude by linear arithmetic that \(\frac{11}{100}\log _2\! \left(\frac{100}{11}\right) + \frac{89}{100}\log _2\! \left(\frac{100}{89}\right) {\lt} \frac{1}{2}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:binaryEntropy_eq_binEntropy_div">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">265</span>
+    <span class="lemma_thmtitle">\(H_2\) equals \(\operatorname {binEntropy} / \log 2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:binaryEntropy_eq_binEntropy_div">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000469"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy_eq_binEntropy_div" class="lean_decl">binaryEntropy_eq_binEntropy_div</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For all \(\delta \in \mathbb {R}\), </p>
+<div class="displaymath" id="a0000000470">
+  \[  H_2(\delta ) = \frac{\operatorname {binEntropy}(\delta )}{\log 2},  \]
+</div>
+<p> where \(\operatorname {binEntropy}\) is Mathlib’s natural-logarithm binary entropy function. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000469">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding \(H_2(\delta ) = -\delta \log _2\delta - (1-\delta )\log _2(1-\delta )\) and \(\operatorname {binEntropy}(\delta ) = -\delta \log \delta - (1-\delta )\log (1-\delta )\), and using \(\log _2 x = \log x / \log 2\) (i.e., \(\operatorname {logb}\,  2\,  x = \log x / \log 2\)), together with \(\log (\cdot ^{-1}) = -\log (\cdot )\), the equality follows by ring arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:hasDerivAt_binaryEntropy">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">266</span>
+    <span class="lemma_thmtitle">Derivative of \(H_2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:hasDerivAt_binaryEntropy">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000471"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_eq_binEntropy_div">Lemma 265</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_eq_binEntropy_div">Lemma 265</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/hasDerivAt_binaryEntropy" class="lean_decl">hasDerivAt_binaryEntropy</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(x \in (0, 1)\), the binary entropy function has derivative </p>
+<div class="displaymath" id="a0000000472">
+  \[  H_2'(x) = \log _2\! \left(\frac{1-x}{x}\right).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000471">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(x \in (0,1)\). We write \(H_2 = \operatorname {binEntropy}(\cdot )/\log 2\) by <span class="ttfamily">binaryEntropy_eq_binEntropy_div</span>. Applying Mathlib’s <span class="ttfamily">Real.hasDerivAt_binEntropy</span> (which gives derivative \(\log ((1-x)/x)\) for \(\operatorname {binEntropy}\) at \(x\), using \(x \neq 0\) and \(x \neq 1\)), and dividing by the constant \(\log 2\), we obtain that \(H_2\) has a derivative at \(x\). Using \(\log _2((1-x)/x) = (\log (1-x) - \log x)/\log 2 = \log ((1-x)/x)/\log 2\), the result follows. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:binaryEntropy_strictMonoOn">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">267</span>
+    <span class="lemma_thmtitle">\(H_2\) is strictly increasing on \((0, 1/2)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:binaryEntropy_strictMonoOn">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000473"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_eq_binEntropy_div">Lemma 265</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_eq_binEntropy_div">Lemma 265</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy_strictMonoOn" class="lean_decl">binaryEntropy_strictMonoOn</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The binary entropy function \(H_2\) is strictly increasing on \((0, 1/2)\): for \(0 {\lt} a {\lt} b {\lt} 1/2\), we have \(H_2(a) {\lt} H_2(b)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000473">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(a, b \in (0, 1/2)\) with \(a {\lt} b\). Using <span class="ttfamily">binaryEntropy_eq_binEntropy_div</span>, we write \(H_2(a) = \operatorname {binEntropy}(a)/\log 2\) and \(H_2(b) = \operatorname {binEntropy}(b)/\log 2\). Since \(\log 2 {\gt} 0\) (as \(1 {\lt} 2\)), it suffices to show \(\operatorname {binEntropy}(a) {\lt} \operatorname {binEntropy}(b)\). Both \(a\) and \(b\) lie in \([0, 2^{-1}]\) (verified by the hypotheses via \(\operatorname {simp}\) and linear arithmetic), and Mathlib’s <span class="ttfamily">Real.binEntropy_strictMonoOn</span> asserts strict monotonicity of \(\operatorname {binEntropy}\) on \([0, 1/2]\), giving the result. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:binaryEntropy_lt_half">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">268</span>
+    <span class="theorem_thmtitle">\(H_2(\delta ) {\lt} 1/2\) for \(\delta \in (0, 11/100)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#thm:binaryEntropy_lt_half">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000474"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_strictMonoOn">Lemma 267</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_at_eleven_hundredths">Lemma 264</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_strictMonoOn">Lemma 267</a></li>
+          
+          <li><a href="sect0023.html#lem:binaryEntropy_at_eleven_hundredths">Lemma 264</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy_lt_half" class="lean_decl">binaryEntropy_lt_half</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For \(\delta \in (0, 11/100)\), we have \(H_2(\delta ) {\lt} 1/2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000474">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(\delta \) satisfy \(0 {\lt} \delta {\lt} 11/100\). We note that \(\delta {\lt} 1/2\) (by linear arithmetic from \(11/100 {\lt} 1/2\)), so \(\delta \in (0, 1/2)\). Also \(11/100 \in (0, 1/2)\). By <span class="ttfamily">binaryEntropy_strictMonoOn</span>, since \(\delta {\lt} 11/100\), we have \(H_2(\delta ) {\lt} H_2(11/100)\). By <span class="ttfamily">binaryEntropy_at_eleven_hundredths</span>, \(H_2(11/100) {\lt} 1/2\). Chaining these inequalities gives \(H_2(\delta ) {\lt} 1/2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:hammingBall">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">269</span>
+    <span class="definition_thmtitle">Hamming Ball</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#def:hammingBall">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/hammingBall" class="lean_decl">hammingBall</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The Hamming ball of radius \(r \in \mathbb {R}\) centered at the origin in \(\mathbb {F}_2^n\) is the finset </p>
+<div class="displaymath" id="a0000000475">
+  \[  B_0(r) = \{  v \in \mathbb {F}_2^n : \operatorname {wt}(v) \leq r \} ,  \]
+</div>
+<p> where \(\operatorname {wt}(v)\) denotes the Hamming weight of \(v\). When \(r {\lt} 0\), the ball is empty. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:mem_hammingBall">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">270</span>
+    <span class="theorem_thmtitle">Membership in the Hamming Ball</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#thm:mem_hammingBall">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000476"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/mem_hammingBall" class="lean_decl">mem_hammingBall</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For \(v : \operatorname {Fin} n \to \mathbb {F}_2\) and \(r \in \mathbb {R}\), </p>
+<div class="displaymath" id="a0000000477">
+  \[  v \in B_0(r) \iff \operatorname {wt}(v) \leq r.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000476">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately by unfolding the definition of \(B_0(r)\) and applying <span class="ttfamily">simp</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:hammingBall_empty_of_neg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">271</span>
+    <span class="lemma_thmtitle">Hamming Ball is Empty for Negative Radius</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:hammingBall_empty_of_neg">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000478"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/hammingBall_empty_of_neg" class="lean_decl">hammingBall_empty_of_neg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(r {\lt} 0\), \(B_0(r) = \emptyset \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000478">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality, it suffices to show that no \(v\) belongs to \(B_0(r)\). Suppose \(v \in B_0(r)\); then by <span class="ttfamily">simp</span> on the definition, \(\operatorname {wt}(v) \leq r {\lt} 0\). But \(\operatorname {wt}(v) \geq 0\) since it is a natural number cast to \(\mathbb {R}\), a contradiction by linear arithmetic. The other direction is trivial since \(\emptyset \) has no members. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:hammingBall_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">272</span>
+    <span class="lemma_thmtitle">Hamming Ball is Nonempty for Nonnegative Radius</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:hammingBall_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000479"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/hammingBall_nonempty" class="lean_decl">hammingBall_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(r \geq 0\), \(B_0(r)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000479">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We exhibit the zero vector \(0 \in \mathbb {F}_2^n\) as a witness. By <span class="ttfamily">mem_hammingBall</span>, it suffices to show \(\operatorname {wt}(0) \leq r\). Using <span class="ttfamily">simp</span> with the definitions of <span class="ttfamily">hammingWeight</span>, <span class="ttfamily">hammingNorm</span>, and <span class="ttfamily">hammingDist_self</span>, we get \(\operatorname {wt}(0) = 0\), and \(0 \leq r\) holds by assumption. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:bernoulli_weight_mono">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">273</span>
+    <span class="lemma_thmtitle">Bernoulli Weight Monotonicity</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:bernoulli_weight_mono">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000480"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/bernoulli_weight_mono" class="lean_decl">bernoulli_weight_mono</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(0 {\lt} \delta \leq 1/2\) and \(a \leq k \leq n\). Then </p>
+<div class="displaymath" id="a0000000481">
+  \[  \delta ^k (1-\delta )^{n-k} \leq \delta ^a (1-\delta )^{n-a}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000480">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>We establish \(0 {\lt} 1 - \delta \) (by linear arithmetic from \(\delta \leq 1/2\)) and \(\delta \leq 1 - \delta \) (since \(\delta \leq 1/2\)). Writing \(k = a + (k - a)\) and \(n - a = (k-a) + (n-k)\), and rewriting the powers accordingly, the left-hand side becomes </p>
+<div class="displaymath" id="a0000000482">
+  \[  \delta ^a \cdot \delta ^{k-a} \cdot (1-\delta )^{n-k} = \delta ^a \cdot (1-\delta )^{n-k} \cdot \delta ^{k-a}.  \]
+</div>
+<p> Since \(\delta \leq 1 - \delta \) and \(\delta {\gt} 0\), we have \(\delta ^{k-a} \leq (1-\delta )^{k-a}\) by <span class="ttfamily">pow_le_pow_left</span>. Applying <span class="ttfamily">mul_le_mul_of_nonneg_left</span> twice (first using \((1-\delta )^{n-k} {\gt} 0\), then \(\delta ^a {\gt} 0\)), we obtain </p>
+<div class="displaymath" id="a0000000483">
+  \[  \delta ^a \cdot (1-\delta )^{n-k} \cdot \delta ^{k-a} \leq \delta ^a \cdot (1-\delta )^{n-k} \cdot (1-\delta )^{k-a} = \delta ^a \cdot (1-\delta )^{n-a},  \]
+</div>
+<p> completing the proof by ring arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:bernoulli_weight_sum">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">274</span>
+    <span class="lemma_thmtitle">Bernoulli Weight Sum</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:bernoulli_weight_sum">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000484"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/bernoulli_weight_sum" class="lean_decl">bernoulli_weight_sum</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(0 {\lt} \delta \leq 1/2\), </p>
+<div class="displaymath" id="a0000000485">
+  \[  \sum _{v : \mathbb {F}_2^n} \delta ^{\operatorname {wt}(v)} (1-\delta )^{n - \operatorname {wt}(v)} = 1.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000484">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We note that every element of \(\mathbb {F}_2\) is either \(0\) or \(1\) (by <span class="ttfamily">decide</span>). We define an equivalence \(e : (\operatorname {Fin} n \to \mathbb {F}_2) \simeq \operatorname {Finset}(\operatorname {Fin} n)\) by mapping \(v\) to its support \(\{ i \in \operatorname {Fin} n : v_i \neq 0\} \), with inverse sending a subset \(s\) to the indicator function \(\mathbf{1}_s\). The left inverse is verified case-by-case on \(\mathbb {F}_2\), and the right inverse by a boolean case split. Under this equivalence, the cardinality of \(e(v)\) equals \(\operatorname {wt}(v)\) by definition. Applying Mathlib’s <span class="ttfamily">Fin.sum_pow_mul_eq_add_pow</span>, we get </p>
+<div class="displaymath" id="a0000000486">
+  \[  \sum _{s : \operatorname {Finset}(\operatorname {Fin} n)} \delta ^{|s|}(1-\delta )^{n-|s|} = (\delta + (1-\delta ))^n = 1^n = 1.  \]
+</div>
+<p> Transporting along \(e\) via <span class="ttfamily">Equiv.sum_comp</span> and a congruence argument gives the result. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:entropy_logb_ineq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">275</span>
+    <span class="lemma_thmtitle">Entropy Logarithm Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#lem:entropy_logb_ineq">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000487"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/entropy_logb_ineq" class="lean_decl">entropy_logb_ineq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(0 {\lt} \delta \leq 1/2\), \(k \leq n\), and \((k : \mathbb {R}) + 1 \leq \delta \cdot n\). Then </p>
+<div class="displaymath" id="a0000000488">
+  \[  -(k \log _2 \delta + (n - k)\log _2(1-\delta )) \leq H_2(\delta ) \cdot n.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000487">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding \(H_2(\delta ) = -\delta \log _2\delta - (1-\delta )\log _2(1-\delta )\), we establish that \(\delta n - k {\gt} 0\) (by linear arithmetic from \(k + 1 \leq \delta n\)) and that \(\log _2 \delta \leq \log _2(1-\delta )\) (by strict monotonicity of \(\log _2\) on \((0,\infty )\), applied at points \(\delta {\lt} 1 - \delta \) since \(\delta \leq 1/2\)). Casting \(n - k\) appropriately, the inequality then follows by nonlinear arithmetic (<span class="ttfamily">nlinarith</span>), using \((\delta n - k) \cdot (\log _2(1-\delta ) - \log _2\delta ) \geq 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:hammingBallBound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">276</span>
+    <span class="theorem_thmtitle">Hamming Ball Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0023.html#thm:hammingBallBound">#</a>
+    
+    <a class="icon proof" href="sect0023.html#a0000000489"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#lem:bernoulli_weight_mono">Lemma 273</a></li>
+          
+          <li><a href="sect0023.html#lem:bernoulli_weight_sum">Lemma 274</a></li>
+          
+          <li><a href="sect0023.html#lem:entropy_logb_ineq">Lemma 275</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#lem:bernoulli_weight_mono">Lemma 273</a></li>
+          
+          <li><a href="sect0023.html#lem:bernoulli_weight_sum">Lemma 274</a></li>
+          
+          <li><a href="sect0023.html#lem:entropy_logb_ineq">Lemma 275</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/hammingBallBound" class="lean_decl">hammingBallBound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(n \geq 1\), \(0 {\lt} \delta \leq 1/2\), and \(k + 1 \leq \delta n\). Then </p>
+<div class="displaymath" id="a0000000490">
+  \[  |B_0(k)| \leq 2^{H_2(\delta ) \cdot n}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000489">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We establish \(0 {\lt} 1 - \delta \) by linear arithmetic. We show \(k \leq n\): otherwise \(k {\gt} n\), so \(\delta n {\lt} n\), but \(k + 1 \leq \delta n {\lt} n \leq k\), a contradiction by linear arithmetic. Let \(p = \delta ^k(1-\delta )^{n-k} {\gt} 0\) (by positivity). </p>
+<p><b class="bfseries">Step 1:</b> \(|B_0(k)| \cdot \delta ^k(1-\delta )^{n-k} \leq 1\). We compute: </p>
+<div class="displaymath" id="a0000000491">
+  \[  |B_0(k)| \cdot p = \sum _{v \in B_0(k)} p \leq \sum _{v \in B_0(k)} \delta ^{\operatorname {wt}(v)}(1-\delta )^{n-\operatorname {wt}(v)} \leq \sum _{v : \mathbb {F}_2^n} \delta ^{\operatorname {wt}(v)}(1-\delta )^{n-\operatorname {wt}(v)} = 1.  \]
+</div>
+<p> The first inequality uses <span class="ttfamily">bernoulli_weight_mono</span>: for \(v \in B_0(k)\), \(\operatorname {wt}(v) \leq k\), so \(\delta ^k(1-\delta )^{n-k} \leq \delta ^{\operatorname {wt}(v)}(1-\delta )^{n-\operatorname {wt}(v)}\). The second uses <span class="ttfamily">Finset.sum_le_univ_sum_of_nonneg</span> (terms are nonneg). The final equality is <span class="ttfamily">bernoulli_weight_sum</span>. </p>
+<p><b class="bfseries">Step 2:</b> \(p^{-1} \leq 2^{H_2(\delta ) n}\). This is equivalent (by <span class="ttfamily">Real.logb_le_iff_le_rpow</span>) to \(\log _2(p^{-1}) \leq H_2(\delta ) n\). Using \(\log _2(p^{-1}) = -\log _2 p\) and \(\log _2(\delta ^k (1-\delta )^{n-k}) = k\log _2\delta + (n-k)\log _2(1-\delta )\), this becomes \(-(k\log _2\delta + (n-k)\log _2(1-\delta )) \leq H_2(\delta )n\), which holds by <span class="ttfamily">entropy_logb_ineq</span>. </p>
+<p><b class="bfseries">Conclusion:</b> From Step&#160;1, \(|B_0(k)| \leq p^{-1}\), and from Step&#160;2, \(p^{-1} \leq 2^{H_2(\delta )n}\), so by linear arithmetic \(|B_0(k)| \leq 2^{H_2(\delta )n}\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0022.html" title="Def 16: Dual Code"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0024.html" title="Def 18: Cheeger Constant"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

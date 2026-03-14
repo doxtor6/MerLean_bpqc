@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 7: Sipser–Spielman Expander Code Distance</title>
+<link rel="next" href="sect0033.html" title="Thm 8: Expander Violated Checks" />
+<link rel="prev" href="sect0031.html" title="Lem 3: Relative Vertex-to-Edge Expansion" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000033">32 Thm 7: Sipser–Spielman Expander Code Distance</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SipserSpielman.piSubmoduleEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">365</span>
+    <span class="definition_thmtitle">Pi Submodule Equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#def:SipserSpielman.piSubmoduleEquiv">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.piSubmoduleEquiv" class="lean_decl">SipserSpielman.piSubmoduleEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(R\) be a commutative semiring, \(M\) an \(R\)-module, and \(\iota \) an index type. Given a submodule \(p \leq M\), there is a linear equivalence </p>
+<div class="displaymath" id="a0000000679">
+  \[  \operatorname {Submodule.pi}(\operatorname {Set.univ},\,  \lambda \, \_ \mapsto p) \; \simeq _R\;  (\iota \to p).  \]
+</div>
+<p> The forward map sends \(x : \iota \to M\) (with \(x_i \in p\) for all \(i\)) to the function \(i \mapsto \langle x_i,\,  x.\text{prop}\,  i\rangle \), and the inverse sends \(f : \iota \to p\) to \(\langle \lambda \, i \mapsto f_i,\,  \lambda \, i\, \_  \mapsto (f_i).\text{prop}\rangle \). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.finrank_pi_submodule">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">366</span>
+    <span class="lemma_thmtitle">Finrank of Pi Submodule</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.finrank_pi_submodule">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000680"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.piSubmoduleEquiv">Definition 365</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.piSubmoduleEquiv">Definition 365</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.finrank_pi_submodule" class="lean_decl">SipserSpielman.finrank_pi_submodule</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(R\) be a commutative semiring satisfying the strong rank condition, \(M\) an \(R\)-module, \(\iota \) a finite index type, and \(p \leq M\) a free finite-rank submodule. Then </p>
+<div class="displaymath" id="a0000000681">
+  \[  \operatorname {finrank}_R\bigl(\operatorname {Submodule.pi}(\operatorname {Set.univ},\,  \lambda \, \_ \mapsto p)\bigr) = |\iota | \cdot \operatorname {finrank}_R(p).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000680">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By the linear equivalence \(\operatorname {piSubmoduleEquiv}\), the finrank of the pi submodule equals the finrank of \(\iota \to p\). Applying the formula \(\operatorname {finrank}(\iota \to p) = |\iota | \cdot \operatorname {finrank}(p)\) and simplifying with \(|\operatorname {Fin}\, n| = n\) yields the result. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.range_differential_le">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">367</span>
+    <span class="lemma_thmtitle">Range of Differential Contained in Pi of Ranges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.range_differential_le">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000682"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.range_differential_le" class="lean_decl">SipserSpielman.range_differential_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a simple graph on \(V\), \(\Lambda \) a labeling of \(G\) with degree \(s\), and \(\operatorname {parityCheck} : (\mathbb {F}_2^s \to _{\mathbb {F}_2} \mathbb {F}_2^m)\) a linear map. Then </p>
+<div class="displaymath" id="a0000000683">
+  \[  \operatorname {range}(\partial _\Lambda ^{\operatorname {parityCheck}}) \; \leq \;  \operatorname {Submodule.pi}\! \Bigl(\operatorname {Set.univ},\; \lambda \, v \mapsto \operatorname {range}(\operatorname {parityCheck})\Bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000682">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(f\) be in the range of \(\partial _\Lambda ^{\operatorname {parityCheck}}\). We must show \(f \in \operatorname {Submodule.pi}(\operatorname {Set.univ}, \lambda \, v \mapsto \operatorname {range}(\operatorname {parityCheck}))\), i.e., for every \(v \in V\), the value \(f(v)\) lies in \(\operatorname {range}(\operatorname {parityCheck})\). Since \(f\) is in the range, there exists \(c\) with \(\partial _\Lambda ^{\operatorname {parityCheck}}(c) = f\). For any vertex \(v\), we have \(f(v) = \operatorname {parityCheck}(\operatorname {localView}_\Lambda \, v\, c)\), so \(f(v)\) is the image of \(\operatorname {localView}_\Lambda \, v\, c\) under \(\operatorname {parityCheck}\), hence in its range. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.finrank_range_differential_le">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">368</span>
+    <span class="lemma_thmtitle">Upper Bound on Finrank of Range of Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.finrank_range_differential_le">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000684"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.range_differential_le">Lemma 367</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.finrank_pi_submodule">Lemma 366</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.range_differential_le">Lemma 367</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.finrank_pi_submodule">Lemma 366</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.finrank_range_differential_le" class="lean_decl">SipserSpielman.finrank_range_differential_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\), \(\Lambda \), and \(\operatorname {parityCheck}\) be as above. Then </p>
+<div class="displaymath" id="a0000000685">
+  \[  \operatorname {finrank}_{\mathbb {F}_2}\bigl(\operatorname {range}(\partial _\Lambda ^{\operatorname {parityCheck}})\bigr) \; \leq \;  |V| \cdot \operatorname {finrank}_{\mathbb {F}_2}\bigl(\operatorname {range}(\operatorname {parityCheck})\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000684">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We compute: </p>
+<div class="displaymath" id="a0000000686">
+  \begin{align*}  \operatorname {finrank}_{\mathbb {F}_2}\bigl(\operatorname {range}(\partial _\Lambda ^{\operatorname {parityCheck}})\bigr) & \leq \operatorname {finrank}_{\mathbb {F}_2}\Bigl(\operatorname {Submodule.pi}\bigl(\operatorname {Set.univ},\, \lambda \, v\mapsto \operatorname {range}(\operatorname {parityCheck})\bigr)\Bigr) \\ & = |V| \cdot \operatorname {finrank}_{\mathbb {F}_2}\bigl(\operatorname {range}(\operatorname {parityCheck})\bigr). \end{align*}
+</div>
+<p> The first inequality follows from \(\operatorname {Submodule.finrank_mono}\) applied to the containment \(\operatorname {range_differential_le}\). The equality follows from \(\operatorname {finrank_pi_submodule}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SipserSpielman.sipserSpielman_dimension_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">369</span>
+    <span class="theorem_thmtitle">Sipser–Spielman Dimension Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#thm:SipserSpielman.sipserSpielman_dimension_bound">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000687"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.finrank_range_differential_le">Lemma 368</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.finrank_range_differential_le">Lemma 368</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.sipserSpielman_dimension_bound" class="lean_decl">SipserSpielman.sipserSpielman_dimension_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a simple graph on \(V\) that is \(s\)-regular with \(s \geq 1\) and \(|V| \geq 2\). Let \(\Lambda \) be a labeling of \(G\) with degree \(s\), and let \(\operatorname {parityCheck} : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be a linear map with \(k_L = \operatorname {finrank}_{\mathbb {F}_2}(\ker (\operatorname {parityCheck}))\). Then the Tanner code \(C(G, \Lambda , \operatorname {parityCheck})\) satisfies </p>
+<div class="displaymath" id="a0000000688">
+  \[  \dim \bigl(C(G,\Lambda ,\operatorname {parityCheck})\bigr) \; \geq \;  \Bigl(\frac{2k_L}{s} - 1\Bigr)\cdot |X_1|,  \]
+</div>
+<p> where \(|X_1| = |E(G)|\) denotes the number of edges. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000687">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By definition, \(\operatorname {tannerCode}\, \Lambda \, \operatorname {parityCheck} = \ker (\partial _\Lambda ^{\operatorname {parityCheck}})\). </p>
+<p><b class="bfseries">Step 1 (Rank-nullity for \(\partial \)).</b> By rank-nullity for the differential: </p>
+<div class="displaymath" id="a0000000689">
+  \[  \operatorname {finrank}(\operatorname {range}(\partial )) + \operatorname {finrank}(\ker (\partial )) = \operatorname {finrank}(G.\operatorname {edgeSet} \to \mathbb {F}_2) = |X_1|.  \]
+</div>
+<p><b class="bfseries">Step 2 (Rank-nullity for \(\operatorname {parityCheck}\)).</b> We have \(\operatorname {finrank}(\operatorname {range}(\operatorname {parityCheck})) + k_L = s\), so \(\operatorname {finrank}(\operatorname {range}(\operatorname {parityCheck})) = s - k_L\). In particular \(k_L \leq s\). </p>
+<p><b class="bfseries">Step 3 (Bounding the range).</b> By \(\operatorname {finrank_range_differential_le}\) and Step 2: </p>
+<div class="displaymath" id="a0000000690">
+  \[  \operatorname {finrank}(\operatorname {range}(\partial )) \leq |V|\cdot (s - k_L).  \]
+</div>
+<p><b class="bfseries">Step 4 (Lower bound on dimension).</b> Combining Steps 1 and 3 by integer arithmetic: </p>
+<div class="displaymath" id="a0000000691">
+  \[  \dim \bigl(\operatorname {tannerCode}\bigr) \geq |X_1| - |V|\cdot (s - k_L).  \]
+</div>
+<p><b class="bfseries">Step 5 (Handshaking).</b> By the handshaking lemma \(\operatorname {twice_card_edgeFinset_eq}\), we have \(2|X_1| = s\cdot |V|\), so \(|V| = 2|X_1|/s\). </p>
+<p><b class="bfseries">Step 6 (Real arithmetic).</b> Rewriting Step 4 in \(\mathbb {R}\) and substituting the handshaking relation, we verify \(\dim (\operatorname {tannerCode}) - (2k_L/s - 1)\cdot |X_1| \geq 0\) via the identity </p>
+<div class="displaymath" id="a0000000692">
+  \[  \Bigl(\frac{2k_L}{s}-1\Bigr)|X_1| = |X_1| - (s-k_L)\cdot |V|,  \]
+</div>
+<p> which holds since \((s-k_L)\cdot |V| = (s-k_L)\cdot 2|X_1|/s\). The inequality then follows by nonlinear arithmetic using \(s {\gt} 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SipserSpielman.support">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">370</span>
+    <span class="definition_thmtitle">Support of an Edge Function</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#def:SipserSpielman.support">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.support" class="lean_decl">SipserSpielman.support</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G\) be a simple graph on \(V\) and \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\). The <em>support</em> of \(c\) is the finite set </p>
+<div class="displaymath" id="a0000000693">
+  \[  \operatorname {supp}(c) \; :=\;  \{ e \in G.\operatorname {edgeSet} \mid c(e) \neq 0\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SipserSpielman.edgeHammingWeight">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">371</span>
+    <span class="definition_thmtitle">Edge Hamming Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#def:SipserSpielman.edgeHammingWeight">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.support">Definition 370</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.edgeHammingWeight" class="lean_decl">SipserSpielman.edgeHammingWeight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>edge Hamming weight</em> of \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\) is </p>
+<div class="displaymath" id="a0000000694">
+  \[  \operatorname {wt}(c) \; :=\;  |\operatorname {supp}(c)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SipserSpielman.incidentToSupport">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">372</span>
+    <span class="definition_thmtitle">Vertices Incident to Support</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#def:SipserSpielman.incidentToSupport">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.support">Definition 370</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.incidentToSupport" class="lean_decl">SipserSpielman.incidentToSupport</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\). The set of vertices <em>incident to the support</em> of \(c\) is </p>
+<div class="displaymath" id="a0000000695">
+  \[  S(c) \; :=\;  \{ v \in V \mid \exists \,  e \in \operatorname {supp}(c),\;  v \in e\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SipserSpielman.supportDegree">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">373</span>
+    <span class="definition_thmtitle">Support Degree at a Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#def:SipserSpielman.supportDegree">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.support">Definition 370</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.supportDegree" class="lean_decl">SipserSpielman.supportDegree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(\Lambda \) be a labeling of \(G\) with degree \(s\) and \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\). The <em>support degree</em> of \(c\) at vertex \(v\) is </p>
+<div class="displaymath" id="a0000000696">
+  \[  \deg _{\operatorname {supp}}(v) \; :=\;  \bigl|\{ i \in \operatorname {Fin}(s) \mid c\bigl(\langle s(v,\, (\Lambda _v)^{-1}(i)),\, \ldots \rangle \bigr) \neq 0\} \bigr|,  \]
+</div>
+<p> the number of edges in \(\operatorname {supp}(c)\) incident to \(v\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.localView_weight_bound">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">374</span>
+    <span class="lemma_thmtitle">Local View Weight Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.localView_weight_bound">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000697"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.localView_weight_bound" class="lean_decl">SipserSpielman.localView_weight_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(c \in C(G, \Lambda , \operatorname {parityCheck})\) be a codeword, \(d_L = \operatorname {dist}(C_L)\) the local code distance, and \(v \in V\) a vertex such that \(\operatorname {localView}_\Lambda (v, c) \neq 0\). Then </p>
+<div class="displaymath" id="a0000000698">
+  \[  d_L \; \leq \;  \operatorname {wt}(\operatorname {localView}_\Lambda (v,c)).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000697">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Rewriting using \(d_L = \operatorname {dist}(\operatorname {ClassicalCode.ofParityCheck}(\operatorname {parityCheck}))\). Since \(c \in \operatorname {tannerCode}\, \Lambda \, \operatorname {parityCheck}\), by \(\operatorname {mem_tannerCode_iff}\), the local view \(\operatorname {localView}_\Lambda \, v\, c\) lies in \(\ker (\operatorname {parityCheck})\), which equals the local code \(C_L\) by \(\operatorname {code_eq_ker}\). Since the local view is nonzero and is a codeword of \(C_L\), its Hamming weight witnesses that \(d_L = \operatorname {sInf}\{ \operatorname {wt}(x) \mid x \in C_L,\;  x \neq 0\}  \leq \operatorname {wt}(\operatorname {localView}_\Lambda \, v\, c)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.support_nonempty_of_ne_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">375</span>
+    <span class="lemma_thmtitle">Nonemptiness of Support</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.support_nonempty_of_ne_zero">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000699"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.support">Definition 370</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.support">Definition 370</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.support_nonempty_of_ne_zero" class="lean_decl">SipserSpielman.support_nonempty_of_ne_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\) is nonzero, then \(\operatorname {supp}(c)\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000699">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By contraposition: suppose \(\operatorname {supp}(c) = \emptyset \). Then for every edge \(e\), \(e \notin \operatorname {supp}(c)\), which by definition of support and membership in the filter means \(c(e) = 0\). By function extensionality, \(c = 0\), contradicting the hypothesis \(c \neq 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.edgeHammingWeight_pos_of_ne_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">376</span>
+    <span class="lemma_thmtitle">Positive Edge Hamming Weight of Nonzero Vector</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.edgeHammingWeight_pos_of_ne_zero">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000700"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.support_nonempty_of_ne_zero">Lemma 375</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.support_nonempty_of_ne_zero">Lemma 375</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.edgeHammingWeight_pos_of_ne_zero" class="lean_decl">SipserSpielman.edgeHammingWeight_pos_of_ne_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(c \neq 0\), then \(\operatorname {wt}(c) {\gt} 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000700">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By \(\operatorname {support_nonempty_of_ne_zero}\), the set \(\operatorname {supp}(c)\) is nonempty, so its cardinality is positive. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SipserSpielman.supportEdges">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">377</span>
+    <span class="definition_thmtitle">Support Edges as Elements of \(\operatorname {Sym2}(V)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#def:SipserSpielman.supportEdges">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.support">Definition 370</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.supportEdges" class="lean_decl">SipserSpielman.supportEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>support edges</em> of \(c\) viewed in \(\operatorname {Sym2}(V)\) are </p>
+<div class="displaymath" id="a0000000701">
+  \[  \operatorname {suppEdges}(c) \; :=\;  \{ e.\operatorname {val} \mid e \in \operatorname {supp}(c)\}  \; \subseteq \;  \operatorname {Sym2}(V).  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.supportEdges_subset">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">378</span>
+    <span class="lemma_thmtitle">Support Edges Subset of Edge Finset</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.supportEdges_subset">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000702"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.supportEdges_subset" class="lean_decl">SipserSpielman.supportEdges_subset</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\operatorname {suppEdges}(c) \subseteq G.\operatorname {edgeFinset}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000702">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> For any \(e \in \operatorname {suppEdges}(c)\), by definition there exists a support element \(e' \in \operatorname {supp}(c)\) with \(e = e'.\operatorname {val}\). Since \(e'\) is an element of \(G.\operatorname {edgeSet}\), we have \(e'.\operatorname {val} \in G.\operatorname {edgeSet}\), so \(e \in G.\operatorname {edgeFinset}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.card_supportEdges_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">379</span>
+    <span class="lemma_thmtitle">Cardinality of Support Edges Equals Edge Hamming Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.card_supportEdges_eq">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000703"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.card_supportEdges_eq" class="lean_decl">SipserSpielman.card_supportEdges_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(|\operatorname {suppEdges}(c)| = \operatorname {wt}(c)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000703">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By definition, \(\operatorname {suppEdges}(c)\) is the image of \(\operatorname {supp}(c)\) under the map \(e \mapsto e.\operatorname {val}\). Since subtype coercion \(\operatorname {val}\) is injective on \(G.\operatorname {edgeSet}\), this map is injective on \(\operatorname {supp}(c)\). Therefore \(|\operatorname {suppEdges}(c)| = |\operatorname {supp}(c)| = \operatorname {wt}(c)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.localView_ne_zero_of_incident">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">380</span>
+    <span class="lemma_thmtitle">Nonzero Local View at Incident Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.localView_ne_zero_of_incident">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000704"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.localView_ne_zero_of_incident" class="lean_decl">SipserSpielman.localView_ne_zero_of_incident</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(v \in S(c)\), then \(\operatorname {localView}_\Lambda (v,c) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000704">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(v \in S(c)\), by definition of \(\operatorname {incidentToSupport}\), there exists an edge \(e\) with \(c(e) \neq 0\) and \(v \in e\). Suppose for contradiction that \(\operatorname {localView}_\Lambda \, v\, c = 0\). Then every component \((\operatorname {localView}_\Lambda \, v\, c)(i) = 0\) for all \(i \in \operatorname {Fin}(s)\). </p>
+<p>Since \(e \in G.\operatorname {edgeSet}\) and \(v \in e\) (as an element of \(\operatorname {Sym2}(V)\)), let \(w = \operatorname {Sym2.Mem.other}(v \in e)\), so that \(s(v,w) = e\) by \(\operatorname {Sym2.other_spec}\). Then \(G.\operatorname {Adj}\, v\, w\), so \(w \in G.\operatorname {neighborSet}(v)\). Let \(i = \Lambda _v(w) \in \operatorname {Fin}(s)\). </p>
+<p>Applying \(\operatorname {localView_apply}\), we get \((\operatorname {localView}_\Lambda \, v\, c)(i) = c(\langle s(v, (\Lambda _v)^{-1}(i)),\ldots \rangle )\). Since \((\Lambda _v)^{-1}(i) = (\Lambda _v)^{-1}(\Lambda _v(w)) = w\) by the invertibility of \(\Lambda _v\), this equals \(c(\langle s(v,w),\ldots \rangle ) = c(e) \neq 0\), contradicting the assumption that the local view is zero. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.incident_vertex_degree_ge_dL">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">381</span>
+    <span class="lemma_thmtitle">Each Incident Vertex Has at Least \(d_L\) Support Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.incident_vertex_degree_ge_dL">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000705"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportDegree">Definition 373</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_ne_zero_of_incident">Lemma 380</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_weight_bound">Lemma 374</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_ne_zero_of_incident">Lemma 380</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_weight_bound">Lemma 374</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.incident_vertex_degree_ge_dL" class="lean_decl">SipserSpielman.incident_vertex_degree_ge_dL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every \(v \in S(c)\) and every codeword \(c \in C(G, \Lambda , \operatorname {parityCheck})\): </p>
+<div class="displaymath" id="a0000000706">
+  \[  d_L \; \leq \;  \deg _{\operatorname {supp}}(v).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000705">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By \(\operatorname {localView_ne_zero_of_incident}\), since \(v \in S(c)\) we have \(\operatorname {localView}_\Lambda \, v\, c \neq 0\). By \(\operatorname {localView_weight_bound}\), \(d_L \leq \operatorname {wt}(\operatorname {localView}_\Lambda \, v\, c)\). Converting between the count of nonzero entries of the local view and the support degree at \(v\) closes the goal. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.card_filter_mem_sym2_le_two">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">382</span>
+    <span class="lemma_thmtitle">At Most Two Vertices Incident to Each Edge</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.card_filter_mem_sym2_le_two">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000707"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.card_filter_mem_sym2_le_two" class="lean_decl">SipserSpielman.card_filter_mem_sym2_le_two</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(e \in \operatorname {Sym2}(V)\): </p>
+<div class="displaymath" id="a0000000708">
+  \[  |\{ v \in V \mid v \in e\} | \; \leq \;  2.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000707">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>By induction on \(e\) using \(\operatorname {Sym2.ind}\), write \(e = s(a,b)\). The filter \(\{ v \in V \mid v \in s(a,b)\} \) is contained in \(\{ a,b\} \), so its cardinality is at most \(|\{ a,b\} |\). Using \(\operatorname {card_insert_le}\), \(|\{ a,b\} | \leq |\{ b\} | + 1 = 2\). Integer arithmetic closes the goal. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.incidentCount_le_twice_weight">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">383</span>
+    <span class="lemma_thmtitle">Double-Counting: \(|S| \cdot d_L \leq 2|E|\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.incidentCount_le_twice_weight">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000709"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_ne_zero_of_incident">Lemma 380</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_weight_bound">Lemma 374</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.card_filter_mem_sym2_le_two">Lemma 382</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_ne_zero_of_incident">Lemma 380</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.localView_weight_bound">Lemma 374</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.card_filter_mem_sym2_le_two">Lemma 382</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.incidentCount_le_twice_weight" class="lean_decl">SipserSpielman.incidentCount_le_twice_weight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any codeword \(c \in C(G, \Lambda , \operatorname {parityCheck})\) with local code distance \(d_L\): </p>
+<div class="displaymath" id="a0000000710">
+  \[  |S(c)| \cdot d_L \; \leq \;  2\cdot \operatorname {wt}(c).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000709">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Define the counting set \(T = \{ (v, i) \in S(c) \times \operatorname {Fin}(s) \mid (\operatorname {localView}_\Lambda \, v\, c)(i) \neq 0\} \). </p>
+<p><b class="bfseries">Lower bound on \(|T|\).</b> For each \(v \in S(c)\), by \(\operatorname {localView_ne_zero_of_incident}\) we have \(\operatorname {localView}_\Lambda \, v\, c \neq 0\), and by \(\operatorname {localView_weight_bound}\), the number of nonzero entries of \(\operatorname {localView}_\Lambda \, v\, c\) is at least \(d_L\). By \(\operatorname {card_nsmul_le_sum}\): </p>
+<div class="displaymath" id="a0000000711">
+  \[  |S(c)| \cdot d_L \; \leq \;  |T|.  \]
+</div>
+<p><b class="bfseries">Upper bound on \(|T|\).</b> Define the edge map \(\varphi : (v, i) \mapsto \langle s(v, (\Lambda _v)^{-1}(i)),\ldots \rangle \in G.\operatorname {edgeSet}\). For each \((v,i) \in T\), the element \(\varphi (v,i)\) lies in \(\operatorname {supp}(c)\) by \(\operatorname {localView_apply}\). </p>
+<p>Each support edge \(e \in \operatorname {supp}(c)\) has at most 2 preimages under \(\varphi \) in \(T\): for preimages \((v_1, i_1)\) and \((v_2, i_2)\) with \(v_1 = v_2\), equality \(\varphi (v_1, i_1) = \varphi (v_1, i_2)\) yields \(s(v_1, (\Lambda _{v_1})^{-1}(i_1)) = s(v_1, (\Lambda _{v_1})^{-1}(i_2))\). Applying \(\operatorname {Sym2.eq_iff}\) gives either \((\Lambda _{v_1})^{-1}(i_1).\operatorname {val} = (\Lambda _{v_1})^{-1}(i_2).\operatorname {val}\) (so \(i_1 = i_2\) by injectivity of \((\Lambda _{v_1})^{-1}\)), or \(v_1 = (\Lambda _{v_1})^{-1}(i_2).\operatorname {val}\) (impossible since \(G\) is loopless). So each fiber has size at most 1 per distinct first coordinate. The first coordinates project into \(\{ v \mid v \in e\} \), which has at most 2 elements by \(\operatorname {card_filter_mem_sym2_le_two}\). </p>
+<p>Applying \(\operatorname {card_le_mul_card_image}\): </p>
+<div class="displaymath" id="a0000000712">
+  \[  |T| \; \leq \;  2 \cdot |\operatorname {supp}(c)| \; =\;  2\cdot \operatorname {wt}(c).  \]
+</div>
+<p> Combining the bounds gives \(|S(c)| \cdot d_L \leq |T| \leq 2\cdot \operatorname {wt}(c)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.hammingWeight_le_card">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">384</span>
+    <span class="lemma_thmtitle">Hamming Weight at Most Length</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.hammingWeight_le_card">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000713"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.hammingWeight_le_card" class="lean_decl">SipserSpielman.hammingWeight_le_card</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(x : \operatorname {Fin}(n) \to \mathbb {F}_2\): </p>
+<div class="displaymath" id="a0000000714">
+  \[  \operatorname {wt}(x) \; \leq \;  n.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000713">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition, \(\operatorname {wt}(x) = |\{ i \in \operatorname {Fin}(n) \mid x_i \neq 0\} |\), which is at most \(|\operatorname {Fin}(n)| = n\) by \(\operatorname {card_filter_le}\) and \(\operatorname {Fintype.card_fin}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SipserSpielman.distance_le_length'">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">385</span>
+    <span class="lemma_thmtitle">Code Distance at Most Length</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#lem:SipserSpielman.distance_le_length'">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000715"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.distance">Definition 43</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.hammingWeight_le_card">Lemma 384</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.hammingWeight_le_card">Lemma 384</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.distance_le_length'" class="lean_decl">SipserSpielman.distance_le_length'</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\operatorname {parityCheck} : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be a linear map whose associated local code has positive distance. Then </p>
+<div class="displaymath" id="a0000000716">
+  \[  \operatorname {dist}(\operatorname {ClassicalCode.ofParityCheck}(\operatorname {parityCheck})) \; \leq \;  s.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000715">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since the distance is positive, the set \(\{ \operatorname {wt}(x) \mid x \in C_L,\;  x \neq 0\} \) is nonempty. We obtain \(x \in C_L\) with \(x \neq 0\) such that \(\operatorname {dist}(C_L) \leq \operatorname {wt}(x)\). By \(\operatorname {hammingWeight_le_card}\), \(\operatorname {wt}(x) \leq s\). Hence \(\operatorname {dist}(C_L) \leq s\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SipserSpielman.sipserSpielman_distance_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">386</span>
+    <span class="theorem_thmtitle">Sipser–Spielman Distance Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0032.html#thm:SipserSpielman.sipserSpielman_distance_bound">#</a>
+    
+    <a class="icon proof" href="sect0032.html#a0000000717"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:differential">Definition 249</a></li>
+          
+          <li><a href="sect0021.html#def:localView">Definition 247</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.incidentCount_le_twice_weight">Lemma 383</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.distance_le_length'">Lemma 385</a></li>
+          
+          <li><a href="sect0028.html#thm:AlonChungContrapositive.alonChungContrapositive_direct">Theorem 328</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0021.html#def:tannerCode">Definition 251</a></li>
+          
+          <li><a href="sect0021.html#lem:localView_apply">Lemma 248</a></li>
+          
+          <li><a href="sect0021.html#thm:mem_tannerCode_iff">Theorem 252</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.incidentCount_le_twice_weight">Lemma 383</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.distance_le_length'">Lemma 385</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.supportEdges_subset">Lemma 378</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.card_supportEdges_eq">Lemma 379</a></li>
+          
+          <li><a href="sect0028.html#thm:AlonChungContrapositive.alonChungContrapositive_direct">Theorem 328</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SipserSpielman.sipserSpielman_distance_bound" class="lean_decl">SipserSpielman.sipserSpielman_distance_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a connected \(s\)-regular simple graph on \(V\) with \(s \geq 1\) and \(|V| \geq 2\). Let \(\Lambda \) be a labeling of \(G\) with degree \(s\), \(\operatorname {parityCheck} : \mathbb {F}_2^s \to \mathbb {F}_2^m\) a linear map, \(d_L = \operatorname {dist}(C_L)\) the local code distance, and \(\lambda _2\) the second largest eigenvalue of \(G\) with \(\lambda _2 \geq 0\) and \(d_L {\gt} \lambda _2\). Then every nonzero codeword \(c \in C(G, \Lambda , \operatorname {parityCheck})\) satisfies </p>
+<div class="displaymath" id="a0000000718">
+  \[  \operatorname {wt}(c) \; \geq \;  \frac{(d_L - \lambda _2)\,  d_L}{(s - \lambda _2)\,  s} \cdot |X_1|,  \]
+</div>
+<p> where \(|X_1| = |E(G)|\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000717">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(c \in C(G, \Lambda , \operatorname {parityCheck})\) be nonzero. Set \(S = S(c)\), \(E = \operatorname {wt}(c)\), \(n = |V|\). </p>
+<p><b class="bfseries">Positivity.</b> Since \(d_L {\gt} \lambda _2 \geq 0\) and \(d_L \in \mathbb {N}\), we have \(d_L {\gt} 0\). Since \(d_L \leq s\) by \(\operatorname {distance_le_length’}\), we get \(s - \lambda _2 \geq d_L - \lambda _2 {\gt} 0\). </p>
+<p><b class="bfseries">Key inequality (double counting).</b> By \(\operatorname {incidentCount_le_twice_weight}\): </p>
+<div class="displaymath" id="a0000000719">
+  \[  |S| \cdot d_L \; \leq \;  2E.  \]
+</div>
+<p><b class="bfseries">Nonemptiness of \(S\).</b> Since \(c \neq 0\), there exists an edge \(e\) with \(c(e) \neq 0\); any endpoint of \(e\) belongs to \(S\), so \(S \neq \emptyset \). </p>
+<p><b class="bfseries">Handshaking.</b> By \(\operatorname {twice_card_edgeFinset_eq}\): \(2|X_1| = s \cdot n\). </p>
+<p><b class="bfseries">Case 1: \(|S| \geq n\) (all vertices are incident).</b> Then \(n \cdot d_L \leq |S| \cdot d_L \leq 2E\), so \(E \geq n d_L/2\). By handshaking, \(n d_L / 2 = (d_L/s) \cdot |X_1|\). Since \((d_L - \lambda _2)/(s-\lambda _2) \leq 1\), we have \((d_L/s) \geq (d_L - \lambda _2)d_L/((s-\lambda _2)s)\). Hence \(E \geq (d_L - \lambda _2)d_L/((s-\lambda _2)s) \cdot |X_1|\). </p>
+<p><b class="bfseries">Case 2: \(|S| {\lt} n\).</b> Set \(\gamma = |S|/n \in (0,1)\). </p>
+<p>By \(\operatorname {alonChungContrapositive_direct}\) applied to the support edges \(\operatorname {suppEdges}(c) \subseteq G.\operatorname {edgeFinset}\) with expansion parameter \(\gamma \) (note \(|\operatorname {incidentVertices}(\operatorname {suppEdges}(c))| \leq |S| \leq \gamma n\)): </p>
+<div class="displaymath" id="a0000000720">
+  \[  |\operatorname {suppEdges}(c)| \; \leq \;  \Bigl(\gamma ^2 + \frac{\lambda _2}{s}\gamma (1-\gamma )\Bigr)|X_1|.  \]
+</div>
+<p> By \(\operatorname {card_supportEdges_eq}\), \(|\operatorname {suppEdges}(c)| = E\), so: </p>
+<div class="displaymath" id="a0000000721">
+  \[  E \; \leq \;  \Bigl(\gamma ^2 + \frac{\lambda _2}{s}\gamma (1-\gamma )\Bigr)|X_1|.  \]
+</div>
+<p>Combining the double counting bound \(\gamma n \cdot d_L \leq 2E\) with \(|X_1| = sn/2\): </p>
+<div class="displaymath" id="a0000000722">
+  \[  \gamma \cdot d_L \; \leq \;  \Bigl(\gamma ^2 + \frac{\lambda _2}{s}\gamma (1-\gamma )\Bigr)\cdot s.  \]
+</div>
+<p> Dividing by \(\gamma {\gt} 0\): </p>
+<div class="displaymath" id="a0000000723">
+  \[  d_L \; \leq \;  \gamma \bigl(s - \lambda _2\bigr) + \lambda _2,  \]
+</div>
+<p> hence \(d_L - \lambda _2 \leq \gamma (s - \lambda _2)\), and since \(s - \lambda _2 {\gt} 0\): </p>
+<div class="displaymath" id="a0000000724">
+  \[  \gamma \; \geq \;  \frac{d_L - \lambda _2}{s - \lambda _2}.  \]
+</div>
+<p>Finally: </p>
+<div class="displaymath" id="a0000000725">
+  \begin{align*}  E & \geq \frac{\gamma \cdot n \cdot d_L}{2} \geq \frac{(d_L-\lambda _2)/(s-\lambda _2) \cdot n \cdot d_L}{2} = \frac{(d_L-\lambda _2)\, d_L}{(s-\lambda _2)\, s} \cdot \frac{sn}{2} = \frac{(d_L-\lambda _2)\, d_L}{(s-\lambda _2)\, s} \cdot |X_1|, \end{align*}
+</div>
+<p> where the last equality uses handshaking. Real arithmetic closes the goal. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0031.html" title="Lem 3: Relative Vertex-to-Edge Expansion"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0033.html" title="Thm 8: Expander Violated Checks"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

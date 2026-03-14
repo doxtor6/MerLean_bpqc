@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 11: LPS Graphs are Ramanujan</title>
+<link rel="next" href="sect0039.html" title="Def 22: Balanced Product of Vector Spaces" />
+<link rel="prev" href="sect0037.html" title="Def 21: LPS Expander Graphs" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000039">38 Thm 11: LPS Graphs are Ramanujan</h1>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.pgl2_card_ge_six">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">496</span>
+    <span class="theorem_thmtitle">\(\operatorname {PGL}(2,q)\) Has At Least Six Elements</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.pgl2_card_ge_six">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000894"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.matToGL">Definition 471</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.matToGL">Definition 471</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.pgl2_card_ge_six" class="lean_decl">LPSRamanujan.pgl2_card_ge_six</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(q\) be an odd prime with \(q \geq 5\). Then </p>
+<div class="displaymath" id="a0000000895">
+  \[  6 \; \leq \;  |\operatorname {PGL}(2,q)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000894">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We construct an injection from \(\mathbb {Z}/q\mathbb {Z} \sqcup \{ *\} \) into \(\operatorname {PGL}(2,q)\) by sending \(a \in \mathbb {Z}/q\mathbb {Z}\) to the class of the upper unipotent matrix </p>
+<div class="displaymath" id="a0000000896">
+  \[  U(a) = \begin{pmatrix}  1 
+
+&  a 
+
+\\ 0 
+
+&  1 
+
+\end{pmatrix}  \]
+</div>
+<p> and sending the single element of \(\{ *\} \) to the class of the swap matrix </p>
+<div class="displaymath" id="a0000000897">
+  \[  S = \begin{pmatrix}  0 
+
+&  1 
+
+\\ -1 
+
+&  0 
+
+\end{pmatrix}.  \]
+</div>
+<p>We verify injectivity in four cases. If \(\operatorname {projPGL}(U(a)) = \operatorname {projPGL}(U(b))\), then there exists a central element \(z\) in \(\operatorname {GL}(2,q)\) with \(U(a) \cdot z = U(b)\). Since \(z\) is central, it commutes with \(U(1) = \begin{pmatrix} 1
+
+& 1
+
+\\ 0
+
+& 1
+
+\end{pmatrix}\); by expanding the commutation relation at entry \((1,0)\) we obtain \(z_{10} = 0\), and at entry \((0,1)\) we obtain \(z_{00} = z_{11}\). Similarly, commuting with \(E_{21} = \begin{pmatrix} 1
+
+& 0
+
+\\ 1
+
+& 1
+
+\end{pmatrix}\) yields \(z_{01} = 0\). Substituting into the equation \(U(a) \cdot z = U(b)\) and reading off entry \((0,0)\) gives \(z_{00} = 1\), after which entry \((0,1)\) yields \(a \cdot z_{11} = b\). Since \(z_{00} = z_{11} = 1\), we conclude \(a = b\). </p>
+<p>If \(\operatorname {projPGL}(S) = \operatorname {projPGL}(U(a))\), then \(S \cdot z = U(a)\) for some central \(z\). The same argument gives \(z_{10} = 0\), \(z_{01} = 0\). Reading entry \((1,0)\) of \(S \cdot z = U(a)\) yields \(-z_{00} = 0\), and entry \((1,1)\) yields \(-z_{01} = 1\); but \(z_{01} = 0\), giving \(0 = 1\), a contradiction. The remaining cases are symmetric or trivial. </p>
+<p>Thus the map is injective, and by counting we obtain \(|\operatorname {PGL}(2,q)| \geq |\mathbb {Z}/q\mathbb {Z}| + 1 = q + 1 \geq 6\) for \(q \geq 5\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.psl2_card_ge_six">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">497</span>
+    <span class="theorem_thmtitle">\(\operatorname {PSL}(2,q)\) Has At Least Six Elements</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.psl2_card_ge_six">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000898"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.psl2_card_ge_six" class="lean_decl">LPSRamanujan.psl2_card_ge_six</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(q\) be an odd prime with \(q \geq 5\). Then </p>
+<div class="displaymath" id="a0000000899">
+  \[  6 \; \leq \;  |\operatorname {PSL}(2,q)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000898">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We construct an injection from \(\mathbb {Z}/q\mathbb {Z} \sqcup \{ *\} \) into \(\operatorname {PSL}(2,q)\) by sending \(a\) to the class of the upper unipotent \(\operatorname {SL}\) element \(U(a) = \bigl(\begin{smallmatrix} 1
+
+& a
+
+\\ 0
+
+& 1
+
+\end{smallmatrix}\bigr)\) and \(*\) to the class of the swap \(\operatorname {SL}\) element \(S = \bigl(\begin{smallmatrix} 0
+
+& 1
+
+\\ -1
+
+& 0
+
+\end{smallmatrix}\bigr)\). </p>
+<p>Injectivity is established by the same argument as in \(\operatorname {PGL}\): if \(\operatorname {projPSL}(U(a)) = \operatorname {projPSL}(U(b))\), there is a central \(z \in \operatorname {SL}(2,q)\) with \(U(a) \cdot z = U(b)\). Commuting \(z\) with \(E_{12}\) gives \(z_{10} = 0\) and \(z_{00} = z_{11}\); commuting with \(E_{21}\) gives \(z_{01} = 0\). Expanding \(U(a) \cdot z = U(b)\) then forces \(z_{00} = 1\) and \(a = b\). </p>
+<p>The case \(\operatorname {projPSL}(S) = \operatorname {projPSL}(U(a))\) leads to \(z_{01} = 0\) and the equation at entry \((1,1)\) of \(S \cdot z = U(a)\) gives \(-z_{01} = 1\), i.e. \(0 = 1\), a contradiction. Hence the map is injective, so \(|\operatorname {PSL}(2,q)| \geq q + 1 \geq 6\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPSRamanujan.q_ge_five">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">498</span>
+    <span class="lemma_thmtitle">\(q \geq 5\) From Spectral Condition</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#lem:LPSRamanujan.q_ge_five">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000900"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.q_ge_five" class="lean_decl">LPSRamanujan.q_ge_five</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(p\) and \(q\) be odd primes with \(q {\gt} 2\sqrt{p}\). Then \(q \geq 5\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000900">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We argue by contradiction. Suppose \(q {\lt} 5\), so \(q \leq 4\). Since \(q\) is an odd prime and \(q \leq 4\), we must have \(q = 3\). </p>
+<p>Since \(p\) is an odd prime, \(p \geq 3\), hence \((p : \mathbb {R}) \geq 3\). From the hypothesis \(q {\gt} 2\sqrt{p}\) with \(q = 3\), we have \(3 {\gt} 2\sqrt{p}\), so \(9 {\gt} 4p\). But \(4p \geq 12\), giving \(9 {\gt} 12\), a contradiction. Formally, let \(s = \sqrt{p}\); then \(s \geq 0\) and \(s^2 = p \geq 3\). The inequality \(3 {\gt} 2s\) gives \((3 - 2s)^2 {\gt} 0\) and \(9 {\gt} 4s^2 = 4p \geq 12\), which is absurd; this is derived by nonlinear arithmetic from \(\operatorname {nlinarith}\) using \((2\sqrt{p} - 3)^2 \geq 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.lpsGraphPGL_card_ge_two">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">499</span>
+    <span class="theorem_thmtitle">LPS Graph on \(\operatorname {PGL}\) Has At Least Two Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.lpsGraphPGL_card_ge_two">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000901"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0038.html#thm:LPSRamanujan.pgl2_card_ge_six">Theorem 496</a></li>
+          
+          <li><a href="sect0038.html#lem:LPSRamanujan.q_ge_five">Lemma 498</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.lpsGraphPGL_card_ge_two" class="lean_decl">LPSRamanujan.lpsGraphPGL_card_ge_two</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\). Then </p>
+<div class="displaymath" id="a0000000902">
+  \[  2 \; \leq \;  |\operatorname {PGL}(2,q)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000901">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>By Lemma&#160;<a href="sect0038.html#lem:LPSRamanujan.q_ge_five">498</a>, the hypothesis \(q {\gt} 2\sqrt{p}\) together with \(p, q\) odd primes implies \(q \geq 5\). Applying Theorem&#160;<a href="sect0038.html#thm:LPSRamanujan.pgl2_card_ge_six">496</a> we obtain \(|\operatorname {PGL}(2,q)| \geq 6 \geq 2\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.lpsGraphPSL_card_ge_two">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">500</span>
+    <span class="theorem_thmtitle">LPS Graph on \(\operatorname {PSL}\) Has At Least Two Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.lpsGraphPSL_card_ge_two">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000903"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0038.html#thm:LPSRamanujan.psl2_card_ge_six">Theorem 497</a></li>
+          
+          <li><a href="sect0038.html#lem:LPSRamanujan.q_ge_five">Lemma 498</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.lpsGraphPSL_card_ge_two" class="lean_decl">LPSRamanujan.lpsGraphPSL_card_ge_two</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\). Then </p>
+<div class="displaymath" id="a0000000904">
+  \[  2 \; \leq \;  |\operatorname {PSL}(2,q)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000903">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>By Lemma&#160;<a href="sect0038.html#lem:LPSRamanujan.q_ge_five">498</a>, \(q \geq 5\). Applying Theorem&#160;<a href="sect0038.html#thm:LPSRamanujan.psl2_card_ge_six">497</a> gives \(|\operatorname {PSL}(2,q)| \geq 6 \geq 2\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.lpsGraphPGL_lambda2_le">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">501</span>
+    <span class="theorem_thmtitle">\(\lambda _2 \leq 2\sqrt{p}\) for LPS Graph on \(\operatorname {PGL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.lpsGraphPGL_lambda2_le">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000905"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0038.html#thm:LPSRamanujan.lpsGraphPGL_card_ge_two">Theorem 499</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.lpsGraphPGL_lambda2_le" class="lean_decl">LPSRamanujan.lpsGraphPGL_lambda2_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Hypothesis-based]</b> The following result is proved under explicit assumptions on the Ramanujan property and a spectral bound, which are deep results requiring algebraic geometry not available in Mathlib. </p>
+<p>Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\), and let \(x, y \in \mathbb {Z}/q\mathbb {Z}\) satisfy \(x^2 + y^2 + 1 = 0\). Let \(G = X_{p,q}^{\operatorname {PGL}}\) be the LPS graph on \(\operatorname {PGL}(2,q)\). Suppose: </p>
+<ul class="itemize">
+  <li><p><b class="bfseries">(Ramanujan hypothesis)</b> \(G\) is a Ramanujan graph of degree \(p+1\), i.e., every eigenvalue \(\lambda _i\) with \(|\lambda _i| {\lt} p+1\) satisfies \(|\lambda _i| \leq 2\sqrt{p}\). </p>
+</li>
+  <li><p><b class="bfseries">(Spectral bound hypothesis)</b> \(|\lambda _2(G)| {\lt} p+1\), where \(\lambda _2\) denotes the second-largest eigenvalue. </p>
+</li>
+</ul>
+<p> Then </p>
+<div class="displaymath" id="a0000000906">
+  \[  \lambda _2(G) \; \leq \;  2\sqrt{p}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000905">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Uses hypothesis-based assumptions: Ramanujan property and spectral bound]</b> </p>
+<p>We unfold the definition of \(\operatorname {IsRamanujan}\) in the hypothesis \(h_{\mathrm{ram}}\): for every index \(i \in \operatorname {Fin}(|\operatorname {PGL}(2,q)|)\) with \(|\lambda _i| {\lt} p+1\), we have \(|\lambda _i| \leq 2\sqrt{p}\). Set the index \(i = 1\), which is valid since \(|\operatorname {PGL}(2,q)| \geq 2\). Applying \(h_{\mathrm{ram}}\) at \(i = 1\) and using the hypothesis \(h_{\mathrm{spec}} : |\lambda _2| {\lt} p+1\) (after casting naturals to reals), we obtain \(|\lambda _2| \leq 2\sqrt{p}\). Since \(\lambda _2 \leq |\lambda _2|\), we conclude \(\lambda _2 \leq 2\sqrt{p}\). </p>
+
+  </div>
+</div>
+<p>[Assumed Hypotheses for \(\operatorname {PGL}\) Spectral Bound] <b class="bfseries"><span style="None"></span>blueFormalization note:</b> The hypothesis \(h_{\mathrm{ram}}\) (the Ramanujan property of LPS graphs) follows from the Ramanujan–Petersson conjecture for \(\operatorname {GL}(2)/\mathbb {Q}\), proved by Eichler–Igusa for weight 2 modular forms building on Deligne’s proof of the Weil conjectures (1974). The hypothesis \(h_{\mathrm{spec}}\) (\(|\lambda _2| {\lt} p+1\) for connected \((p+1)\)-regular graphs) follows from the Perron–Frobenius theorem. Both results require algebraic geometry and spectral theory not currently available in Mathlib, and are therefore taken as explicit hypotheses in this formalization.  </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.lpsGraphPSL_lambda2_le">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">502</span>
+    <span class="theorem_thmtitle">\(\lambda _2 \leq 2\sqrt{p}\) for LPS Graph on \(\operatorname {PSL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.lpsGraphPSL_lambda2_le">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000907"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0038.html#thm:LPSRamanujan.lpsGraphPSL_card_ge_two">Theorem 500</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.lpsGraphPSL_lambda2_le" class="lean_decl">LPSRamanujan.lpsGraphPSL_lambda2_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Hypothesis-based]</b> The following result is proved under explicit assumptions on the Ramanujan property and a spectral bound. </p>
+<p>Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\) and \(\left(\frac{p}{q}\right) = 1\) (i.e., \(p\) is a quadratic residue mod \(q\)), and let \(x, y \in \mathbb {Z}/q\mathbb {Z}\) satisfy \(x^2 + y^2 + 1 = 0\). Let \(G = X_{p,q}^{\operatorname {PSL}}\) be the LPS graph on \(\operatorname {PSL}(2,q)\). Given: </p>
+<ul class="itemize">
+  <li><p><b class="bfseries">(Ramanujan hypothesis)</b> \(G\) is Ramanujan of degree \(p+1\). </p>
+</li>
+  <li><p><b class="bfseries">(Spectral bound hypothesis)</b> \(|\lambda _2(G)| {\lt} p+1\). </p>
+</li>
+</ul>
+<p> Then </p>
+<div class="displaymath" id="a0000000908">
+  \[  \lambda _2(G) \; \leq \;  2\sqrt{p}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000907">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Uses hypothesis-based assumptions: Ramanujan property and spectral bound]</b> </p>
+<p>We unfold the definition of \(\operatorname {IsRamanujan}\) and apply it at index \(i = 1 \in \operatorname {Fin}(|\operatorname {PSL}(2,q)|)\), which is valid since \(|\operatorname {PSL}(2,q)| \geq 2\). From the spectral bound hypothesis \(|\lambda _2| {\lt} p+1\) (after casting), the Ramanujan condition yields \(|\lambda _2| \leq 2\sqrt{p}\). The conclusion \(\lambda _2 \leq 2\sqrt{p}\) follows since \(\lambda _2 \leq |\lambda _2|\). </p>
+
+  </div>
+</div>
+<p>[Assumed Hypotheses for \(\operatorname {PSL}\) Spectral Bound] <b class="bfseries"><span style="None"></span>blueFormalization note:</b> As for the \(\operatorname {PGL}\) case, the Ramanujan property of LPS graphs on \(\operatorname {PSL}(2,q)\) is a consequence of the Ramanujan–Petersson conjecture, proved via the Weil conjectures. The additional Legendre symbol condition \(\left(\frac{p}{q}\right) = 1\) ensures the generators of the LPS graph lift to \(\operatorname {PSL}(2,q)\). These deep results are taken as hypotheses.  </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.lpsRamanujan_PGL">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">503</span>
+    <span class="theorem_thmtitle">LPS Ramanujan Theorem for \(\operatorname {PGL}\), Combined</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.lpsRamanujan_PGL">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000909"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.matToGL">Definition 471</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGraphPGL_isRegularOfDegree">Theorem 492</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGraphPGL_isRegularOfDegree">Theorem 492</a></li>
+          
+          <li><a href="sect0038.html#thm:LPSRamanujan.lpsGraphPGL_card_ge_two">Theorem 499</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.lpsRamanujan_PGL" class="lean_decl">LPSRamanujan.lpsRamanujan_PGL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Hypothesis-based]</b> The following combined result is proved under the hypotheses of connectedness and the Ramanujan property, which are deep results from Lubotzky–Phillips–Sarnak requiring algebraic geometry not available in Mathlib. </p>
+<p>Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\), and let \(x, y \in \mathbb {Z}/q\mathbb {Z}\) satisfy \(x^2 + y^2 + 1 = 0\). Let \(G = X_{p,q}^{\operatorname {PGL}}\) be the LPS graph on \(\operatorname {PGL}(2,q)\). Given: </p>
+<ul class="itemize">
+  <li><p><b class="bfseries">(Connectedness hypothesis)</b> \(G\) is connected. </p>
+</li>
+  <li><p><b class="bfseries">(Ramanujan hypothesis)</b> \(G\) is Ramanujan of degree \(p+1\). </p>
+</li>
+</ul>
+<p> Then simultaneously: </p>
+<ol class="enumerate">
+  <li><p>\(G\) is connected, </p>
+</li>
+  <li><p>\(G\) is \((p+1)\)-regular, </p>
+</li>
+  <li><p>\(|\operatorname {PGL}(2,q)| \geq 2\), and </p>
+</li>
+  <li><p>\(G\) is a Ramanujan graph of degree \(p+1\). </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000909">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Uses hypothesis-based assumptions: connectedness and Ramanujan property]</b> </p>
+<p>We combine the hypotheses and previously established results. Connectedness follows directly from \(h_{\mathrm{conn}}\). Regularity of degree \(p+1\) follows from Theorem&#160;<a href="sect0037.html#thm:LPS.lpsGraphPGL_isRegularOfDegree">492</a>. The cardinality bound \(|\operatorname {PGL}(2,q)| \geq 2\) follows from Theorem&#160;<a href="sect0038.html#thm:LPSRamanujan.lpsGraphPGL_card_ge_two">499</a>. The Ramanujan property follows from \(h_{\mathrm{ram}}\). We package all four conclusions into a conjunction. </p>
+
+  </div>
+</div>
+<p>[Assumed Hypotheses for the Combined PGL Result] <b class="bfseries"><span style="None"></span>blueFormalization note:</b> The connectedness of \(X_{p,q}^{\operatorname {PGL}}\) follows from the fact that the generating set \(S_{p,q}\) generates \(\operatorname {PGL}(2,q)\) (Lubotzky–Phillips–Sarnak, 1988). The Ramanujan property follows from the Ramanujan–Petersson conjecture. Both require algebraic number theory and the theory of automorphic forms beyond what Mathlib currently provides; they are therefore stated as explicit hypotheses \(h_{\mathrm{conn}}\) and \(h_{\mathrm{ram}}\).  </p>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPSRamanujan.lpsRamanujan_PSL">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">504</span>
+    <span class="theorem_thmtitle">LPS Ramanujan Theorem for \(\operatorname {PSL}\), Combined</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0038.html#thm:LPSRamanujan.lpsRamanujan_PSL">#</a>
+    
+    <a class="icon proof" href="sect0038.html#a0000000910"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.matToGL">Definition 471</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGraphPSL_isRegularOfDegree">Theorem 493</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.IsRamanujan">Definition 245</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGraphPSL_isRegularOfDegree">Theorem 493</a></li>
+          
+          <li><a href="sect0038.html#thm:LPSRamanujan.lpsGraphPSL_card_ge_two">Theorem 500</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPSRamanujan.lpsRamanujan_PSL" class="lean_decl">LPSRamanujan.lpsRamanujan_PSL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Hypothesis-based]</b> Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\) and \(\left(\frac{p}{q}\right) = 1\), and let \(x, y \in \mathbb {Z}/q\mathbb {Z}\) satisfy \(x^2 + y^2 + 1 = 0\). Let \(G = X_{p,q}^{\operatorname {PSL}}\) be the LPS graph on \(\operatorname {PSL}(2,q)\). Given: </p>
+<ul class="itemize">
+  <li><p><b class="bfseries">(Connectedness hypothesis)</b> \(G\) is connected. </p>
+</li>
+  <li><p><b class="bfseries">(Ramanujan hypothesis)</b> \(G\) is Ramanujan of degree \(p+1\). </p>
+</li>
+</ul>
+<p> Then simultaneously: </p>
+<ol class="enumerate">
+  <li><p>\(G\) is connected, </p>
+</li>
+  <li><p>\(G\) is \((p+1)\)-regular, </p>
+</li>
+  <li><p>\(|\operatorname {PSL}(2,q)| \geq 2\), and </p>
+</li>
+  <li><p>\(G\) is a Ramanujan graph of degree \(p+1\). </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000910">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>blue[Uses hypothesis-based assumptions: connectedness and Ramanujan property]</b> </p>
+<p>We combine the hypotheses and previously established results. Connectedness follows from \(h_{\mathrm{conn}}\). Regularity of degree \(p+1\) follows from Theorem&#160;<a href="sect0037.html#thm:LPS.lpsGraphPSL_isRegularOfDegree">493</a>. The cardinality bound \(|\operatorname {PSL}(2,q)| \geq 2\) follows from Theorem&#160;<a href="sect0038.html#thm:LPSRamanujan.lpsGraphPSL_card_ge_two">500</a>. The Ramanujan property is \(h_{\mathrm{ram}}\). All four conclusions are packaged into a conjunction. </p>
+
+  </div>
+</div>
+<p>[Assumed Hypotheses for the Combined PSL Result] <b class="bfseries"><span style="None"></span>blueFormalization note:</b> As in the \(\operatorname {PGL}\) case, connectedness of \(X_{p,q}^{\operatorname {PSL}}\) and its Ramanujan property are consequences of the Lubotzky–Phillips–Sarnak theory and the Ramanujan–Petersson conjecture. The Legendre symbol condition \(\left(\frac{p}{q}\right) = 1\) ensures the generators lie in \(\operatorname {PSL}(2,q)\). These results are taken as hypotheses \(h_{\mathrm{conn}}\) and \(h_{\mathrm{ram}}\) because the required algebraic geometry is not available in Mathlib.  </p>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0037.html" title="Def 21: LPS Expander Graphs"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0039.html" title="Def 22: Balanced Product of Vector Spaces"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

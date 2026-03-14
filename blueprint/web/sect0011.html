@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 8: Cycle Graph</title>
+<link rel="next" href="sect0012.html" title="Def 9: Double Complex" />
+<link rel="prev" href="sect0010.html" title="Def 7: Cell Complex" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000012">11 Def 8: Cycle Graph</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CycleGraph.differential">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">86</span>
+    <span class="definition_thmtitle">Cycle Graph Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#def:CycleGraph.differential">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.differential" class="lean_decl">CycleGraph.differential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(\ell \geq 1\) be a natural number. The <em>differential</em> \(\partial _1 : \mathbb {F}_2^\ell \to \mathbb {F}_2^\ell \) of the cycle graph is the linear map defined by </p>
+<div class="displaymath" id="a0000000173">
+  \[  (\partial _1 f)(i) = f(i) + f\! \left(\lfloor (i + \ell - 1) \bmod \ell \rfloor \right)  \]
+</div>
+<p> for \(f : \operatorname {Fin}(\ell ) \to \mathbb {F}_2\) and \(i \in \operatorname {Fin}(\ell )\). On basis vectors \(e_j\), one has \(\partial _1(e_j) = e_j + e_{(j+1) \bmod \ell }\), so column \(j\) of the corresponding matrix has \(1\)-entries in rows \(j\) and \((j+1) \bmod \ell \), encoding the boundary relation \(\partial \sigma _j = \{ \tau _j, \tau _{(j+1) \bmod \ell }\} \). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CycleGraph.onesVec">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">87</span>
+    <span class="definition_thmtitle">All-Ones Vector</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#def:CycleGraph.onesVec">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.onesVec" class="lean_decl">CycleGraph.onesVec</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>all-ones vector</em> \(\mathbf{1} \in \mathbb {F}_2^\ell \) is defined by \(\mathbf{1}(i) = 1\) for all \(i \in \operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.differential_onesVec">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">88</span>
+    <span class="lemma_thmtitle">Differential Annihilates All-Ones Vector</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.differential_onesVec">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000174"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.onesVec">Definition 87</a></li>
+          
+          <li><a href="sect0001.html#thm:F2.add_self_eq_zero">Theorem 4</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.onesVec">Definition 87</a></li>
+          
+          <li><a href="sect0001.html#thm:F2.add_self_eq_zero">Theorem 4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.differential_onesVec" class="lean_decl">CycleGraph.differential_onesVec</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\partial _1(\mathbf{1}) = 0\) in \(\mathbb {F}_2^\ell \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000174">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality, it suffices to show that \((\partial _1 \mathbf{1})(i) = 0\) for each \(i \in \operatorname {Fin}(\ell )\). Unfolding the definitions, \((\partial _1 \mathbf{1})(i) = \mathbf{1}(i) + \mathbf{1}((i+\ell -1)\bmod \ell ) = 1 + 1 = 0\) in \(\mathbb {F}_2\), where the last equality holds by \(x + x = 0\) in \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.ker_differential_succ">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">89</span>
+    <span class="lemma_thmtitle">Kernel Condition Implies Adjacent Equality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.ker_differential_succ">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000175"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0001.html#thm:F2.sub_eq_add">Theorem 5</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0001.html#thm:F2.sub_eq_add">Theorem 5</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.ker_differential_succ" class="lean_decl">CycleGraph.ker_differential_succ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(f : \operatorname {Fin}(\ell ) \to \mathbb {F}_2\) satisfy \(\partial _1 f = 0\). For any \(i \in \mathbb {N}\) with \(i + 1 {\lt} \ell \), we have \(f(i+1) = f(i)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000175">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(h\) denote the hypothesis \(\partial _1 f = 0\). Evaluating at position \(i+1\), we obtain \(h_{i+1} : (\partial _1 f)(i+1) = 0\), which by the definition of the differential gives \(f(i+1) + f\! \left((i+1+\ell -1)\bmod \ell \right) = 0\). We compute \((i+1+\ell -1)\bmod \ell = (i+\ell )\bmod \ell = i\bmod \ell = i\) (since \(i {\lt} \ell \)), so after rewriting we get \(f(i+1) + f(i) = 0\). It follows that \(f(i+1) - f(i) = 0\), and since subtraction equals addition in \(\mathbb {F}_2\) (using \(\mathbb {F}_2.\mathtt{sub\_ eq\_ add}\)), this gives \(f(i+1) = f(i)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.ker_differential_const">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">90</span>
+    <span class="lemma_thmtitle">Kernel Elements Are Constant</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.ker_differential_const">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000176"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.ker_differential_succ">Lemma 89</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.ker_differential_succ">Lemma 89</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.ker_differential_const" class="lean_decl">CycleGraph.ker_differential_const</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(\partial _1 f = 0\), then \(f(i) = f(0)\) for all \(i \in \operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000176">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Write \(i = \langle n, h_n \rangle \). We proceed by induction on \(n\). In the base case \(n = 0\), the equality \(f(0) = f(0)\) holds by reflexivity. In the inductive step, assuming \(f(k) = f(0)\) for \(k\) with \(k {\lt} \ell \), we apply the lemma \(\mathtt{ker\_ differential\_ succ}\) to obtain \(f(k+1) = f(k)\), and the result follows by the inductive hypothesis. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.ker_differential_eq_span">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">91</span>
+    <span class="theorem_thmtitle">Kernel Equals Span of All-Ones Vector</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.ker_differential_eq_span">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000177"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.onesVec">Definition 87</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.ker_differential_const">Lemma 90</a></li>
+          
+          <li><a href="sect0001.html#thm:F2.add_self_eq_zero">Theorem 4</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.onesVec">Definition 87</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.ker_differential_const">Lemma 90</a></li>
+          
+          <li><a href="sect0001.html#thm:F2.add_self_eq_zero">Theorem 4</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.ker_differential_eq_span" class="lean_decl">CycleGraph.ker_differential_eq_span</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    \(\ker (\partial _1) = \operatorname {span}_{\mathbb {F}_2}\{ \mathbf{1}\} \) as submodules of \(\mathbb {F}_2^\ell \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000177">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality, it suffices to show for all \(f\) that \(f \in \ker (\partial _1)\) if and only if \(f \in \operatorname {span}\{ \mathbf{1}\} \), i.e., \(\partial _1 f = 0 \Leftrightarrow \exists \,  c \in \mathbb {F}_2,\  f = c \cdot \mathbf{1}\). </p>
+<p>\((\Rightarrow )\): Suppose \(\partial _1 f = 0\). We claim \(f = f(0) \cdot \mathbf{1}\). By extensionality at \(i\), we need \(f(i) = f(0) \cdot \mathbf{1}(i) = f(0) \cdot 1 = f(0)\). This follows from \(\mathtt{ker\_ differential\_ const}\), applying the symmetry of the equality. </p>
+<p>\((\Leftarrow )\): Suppose \(f = c \cdot \mathbf{1}\) for some \(c \in \mathbb {F}_2\). Then for each \(i\), \((\partial _1 f)(i) = (\partial _1(c \cdot \mathbf{1}))(i) = c \cdot (\partial _1 \mathbf{1})(i) = c \cdot (c + c) = c \cdot 0\). More precisely, unfolding the differential, \((\partial _1(c\cdot \mathbf{1}))(i) = c\cdot \mathbf{1}(i) + c\cdot \mathbf{1}((i+\ell -1)\bmod \ell ) = c + c = 0\) by \(x + x = 0\) in \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.onesVec_ne_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">92</span>
+    <span class="lemma_thmtitle">All-Ones Vector Is Nonzero</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.onesVec_ne_zero">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000178"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.onesVec">Definition 87</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.onesVec">Definition 87</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.onesVec_ne_zero" class="lean_decl">CycleGraph.onesVec_ne_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(\ell \geq 1\), then \(\mathbf{1} \neq 0\) in \(\mathbb {F}_2^\ell \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000178">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose for contradiction that \(\mathbf{1} = 0\). Evaluating both sides at \(\langle 0, h_\ell \rangle \in \operatorname {Fin}(\ell )\) (which exists since \(\ell \geq 1\)), we obtain \(\mathbf{1}(0) = 1 = 0\), which is a contradiction since \(1 \neq 0\) in \(\mathbb {F}_2\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.finrank_ker_differential">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">93</span>
+    <span class="theorem_thmtitle">Kernel Dimension Is One</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.finrank_ker_differential">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000179"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#thm:CycleGraph.ker_differential_eq_span">Theorem 91</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.onesVec_ne_zero">Lemma 92</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.ker_differential_eq_span">Theorem 91</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.onesVec_ne_zero">Lemma 92</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.finrank_ker_differential" class="lean_decl">CycleGraph.finrank_ker_differential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\ell \geq 1\), then \(\dim _{\mathbb {F}_2} \ker (\partial _1) = 1\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000179">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We rewrite using \(\mathtt{ker\_ differential\_ eq\_ span}\), which gives \(\ker (\partial _1) = \operatorname {span}\{ \mathbf{1}\} \). Since \(\mathbf{1} \neq 0\) by \(\mathtt{onesVec\_ ne\_ zero}\) (using \(\ell \geq 1\)), the span of a single nonzero vector in a vector space over a field has dimension \(1\) (by \(\mathtt{finrank\_ span\_ singleton}\)). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CycleGraph.cellType">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">94</span>
+    <span class="definition_thmtitle">Cell Type of the Cycle Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#def:CycleGraph.cellType">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.cellType" class="lean_decl">CycleGraph.cellType</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>cell type</em> function for the cycle graph assigns to each integer dimension \(n\) the type of \(n\)-cells: </p>
+<div class="displaymath" id="a0000000180">
+  \[  \operatorname {cellType}(\ell , n) = \begin{cases}  \operatorname {Fin}(\ell ) &  \text{if } n = 0,\\ \operatorname {Fin}(\ell ) &  \text{if } n = 1,\\ \varnothing &  \text{otherwise.}\end{cases}  \]
+</div>
+<p> Thus the cycle graph has \(\ell \) vertices (0-cells) and \(\ell \) edges (1-cells), and no cells in any other dimension. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CycleGraph.cellBdry">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">95</span>
+    <span class="definition_thmtitle">Boundary Map of the Cycle Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#def:CycleGraph.cellBdry">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.cellBdry" class="lean_decl">CycleGraph.cellBdry</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>boundary map</em> for the cycle graph \(C_\ell \) assigns to each cell its boundary: </p>
+<ul class="itemize">
+  <li><p>For a 1-cell \(\sigma _i\) (with \(i \in \operatorname {Fin}(\ell )\)): \(\partial \sigma _i = \{ \tau _i,\,  \tau _{(i+1)\bmod \ell }\}  \subseteq \operatorname {Fin}(\ell )\), encoding the incidence relation of each edge with its two endpoint vertices. </p>
+</li>
+  <li><p>For a 0-cell: \(\partial \tau _i = \varnothing \) (the boundary of a vertex is empty, valued in \(\operatorname {cellType}(\ell ,-1) = \varnothing \)). </p>
+</li>
+  <li><p>For cells in all other dimensions: the boundary is vacuously empty (the cell type is \(\varnothing \)). </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.cellBdry_bdry">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">96</span>
+    <span class="theorem_thmtitle">Boundary-of-Boundary Vanishes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.cellBdry_bdry">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000181"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellBdry">Definition 95</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellBdry">Definition 95</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.cellBdry_bdry" class="lean_decl">CycleGraph.cellBdry_bdry</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For all \(n \in \mathbb {Z}\), all \(n\)-cells \(\sigma \), and all \((n-2)\)-cells \(\rho \), the number of \((n-1)\)-cells in \(\partial \sigma \) whose boundary contains \(\rho \) is even. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000181">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We verify by cases on \(n\). For \(n = 1\): the target type \(\operatorname {cellType}(\ell , -1) = \varnothing \), so \(\rho : \varnothing \) is absurd; the statement holds vacuously. For \(n = 0\): similarly, \(\operatorname {cellType}(\ell , -2) = \varnothing \) gives an absurd \(\rho \). For \(n = k+2\) with \(k \geq 0\): \(\operatorname {cellType}(\ell , k+2) = \varnothing \), so \(\sigma : \varnothing \) is absurd. For \(n {\lt} 0\): similarly \(\operatorname {cellType}(\ell , n) = \varnothing \) gives an absurd \(\sigma \). In all cases the condition is vacuously satisfied. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CycleGraph.cycleGraph">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">97</span>
+    <span class="definition_thmtitle">Cycle Graph as a Cell Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#def:CycleGraph.cycleGraph">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellBdry">Definition 95</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.cellBdry_bdry">Theorem 96</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.cycleGraph" class="lean_decl">CycleGraph.cycleGraph</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>cycle graph</em> \(C_\ell \) is the cell complex (Definition&#160;<a href="sect0010.html#def:CellComplex">81</a>) with: </p>
+<ul class="itemize">
+  <li><p>cells given by \(\operatorname {cellType}(\ell )\): \(\ell \) vertices (0-cells) and \(\ell \) edges (1-cells), all indexed by \(\operatorname {Fin}(\ell )\); </p>
+</li>
+  <li><p>boundary map given by \(\operatorname {cellBdry}(\ell )\): \(\partial \sigma _i = \{ \tau _i, \tau _{(i+1)\bmod \ell }\} \); </p>
+</li>
+  <li><p>the chain complex condition \(\partial \circ \partial = 0\) verified by \(\mathtt{cellBdry\_ bdry}\). </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.cycleGraph_cells_one">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">98</span>
+    <span class="theorem_thmtitle">1-Cells of Cycle Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.cycleGraph_cells_one">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000182"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.cycleGraph_cells_one" class="lean_decl">CycleGraph.cycleGraph_cells_one</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The type of 1-cells of \(C_\ell \) equals \(\operatorname {Fin}(\ell )\), i.e., \((C_\ell ).\mathtt{cells}(1) = \operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000182">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, since \(\operatorname {cellType}(\ell , 1) = \operatorname {Fin}(\ell )\) by definition. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.cycleGraph_cells_zero">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">99</span>
+    <span class="theorem_thmtitle">0-Cells of Cycle Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.cycleGraph_cells_zero">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000183"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cellType">Definition 94</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.cycleGraph_cells_zero" class="lean_decl">CycleGraph.cycleGraph_cells_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The type of 0-cells of \(C_\ell \) equals \(\operatorname {Fin}(\ell )\), i.e., \((C_\ell ).\mathtt{cells}(0) = \operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000183">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, since \(\operatorname {cellType}(\ell , 0) = \operatorname {Fin}(\ell )\) by definition. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.pred_mod_succ">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">100</span>
+    <span class="lemma_thmtitle">Predecessor-Successor Modular Identity</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.pred_mod_succ">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000184"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.pred_mod_succ" class="lean_decl">CycleGraph.pred_mod_succ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For \(\ell \geq 1\) and \(i \in \operatorname {Fin}(\ell )\), we have \(\left((i + \ell - 1)\bmod \ell + 1\right)\bmod \ell = i\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000184">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We rewrite using \(\mathtt{Nat.add\_ mod}\) and \(\mathtt{Nat.mod\_ mod}\). Observe that \((i + \ell - 1) + 1 = i + 1 \cdot \ell \), so \((i + \ell - 1 + 1) \bmod \ell = (i + \ell )\bmod \ell = i\bmod \ell = i\) (since \(i {\lt} \ell \)). By \(\mathtt{Nat.add\_ mul\_ mod\_ self\_ right}\) and \(\mathtt{Nat.mod\_ eq\_ of\_ lt}\), the claim follows. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.fin_ne_succ_mod">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">101</span>
+    <span class="lemma_thmtitle">No Element Equals Its Successor Modulo \(\ell \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.fin_ne_succ_mod">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000185"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.fin_ne_succ_mod" class="lean_decl">CycleGraph.fin_ne_succ_mod</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For \(\ell \geq 2\) and \(x \in \operatorname {Fin}(\ell )\), we have \(x \neq \langle (x + 1)\bmod \ell ,\,  \cdot \rangle \) as elements of \(\operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000185">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Suppose for contradiction that \(x = \langle (x+1)\bmod \ell , \cdot \rangle \), i.e., \(x = (x+1)\bmod \ell \). We split on whether \(x + 1 {\lt} \ell \) or \(x + 1 \geq \ell \). If \(x + 1 {\lt} \ell \), then \((x+1)\bmod \ell = x+1\), giving \(x = x+1\), a contradiction by integer arithmetic. If \(x + 1 \geq \ell \), then since \(x {\lt} \ell \) we have \(x + 1 = \ell \), so \((x+1)\bmod \ell = 0\), giving \(x = 0\) and thus \(\ell = 1\), contradicting \(\ell \geq 2\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.fin_ne_pred_mod">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">102</span>
+    <span class="lemma_thmtitle">No Element Equals Its Predecessor Modulo \(\ell \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.fin_ne_pred_mod">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000186"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.fin_ne_pred_mod" class="lean_decl">CycleGraph.fin_ne_pred_mod</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For \(\ell \geq 2\) and \(i \in \operatorname {Fin}(\ell )\), we have \(i \neq \langle (i + \ell - 1)\bmod \ell ,\,  \cdot \rangle \) as elements of \(\operatorname {Fin}(\ell )\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000186">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Suppose for contradiction that \(i = (i + \ell - 1)\bmod \ell \). We split on \(i = 0\) and \(i \geq 1\). If \(i = 0\): \((0 + \ell - 1)\bmod \ell = (\ell - 1)\bmod \ell = \ell - 1\) (since \(\ell - 1 {\lt} \ell \)), giving \(0 = \ell - 1\), i.e., \(\ell = 1\), contradicting \(\ell \geq 2\). If \(i \geq 1\): \(i + \ell - 1 = (i-1) + 1\cdot \ell \), so by \(\mathtt{Nat.add\_ mul\_ mod\_ self\_ right}\) we get \((i+\ell -1)\bmod \ell = (i-1)\bmod \ell = i-1\) (since \(i-1 {\lt} \ell \)), giving \(i = i-1\), a contradiction. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.differentialMap_filter_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">103</span>
+    <span class="lemma_thmtitle">Filter Set for Differential Equals Two-Element Set</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.differentialMap_filter_eq">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000187"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.pred_mod_succ">Lemma 100</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.fin_ne_succ_mod">Lemma 101</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.pred_mod_succ">Lemma 100</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.fin_ne_succ_mod">Lemma 101</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.differentialMap_filter_eq" class="lean_decl">CycleGraph.differentialMap_filter_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(\ell \geq 2\) and \(i \in \operatorname {Fin}(\ell )\), letting \(j = \langle (i + \ell - 1)\bmod \ell ,\,  \cdot \rangle \), the set of 1-cells \(\sigma \) of \(C_\ell \) whose boundary contains \(i\) equals \(\{ i, j\} \): </p>
+<div class="displaymath" id="a0000000188">
+  \[  \Bigl\{ \sigma \in \operatorname {Fin}(\ell ) \; \Big|\;  i \in \partial \sigma \Bigr\}  = \{ i,\,  j\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000187">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality, for any \(\sigma \in \operatorname {Fin}(\ell )\) we show \(i \in \partial \sigma \Leftrightarrow \sigma \in \{ i, j\} \). </p>
+<p>Recall \(\partial \sigma = \{ \sigma , \langle (\sigma +1)\bmod \ell ,\cdot \rangle \} \), so \(i \in \partial \sigma \) iff \(i = \sigma \) or \(i = \langle (\sigma +1)\bmod \ell ,\cdot \rangle \). </p>
+<p>\((\Rightarrow )\): If \(i = \sigma \), then \(\sigma \in \{ i,j\} \) directly (as the left member). If \(i = \langle (\sigma +1)\bmod \ell , \cdot \rangle \), then \(i = (\sigma +1)\bmod \ell \), i.e., \(\sigma = (i+\ell -1)\bmod \ell = j\) by the modular identity \(\mathtt{pred\_ mod\_ succ}\), so \(\sigma \in \{ i,j\} \) as the right member. </p>
+<p>\((\Leftarrow )\): If \(\sigma = i\), then \(i = \sigma \in \partial \sigma \) directly. If \(\sigma = j = \langle (i+\ell -1)\bmod \ell ,\cdot \rangle \), then \(\langle (\sigma +1)\bmod \ell ,\cdot \rangle = \langle (j+1)\bmod \ell ,\cdot \rangle = i\) by \(\mathtt{pred\_ mod\_ succ}\), so \(i \in \partial j\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.differentialMap_eq_differential">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">104</span>
+    <span class="theorem_thmtitle">Cell Complex Differential Agrees with Algebraic Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.differentialMap_eq_differential">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000189"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.differentialMap_filter_eq">Lemma 103</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.fin_ne_pred_mod">Lemma 102</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.cycleGraph">Definition 97</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.differentialMap_filter_eq">Lemma 103</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.fin_ne_pred_mod">Lemma 102</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.differentialMap_eq_differential" class="lean_decl">CycleGraph.differentialMap_eq_differential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For \(\ell \geq 2\), the cell complex differential \(\partial _1^{\mathrm{cell}} : \mathbb {F}_2^{C_1} \to \mathbb {F}_2^{C_0}\) of \(C_\ell \) (as defined in Definition&#160;<a href="sect0010.html#def:CellComplex">81</a>) equals the algebraic map \(\partial _1\) of Definition&#160;<a href="sect0011.html#def:CycleGraph.differential">86</a>: </p>
+<div class="displaymath" id="a0000000190">
+  \[  (C_\ell ).\mathtt{differentialMap}(1) = \partial _1.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000189">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality of linear maps and of functions, it suffices to show that for every \(f \in \mathbb {F}_2^\ell \) and every \(i \in \operatorname {Fin}(\ell )\), the two maps agree at \((f, i)\). We apply \(\mathtt{CellComplex.differentialMap\_ apply}\) to rewrite the left side as a sum: </p>
+<div class="displaymath" id="a0000000191">
+  \[  \bigl((C_\ell ).\mathtt{differentialMap}(1)\,  f\bigr)(i) = \sum _{\sigma \in \operatorname {univ},\,  i \in \partial \sigma } f(\sigma ).  \]
+</div>
+<p> Setting \(j = \langle (i+\ell -1)\bmod \ell ,\cdot \rangle \) and applying \(\mathtt{differentialMap\_ filter\_ eq}\), the filter set equals \(\{ i, j\} \). Since \(i \neq j\) by \(\mathtt{fin\_ ne\_ pred\_ mod}\) (using \(\ell \geq 2\)), the sum over the pair \(\{ i, j\} \) equals \(f(i) + f(j)\) by \(\mathtt{Finset.sum\_ pair}\). This is precisely \((\partial _1 f)(i) = f(i) + f\! \left((i+\ell -1)\bmod \ell \right)\), completing the proof. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:CycleGraph.finrank_F2_fin">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">105</span>
+    <span class="lemma_thmtitle">Dimension of \(\mathbb {F}_2^\ell \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#lem:CycleGraph.finrank_F2_fin">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000192"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.finrank_F2_fin" class="lean_decl">CycleGraph.finrank_F2_fin</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\dim _{\mathbb {F}_2}(\operatorname {Fin}(\ell ) \to \mathbb {F}_2) = \ell \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000192">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows directly from \(\mathtt{Module.finrank\_ fin\_ fun}\), which gives \(\dim _F(F^n) = n\) for any field \(F\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.finrank_range_differential">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">106</span>
+    <span class="theorem_thmtitle">Image Dimension Is \(\ell - 1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.finrank_range_differential">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000193"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_ker_differential">Theorem 93</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.finrank_F2_fin">Lemma 105</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_ker_differential">Theorem 93</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.finrank_F2_fin">Lemma 105</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.finrank_range_differential" class="lean_decl">CycleGraph.finrank_range_differential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\ell \geq 1\), then \(\dim _{\mathbb {F}_2}\operatorname {im}(\partial _1) = \ell - 1\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000193">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By the rank–nullity theorem (\(\mathtt{LinearMap.finrank\_ range\_ add\_ finrank\_ ker}\)): </p>
+<div class="displaymath" id="a0000000194">
+  \[  \dim \operatorname {im}(\partial _1) + \dim \ker (\partial _1) = \dim \mathbb {F}_2^\ell .  \]
+</div>
+<p> Substituting \(\dim \mathbb {F}_2^\ell = \ell \) (by \(\mathtt{finrank\_ F2\_ fin}\)) and \(\dim \ker (\partial _1) = 1\) (by \(\mathtt{finrank\_ ker\_ differential}\), using \(\ell \geq 1\)), we obtain \(\dim \operatorname {im}(\partial _1) + 1 = \ell \), hence \(\dim \operatorname {im}(\partial _1) = \ell - 1\) by integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.dim_H1_cycleGraph">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">107</span>
+    <span class="theorem_thmtitle">First Homology Dimension of the Cycle Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.dim_H1_cycleGraph">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000195"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_ker_differential">Theorem 93</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_ker_differential">Theorem 93</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.dim_H1_cycleGraph" class="lean_decl">CycleGraph.dim_H1_cycleGraph</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\ell \geq 1\), then \(\dim _{\mathbb {F}_2} H_1(C_\ell ) = 1\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000195">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(C_\ell \) has no 2-cells, the image of \(\partial _2\) is zero, so \(H_1(C_\ell ) = \ker (\partial _1) / \operatorname {im}(\partial _2) \cong \ker (\partial _1)\). Thus \(\dim H_1(C_\ell ) = \dim \ker (\partial _1) = 1\) by \(\mathtt{finrank\_ ker\_ differential}\) (using \(\ell \geq 1\)). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.dim_H0_cycleGraph">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">108</span>
+    <span class="theorem_thmtitle">Zeroth Homology Dimension of the Cycle Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.dim_H0_cycleGraph">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000196"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_range_differential">Theorem 106</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.finrank_F2_fin">Lemma 105</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_range_differential">Theorem 106</a></li>
+          
+          <li><a href="sect0011.html#lem:CycleGraph.finrank_F2_fin">Lemma 105</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.dim_H0_cycleGraph" class="lean_decl">CycleGraph.dim_H0_cycleGraph</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\ell \geq 1\), then \(\dim _{\mathbb {F}_2}\left(\mathbb {F}_2^\ell \big/ \operatorname {im}(\partial _1)\right) = 1\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000196">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By \(\mathtt{Submodule.finrank\_ quotient\_ add\_ finrank}\): </p>
+<div class="displaymath" id="a0000000197">
+  \[  \dim \left(\mathbb {F}_2^\ell / \operatorname {im}(\partial _1)\right) + \dim \operatorname {im}(\partial _1) = \dim \mathbb {F}_2^\ell .  \]
+</div>
+<p> Substituting \(\dim \mathbb {F}_2^\ell = \ell \) (by \(\mathtt{finrank\_ F2\_ fin}\)) and \(\dim \operatorname {im}(\partial _1) = \ell - 1\) (by \(\mathtt{finrank\_ range\_ differential}\), using \(\ell \geq 1\)), we get \(\dim H_0 + (\ell - 1) = \ell \), so \(\dim H_0 = 1\) by integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CycleGraph.repetitionCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">109</span>
+    <span class="definition_thmtitle">Repetition Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#def:CycleGraph.repetitionCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.ofParityCheck">Definition 45</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.repetitionCode" class="lean_decl">CycleGraph.repetitionCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>repetition code</em> of length \(\ell \) is the classical code (Definition&#160;<a href="sect0006.html#def:ClassicalCode">41</a>) defined by </p>
+<div class="displaymath" id="a0000000198">
+  \[  \operatorname {repetitionCode}(\ell ) = \mathtt{ClassicalCode.ofParityCheck}(\partial _1),  \]
+</div>
+<p> i.e., it is the classical code whose codeword space is \(\ker (\partial _1) = \operatorname {span}\{ \mathbf{1}\}  \subseteq \mathbb {F}_2^\ell \). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.repetitionCode_eq_ker">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">110</span>
+    <span class="theorem_thmtitle">Repetition Code Equals Kernel</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.repetitionCode_eq_ker">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000199"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.repetitionCode">Definition 109</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.repetitionCode">Definition 109</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.differential">Definition 86</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.repetitionCode_eq_ker" class="lean_decl">CycleGraph.repetitionCode_eq_ker</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The codeword space of the repetition code equals the kernel of \(\partial _1\): </p>
+<div class="displaymath" id="a0000000200">
+  \[  \operatorname {repetitionCode}(\ell ).\mathtt{code} = \ker (\partial _1).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000199">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity, as \(\mathtt{ClassicalCode.ofParityCheck}(\partial _1).\mathtt{code}\) is defined to be \(\ker (\partial _1)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CycleGraph.repetitionCode_dimension">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">111</span>
+    <span class="theorem_thmtitle">Repetition Code Has Dimension One</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#thm:CycleGraph.repetitionCode_dimension">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000201"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0011.html#def:CycleGraph.repetitionCode">Definition 109</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_ker_differential">Theorem 93</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.repetitionCode_eq_ker">Theorem 110</a></li>
+          
+          <li><a href="sect0011.html#def:CycleGraph.repetitionCode">Definition 109</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.finrank_ker_differential">Theorem 93</a></li>
+          
+          <li><a href="sect0011.html#thm:CycleGraph.repetitionCode_eq_ker">Theorem 110</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CycleGraph.repetitionCode_dimension" class="lean_decl">CycleGraph.repetitionCode_dimension</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(\ell \geq 1\), then \(\operatorname {repetitionCode}(\ell ).\mathtt{dimension} = 1\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000201">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding \(\mathtt{ClassicalCode.dimension}\), the dimension is defined as \(\dim _{\mathbb {F}_2}(\mathtt{code})\). Rewriting by \(\mathtt{repetitionCode\_ eq\_ ker}\), this becomes \(\dim _{\mathbb {F}_2}\ker (\partial _1)\), which equals \(1\) by \(\mathtt{finrank\_ ker\_ differential}\) using \(\ell \geq 1\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0010.html" title="Def 7: Cell Complex"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0012.html" title="Def 9: Double Complex"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

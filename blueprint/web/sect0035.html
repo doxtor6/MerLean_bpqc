@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 10: Gilbert–Varshamov Plus</title>
+<link rel="next" href="sect0036.html" title="Def 20: Cayley Graph" />
+<link rel="prev" href="sect0034.html" title="Thm 9: Expander Bit Degree" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000036">35 Thm 10: Gilbert–Varshamov Plus</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:gv_threshold_pos">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">422</span>
+    <span class="lemma_thmtitle">GV Threshold Positivity</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:gv_threshold_pos">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000799"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/gv_threshold_pos" class="lean_decl">gv_threshold_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta {\lt} 11/100\). Then </p>
+<div class="displaymath" id="a0000000800">
+  \[  0 {\lt} \frac{2}{1/2 - h(\delta )},  \]
+</div>
+<p> where \(h(\delta )\) denotes the binary entropy function. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000799">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We first obtain \(h(\delta ) {\lt} 1/2\) by applying \(\texttt{binaryEntropy\_ lt\_ half}\) to the hypotheses \(0 {\lt} \delta \) and \(\delta {\lt} 11/100\). The result then follows by positivity of the numerator \(2 {\gt} 0\) (by numerical computation) and positivity of the denominator \(1/2 - h(\delta ) {\gt} 0\) (by linear arithmetic from \(h(\delta ) {\lt} 1/2\)). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:gv_n_large">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">423</span>
+    <span class="lemma_thmtitle">GV Lower Bound on \(n\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:gv_n_large">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000801"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/gv_n_large" class="lean_decl">gv_n_large</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta {\lt} 11/100\), and let \(n \in \mathbb {N}\). If </p>
+<div class="displaymath" id="a0000000802">
+  \[  n {\gt} \frac{2}{1/2 - h(\delta )},  \]
+</div>
+<p> then \((1/2 - h(\delta )) \cdot n {\gt} 2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000801">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> From \(\texttt{binaryEntropy\_ lt\_ half}\) applied to \(0 {\lt} \delta \) and \(\delta {\lt} 11/100\), we have \(h(\delta ) {\lt} 1/2\), so the gap \(0 {\lt} 1/2 - h(\delta )\) holds by linear arithmetic. Rewriting the hypothesis \(n {\gt} 2/(1/2 - h(\delta ))\) via \(\texttt{div\_ lt\_ iff}\) using this positivity, we obtain \(2 {\lt} (1/2 - h(\delta )) \cdot n\), and the conclusion follows by linear arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:gv_k_exists">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">424</span>
+    <span class="lemma_thmtitle">Existence of \(k\) in GV Range</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:gv_k_exists">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000803"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/gv_k_exists" class="lean_decl">gv_k_exists</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta {\lt} 11/100\), and let \(n \in \mathbb {N}\) with \(n {\gt} 2/(1/2 - h(\delta ))\). Then there exists \(k \in \mathbb {N}\) such that: </p>
+<div class="displaymath" id="a0000000804">
+  \[  \frac{n}{2} {\lt} k, \quad k + 1 {\lt} (1 - h(\delta ))\cdot n, \quad k {\lt} n.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000803">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We set \(k = \lfloor n/2 \rfloor + 1\). From \(\texttt{binaryEntropy\_ lt\_ half}\) we have \(h(\delta ) {\lt} 1/2\), and by Lemma&#160;<a href="sect0035.html#lem:gv_n_large">423</a> we have \((1/2 - h(\delta )) \cdot n {\gt} 2\), which gives \(n/2 + 1 {\lt} (1 - h(\delta ))\cdot n - 1\), hence \(n/2 + 1 + 1 {\lt} (1 - h(\delta )) \cdot n\). </p>
+<p>We verify each condition for \(k = \lfloor n/2 \rfloor + 1\): </p>
+<p><i class="itshape">Lower bound</i>: Using \(\lfloor n/2 \rfloor \leq n/2\) (from \(\texttt{Nat.cast\_ div\_ le}\)) and \(n {\lt} 2(\lfloor n/2 \rfloor + 1)\) (by integer arithmetic), pushing casts and applying linear arithmetic yields \(n/2 {\lt} k\). </p>
+<p><i class="itshape">Upper bound</i>: By the same cast inequalities and the gap \(n/2 + 1 {\lt} (1-h(\delta )) \cdot n - 1\), linear arithmetic gives \(k + 1 {\lt} (1 - h(\delta )) \cdot n\). </p>
+<p><i class="itshape">Strict bound \(k {\lt} n\)</i>: We argue by contradiction. If \(n \leq k\), then integer arithmetic gives \(n \leq 2\). One then shows \(h(\delta ) {\gt} 0\) (by expanding the definition: since \(0 {\lt} \delta {\lt} 1/2\), both \(\log _2 \delta {\lt} 0\) and \(\log _2(1-\delta ) {\lt} 0\), so \(h(\delta ) = -\delta \log _2 \delta - (1-\delta )\log _2(1-\delta ) {\gt} 0\) via nonlinear arithmetic). With \(n \leq 2\), we get \((1/2 - h(\delta )) \cdot n \leq 1\), contradicting \((1/2 - h(\delta )) \cdot n {\gt} 2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:evalMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">425</span>
+    <span class="definition_thmtitle">Evaluation Linear Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#def:evalMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/evalMap" class="lean_decl">evalMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For \(n, r \in \mathbb {N}\) and a vector \(v \in \mathbb {F}_2^n\), the <em>evaluation map</em> at \(v\) is the linear map </p>
+<div class="displaymath" id="a0000000805">
+  \[  \operatorname {eval}_v : \operatorname {Hom}_{\mathbb {F}_2}(\mathbb {F}_2^n, \mathbb {F}_2^r) \to \mathbb {F}_2^r, \quad \phi \mapsto \phi (v).  \]
+</div>
+<p> This is given by \(\texttt{LinearMap.apply$_l$}\;  v\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:evalMap_apply">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">426</span>
+    <span class="lemma_thmtitle">Evaluation Map Application</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:evalMap_apply">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000806"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/evalMap_apply" class="lean_decl">evalMap_apply</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(v \in \mathbb {F}_2^n\) and \(\phi \in \operatorname {Hom}_{\mathbb {F}_2}(\mathbb {F}_2^n, \mathbb {F}_2^r)\), we have \(\operatorname {eval}_v(\phi ) = \phi (v)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000806">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately by unfolding the definition of \(\operatorname {eval}_v\) as \(\texttt{LinearMap.apply$_l$}\;  v\) and simplifying. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:evalMap_surjective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">427</span>
+    <span class="lemma_thmtitle">Surjectivity of Evaluation Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:evalMap_surjective">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000807"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_apply">Lemma 426</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/evalMap_surjective" class="lean_decl">evalMap_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(v \in \mathbb {F}_2^n\) with \(v \neq 0\), the evaluation map \(\operatorname {eval}_v\) is surjective. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000807">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(w \in \mathbb {F}_2^r\) be arbitrary. Since \(v \neq 0\), there exists an index \(j\) with \(v_j \neq 0\). By case analysis on \(\mathbb {F}_2\) (using \(\texttt{decide}\)), every element of \(\mathbb {F}_2\) is \(0\) or \(1\), so \(v_j = 1\). </p>
+<p>We construct \(\phi = (\texttt{LinearMap.proj}\;  j) \cdot _r w\), i.e. the linear map sending \(e_j \mapsto w\) and all other standard basis vectors to \(0\). Then \(\phi (v) = v_j \cdot w = 1 \cdot w = w\), so \(\operatorname {eval}_v(\phi ) = w\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:evalMap_ker_finrank">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">428</span>
+    <span class="lemma_thmtitle">Kernel Rank of Evaluation Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:evalMap_ker_finrank">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000808"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_surjective">Lemma 427</a></li>
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_surjective">Lemma 427</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/evalMap_ker_finrank" class="lean_decl">evalMap_ker_finrank</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(v \in \mathbb {F}_2^n\) with \(v \neq 0\), </p>
+<div class="displaymath" id="a0000000809">
+  \[  \operatorname {finrank}_{\mathbb {F}_2}(\ker \operatorname {eval}_v) = nr - r.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000808">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By Lemma&#160;<a href="sect0035.html#lem:evalMap_surjective">427</a>, \(\operatorname {eval}_v\) is surjective. Applying the rank–nullity theorem (\(\texttt{LinearMap.finrank\_ range\_ add\_ finrank\_ ker}\)), we have </p>
+<div class="displaymath" id="a0000000810">
+  \[  \operatorname {finrank}(\operatorname {range}(\operatorname {eval}_v)) + \operatorname {finrank}(\ker \operatorname {eval}_v) = \operatorname {finrank}(\operatorname {Hom}(\mathbb {F}_2^n, \mathbb {F}_2^r)).  \]
+</div>
+<p> Since \(\operatorname {eval}_v\) is surjective, \(\operatorname {range}(\operatorname {eval}_v) = \mathbb {F}_2^r\) so its rank is \(r\). By the formula for the finrank of a Hom space (\(\texttt{Module.finrank\_ linearMap}\)) the total dimension is \(nr\). Hence \(\operatorname {finrank}(\ker \operatorname {eval}_v) = nr - r\), which follows by integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:card_ker_evalMap">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">429</span>
+    <span class="lemma_thmtitle">Cardinality of Kernel of Evaluation Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:card_ker_evalMap">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000811"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_ker_finrank">Lemma 428</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_surjective">Lemma 427</a></li>
+          
+          <li><a href="sect0035.html#def:evalMap">Definition 425</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_ker_finrank">Lemma 428</a></li>
+          
+          <li><a href="sect0035.html#lem:evalMap_surjective">Lemma 427</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/card_ker_evalMap" class="lean_decl">card_ker_evalMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(v \in \mathbb {F}_2^n\) with \(v \neq 0\), </p>
+<div class="displaymath" id="a0000000812">
+  \[  |\ker \operatorname {eval}_v| \cdot 2^r = |\operatorname {Hom}_{\mathbb {F}_2}(\mathbb {F}_2^n, \mathbb {F}_2^r)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000811">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We apply \(\texttt{Module.card\_ eq\_ pow\_ finrank}\) to both sides. For the kernel, its cardinality is \(2^{nr - r}\) by Lemma&#160;<a href="sect0035.html#lem:evalMap_ker_finrank">428</a>. For the Hom space, its cardinality is \(2^{nr}\). Thus the left side is \(2^{nr - r} \cdot 2^r = 2^{nr}\). We verify that \(r \leq nr\) (since \(n {\gt} 0\), which follows from \(v \neq 0\) implying \(n\) is a singleton or larger), and conclude by integer arithmetic that \(nr - r + r = nr\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:exists_good_map">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">430</span>
+    <span class="theorem_thmtitle">Axiom: Existence of Good Linear Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#thm:exists_good_map">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_good_map" class="lean_decl">exists_good_map</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(n, r \in \mathbb {N}\) with \(0 {\lt} r \leq n\), and let \(t \in \mathbb {R}\). Suppose </p>
+<div class="displaymath" id="a0000000813">
+  \[  \bigl|\operatorname {Ball}(n, t-1)\bigr| {\lt} 2^r.  \]
+</div>
+<p> Then there exists a linear map \(\phi : \mathbb {F}_2^n \to \mathbb {F}_2^r\) such that for every nonzero \(v \in \mathbb {F}_2^n\) with \(\operatorname {wt}(v) {\lt} t\), we have \(\phi (v) \neq 0\). </p>
+<p><i class="itshape">Note: This is stated as an axiom because the full probabilistic counting argument was not completed in the formalization. The argument follows the probabilistic method: a uniformly random linear map avoids each bad vector \(v\) with probability \(1 - 2^{-r}\), and a union bound over the \(|\operatorname {Ball}(n,t-1)|\) bad vectors yields existence of a good map when the ball is smaller than \(2^r\).</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:exists_good_surjective_map">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">431</span>
+    <span class="theorem_thmtitle">Axiom: Existence of Good Surjective Map with Both Distance Bounds</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#thm:exists_good_surjective_map">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.ofParityCheck">Definition 45</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_good_surjective_map" class="lean_decl">exists_good_surjective_map</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(n, r \in \mathbb {N}\) with \(0 {\lt} r \leq n\), and let \(t \in \mathbb {R}\). Suppose </p>
+<div class="displaymath" id="a0000000814">
+  \[  \bigl|\operatorname {Ball}(n, t-1)\bigr| {\lt} 2^r \quad \text{and} \quad \bigl|\operatorname {Ball}(n, t-1)\bigr| {\lt} 2^{n-r}.  \]
+</div>
+<p> Then there exists a surjective linear map \(\phi : \mathbb {F}_2^n \to \mathbb {F}_2^r\) such that: </p>
+<ol class="enumerate">
+  <li><p>For every nonzero \(v \in \mathbb {F}_2^n\) with \(\operatorname {wt}(v) {\lt} t\), we have \(\phi (v) \neq 0\). </p>
+</li>
+  <li><p>For every \(w \in (\ker \phi )^\perp \) with \(w \neq 0\), we have \(\operatorname {wt}(w) \geq t\). </p>
+</li>
+</ol>
+<p><i class="itshape">Note: This extends <span class="ttfamily">exists_good_map</span> by simultaneously bounding both the distance and the dual-distance conditions via a union bound: the probability of a bad distance event plus the probability of a bad dual-distance event is less than \(1\), and any map satisfying the dual condition is automatically surjective (otherwise some nonzero \(y\) has \(\phi ^\top (y) = 0\), which has weight \(0 {\lt} t\)).</i> </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:distance_ge_of_no_lowweight">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">432</span>
+    <span class="lemma_thmtitle">Distance Lower Bound from Weight Condition</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:distance_ge_of_no_lowweight">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000815"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.distance">Definition 43</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.distance">Definition 43</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/distance_ge_of_no_lowweight" class="lean_decl">distance_ge_of_no_lowweight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\mathcal{C}\) be a classical code of length \(n\), let \(t \in \mathbb {R}\). Suppose every nonzero codeword \(v \in \mathcal{C}\) satisfies \(\operatorname {wt}(v) \geq t\), and suppose \(\mathcal{C}\) contains at least one nonzero element. Then \(d(\mathcal{C}) \geq t\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000815">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition of distance, let \(S = \{ w \in \mathbb {N} \mid \exists \,  x \in \mathcal{C},\;  x \neq 0,\;  \operatorname {wt}(x) = w\} \). From the hypothesis there exists a nonzero codeword, so \(S\) is nonempty. </p>
+<p>For each \(w' \in S\), write \(w' = \operatorname {wt}(x')\) for some nonzero \(x' \in \mathcal{C}\). By the weight hypothesis, \(\operatorname {wt}(x') \geq t\), hence \(\lceil t \rceil \leq w'\). </p>
+<p>Applying \(\texttt{le\_ csInf}\) to the nonemptiness and this lower bound, we get \(\inf S \geq \lceil t \rceil \). Casting to reals: </p>
+<div class="displaymath" id="a0000000816">
+  \[  d(\mathcal{C}) = \inf S \geq \lceil t \rceil \geq t,  \]
+</div>
+<p> where the last inequality is \(\texttt{Nat.le\_ ceil}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_submodule_of_finrank">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">433</span>
+    <span class="lemma_thmtitle">Existence of Submodule of Prescribed Dimension</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_submodule_of_finrank">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000817"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_submodule_of_finrank" class="lean_decl">exists_submodule_of_finrank</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(W\) be a submodule of \(\mathbb {F}_2^n\), and let \(k \leq \operatorname {finrank}_{\mathbb {F}_2}(W)\). Then there exists a submodule \(W' \leq W\) with \(\operatorname {finrank}_{\mathbb {F}_2}(W') = k\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000817">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(k \leq \operatorname {finrank}(W) = |\text{ChooseBasisIndex}(W)|\) (by \(\texttt{Module.finrank\_ eq\_ card\_ chooseBasisIndex}\)), we apply \(\texttt{Finset.exists\_ subset\_ card\_ eq}\) to obtain a subset \(s\) of the basis index set of cardinality \(k\). </p>
+<p>Let \(B\) be the chosen basis of \(W\) and define \(W'_\text {sub} = \operatorname {span}_{\mathbb {F}_2}\{ B(i) \mid i \in s\} \) as a submodule of \(W\). Let \(W' = W'_\text {sub}\) mapped along the inclusion \(W \hookrightarrow \mathbb {F}_2^n\). </p>
+<p>We verify \(W' \leq W\) by tracing elements through the map. For the dimension: since \(B\) is a basis, the restriction to \(s\) gives a linearly independent family (by \(\texttt{LinearIndependent.comp}\) with the injective coercion). Thus \(\operatorname {finrank}(W'_\text {sub}) = |s| = k\) by \(\texttt{finrank\_ span\_ eq\_ card}\). Finally, \(\texttt{Submodule.finrank\_ map\_ subtype\_ eq}\) gives \(\operatorname {finrank}(W') = \operatorname {finrank}(W'_\text {sub}) = k\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_code_with_good_distance">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">434</span>
+    <span class="lemma_thmtitle">Existence of Code with Good Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_code_with_good_distance">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000818"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#lem:hammingBall_empty_of_neg">Lemma 271</a></li>
+          
+          <li><a href="sect0035.html#thm:exists_good_map">Theorem 430</a></li>
+          
+          <li><a href="sect0023.html#thm:hammingBallBound">Theorem 276</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+          <li><a href="sect0023.html#lem:hammingBall_empty_of_neg">Lemma 271</a></li>
+          
+          <li><a href="sect0035.html#lem:exists_submodule_of_finrank">Lemma 433</a></li>
+          
+          <li><a href="sect0035.html#lem:distance_ge_of_no_lowweight">Lemma 432</a></li>
+          
+          <li><a href="sect0035.html#thm:exists_good_map">Theorem 430</a></li>
+          
+          <li><a href="sect0023.html#thm:hammingBallBound">Theorem 276</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_code_with_good_distance" class="lean_decl">exists_code_with_good_distance</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta \leq 1/2\), and \(n, k \in \mathbb {N}\) with \(0 {\lt} n\), \(0 {\lt} k\), \(k {\lt} n\), and </p>
+<div class="displaymath" id="a0000000819">
+  \[  k + 1 {\lt} (1 - h(\delta )) \cdot n.  \]
+</div>
+<p> Then there exists a classical code \(\mathcal{C}\) of length \(n\) with \(\dim (\mathcal{C}) = k\) and \(d(\mathcal{C}) \geq \delta n\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000818">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Set \(r = n - k\). Then \(0 {\lt} r\) and \(r \leq n\). From the hypothesis \(k + 1 {\lt} (1-h(\delta ))n\), we get \(h(\delta ) \cdot n {\lt} n - k = r\). </p>
+<p><i class="itshape">Hamming ball bound</i>: We show \(|\operatorname {Ball}(n, \delta n - 1)| {\lt} 2^r\). </p>
+<p><b class="bfseries">Case</b> \(\delta n {\lt} 1\): Then \(\delta n - 1 {\lt} 0\), so \(\operatorname {Ball}(n, \delta n - 1) = \emptyset \) by Lemma&#160;<a href="sect0023.html#lem:hammingBall_empty_of_neg">271</a>, and the bound is trivial. </p>
+<p><b class="bfseries">Case</b> \(\delta n \geq 1\): Set \(d' = \lfloor \delta n \rfloor - 1\). We verify \(d' + 1 \leq \delta n\) using \(\lfloor \delta n \rfloor \geq 1\) and the floor inequality. We also show \(\operatorname {Ball}(n, \delta n - 1) \subseteq \operatorname {Ball}(n, d')\) by Theorem&#160;<a href="sect0023.html#thm:mem_hammingBall">270</a>: for any \(v\) with \(\operatorname {wt}(v) {\lt} \delta n - 1 {\lt} \lfloor \delta n \rfloor \), we have \(\operatorname {wt}(v) \leq \lfloor \delta n \rfloor - 1 = d'\) by integer arithmetic. Then: </p>
+<div class="displaymath" id="a0000000820">
+  \[  |\operatorname {Ball}(n, \delta n - 1)| \leq |\operatorname {Ball}(n, d')| \leq 2^{h(\delta ) \cdot n} {\lt} 2^r,  \]
+</div>
+<p> where the middle inequality uses Theorem&#160;<a href="sect0023.html#thm:hammingBallBound">276</a> with \(d' + 1 \leq \delta n\), and the last uses \(h(\delta ) \cdot n {\lt} r\). </p>
+<p><i class="itshape">Obtaining the map</i>: By Theorem&#160;<a href="sect0035.html#thm:exists_good_map">430</a>, there exists \(\phi : \mathbb {F}_2^n \to \mathbb {F}_2^r\) such that every nonzero \(v\) with \(\operatorname {wt}(v) {\lt} \delta n\) satisfies \(\phi (v) \neq 0\). </p>
+<p><i class="itshape">Dimension of kernel</i>: By rank–nullity, \(\operatorname {finrank}(\operatorname {range}(\phi )) + \operatorname {finrank}(\ker \phi ) = n\). Since \(\operatorname {finrank}(\operatorname {range}(\phi )) \leq r\), we get \(\operatorname {finrank}(\ker \phi ) \geq n - r = k\). </p>
+<p><i class="itshape">Subcode</i>: By Lemma&#160;<a href="sect0035.html#lem:exists_submodule_of_finrank">433</a>, there exists \(W \leq \ker \phi \) with \(\operatorname {finrank}(W) = k\). The associated code \(\mathcal{C} = \langle W \rangle \) has \(\dim (\mathcal{C}) = k\). </p>
+<p><i class="itshape">Good distance</i>: For any nonzero \(v \in W\), we have \(v \in \ker \phi \), so \(\phi (v) = 0\). If \(\operatorname {wt}(v) {\lt} \delta n\), then the property of \(\phi \) would require \(\phi (v) \neq 0\), a contradiction. Hence \(\operatorname {wt}(v) \geq \delta n\). </p>
+<p><i class="itshape">Nonemptiness</i>: Since \(\operatorname {finrank}(W) = k \geq 1\), \(W\) is nontrivial (as \(k {\gt} 0\)), so it contains a nonzero element. </p>
+<p>By Lemma&#160;<a href="sect0035.html#lem:distance_ge_of_no_lowweight">432</a>, \(d(\mathcal{C}) \geq \delta n\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_code_with_good_distance_premises_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">435</span>
+    <span class="lemma_thmtitle">Satisfiability of Good Distance Premises</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_code_with_good_distance_premises_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000821"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_code_with_good_distance_premises_satisfiable" class="lean_decl">exists_code_with_good_distance_premises_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    There exist \(\delta \in \mathbb {R}\) and \(n, k \in \mathbb {N}\) satisfying all premises of Lemma&#160;<a href="sect0035.html#lem:exists_code_with_good_distance">434</a>: \(0 {\lt} \delta \), \(\delta \leq 1/2\), \(0 {\lt} n\), \(0 {\lt} k\), \(k {\lt} n\), and \(k + 1 {\lt} (1 - h(\delta )) \cdot n\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000821">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We exhibit the witness \(\delta = 1/100\), \(n = 1000\), \(k = 498\). The numerical conditions \(0 {\lt} 1/100\), \(1/100 \leq 1/2\), \(0 {\lt} 1000\), \(0 {\lt} 498\), \(498 {\lt} 1000\) are verified by numerical computation (\(\texttt{norm\_ num}\)). For the bound \(499 {\lt} (1 - h(1/100)) \cdot 1000\): we first obtain \(h(1/100) {\lt} 1/2\) from \(\texttt{binaryEntropy\_ lt\_ half}\), then apply nonlinear arithmetic (\(\texttt{nlinarith}\)) after pushing casts. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:dualCode_dualCode_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">436</span>
+    <span class="lemma_thmtitle">Double Dual Code Identity</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:dualCode_dualCode_eq">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000822"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">Theorem 256</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">Theorem 256</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/dualCode_dualCode_eq" class="lean_decl">dualCode_dualCode_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any classical code \(\mathcal{C}\) of length \(n\), </p>
+<div class="displaymath" id="a0000000823">
+  \[  ((\mathcal{C}^\perp )^\perp ) = \mathcal{C}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000822">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We work over the finite-dimensional space \(\mathbb {F}_2^n\). By extensionality, it suffices to show that for every \(w \in \mathbb {F}_2^n\), \(w \in ((\mathcal{C}^\perp )^\perp )\) if and only if \(w \in \mathcal{C}\). </p>
+<p>(\(\Leftarrow \)): Suppose \(w \in \mathcal{C}\). By Theorem&#160;<a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">256</a>, we must show that for every \(c \in \mathcal{C}^\perp \), \(c \cdot w = 0\). But by definition of the dual code (Theorem&#160;<a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">256</a> applied to \(c\)), we have \(c \cdot w = 0\) for all \(w \in \mathcal{C}\); since \(w \in \mathcal{C}\) and dot product is commutative, \(c \cdot w = w \cdot c = 0\). </p>
+<p>(\(\Rightarrow \)): Suppose \(w \in ((\mathcal{C}^\perp )^\perp )\), i.e. for all \(c \in \mathcal{C}^\perp \), \(c \cdot w = 0\). We assume for contradiction \(w \notin \mathcal{C}\). By \(\texttt{Submodule.exists\_ dual\_ map\_ eq\_ bot\_ of\_ notMem}\) (applied to the finite-dimensional setting), there exists a linear functional \(f : \mathbb {F}_2^n \to \mathbb {F}_2\) with \(f(w) \neq 0\) and \(f|_{\mathcal{C}} = 0\). Via the dot-product equivalence \(e : \operatorname {Hom}(\mathbb {F}_2^n, \mathbb {F}_2) \cong \mathbb {F}_2^n\), let \(c = e^{-1}(f)\). </p>
+<p>Since \(f|_{\mathcal{C}} = 0\), we have \(f(v) = c \cdot v = 0\) for all \(v \in \mathcal{C}\), so \(c \in \mathcal{C}^\perp \) by Theorem&#160;<a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">256</a>. But then the assumption \(w \in ((\mathcal{C}^\perp )^\perp )\) gives \(c \cdot w = 0\), which under \(e\) reads \(f(w) = 0\), contradicting \(f(w) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:distance_dualCode_dualCode">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">437</span>
+    <span class="lemma_thmtitle">Distance of Double Dual</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:distance_dualCode_dualCode">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000824"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.distance">Definition 43</a></li>
+          
+          <li><a href="sect0035.html#lem:dualCode_dualCode_eq">Lemma 436</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.distance">Definition 43</a></li>
+          
+          <li><a href="sect0035.html#lem:dualCode_dualCode_eq">Lemma 436</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/distance_dualCode_dualCode" class="lean_decl">distance_dualCode_dualCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any classical code \(\mathcal{C}\) of length \(n\), </p>
+<div class="displaymath" id="a0000000825">
+  \[  d((\mathcal{C}^\perp )^\perp ) = d(\mathcal{C}).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000824">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition of distance, both sides are \(\inf \{ w \in \mathbb {N} \mid \exists \,  x, x \in \mathcal{C} \text{ (or } ((\mathcal{C}^\perp )^\perp )\text{)},\;  x \neq 0,\;  \operatorname {wt}(x) = w\} \). By Lemma&#160;<a href="sect0035.html#lem:dualCode_dualCode_eq">436</a>, \(((\mathcal{C}^\perp )^\perp ) = \mathcal{C}\), so the index sets are equal. The result follows by congruence. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_code_with_good_dual_distance">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">438</span>
+    <span class="lemma_thmtitle">Existence of Code with Good Dual Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_code_with_good_dual_distance">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000826"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">Theorem 259</a></li>
+          
+          <li><a href="sect0035.html#lem:exists_code_with_good_distance">Lemma 434</a></li>
+          
+          <li><a href="sect0035.html#lem:distance_dualCode_dualCode">Lemma 437</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">Theorem 259</a></li>
+          
+          <li><a href="sect0035.html#lem:exists_code_with_good_distance">Lemma 434</a></li>
+          
+          <li><a href="sect0035.html#lem:distance_dualCode_dualCode">Lemma 437</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_code_with_good_dual_distance" class="lean_decl">exists_code_with_good_dual_distance</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta \leq 1/2\), and \(n, k \in \mathbb {N}\) with \(0 {\lt} n\), \(0 {\lt} k\), \(k {\lt} n\), and </p>
+<div class="displaymath" id="a0000000827">
+  \[  n - k + 1 {\lt} (1 - h(\delta )) \cdot n.  \]
+</div>
+<p> Then there exists a classical code \(\mathcal{C}\) of length \(n\) with \(\dim (\mathcal{C}) = k\) and \(d(\mathcal{C}^\perp ) \geq \delta n\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000826">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(r = n - k\). Then \(0 {\lt} r\) and \(r {\lt} n\). We convert the hypothesis: \((n-k) + 1 = (r : \mathbb {R}) + 1 {\lt} (1-h(\delta ))n\). By Lemma&#160;<a href="sect0035.html#lem:exists_code_with_good_distance">434</a> applied to \(\delta \), \(n\), \(r\) (with \(r\) in place of \(k\)), there exists a code \(D\) of length \(n\) with \(\dim (D) = r\) and \(d(D) \geq \delta n\). </p>
+<p>Set \(\mathcal{C} = D^\perp \). By Theorem&#160;<a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">259</a>, </p>
+<div class="displaymath" id="a0000000828">
+  \[  \dim (\mathcal{C}) = \dim (D^\perp ) = n - \dim (D) = n - r = k.  \]
+</div>
+<p> For the dual distance: </p>
+<div class="displaymath" id="a0000000829">
+  \[  d(\mathcal{C}^\perp ) = d((D^\perp )^\perp ) = d(D) \geq \delta n,  \]
+</div>
+<p> where we apply Lemma&#160;<a href="sect0035.html#lem:distance_dualCode_dualCode">437</a>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_code_with_good_dual_distance_premises_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">439</span>
+    <span class="lemma_thmtitle">Satisfiability of Good Dual Distance Premises</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_code_with_good_dual_distance_premises_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000830"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_code_with_good_dual_distance_premises_satisfiable" class="lean_decl">exists_code_with_good_dual_distance_premises_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    There exist \(\delta \in \mathbb {R}\) and \(n, k \in \mathbb {N}\) satisfying all premises of Lemma&#160;<a href="sect0035.html#lem:exists_code_with_good_dual_distance">438</a>: \(0 {\lt} \delta \), \(\delta \leq 1/2\), \(0 {\lt} n\), \(0 {\lt} k\), \(k {\lt} n\), and \(n - k + 1 {\lt} (1-h(\delta )) \cdot n\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000830">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We exhibit the witness \(\delta = 1/100\), \(n = 1000\), \(k = 502\). All numerical conditions are verified by \(\texttt{norm\_ num}\). The bound \(499 {\lt} (1-h(1/100)) \cdot 1000\) follows from \(h(1/100) {\lt} 1/2\) (via \(\texttt{binaryEntropy\_ lt\_ half}\)) and \(\texttt{nlinarith}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:key_nat_ineq_hundredth">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">440</span>
+    <span class="lemma_thmtitle">Key Natural Number Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:key_nat_ineq_hundredth">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000831"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/key_nat_ineq_hundredth" class="lean_decl">key_nat_ineq_hundredth</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>\(100^{100} {\lt} 2^{10} \cdot 99^{99}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000831">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This is verified by computation (\(\texttt{native\_ decide}\)). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:key_frac_ineq_hundredth">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">441</span>
+    <span class="lemma_thmtitle">Key Fractional Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:key_frac_ineq_hundredth">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000832"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0035.html#lem:key_nat_ineq_hundredth">Lemma 440</a></li>
+          
+          <li><a href="sect0035.html#lem:key_nat_ineq_hundredth">Lemma 440</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/key_frac_ineq_hundredth" class="lean_decl">key_frac_ineq_hundredth</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(100 \cdot \left(\dfrac {100}{99}\right)^{99} {\lt} 2^{10}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000832">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We rewrite: \(100 \cdot (100/99)^{99} = 100^{100}/99^{99}\), so the inequality is equivalent (after clearing the denominator \(99^{99} {\gt} 0\)) to \(100^{100} {\lt} 2^{10} \cdot 99^{99}\). We cast to naturals: \(100^{100} = \uparrow (100^{100} : \mathbb {N}) {\lt} \uparrow (2^{10} \cdot 99^{99})\), which holds by Lemma&#160;<a href="sect0035.html#lem:key_nat_ineq_hundredth">440</a>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:binaryEntropy_at_one_hundredth">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">442</span>
+    <span class="lemma_thmtitle">Binary Entropy at \(1/100\) is Less Than \(1/10\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:binaryEntropy_at_one_hundredth">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000833"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0035.html#lem:key_frac_ineq_hundredth">Lemma 441</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0035.html#lem:key_frac_ineq_hundredth">Lemma 441</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy_at_one_hundredth" class="lean_decl">binaryEntropy_at_one_hundredth</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(h(1/100) {\lt} 1/10\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000833">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We expand \(h(1/100) = -(1/100)\log _2(1/100) - (99/100)\log _2(99/100)\). We compute: </p>
+<div class="displaymath" id="a0000000834">
+  \[  \log _2(1/100) = -\log _2(100), \qquad \log _2(99/100) = -\log _2(100/99),  \]
+</div>
+<p> so \(h(1/100) = (1/100)\log _2(100) + (99/100)\log _2(100/99)\). </p>
+<p>To prove this is less than \(1/10\), it suffices to show: </p>
+<div class="displaymath" id="a0000000835">
+  \[  \log _2(100) + 99 \cdot \log _2(100/99) {\lt} 10.  \]
+</div>
+<p> We bound the left side: by the logarithm identity, </p>
+<div class="displaymath" id="a0000000836">
+  \[  \log _2\! \bigl(100 \cdot (100/99)^{99}\bigr) = \log _2(100) + 99\log _2(100/99).  \]
+</div>
+<p> Since \(100 \cdot (100/99)^{99} {\lt} 2^{10}\) by Lemma&#160;<a href="sect0035.html#lem:key_frac_ineq_hundredth">441</a>, and \(\log _2\) is strictly increasing (\(\texttt{Real.logb\_ lt\_ logb}\)), we get \(\log _2(100 \cdot (100/99)^{99}) {\lt} \log _2(2^{10}) = 10\). The conclusion follows by linear arithmetic, using positivity of \(\log _2(100) {\gt} 0\) and \(\log _2(100/99) {\gt} 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:binaryEntropy_at_one_hundredth_tight">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">443</span>
+    <span class="lemma_thmtitle">Binary Entropy at \(1/100\) Tight Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:binaryEntropy_at_one_hundredth_tight">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000837"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0035.html#lem:binaryEntropy_at_one_hundredth">Lemma 442</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0035.html#lem:binaryEntropy_at_one_hundredth">Lemma 442</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/binaryEntropy_at_one_hundredth_tight" class="lean_decl">binaryEntropy_at_one_hundredth_tight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(h(1/100) {\lt} 499/1000\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000837">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately from Lemma&#160;<a href="sect0035.html#lem:binaryEntropy_at_one_hundredth">442</a>: \(h(1/100) {\lt} 1/10 = 100/1000 {\lt} 499/1000\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:hammingBall_lt_pow">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">444</span>
+    <span class="lemma_thmtitle">Hamming Ball Bound Below Power of Two</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:hammingBall_lt_pow">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000838"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#lem:hammingBall_empty_of_neg">Lemma 271</a></li>
+          
+          <li><a href="sect0023.html#thm:hammingBallBound">Theorem 276</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#lem:hammingBall_empty_of_neg">Lemma 271</a></li>
+          
+          <li><a href="sect0023.html#thm:hammingBallBound">Theorem 276</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/hammingBall_lt_pow" class="lean_decl">hammingBall_lt_pow</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta \leq 1/2\), \(n \in \mathbb {N}\) with \(0 {\lt} n\), and \(m \in \mathbb {N}\) with \(h(\delta ) \cdot n {\lt} m\). Then </p>
+<div class="displaymath" id="a0000000839">
+  \[  \bigl|\operatorname {Ball}(n, \delta n - 1)\bigr| {\lt} 2^m.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000838">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> <b class="bfseries">Case</b> \(\delta n {\lt} 1\): Then \(\delta n - 1 {\lt} 0\), so \(\operatorname {Ball}(n, \delta n - 1) = \emptyset \) by Lemma&#160;<a href="sect0023.html#lem:hammingBall_empty_of_neg">271</a>, and \(0 {\lt} 2^m\). </p>
+<p><b class="bfseries">Case</b> \(\delta n \geq 1\): Set \(d' = \lfloor \delta n \rfloor - 1\). We verify \(d' + 1 \leq \delta n\) using \(\lfloor \delta n \rfloor \geq 1\) and the floor estimate. We show \(\operatorname {Ball}(n, \delta n - 1) \subseteq \operatorname {Ball}(n, d')\) using Theorem&#160;<a href="sect0023.html#thm:mem_hammingBall">270</a>: for \(v \in \operatorname {Ball}(n, \delta n - 1)\) we have \(\operatorname {wt}(v) {\lt} \delta n - 1 {\lt} \lfloor \delta n \rfloor \), so \(\operatorname {wt}(v) \leq d'\). Then: </p>
+<div class="displaymath" id="a0000000840">
+  \[  |\operatorname {Ball}(n, \delta n - 1)| \leq |\operatorname {Ball}(n, d')| \leq 2^{h(\delta ) \cdot n} {\lt} 2^{(m:\mathbb {R})} = 2^m,  \]
+</div>
+<p> where the second inequality is Theorem&#160;<a href="sect0023.html#thm:hammingBallBound">276</a> (since \(d' + 1 \leq \delta n\)), the third uses \(h(\delta ) \cdot n {\lt} m\) and strict monotonicity of \(x \mapsto 2^x\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_code_with_both_distances">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">445</span>
+    <span class="lemma_thmtitle">Existence of Code with Both Good Distance and Dual Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_code_with_both_distances">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000841"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0006.html#thm:ClassicalCode.code_eq_ker">Theorem 48</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">Theorem 259</a></li>
+          
+          <li><a href="sect0035.html#thm:exists_good_surjective_map">Theorem 431</a></li>
+          
+          <li><a href="sect0035.html#lem:hammingBall_lt_pow">Lemma 444</a></li>
+          
+          <li><a href="sect0035.html#lem:distance_ge_of_no_lowweight">Lemma 432</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0006.html#thm:ClassicalCode.code_eq_ker">Theorem 48</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">Theorem 259</a></li>
+          
+          <li><a href="sect0035.html#thm:exists_good_surjective_map">Theorem 431</a></li>
+          
+          <li><a href="sect0035.html#lem:hammingBall_lt_pow">Lemma 444</a></li>
+          
+          <li><a href="sect0035.html#lem:distance_ge_of_no_lowweight">Lemma 432</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_code_with_both_distances" class="lean_decl">exists_code_with_both_distances</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta \leq 1/2\), and \(n, k \in \mathbb {N}\) with \(0 {\lt} n\), \(0 {\lt} k\), \(k {\lt} n\). Suppose </p>
+<div class="displaymath" id="a0000000842">
+  \[  k + 1 {\lt} (1 - h(\delta )) \cdot n \quad \text{and} \quad n - k + 1 {\lt} (1 - h(\delta )) \cdot n.  \]
+</div>
+<p> Then there exists a classical code \(\mathcal{C}\) of length \(n\) with \(\dim (\mathcal{C}) = k\), \(d(\mathcal{C}) \geq \delta n\), and \(d(\mathcal{C}^\perp ) \geq \delta n\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000841">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axiom: thm:exists_good_surjective_map]</b> </p>
+<p>Set \(r = n - k\), so \(0 {\lt} r \leq n\) and \(n - r = k\). </p>
+<p><i class="itshape">Ball bounds</i>: From \(k + 1 {\lt} (1-h(\delta ))n\) we get \(h(\delta ) \cdot n {\lt} r\), so by Lemma&#160;<a href="sect0035.html#lem:hammingBall_lt_pow">444</a>: </p>
+<div class="displaymath" id="a0000000843">
+  \[  |\operatorname {Ball}(n, \delta n - 1)| {\lt} 2^r.  \]
+</div>
+<p> From \(n - k + 1 {\lt} (1-h(\delta ))n\) we get \(h(\delta ) \cdot n {\lt} k = n - r\), so similarly: </p>
+<div class="displaymath" id="a0000000844">
+  \[  |\operatorname {Ball}(n, \delta n - 1)| {\lt} 2^{n-r}.  \]
+</div>
+<p><i class="itshape">Applying the axiom</i>: By Theorem&#160;<a href="sect0035.html#thm:exists_good_surjective_map">431</a>, there exists a surjective \(\phi : \mathbb {F}_2^n \to \mathbb {F}_2^r\) with: (i) every nonzero \(v\) with \(\operatorname {wt}(v) {\lt} \delta n\) satisfies \(\phi (v) \neq 0\); (ii) every \(w \in (\ker \phi )^\perp \) with \(w \neq 0\) satisfies \(\operatorname {wt}(w) \geq \delta n\). </p>
+<p>Let \(\mathcal{C} = \texttt{ofParityCheck}(\phi ) = \ker \phi \). </p>
+<p><i class="itshape">Dimension</i>: Since \(\phi \) is surjective, \(\operatorname {finrank}(\operatorname {range}(\phi )) = r\) (the range equals \(\mathbb {F}_2^r\)). By rank–nullity, \(\operatorname {finrank}(\ker \phi ) = n - r = k\). </p>
+<p><i class="itshape">Distance</i>: For nonzero \(v \in \ker \phi = \mathcal{C}\), we have \(\phi (v) = 0\). If \(\operatorname {wt}(v) {\lt} \delta n\), property (i) would give \(\phi (v) \neq 0\), a contradiction. Hence \(\operatorname {wt}(v) \geq \delta n\). Since \(\operatorname {finrank}(\ker \phi ) = k \geq 1\), \(\mathcal{C}\) is nontrivial (\(\texttt{Module.finrank\_ pos\_ iff}\)), so there exists a nonzero codeword. By Lemma&#160;<a href="sect0035.html#lem:distance_ge_of_no_lowweight">432</a>, \(d(\mathcal{C}) \geq \delta n\). </p>
+<p><i class="itshape">Dual distance</i>: By Theorem&#160;<a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">259</a> and Theorem&#160;<a href="sect0006.html#thm:ClassicalCode.code_eq_ker">48</a>, we compute \(\dim (\mathcal{C}^\perp ) = n - k = r \geq 1\), so \(\mathcal{C}^\perp \) is nontrivial. Property (ii) gives that every nonzero \(w \in \mathcal{C}^\perp \) has \(\operatorname {wt}(w) \geq \delta n\). By Lemma&#160;<a href="sect0035.html#lem:distance_ge_of_no_lowweight">432</a>, \(d(\mathcal{C}^\perp ) \geq \delta n\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:exists_code_with_both_distances_premises_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">446</span>
+    <span class="lemma_thmtitle">Satisfiability of Both Distance Premises</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#lem:exists_code_with_both_distances_premises_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000845"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0035.html#lem:binaryEntropy_at_one_hundredth_tight">Lemma 443</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0035.html#lem:binaryEntropy_at_one_hundredth_tight">Lemma 443</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/exists_code_with_both_distances_premises_satisfiable" class="lean_decl">exists_code_with_both_distances_premises_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    There exist \(\delta \in \mathbb {R}\) and \(n, k \in \mathbb {N}\) satisfying all premises of Lemma&#160;<a href="sect0035.html#lem:exists_code_with_both_distances">445</a>: \(0 {\lt} \delta \), \(\delta \leq 1/2\), \(0 {\lt} n\), \(0 {\lt} k\), \(k {\lt} n\), \(k + 1 {\lt} (1-h(\delta ))n\), and \(n - k + 1 {\lt} (1-h(\delta ))n\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000845">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We exhibit the witness \(\delta = 1/100\), \(n = 1000\), \(k = 500\). All numerical bounds are checked by \(\texttt{norm\_ num}\). Both inequalities \(501 {\lt} (1-h(1/100)) \cdot 1000\) and \(501 {\lt} (1-h(1/100)) \cdot 1000\) follow from \(h(1/100) {\lt} 499/1000\) (Lemma&#160;<a href="sect0035.html#lem:binaryEntropy_at_one_hundredth_tight">443</a>) by linear arithmetic. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:gilbertVarshamovPlus">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">447</span>
+    <span class="theorem_thmtitle">Gilbert–Varshamov Plus</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0035.html#thm:gilbertVarshamovPlus">#</a>
+    
+    <a class="icon proof" href="sect0035.html#a0000000846"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#lem:hammingBall_empty_of_neg">Lemma 271</a></li>
+          
+          <li><a href="sect0006.html#thm:ClassicalCode.code_eq_ker">Theorem 48</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">Theorem 259</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">Theorem 256</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#thm:hammingBallBound">Theorem 276</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode">Definition 41</a></li>
+          
+          <li><a href="sect0006.html#def:ClassicalCode.dimension">Definition 42</a></li>
+          
+          <li><a href="sect0022.html#def:ClassicalCode.dualCode">Definition 255</a></li>
+          
+          <li><a href="sect0023.html#def:binaryEntropy">Definition 261</a></li>
+          
+          <li><a href="sect0023.html#def:hammingBall">Definition 269</a></li>
+          
+          <li><a href="sect0023.html#lem:hammingBall_empty_of_neg">Lemma 271</a></li>
+          
+          <li><a href="sect0035.html#lem:gv_k_exists">Lemma 424</a></li>
+          
+          <li><a href="sect0035.html#lem:gv_n_large">Lemma 423</a></li>
+          
+          <li><a href="sect0035.html#lem:exists_code_with_both_distances">Lemma 445</a></li>
+          
+          <li><a href="sect0006.html#thm:ClassicalCode.code_eq_ker">Theorem 48</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.dimension_dualCode">Theorem 259</a></li>
+          
+          <li><a href="sect0022.html#thm:ClassicalCode.mem_dualCode_iff">Theorem 256</a></li>
+          
+          <li><a href="sect0023.html#thm:binaryEntropy_lt_half">Theorem 268</a></li>
+          
+          <li><a href="sect0023.html#thm:hammingBallBound">Theorem 276</a></li>
+          
+          <li><a href="sect0023.html#thm:mem_hammingBall">Theorem 270</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/gilbertVarshamovPlus" class="lean_decl">gilbertVarshamovPlus</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(\delta \in \mathbb {R}\) with \(0 {\lt} \delta {\lt} 11/100\), and let \(n \in \mathbb {N}\) with \(0 {\lt} n\) and </p>
+<div class="displaymath" id="a0000000847">
+  \[  n {\gt} \frac{2}{1/2 - h(\delta )}.  \]
+</div>
+<p> Then there exists a classical code \(\mathcal{C}\) of length \(n\) such that: </p>
+<ol class="enumerate">
+  <li><p>\(\dim (\mathcal{C}) {\gt} n/2\), </p>
+</li>
+  <li><p>\(d(\mathcal{C}) \geq \delta n\), </p>
+</li>
+  <li><p>\(d(\mathcal{C}^\perp ) \geq \delta n\). </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000846">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axiom: thm:exists_good_surjective_map (via Lemma&#160;<a href="sect0035.html#lem:exists_code_with_both_distances">445</a>)]</b> </p>
+<p>From \(\texttt{binaryEntropy\_ lt\_ half}\) applied to \(0 {\lt} \delta \) and \(\delta {\lt} 11/100\), we have \(h(\delta ) {\lt} 1/2\), so \(\delta \leq 1/2\) by linear arithmetic. </p>
+<p><i class="itshape">Finding \(k\)</i>: By Lemma&#160;<a href="sect0035.html#lem:gv_k_exists">424</a>, there exists \(k \in \mathbb {N}\) with </p>
+<div class="displaymath" id="a0000000848">
+  \[  n/2 {\lt} k, \quad k + 1 {\lt} (1 - h(\delta )) \cdot n, \quad k {\lt} n.  \]
+</div>
+<p><i class="itshape">Positivity of \(k\)</i>: We show \(0 {\lt} k\) by contradiction. If \(k = 0\), then the lower bound gives \(n/2 {\lt} 0\), contradicting \(n/2 \geq 0\). </p>
+<p><i class="itshape">Lower bound for dual condition</i>: By Lemma&#160;<a href="sect0035.html#lem:gv_n_large">423</a>, \((1/2 - h(\delta )) \cdot n {\gt} 2\). Hence: </p>
+<div class="displaymath" id="a0000000849">
+  \[  n - k + 1 {\lt} n - n/2 + 1 = n/2 + 1 {\lt} (1 - h(\delta )) \cdot n,  \]
+</div>
+<p> where the last step uses \(n/2 + 1 {\lt} (1-h(\delta )) \cdot n\), which follows from \((1/2 - h(\delta )) \cdot n {\gt} 2\) by linear arithmetic. </p>
+<p><i class="itshape">Applying the combined existence lemma</i>: By Lemma&#160;<a href="sect0035.html#lem:exists_code_with_both_distances">445</a> (with \(\delta \), \(n\), \(k\) as above), there exists \(\mathcal{C}\) with \(\dim (\mathcal{C}) = k\), \(d(\mathcal{C}) \geq \delta n\), and \(d(\mathcal{C}^\perp ) \geq \delta n\). </p>
+<p><i class="itshape">Conclusion</i>: We have \(\dim (\mathcal{C}) = k {\gt} n/2\) (casting to reals from the bound on \(k\)), together with the two distance bounds. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0034.html" title="Thm 9: Expander Bit Degree"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0036.html" title="Def 20: Cayley Graph"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

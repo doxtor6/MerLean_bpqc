@@ -1,0 +1,3694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 2: Small Double Complex Homology</title>
+<link rel="next" href="sect0016.html" title="Def 12: Fiber Bundle Double Complex" />
+<link rel="prev" href="sect0014.html" title="Def 11: Tensor Product Double Complex" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000016">15 Thm 2: Small Double Complex Homology</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">135</span>
+    <span class="definition_thmtitle">Small \(2 \times 2\) Double Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC" class="lean_decl">SmallDC</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>A <em>small double complex</em> \(E\) over \(\mathbb {F}_2\) is a \(2 \times 2\) double complex consisting of four \(\mathbb {F}_2\)-modules \(A_{0,0}\), \(A_{0,1}\), \(A_{1,0}\), \(A_{1,1}\) together with vertical linear maps </p>
+<div class="displaymath" id="a0000000243">
+  \[  \partial ^v_0 : A_{0,1} \to A_{0,0}, \quad \partial ^v_1 : A_{1,1} \to A_{1,0}  \]
+</div>
+<p> and horizontal linear maps </p>
+<div class="displaymath" id="a0000000244">
+  \[  \partial ^h_0 : A_{1,0} \to A_{0,0}, \quad \partial ^h_1 : A_{1,1} \to A_{0,1}  \]
+</div>
+<p> satisfying the commutativity condition </p>
+<div class="displaymath" id="a0000000245">
+  \[  \partial ^v_0 \circ \partial ^h_1 = \partial ^h_0 \circ \partial ^v_1.  \]
+</div>
+<p> This is the data of a double complex supported in bi-degrees \((p,q) \in \{ 0,1\} ^2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.d2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">136</span>
+    <span class="definition_thmtitle">Total Complex Differential \(\partial _2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.d2">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.d₂" class="lean_decl">SmallDC.d₂</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a small double complex \(E\), define the degree-2 total complex differential </p>
+<div class="displaymath" id="a0000000246">
+  \[  \partial _2 : A_{1,1} \to A_{1,0} \times A_{0,1}, \quad x \mapsto (\partial ^v_1(x),\,  \partial ^h_1(x)).  \]
+</div>
+<p> This is the product map \(\partial ^v_1 \times \partial ^h_1\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.d1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">137</span>
+    <span class="definition_thmtitle">Total Complex Differential \(\partial _1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.d1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.d₁" class="lean_decl">SmallDC.d₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Given a small double complex \(E\), define the degree-1 total complex differential </p>
+<div class="displaymath" id="a0000000247">
+  \[  \partial _1 : A_{1,0} \times A_{0,1} \to A_{0,0}, \quad (a,b) \mapsto \partial ^h_0(a) + \partial ^v_0(b).  \]
+</div>
+<p> This is the coproduct (direct sum) map \([\partial ^h_0,\,  \partial ^v_0]\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.d2_fst">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">138</span>
+    <span class="lemma_thmtitle">First Component of \(\partial _2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.d2_fst">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000248"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.d₂_fst" class="lean_decl">SmallDC.d₂_fst</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For all \(x \in A_{1,1}\), the first component of \(\partial _2(x)\) equals \(\partial ^v_1(x)\): </p>
+<div class="displaymath" id="a0000000249">
+  \[  (\partial _2(x))_1 = \partial ^v_1(x).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000248">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by applying the identity \(\operatorname {fst} \circ (\partial ^v_1 \times \partial ^h_1) = \partial ^v_1\), which follows from the definition of the product map and the projection axiom \(\operatorname {fst}(\partial ^v_1(x), \partial ^h_1(x)) = \partial ^v_1(x)\). Verified by simplification using the component projections of the product linear map. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.d2_snd">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">139</span>
+    <span class="lemma_thmtitle">Second Component of \(\partial _2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.d2_snd">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000250"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.d₂_snd" class="lean_decl">SmallDC.d₂_snd</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For all \(x \in A_{1,1}\), the second component of \(\partial _2(x)\) equals \(\partial ^h_1(x)\): </p>
+<div class="displaymath" id="a0000000251">
+  \[  (\partial _2(x))_2 = \partial ^h_1(x).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000250">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by applying the identity \(\operatorname {snd} \circ (\partial ^v_1 \times \partial ^h_1) = \partial ^h_1\), verified by simplification using the second projection of the product linear map. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.d1_comp_d2">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">140</span>
+    <span class="lemma_thmtitle">Total Complex is a Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.d1_comp_d2">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000252"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d1">Definition 137</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_snd">Lemma 139</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d1">Definition 137</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_snd">Lemma 139</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.d₁_comp_d2" class="lean_decl">SmallDC.d₁_comp_d2</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The composition \(\partial _1 \circ \partial _2 = 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000252">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality, let \(x \in A_{1,1}\). We compute: </p>
+<div class="displaymath" id="a0000000253">
+  \[  (\partial _1 \circ \partial _2)(x) = \partial _1(\partial _2(x)) = \partial ^h_0((\partial _2(x))_1) + \partial ^v_0((\partial _2(x))_2).  \]
+</div>
+<p> Rewriting using the component lemmas \((\partial _2(x))_1 = \partial ^v_1(x)\) and \((\partial _2(x))_2 = \partial ^h_1(x)\), we get </p>
+<div class="displaymath" id="a0000000254">
+  \[  \partial ^h_0(\partial ^v_1(x)) + \partial ^v_0(\partial ^h_1(x)).  \]
+</div>
+<p> By the commutativity condition \(\partial ^v_0 \circ \partial ^h_1 = \partial ^h_0 \circ \partial ^v_1\), this equals </p>
+<div class="displaymath" id="a0000000255">
+  \[  \partial ^h_0(\partial ^v_1(x)) + \partial ^h_0(\partial ^v_1(x)).  \]
+</div>
+<p> Since we are over \(\mathbb {F}_2\), any element added to itself is zero, so this sum is \(0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.totH0">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">141</span>
+    <span class="definition_thmtitle">Degree-0 Total Homology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.totH0">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d1">Definition 137</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totH₀" class="lean_decl">SmallDC.totH₀</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The degree-0 homology of the total complex is defined as the quotient </p>
+<div class="displaymath" id="a0000000256">
+  \[  H_0(\operatorname {Tot}(E)) := A_{0,0} / \operatorname {im}(\partial _1).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.totZ1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">142</span>
+    <span class="definition_thmtitle">Degree-1 Total Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.totZ1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d1">Definition 137</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totZ₁" class="lean_decl">SmallDC.totZ₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The degree-1 total cycles are </p>
+<div class="displaymath" id="a0000000257">
+  \[  Z_1 := \ker (\partial _1) \subseteq A_{1,0} \times A_{0,1}.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.totB1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">143</span>
+    <span class="definition_thmtitle">Degree-1 Total Boundaries</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.totB1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totB₁" class="lean_decl">SmallDC.totB₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The degree-1 total boundaries are </p>
+<div class="displaymath" id="a0000000258">
+  \[  B_1 := \operatorname {im}(\partial _2) \subseteq A_{1,0} \times A_{0,1}.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.totB1_le_totZ1">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">144</span>
+    <span class="lemma_thmtitle">Boundaries Contained in Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.totB1_le_totZ1">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000259"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1">Definition 143</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totZ1">Definition 142</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d1_comp_d2">Lemma 140</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1">Definition 143</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totZ1">Definition 142</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d1_comp_d2">Lemma 140</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totB₁_le_totZ₁" class="lean_decl">SmallDC.totB₁_le_totZ₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(B_1 \leq Z_1\), i.e., every boundary is a cycle. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000259">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(x \in B_1\). We must show \(x \in Z_1 = \ker (\partial _1)\). Since \(x \in \operatorname {im}(\partial _2)\), obtain \(y \in A_{1,1}\) such that \(x = \partial _2(y)\). By the identity \(\partial _1 \circ \partial _2 = 0\) (Lemma&#160;<a href="sect0015.html#lem:SmallDC.d1_comp_d2">140</a>), we have \(\partial _1(x) = \partial _1(\partial _2(y)) = 0\), so \(x \in \ker (\partial _1) = Z_1\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.totB1InZ1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">145</span>
+    <span class="definition_thmtitle">Boundaries as Submodule of Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.totB1InZ1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totZ1">Definition 142</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1">Definition 143</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totB₁InZ₁" class="lean_decl">SmallDC.totB₁InZ₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    We regard \(B_1\) as a submodule of \(Z_1\) via the comap of the inclusion \(Z_1 \hookrightarrow A_{1,0} \times A_{0,1}\): </p>
+<div class="displaymath" id="a0000000260">
+  \[  B_1^{Z} := B_1 \cdot _{\iota } Z_1 = B_1 \cap Z_1 \text{ (as a submodule of } Z_1\text{)}.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.totH1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">146</span>
+    <span class="definition_thmtitle">Degree-1 Total Homology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.totH1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totZ1">Definition 142</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1InZ1">Definition 145</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totH₁" class="lean_decl">SmallDC.totH₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The degree-1 homology of the total complex is </p>
+<div class="displaymath" id="a0000000261">
+  \[  H_1(\operatorname {Tot}(E)) := Z_1 / B_1^{Z}.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.totH2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">147</span>
+    <span class="definition_thmtitle">Degree-2 Total Homology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.totH2">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.totH₂" class="lean_decl">SmallDC.totH₂</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The degree-2 homology of the total complex is </p>
+<div class="displaymath" id="a0000000262">
+  \[  H_2(\operatorname {Tot}(E)) := \ker (\partial _2),  \]
+</div>
+<p> since there are no boundaries in degree 2 (as there are no non-zero modules in bi-degree \((p,q)\) with \(p+q=3\)). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.vH00">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">148</span>
+    <span class="definition_thmtitle">Vertical Homology Groups</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.vH00">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.vH₀₀" class="lean_decl">SmallDC.vH₀₀</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The vertical homology groups of \(E\) are: </p>
+<div class="displaymath" id="a0000000263">
+  \begin{align*}  H^v_{0,0} & := A_{0,0} / \operatorname {im}(\partial ^v_0), \\ H^v_{1,0} & := A_{1,0} / \operatorname {im}(\partial ^v_1), \\ H^v_{0,1} & := \ker (\partial ^v_0), \\ H^v_{1,1} & := \ker (\partial ^v_1). \end{align*}
+</div>
+<p> Here \(H^v_{p,0}\) is the degree-0 vertical homology in column \(p\), and \(H^v_{p,1}\) is the degree-1 vertical homology in column \(p\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.dh0_maps_range">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">149</span>
+    <span class="lemma_thmtitle">Horizontal Map Preserves Vertical Boundaries</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.dh0_maps_range">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000264"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.dh0_maps_range" class="lean_decl">SmallDC.dh0_maps_range</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The map \(\partial ^h_0\) sends \(\operatorname {im}(\partial ^v_1)\) into \(\operatorname {im}(\partial ^v_0)\): </p>
+<div class="displaymath" id="a0000000265">
+  \[  \operatorname {im}(\partial ^v_1) \leq (\operatorname {im}(\partial ^v_0))^{(\partial ^h_0)},  \]
+</div>
+<p> i.e., for every \(x = \partial ^v_1(z)\) in the image of \(\partial ^v_1\), we have \(\partial ^h_0(x) \in \operatorname {im}(\partial ^v_0)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000264">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(x \in \operatorname {im}(\partial ^v_1)\), so \(x = \partial ^v_1(z)\) for some \(z \in A_{1,1}\). By the commutativity condition \(\partial ^v_0 \circ \partial ^h_1 = \partial ^h_0 \circ \partial ^v_1\), we have </p>
+<div class="displaymath" id="a0000000266">
+  \[  \partial ^h_0(x) = \partial ^h_0(\partial ^v_1(z)) = \partial ^v_0(\partial ^h_1(z)) \in \operatorname {im}(\partial ^v_0).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.barDh0">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">150</span>
+    <span class="definition_thmtitle">Induced Horizontal Map \(\bar{\partial }^h_0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.barDh0">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.dh0_maps_range">Lemma 149</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.barDh₀" class="lean_decl">SmallDC.barDh₀</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Since \(\partial ^h_0\) maps \(\operatorname {im}(\partial ^v_1)\) into \(\operatorname {im}(\partial ^v_0)\) (Lemma&#160;<a href="sect0015.html#lem:SmallDC.dh0_maps_range">149</a>), it descends to a well-defined \(\mathbb {F}_2\)-linear map on vertical homology: </p>
+<div class="displaymath" id="a0000000267">
+  \[  \bar{\partial }^h_0 : H^v_{1,0} \to H^v_{0,0}, \quad [a] \mapsto [\partial ^h_0(a)].  \]
+</div>
+<p> This is constructed as a quotient map \(\operatorname {mapQ}\) applied to \(\partial ^h_0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.dh1_maps_ker">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">151</span>
+    <span class="lemma_thmtitle">Horizontal Map Preserves Vertical Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.dh1_maps_ker">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000268"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC">Definition 135</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.dh1_maps_ker" class="lean_decl">SmallDC.dh1_maps_ker</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every \(x \in \ker (\partial ^v_1)\), we have \(\partial ^h_1(x) \in \ker (\partial ^v_0)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000268">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(x \in \ker (\partial ^v_1)\), so \(\partial ^v_1(x) = 0\). We must show \(\partial ^v_0(\partial ^h_1(x)) = 0\). By the commutativity condition \(\partial ^v_0 \circ \partial ^h_1 = \partial ^h_0 \circ \partial ^v_1\): </p>
+<div class="displaymath" id="a0000000269">
+  \[  \partial ^v_0(\partial ^h_1(x)) = \partial ^h_0(\partial ^v_1(x)) = \partial ^h_0(0) = 0.  \]
+</div>
+<p> Rewriting using the membership \(x \in \ker (\partial ^v_1)\) and applying linearity, we conclude \(\partial ^h_1(x) \in \ker (\partial ^v_0)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.barDh1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">152</span>
+    <span class="definition_thmtitle">Induced Horizontal Map \(\bar{\partial }^h_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.barDh1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.dh1_maps_ker">Lemma 151</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.barDh₁" class="lean_decl">SmallDC.barDh₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Since \(\partial ^h_1\) maps \(\ker (\partial ^v_1)\) into \(\ker (\partial ^v_0)\) (Lemma&#160;<a href="sect0015.html#lem:SmallDC.dh1_maps_ker">151</a>), it restricts to a well-defined \(\mathbb {F}_2\)-linear map on vertical homology: </p>
+<div class="displaymath" id="a0000000270">
+  \[  \bar{\partial }^h_1 : H^v_{1,1} \to H^v_{0,1}, \quad \langle x, hx \rangle \mapsto \langle \partial ^h_1(x), \text{(proof)} \rangle .  \]
+</div>
+<p> This is constructed by codomain restriction of the domain-restricted map \(\partial ^h_1|_{\ker (\partial ^v_1)}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.itH0">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">153</span>
+    <span class="definition_thmtitle">Iterated Homology at Degree 0</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.itH0">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.itH₀" class="lean_decl">SmallDC.itH₀</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The iterated (horizontal) homology at total degree 0 is </p>
+<div class="displaymath" id="a0000000271">
+  \[  \mathcal{H}_0 := H^v_{0,0} / \operatorname {im}(\bar{\partial }^h_0) = \bigoplus _{p+q=0} H_p(H_q(E_{\bullet ,\bullet }, \partial ^v), \bar{\partial }^h).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.itH2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">154</span>
+    <span class="definition_thmtitle">Iterated Homology at Degree 2</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.itH2">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.itH₂" class="lean_decl">SmallDC.itH₂</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The iterated (horizontal) homology at total degree 2 is </p>
+<div class="displaymath" id="a0000000272">
+  \[  \mathcal{H}_2 := \ker (\bar{\partial }^h_1) = \bigoplus _{p+q=2} H_p(H_q(E_{\bullet ,\bullet }, \partial ^v), \bar{\partial }^h).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.itH1_fst">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">155</span>
+    <span class="definition_thmtitle">First Factor of Iterated Homology at Degree 1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.itH1_fst">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.itH₁_fst" class="lean_decl">SmallDC.itH₁_fst</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The first summand of the iterated homology at total degree 1, corresponding to bi-degree \((1,0)\), is </p>
+<div class="displaymath" id="a0000000273">
+  \[  \mathcal{H}_{1,\text{fst}} := \ker (\bar{\partial }^h_0) \subseteq H^v_{1,0}.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.itH1_snd">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">156</span>
+    <span class="definition_thmtitle">Second Factor of Iterated Homology at Degree 1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.itH1_snd">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.itH₁_snd" class="lean_decl">SmallDC.itH₁_snd</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The second summand of the iterated homology at total degree 1, corresponding to bi-degree \((0,1)\), is </p>
+<div class="displaymath" id="a0000000274">
+  \[  \mathcal{H}_{1,\text{snd}} := H^v_{0,1} / \operatorname {im}(\bar{\partial }^h_1).  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.ker_d2_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">157</span>
+    <span class="lemma_thmtitle">Kernel of \(\partial _2\) Decomposes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.ker_d2_eq">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000275"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d2">Definition 136</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.ker_d₂_eq" class="lean_decl">SmallDC.ker_d₂_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The kernel of \(\partial _2 = \partial ^v_1 \times \partial ^h_1\) is the intersection: </p>
+<div class="displaymath" id="a0000000276">
+  \[  \ker (\partial _2) = \ker (\partial ^v_1) \cap \ker (\partial ^h_1).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000275">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows directly from the standard identity \(\ker (f \times g) = \ker (f) \cap \ker (g)\) for product linear maps, applied to \(\partial _2 = \partial ^v_1 \times \partial ^h_1\): an element \(x\) satisfies \(\partial _2(x) = 0\) if and only if \((\partial ^v_1(x), \partial ^h_1(x)) = (0, 0)\), which holds if and only if \(x \in \ker (\partial ^v_1) \cap \ker (\partial ^h_1)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.barDh1_val">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">158</span>
+    <span class="lemma_thmtitle">Value of \(\bar{\partial }^h_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.barDh1_val">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000277"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.barDh₁_val" class="lean_decl">SmallDC.barDh₁_val</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(x \in H^v_{1,1} = \ker (\partial ^v_1)\), the underlying value of \(\bar{\partial }^h_1(x)\) is: </p>
+<div class="displaymath" id="a0000000278">
+  \[  (\bar{\partial }^h_1(x))_{\text{val}} = \partial ^h_1(x_{\text{val}}).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000277">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This holds by reflexivity from the definition of \(\bar{\partial }^h_1\) as a codomain restriction: \(\bar{\partial }^h_1\langle x, hx \rangle = \langle \partial ^h_1(x), \ldots \rangle \), so its underlying value is \(\partial ^h_1(x)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.barDh1_ker_iff">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">159</span>
+    <span class="lemma_thmtitle">Kernel of \(\bar{\partial }^h_1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.barDh1_ker_iff">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000279"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.barDh1_val">Lemma 158</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.barDh1_val">Lemma 158</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.barDh₁_ker_iff" class="lean_decl">SmallDC.barDh₁_ker_iff</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(x \in H^v_{1,1}\): </p>
+<div class="displaymath" id="a0000000280">
+  \[  x \in \ker (\bar{\partial }^h_1) \iff x_{\text{val}} \in \ker (\partial ^h_1).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000279">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We use the kernel membership criterion \(x \in \ker (\bar{\partial }^h_1) \Leftrightarrow \bar{\partial }^h_1(x) = 0\). Since \(H^v_{0,1}\) is a subtype, \(\bar{\partial }^h_1(x) = 0\) holds in the subtype if and only if its underlying value equals 0 in \(A_{0,1}\). \((\Rightarrow )\): Suppose \(\bar{\partial }^h_1(x) = 0\). Taking the underlying value of both sides: \((\bar{\partial }^h_1(x))_{\text{val}} = 0_{\text{val}} = 0\). By Lemma&#160;<a href="sect0015.html#lem:SmallDC.barDh1_val">158</a>, \(\partial ^h_1(x_{\text{val}}) = 0\), so \(x_{\text{val}} \in \ker (\partial ^h_1)\). \((\Leftarrow )\): Suppose \(x_{\text{val}} \in \ker (\partial ^h_1)\), i.e., \(\partial ^h_1(x_{\text{val}}) = 0\). By subtype injectivity and Lemma&#160;<a href="sect0015.html#lem:SmallDC.barDh1_val">158</a>, the underlying value of \(\bar{\partial }^h_1(x)\) is 0, so \(\bar{\partial }^h_1(x) = 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SmallDC.homologyEquiv_n2">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">160</span>
+    <span class="theorem_thmtitle">Isomorphism at Degree 2</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#thm:SmallDC.homologyEquiv_n2">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000281"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totH2">Definition 147</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH2">Definition 154</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.ker_d2_eq">Lemma 157</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.barDh1_ker_iff">Lemma 159</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totH2">Definition 147</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH2">Definition 154</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.ker_d2_eq">Lemma 157</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.barDh1_ker_iff">Lemma 159</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.homologyEquiv_n2" class="lean_decl">SmallDC.homologyEquiv_n2</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    There is a canonical \(\mathbb {F}_2\)-linear isomorphism </p>
+<div class="displaymath" id="a0000000282">
+  \[  H_2(\operatorname {Tot}(E)) \cong \mathcal{H}_2,  \]
+</div>
+<p> i.e., \(\ker (\partial _2) \cong \ker (\bar{\partial }^h_1)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000281">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We construct an explicit \(\mathbb {F}_2\)-linear equivalence. By Lemma&#160;<a href="sect0015.html#lem:SmallDC.ker_d2_eq">157</a>, \(\ker (\partial _2) = \ker (\partial ^v_1) \cap \ker (\partial ^h_1)\). </p>
+<p><b class="bfseries">Forward map</b>: Given \(\langle x, hx \rangle \in \ker (\partial _2)\), we have \(x \in \ker (\partial ^v_1) \cap \ker (\partial ^h_1)\). From the intersection decomposition, extract \(hx_1 : x \in \ker (\partial ^v_1)\) and \(hx_2 : x \in \ker (\partial ^h_1)\). Define the image as \(\langle \langle x, hx_1 \rangle , (\bar{\partial }^h_1\text{-kernel membership obtained from } hx_2 \text{ via Lemma~ \ref{lem:SmallDC.barDh1_ker_iff}}) \rangle \in \ker (\bar{\partial }^h_1)\). </p>
+<p><b class="bfseries">Backward map</b>: Given \(\langle \langle x, hx_v \rangle , hx_h \rangle \) where \(\langle x, hx_v \rangle \in H^v_{1,1}\) and the pair lies in \(\ker (\bar{\partial }^h_1)\), by Lemma&#160;<a href="sect0015.html#lem:SmallDC.barDh1_ker_iff">159</a> we have \(x \in \ker (\partial ^h_1)\). Combined with \(hx_v : x \in \ker (\partial ^v_1)\), Lemma&#160;<a href="sect0015.html#lem:SmallDC.ker_d2_eq">157</a> gives \(x \in \ker (\partial _2)\). </p>
+<p><b class="bfseries">Linearity</b>: Both \(\operatorname {map_add’}\) and \(\operatorname {map_smul’}\) hold by subtype extensionality and reflexivity. </p>
+<p><b class="bfseries">Inverse laws</b>: Both left and right inverses hold by subtype extensionality and reflexivity. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.range_d1_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">161</span>
+    <span class="lemma_thmtitle">Image of \(\partial _1\) Decomposes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.range_d1_eq">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000283"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.d1">Definition 137</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.d1">Definition 137</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.range_d1_eq" class="lean_decl">SmallDC.range_d1_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The image of \(\partial _1\) equals the join of the images of \(\partial ^h_0\) and \(\partial ^v_0\): </p>
+<div class="displaymath" id="a0000000284">
+  \[  \operatorname {im}(\partial _1) = \operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000283">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality in \(A_{0,0}\), using the definition \(\partial _1(a,b) = \partial ^h_0(a) + \partial ^v_0(b)\). \((\subseteq )\): If \(y \in \operatorname {im}(\partial _1)\), obtain \((a,b) \in A_{1,0} \times A_{0,1}\) with \(\partial _1(a,b) = y\), i.e., \(y = \partial ^h_0(a) + \partial ^v_0(b)\). Then \(\partial ^h_0(a) \in \operatorname {im}(\partial ^h_0)\) and \(\partial ^v_0(b) \in \operatorname {im}(\partial ^v_0)\), so \(y \in \operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)\). \((\supseteq )\): If \(y = u + v\) with \(u = \partial ^h_0(a) \in \operatorname {im}(\partial ^h_0)\) and \(v = \partial ^v_0(b) \in \operatorname {im}(\partial ^v_0)\), then \(y = \partial _1(a,b) \in \operatorname {im}(\partial _1)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.barDh0_range_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">162</span>
+    <span class="lemma_thmtitle">Range of \(\bar{\partial }^h_0\) in Terms of Sum</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.barDh0_range_eq">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000285"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.barDh₀_range_eq" class="lean_decl">SmallDC.barDh₀_range_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The image of \(\bar{\partial }^h_0\) in \(H^v_{0,0} = A_{0,0}/\operatorname {im}(\partial ^v_0)\) equals the image of \(\operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)\) under the quotient map: </p>
+<div class="displaymath" id="a0000000286">
+  \[  \operatorname {im}(\bar{\partial }^h_0) = (\operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)) / \operatorname {im}(\partial ^v_0).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000285">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality in \(H^v_{0,0}\). \((\subseteq )\): Given \(y \in \operatorname {im}(\bar{\partial }^h_0)\), obtain \([a] \in H^v_{1,0}\) with \(\bar{\partial }^h_0([a]) = y\). By induction on the quotient representative \(a \in A_{1,0}\), the element \(\partial ^h_0(a) \in \operatorname {im}(\partial ^h_0) \subseteq \operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)\), and its image under \(\pi = \operatorname {mkQ}(\operatorname {im}(\partial ^v_0))\) equals \(y\). \((\supseteq )\): Given \(y = \pi (z)\) with \(z \in \operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)\), write \(z = \partial ^h_0(a) + v\) with \(a \in A_{1,0}\) and \(v \in \operatorname {im}(\partial ^v_0)\). Then \(\pi (v) = 0\) in the quotient, so \(\pi (z) = \pi (\partial ^h_0(a)) + 0 = \bar{\partial }^h_0([a]) \in \operatorname {im}(\bar{\partial }^h_0)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SmallDC.homologyEquiv_n0">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">163</span>
+    <span class="theorem_thmtitle">Isomorphism at Degree 0</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#thm:SmallDC.homologyEquiv_n0">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000287"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totH0">Definition 141</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH0">Definition 153</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.range_d1_eq">Lemma 161</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.barDh0_range_eq">Lemma 162</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totH0">Definition 141</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH0">Definition 153</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.range_d1_eq">Lemma 161</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.barDh0_range_eq">Lemma 162</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.homologyEquiv_n0" class="lean_decl">SmallDC.homologyEquiv_n0</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    There is a canonical \(\mathbb {F}_2\)-linear isomorphism </p>
+<div class="displaymath" id="a0000000288">
+  \[  H_0(\operatorname {Tot}(E)) \cong \mathcal{H}_0,  \]
+</div>
+<p> i.e., \(A_{0,0}/\operatorname {im}(\partial _1) \cong H^v_{0,0}/\operatorname {im}(\bar{\partial }^h_0)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000287">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The isomorphism is constructed as a composition of three quotient equivalences. By Lemma&#160;<a href="sect0015.html#lem:SmallDC.range_d1_eq">161</a>, \(\operatorname {im}(\partial _1) = \operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)\), giving </p>
+<div class="displaymath" id="a0000000289">
+  \[  A_{0,0}/\operatorname {im}(\partial _1) \cong A_{0,0}/(\operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)).  \]
+</div>
+<p> By the second isomorphism theorem for modules (quotient-quotient equivalence), since \(\operatorname {im}(\partial ^v_0) \leq \operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)\): </p>
+<div class="displaymath" id="a0000000290">
+  \[  A_{0,0}/(\operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0)) \cong (A_{0,0}/\operatorname {im}(\partial ^v_0)) / ((\operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0))/\operatorname {im}(\partial ^v_0)).  \]
+</div>
+<p> By Lemma&#160;<a href="sect0015.html#lem:SmallDC.barDh0_range_eq">162</a>, \((\operatorname {im}(\partial ^h_0) + \operatorname {im}(\partial ^v_0))/\operatorname {im}(\partial ^v_0) = \operatorname {im}(\bar{\partial }^h_0)\), so the result is \(H^v_{0,0}/\operatorname {im}(\bar{\partial }^h_0) = \mathcal{H}_0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.piMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">164</span>
+    <span class="definition_thmtitle">Projection Map \(\pi \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.piMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totZ1">Definition 142</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.vH00">Definition 148</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piMap" class="lean_decl">SmallDC.piMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Define the projection \(\pi : Z_1 \to H^v_{1,0}\) by composing the inclusion \(Z_1 \hookrightarrow A_{1,0} \times A_{0,1}\), the first projection \(\operatorname {fst} : A_{1,0} \times A_{0,1} \to A_{1,0}\), and the quotient map \(\pi _0 : A_{1,0} \to H^v_{1,0}\): </p>
+<div class="displaymath" id="a0000000291">
+  \[  \pi : Z_1 \hookrightarrow A_{1,0} \times A_{0,1} \xrightarrow {\operatorname {pr}_1} A_{1,0} \twoheadrightarrow H^v_{1,0}, \quad (a,b) \mapsto [a].  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.piMap_mem_ker">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">165</span>
+    <span class="lemma_thmtitle">\(\pi \) Lands in \(\ker (\bar{\partial }^h_0)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.piMap_mem_ker">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000292"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.piMap">Definition 164</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piMap">Definition 164</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piMap_mem_ker" class="lean_decl">SmallDC.piMap_mem_ker</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every \(z \in Z_1\), \(\pi (z) \in \ker (\bar{\partial }^h_0)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000292">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(z = (a,b) \in Z_1 = \ker (\partial _1)\). We must show \(\bar{\partial }^h_0([a]) = 0\) in \(H^v_{0,0}\). By definition, \(\bar{\partial }^h_0([a]) = [\partial ^h_0(a)]\) in \(H^v_{0,0} = A_{0,0}/\operatorname {im}(\partial ^v_0)\), so we need \(\partial ^h_0(a) \in \operatorname {im}(\partial ^v_0)\). Since \((a,b) \in \ker (\partial _1)\), we have \(\partial ^h_0(a) + \partial ^v_0(b) = 0\), hence \(\partial ^h_0(a) = -\partial ^v_0(b)\). Over \(\mathbb {F}_2\), negation is the identity, so \(\partial ^h_0(a) = \partial ^v_0(b) \in \operatorname {im}(\partial ^v_0)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.piMap'">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">166</span>
+    <span class="definition_thmtitle">Lifted Projection \(\pi '\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.piMap'">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.piMap">Definition 164</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piMap_mem_ker">Lemma 165</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piMap'" class="lean_decl">SmallDC.piMap'</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    By Lemma&#160;<a href="sect0015.html#lem:SmallDC.piMap_mem_ker">165</a>, \(\pi \) lands in \(\ker (\bar{\partial }^h_0) = \mathcal{H}_{1,\text{fst}}\). Define the codomain-restricted map: </p>
+<div class="displaymath" id="a0000000293">
+  \[  \pi ' : Z_1 \to \ker (\bar{\partial }^h_0), \quad z \mapsto (\pi (z), \text{proof that } \pi (z) \in \ker (\bar{\partial }^h_0)).  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.piMap'_vanishes_on_B1">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">167</span>
+    <span class="lemma_thmtitle">\(\pi '\) Vanishes on \(B_1^Z\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.piMap'_vanishes_on_B1">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000294"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.piMap'">Definition 166</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1InZ1">Definition 145</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piMap'">Definition 166</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1InZ1">Definition 145</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piMap'_vanishes_on_B₁" class="lean_decl">SmallDC.piMap'_vanishes_on_B₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(B_1^Z \leq \ker (\pi ')\), i.e., \(\pi '\) vanishes on boundaries. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000294">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(v = (a',b') \in B_1^Z \subseteq Z_1\). We must show \(\pi '(v) = 0\), i.e., the image of \(\pi '\) at \(v\) is zero in \(\ker (\bar{\partial }^h_0)\). Since \(v \in B_1^Z\), we have \((a',b') \in \operatorname {im}(\partial _2)\); obtain \(x \in A_{1,1}\) with \(\partial _2(x) = (a',b')\). By Lemma&#160;<a href="sect0015.html#lem:SmallDC.d2_fst">138</a>, \(a' = (\partial _2(x))_1 = \partial ^v_1(x) \in \operatorname {im}(\partial ^v_1)\). Therefore \([a'] = 0\) in \(H^v_{1,0} = A_{1,0}/\operatorname {im}(\partial ^v_1)\), so \(\pi '(v) = 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.piBar">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">168</span>
+    <span class="definition_thmtitle">Descended Projection \(\bar{\pi }\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.piBar">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totH1">Definition 146</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH1_fst">Definition 155</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piMap'">Definition 166</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piMap'_vanishes_on_B1">Lemma 167</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piBar" class="lean_decl">SmallDC.piBar</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Since \(\pi '\) vanishes on \(B_1^Z\) (Lemma&#160;<a href="sect0015.html#lem:SmallDC.piMap'_vanishes_on_B1">167</a>), it descends to a well-defined map on the degree-1 homology: </p>
+<div class="displaymath" id="a0000000295">
+  \[  \bar{\pi } : H_1(\operatorname {Tot}(E)) \to \mathcal{H}_{1,\text{fst}}, \quad [(a,b)] \mapsto [a].  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.iotaMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">169</span>
+    <span class="definition_thmtitle">Inclusion Map \(\iota \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.iotaMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totZ1">Definition 142</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.iotaMap" class="lean_decl">SmallDC.iotaMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Define the inclusion \(\iota : H^v_{0,1} = \ker (\partial ^v_0) \to Z_1\) by sending \(b \mapsto (0, b)\): </p>
+<div class="displaymath" id="a0000000296">
+  \[  \iota : \ker (\partial ^v_0) \to Z_1, \quad \langle b, hb \rangle \mapsto \langle (0,b), \text{proof}\rangle .  \]
+</div>
+<p> This is well-defined because \(\partial _1(0,b) = \partial ^h_0(0) + \partial ^v_0(b) = 0 + 0 = 0\) for \(b \in \ker (\partial ^v_0)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.iotaMap_vanishes_on_barDh1">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">170</span>
+    <span class="lemma_thmtitle">\(\iota \) Vanishes on \(\operatorname {im}(\bar{\partial }^h_1)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.iotaMap_vanishes_on_barDh1">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000297"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaMap">Definition 169</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1InZ1">Definition 145</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_snd">Lemma 139</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaMap">Definition 169</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totB1InZ1">Definition 145</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_snd">Lemma 139</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.iotaMap_vanishes_on_barDh₁" class="lean_decl">SmallDC.iotaMap_vanishes_on_barDh₁</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\operatorname {im}(\bar{\partial }^h_1) \leq \ker (q \circ \iota )\), where \(q : Z_1 \to H_1(\operatorname {Tot}(E))\) is the quotient map. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000297">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(v \in \operatorname {im}(\bar{\partial }^h_1)\), so \(v = \bar{\partial }^h_1(\langle w, hw \rangle )\) for some \(w \in A_{1,1}\) with \(hw : w \in \ker (\partial ^v_1)\). We must show \(q(\iota (v)) = 0\) in \(H_1(\operatorname {Tot}(E))\), i.e., \(\iota (v) \in B_1^Z = \operatorname {im}(\partial _2) \cap Z_1\). </p>
+<p>We have \(\iota (v) = \iota (\bar{\partial }^h_1\langle w, hw \rangle ) = (0, \partial ^h_1(w)) \in Z_1\). It suffices to show \((0, \partial ^h_1(w)) \in \operatorname {im}(\partial _2)\). We claim \(\partial _2(w) = (0, \partial ^h_1(w))\): </p>
+<ul class="itemize">
+  <li><p>First component: \((\partial _2(w))_1 = \partial ^v_1(w) = 0\) by Lemma&#160;<a href="sect0015.html#lem:SmallDC.d2_fst">138</a> since \(w \in \ker (\partial ^v_1)\). </p>
+</li>
+  <li><p>Second component: \((\partial _2(w))_2 = \partial ^h_1(w)\) by Lemma&#160;<a href="sect0015.html#lem:SmallDC.d2_snd">139</a>. </p>
+</li>
+</ul>
+<p> Thus \((0, \partial ^h_1(w)) = \partial _2(w) \in \operatorname {im}(\partial _2)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SmallDC.iotaBar">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">171</span>
+    <span class="definition_thmtitle">Descended Inclusion \(\bar{\iota }\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#def:SmallDC.iotaBar">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.itH1_snd">Definition 156</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totH1">Definition 146</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaMap">Definition 169</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.iotaMap_vanishes_on_barDh1">Lemma 170</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.iotaBar" class="lean_decl">SmallDC.iotaBar</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Since \(q \circ \iota \) vanishes on \(\operatorname {im}(\bar{\partial }^h_1)\) (Lemma&#160;<a href="sect0015.html#lem:SmallDC.iotaMap_vanishes_on_barDh1">170</a>), the map descends to </p>
+<div class="displaymath" id="a0000000298">
+  \[  \bar{\iota } : \mathcal{H}_{1,\text{snd}} = H^v_{0,1}/\operatorname {im}(\bar{\partial }^h_1) \to H_1(\operatorname {Tot}(E)), \quad [b] \mapsto [(0,b)].  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.piBar_comp_iotaBar">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">172</span>
+    <span class="lemma_thmtitle">Exactness: \(\bar{\pi } \circ \bar{\iota } = 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.piBar_comp_iotaBar">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000299"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piBar_comp_iotaBar" class="lean_decl">SmallDC.piBar_comp_iotaBar</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The composition \(\bar{\pi } \circ \bar{\iota } = 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000299">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By induction on representatives, it suffices to show that for each \(\langle b, hb \rangle \in H^v_{0,1}\): </p>
+<div class="displaymath" id="a0000000300">
+  \[  \bar{\pi }(\bar{\iota }([\langle b, hb \rangle ])) = 0.  \]
+</div>
+<p> <b class="bfseries">Step 1</b>: By definition of \(\bar{\iota }\), \(\bar{\iota }([\langle b, hb \rangle ]) = q(\iota (\langle b, hb \rangle ))\), where \(q\) is the quotient map \(Z_1 \to H_1(\operatorname {Tot}(E))\). </p>
+<p><b class="bfseries">Step 2</b>: By definition of \(\bar{\pi }\), \(\bar{\pi }(q(\iota (\langle b, hb \rangle ))) = \pi '(\iota (\langle b, hb \rangle ))\). </p>
+<p><b class="bfseries">Step 3</b>: We compute \(\pi (\iota (\langle b, hb \rangle )) = [(\iota \langle b, hb \rangle )_1] = [(0, b)_1] = [0] = 0\) in \(H^v_{1,0}\), since \(\iota \) maps to \((0, b)\) and the first component of \((0,b)\) is \(0 \in \operatorname {im}(\partial ^v_1)\). Therefore \(\pi '(\iota (\langle b, hb \rangle )) = 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">173</span>
+    <span class="lemma_thmtitle">Helper: \((0,b) \in \operatorname {im}(\partial _2)\) Implies \(b \in \operatorname {im}(\bar{\partial }^h_1)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000301"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_snd">Lemma 139</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh1">Definition 152</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_fst">Lemma 138</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.d2_snd">Lemma 139</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.mem_range_barDh₁_of_inr_mem_range_d₂" class="lean_decl">SmallDC.mem_range_barDh₁_of_inr_mem_range_d₂</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(b \in \ker (\partial ^v_0)\). If \((0, b) \in \operatorname {im}(\partial _2)\), then \(\langle b, hb \rangle \in \operatorname {im}(\bar{\partial }^h_1)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000301">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose \((0, b) \in \operatorname {im}(\partial _2)\); obtain \(w \in A_{1,1}\) with \(\partial _2(w) = (0, b)\). </p>
+<p>By Lemma&#160;<a href="sect0015.html#lem:SmallDC.d2_fst">138</a>: \(\partial ^v_1(w) = (\partial _2(w))_1 = 0\), so \(w \in \ker (\partial ^v_1) = H^v_{1,1}\). </p>
+<p>By Lemma&#160;<a href="sect0015.html#lem:SmallDC.d2_snd">139</a>: \(\partial ^h_1(w) = (\partial _2(w))_2 = b\). </p>
+<p>Therefore \(\langle w, \partial ^v_1(w) = 0 \rangle \in H^v_{1,1}\) and \(\bar{\partial }^h_1(\langle w, \cdot \rangle ) = \langle \partial ^h_1(w), \cdot \rangle = \langle b, hb \rangle \), showing \(\langle b, hb \rangle \in \operatorname {im}(\bar{\partial }^h_1)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.iotaBar_injective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">174</span>
+    <span class="lemma_thmtitle">\(\bar{\iota }\) is Injective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.iotaBar_injective">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000302"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">Lemma 173</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">Lemma 173</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.iotaBar_injective" class="lean_decl">SmallDC.iotaBar_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The map \(\bar{\iota } : \mathcal{H}_{1,\text{snd}} \to H_1(\operatorname {Tot}(E))\) is injective. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000302">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> It suffices to show \(\ker (\bar{\iota }) = \{ 0\} \). Let \(y \in \ker (\bar{\iota })\) and lift to a representative \(\langle b, hb \rangle \in H^v_{0,1}\). We must show \([\langle b, hb \rangle ] = 0\) in \(\mathcal{H}_{1,\text{snd}}\), i.e., \(\langle b, hb \rangle \in \operatorname {im}(\bar{\partial }^h_1)\). </p>
+<p>From \(\bar{\iota }([\langle b, hb \rangle ]) = 0\) in \(H_1(\operatorname {Tot}(E))\), we have \(q(\iota (\langle b, hb \rangle )) = 0\), so \(\iota (\langle b, hb \rangle ) \in B_1^Z = \operatorname {im}(\partial _2) \cap Z_1\). Unwinding, the element \((0, b) \in \operatorname {im}(\partial _2)\). </p>
+<p>By Lemma&#160;<a href="sect0015.html#lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">173</a>, \(\langle b, hb \rangle \in \operatorname {im}(\bar{\partial }^h_1)\), as required. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.piBar_surjective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">175</span>
+    <span class="lemma_thmtitle">\(\bar{\pi }\) is Surjective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.piBar_surjective">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000303"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.barDh0">Definition 150</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piBar_surjective" class="lean_decl">SmallDC.piBar_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The map \(\bar{\pi } : H_1(\operatorname {Tot}(E)) \to \mathcal{H}_{1,\text{fst}}\) is surjective. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000303">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(\langle q, hq \rangle \in \ker (\bar{\partial }^h_0) = \mathcal{H}_{1,\text{fst}}\). Lift \(q \in H^v_{1,0}\) to a representative \(a \in A_{1,0}\). Since \([a] \in \ker (\bar{\partial }^h_0)\), we have \(\bar{\partial }^h_0([a]) = 0\) in \(H^v_{0,0}\), i.e., \([\partial ^h_0(a)] = 0\), so \(\partial ^h_0(a) \in \operatorname {im}(\partial ^v_0)\). </p>
+<p>Obtain \(b \in A_{0,1}\) with \(\partial ^h_0(a) = \partial ^v_0(b)\). Over \(\mathbb {F}_2\), \(\partial ^h_0(a) + \partial ^v_0(b) = 2\partial ^v_0(b) = 0\), so \((a,b) \in \ker (\partial _1) = Z_1\). </p>
+<p>Consider \([(a,b)] \in H_1(\operatorname {Tot}(E))\). Then \(\bar{\pi }([(a,b)]) = [a] \in H^v_{1,0}\), which as an element of \(\ker (\bar{\partial }^h_0)\) equals \(\langle q, hq \rangle \) since \([a] = q\). Hence \(\bar{\pi }\) is surjective. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:SmallDC.piBar_ker_eq_iotaBar_range">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">176</span>
+    <span class="lemma_thmtitle">\(\ker (\bar{\pi }) = \operatorname {im}(\bar{\iota })\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#lem:SmallDC.piBar_ker_eq_iotaBar_range">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000304"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piBar_comp_iotaBar">Lemma 172</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">Lemma 173</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piBar_comp_iotaBar">Lemma 172</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.mem_range_barDh1_of_inr_mem_range_d2">Lemma 173</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.piBar_ker_eq_iotaBar_range" class="lean_decl">SmallDC.piBar_ker_eq_iotaBar_range</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\ker (\bar{\pi }) = \operatorname {im}(\bar{\iota })\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000304">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality on representatives in \(H_1(\operatorname {Tot}(E))\). </p>
+<p>\((\subseteq )\): Let \(z \in Z_1\) with \(\bar{\pi }([z]) = 0\), i.e., \([z] \in \ker (\bar{\pi })\). The condition \(\bar{\pi }([z]) = 0\) means \(\pi '(z) = 0\) in \(\ker (\bar{\partial }^h_0)\), i.e., \(z_1 \in \operatorname {im}(\partial ^v_1)\). Obtain \(w\) with \(z_1 = \partial ^v_1(w)\). </p>
+<p>Set \(b' = z_2 + \partial ^h_1(w) \in A_{0,1}\). Using the commutativity condition, \(\partial ^v_0(b') = \partial ^v_0(z_2) + \partial ^h_0(\partial ^v_1(w)) = 0\) (since \(z \in \ker (\partial _1)\) gives \(\partial ^h_0(z_1) + \partial ^v_0(z_2) = 0\) and \(z_1 = \partial ^v_1(w)\), combined with \(\partial ^v_0 \circ \partial ^h_1 = \partial ^h_0 \circ \partial ^v_1\) over \(\mathbb {F}_2\)). Thus \(\langle b', hb' \rangle \in H^v_{0,1}\). </p>
+<p>The difference \(z - \iota \langle b', hb' \rangle = (\partial ^v_1(w), -\partial ^h_1(w)) = \partial _2(w)\) (over \(\mathbb {F}_2\), negation is identity) lies in \(B_1^Z\). Hence \([z] = [\iota \langle b', hb' \rangle ] = \bar{\iota }([\langle b', hb' \rangle ]) \in \operatorname {im}(\bar{\iota })\). </p>
+<p>\((\supseteq )\): This follows directly from Lemma&#160;<a href="sect0015.html#lem:SmallDC.piBar_comp_iotaBar">172</a>: for any \(y\), \(\bar{\pi }(\bar{\iota }(y)) = 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SmallDC.homologyEquiv_n1">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">177</span>
+    <span class="theorem_thmtitle">Isomorphism at Degree 1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0015.html#thm:SmallDC.homologyEquiv_n1">#</a>
+    
+    <a class="icon proof" href="sect0015.html#a0000000305"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0015.html#def:SmallDC.totH1">Definition 146</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH1_fst">Definition 155</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH1_snd">Definition 156</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.iotaBar_injective">Lemma 174</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piBar_surjective">Lemma 175</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piBar_ker_eq_iotaBar_range">Lemma 176</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.totH1">Definition 146</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH1_fst">Definition 155</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.itH1_snd">Definition 156</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.piBar">Definition 168</a></li>
+          
+          <li><a href="sect0015.html#def:SmallDC.iotaBar">Definition 171</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.iotaBar_injective">Lemma 174</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piBar_surjective">Lemma 175</a></li>
+          
+          <li><a href="sect0015.html#lem:SmallDC.piBar_ker_eq_iotaBar_range">Lemma 176</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SmallDC.homologyEquiv_n1" class="lean_decl">SmallDC.homologyEquiv_n1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    There is a canonical \(\mathbb {F}_2\)-linear isomorphism </p>
+<div class="displaymath" id="a0000000306">
+  \[  H_1(\operatorname {Tot}(E)) \cong \mathcal{H}_{1,\text{fst}} \times \mathcal{H}_{1,\text{snd}} = \ker (\bar{\partial }^h_0) \times \bigl(H^v_{0,1}/\operatorname {im}(\bar{\partial }^h_1)\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000305">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We construct a short exact sequence that splits over \(\mathbb {F}_2\). By Lemma&#160;<a href="sect0015.html#lem:SmallDC.piBar_comp_iotaBar">172</a>, Lemma&#160;<a href="sect0015.html#lem:SmallDC.iotaBar_injective">174</a>, Lemma&#160;<a href="sect0015.html#lem:SmallDC.piBar_surjective">175</a>, and Lemma&#160;<a href="sect0015.html#lem:SmallDC.piBar_ker_eq_iotaBar_range">176</a>, the sequence </p>
+<div class="displaymath" id="a0000000307">
+  \[  0 \to \mathcal{H}_{1,\text{snd}} \xrightarrow {\bar{\iota }} H_1(\operatorname {Tot}(E)) \xrightarrow {\bar{\pi }} \mathcal{H}_{1,\text{fst}} \to 0  \]
+</div>
+<p> is short exact (with \(\bar{\iota }\) injective, \(\bar{\pi }\) surjective, and \(\ker (\bar{\pi }) = \operatorname {im}(\bar{\iota })\)). </p>
+<p>Over \(\mathbb {F}_2\) (a field), every short exact sequence of vector spaces splits. Concretely, we apply the Mathlib lemma <span class="ttfamily">Submodule.exists_isCompl</span> to \(\operatorname {im}(\bar{\iota }) \subseteq H_1(\operatorname {Tot}(E))\) to obtain a complement \(K\) with \(\operatorname {im}(\bar{\iota }) \oplus K = H_1(\operatorname {Tot}(E))\). The isomorphism is assembled as the composition: </p>
+<div class="displaymath" id="a0000000308">
+  \begin{align*}  H_1(\operatorname {Tot}(E)) & \cong \operatorname {im}(\bar{\iota }) \times K & &  \text{(split by complement } K\text{)} \\ & \cong \mathcal{H}_{1,\text{snd}} \times K & &  \text{(} \bar{\iota } \text{ injective, } \mathcal{H}_{1,\text{snd}} \cong \operatorname {im}(\bar{\iota })\text{)} \\ & \cong \mathcal{H}_{1,\text{snd}} \times \mathcal{H}_{1,\text{fst}} & &  \text{(} K \cong H_1/\ker (\bar{\pi }) \cong \operatorname {im}(\bar{\pi }) = \mathcal{H}_{1,\text{fst}}\text{)} \\ & \cong \mathcal{H}_{1,\text{fst}} \times \mathcal{H}_{1,\text{snd}}. & &  \text{(swap factors)} \end{align*}
+</div>
+<p> Each step uses a standard linear equivalence: the complement decomposition, the linear equivalence from injectivity of \(\bar{\iota }\), the quotient-kernel equivalence for \(\bar{\pi }\), and the product commutativity isomorphism. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0014.html" title="Def 11: Tensor Product Double Complex"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0016.html" title="Def 12: Fiber Bundle Double Complex"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

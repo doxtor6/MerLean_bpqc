@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 6: Alon–Chung Bound</title>
+<link rel="next" href="sect0028.html" title="Cor 1: Alon–Chung Contrapositive" />
+<link rel="prev" href="sect0026.html" title="Thm 5: Alon–Boppana Bound" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000028">27 Thm 6: Alon–Chung Bound</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:AlonChung.inducedEdges">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">305</span>
+    <span class="definition_thmtitle">Induced Edge Set</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#def:AlonChung.inducedEdges">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.inducedEdges" class="lean_decl">AlonChung.inducedEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(G = (V, E)\) be a simple graph and \(S \subseteq V\) a finite subset. The <em>induced edge set</em> of \(S\) is </p>
+<div class="displaymath" id="a0000000540">
+  \[  X(S)_1 \; =\;  \{  e \in E \mid \forall \,  v \in e,\;  v \in S \}  \; =\;  E \cap S^{(2)},  \]
+</div>
+<p> where \(S^{(2)}\) denotes the set of unordered pairs of elements of \(S\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.mem_inducedEdges">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">306</span>
+    <span class="lemma_thmtitle">Membership in Induced Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.mem_inducedEdges">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000541"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.mem_inducedEdges" class="lean_decl">AlonChung.mem_inducedEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For a simple graph \(G\) on \(V\), a subset \(S \subseteq V\), and an unordered pair \(e \in \operatorname {Sym}^2(V)\), </p>
+<div class="displaymath" id="a0000000542">
+  \[  e \in X(S)_1 \; \Longleftrightarrow \;  e \in E(G) \; \land \;  \forall \,  v \in e,\;  v \in S.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000541">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows by unfolding the definition of \(X(S)_1 = E(G) \cap S^{(2)}\) and applying the characterisation of membership in \(S^{(2)}\): by simplification, \(e \in E(G) \cap S^{(2)}\) if and only if \(e \in E(G)\) and every vertex of \(e\) lies in \(S\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.inducedEdges_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">307</span>
+    <span class="lemma_thmtitle">Nonemptiness of Induced Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.inducedEdges_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000543"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.mem_inducedEdges">Lemma 306</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.inducedEdges_nonempty" class="lean_decl">AlonChung.inducedEdges_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If there exists an edge \(e \in E(G)\) such that every vertex of \(e\) lies in \(S\), then \(X(S)_1\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000543">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> From the hypothesis, obtain \(e \in E(G)\) with \(\forall v \in e,\,  v \in S\). Then \(e \in X(S)_1\) by the membership characterisation (Lemma&#160;<a href="sect0027.html#lem:AlonChung.mem_inducedEdges">306</a>), so \(X(S)_1\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:AlonChung.indicatorVec">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">308</span>
+    <span class="definition_thmtitle">Indicator Vector</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#def:AlonChung.indicatorVec">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.indicatorVec" class="lean_decl">AlonChung.indicatorVec</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a finite vertex set \(V\) and \(S \subseteq V\), the <em>indicator vector</em> \(\mathbf{1}_S : V \to \mathbb {R}\) is defined by </p>
+<div class="displaymath" id="a0000000544">
+  \[  \mathbf{1}_S(v) \; =\;  \begin{cases}  1 &  \text{if } v \in S, \\ 0 &  \text{if } v \notin S. \end{cases}  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.quadratic_form_eq_twice_inducedEdges">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">309</span>
+    <span class="lemma_thmtitle">Quadratic Form Equals Twice Induced Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.quadratic_form_eq_twice_inducedEdges">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000545"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.quadratic_form_eq_twice_inducedEdges" class="lean_decl">AlonChung.quadratic_form_eq_twice_inducedEdges</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a simple graph on \(V\) and \(M = A(G)\) its adjacency matrix over \(\mathbb {R}\). For any \(S \subseteq V\), </p>
+<div class="displaymath" id="a0000000546">
+  \[  \mathbf{1}_S^\top M\,  \mathbf{1}_S \; =\;  2\, |X(S)_1|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000545">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We unfold the dot product and matrix-vector multiplication using the definitions of \(\mathbf{1}_S\) and \(M\): </p>
+<div class="displaymath" id="a0000000547">
+  \[  \mathbf{1}_S^\top M \mathbf{1}_S = \sum _{v \in V} \mathbf{1}_S(v)\sum _{w \in V} M_{vw}\, \mathbf{1}_S(w).  \]
+</div>
+<p> <b class="bfseries">Step 1.</b> Since \(M_{vw} = \mathbf{1}[G.Adj(v,w)]\) and \(\mathbf{1}_S(v), \mathbf{1}_S(w) \in \{ 0,1\} \), the double sum simplifies to </p>
+<div class="displaymath" id="a0000000548">
+  \[  \sum _{v \in V}\sum _{w \in V} \mathbf{1}[G.\operatorname {Adj}(v,w) \land v \in S \land w \in S].  \]
+</div>
+<p> <b class="bfseries">Step 2.</b> By rewriting via the indicator function of the filtered product set, this equals the cardinality </p>
+<div class="displaymath" id="a0000000549">
+  \[  \bigl|\{ (v,w) \in V \times V \mid G.\operatorname {Adj}(v,w),\,  v \in S,\,  w \in S\} \bigr|.  \]
+</div>
+<p> <b class="bfseries">Step 3.</b> We exhibit a \(2\)-to-\(1\) map from these ordered pairs to unordered induced edges: by the symmetry of adjacency, each unordered edge \(\{ v,w\}  \in X(S)_1\) corresponds to exactly two ordered pairs \((v,w)\) and \((w,v)\) with \(v \neq w\). Concretely, for each \(e = s(v,w) \in X(S)_1\) the fibre \(\{ (a,b) : G.\operatorname {Adj}(a,b) \land a \in S \land b \in S \land s(a,b) = e\} \) equals \(\{ (v,w),(w,v)\} \), which has cardinality \(2\) since \(v \neq w\) (graphs have no self-loops). Partitioning the filtered product by edge and applying the constant-fibre sum formula gives the total count \(= 2\, |X(S)_1|\). Simplification by ring arithmetic concludes. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.twice_card_edgeFinset_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">310</span>
+    <span class="lemma_thmtitle">Twice Edge Count for Regular Graphs</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000550"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.twice_card_edgeFinset_eq" class="lean_decl">AlonChung.twice_card_edgeFinset_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(G\) is \(s\)-regular on \(V\), then </p>
+<div class="displaymath" id="a0000000551">
+  \[  2\, |E(G)| \; =\;  s\, |V|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000550">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We use the handshaking lemma \(\sum _{v \in V} \deg (v) = 2|E(G)|\). Since \(G\) is \(s\)-regular, \(\deg (v) = s\) for all \(v\), so \(\sum _{v}\deg (v) = s\, |V|\). Substituting and casting to \(\mathbb {R}\) gives \(2|E(G)| = s|V|\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.spectral_decomp_quadratic">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">311</span>
+    <span class="lemma_thmtitle">Spectral Decomposition of the Quadratic Form</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000552"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.spectral_decomp_quadratic" class="lean_decl">AlonChung.spectral_decomp_quadratic</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(A\) be a Hermitian matrix on \(V\) with orthonormal eigenvector basis \((v_j)_{j \in V}\) and corresponding real eigenvalues \((\lambda _j)\). For any \(x : V \to \mathbb {R}\), </p>
+<div class="displaymath" id="a0000000553">
+  \[  x^\top A x \; =\;  \sum _{j \in V} \lambda _j \, (x \cdot v_j)^2.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000552">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(U\) be the eigenvector unitary (orthogonal matrix) with \(A = U D U^\top \) (spectral theorem for real Hermitian matrices), where \(D = \operatorname {diag}(\lambda _j)\). </p>
+<p><b class="bfseries">Step 1.</b> We verify \(\star U = U^\top \) using that \(A\) is real Hermitian. </p>
+<p><b class="bfseries">Step 2.</b> Set \(y = U^\top x\). Then \(Ax = U(Dy)\) by associativity. </p>
+<p><b class="bfseries">Step 3.</b> Compute \(x^\top (Ax) = x^\top U (D y)\). Since \(\operatorname {vecMul}(x, U) = U^\top x = y\) (by expanding definitions of vector multiplication and transposition for real matrices), we get \(x^\top A x = y^\top D y\). </p>
+<p><b class="bfseries">Step 4.</b> Since \(D\) is diagonal, \(y^\top D y = \sum _j \lambda _j y_j^2\). </p>
+<p><b class="bfseries">Step 5.</b> Observe that \(y_j = (U^\top x)_j = \sum _i x_i U_{ij} = x \cdot v_j\) where \(v_j\) is the \(j\)-th eigenvector. Rewriting using \(U_{ij} = (v_j)_i\) and collecting terms gives the result. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.parseval_eigenvector">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">312</span>
+    <span class="lemma_thmtitle">Parseval Identity for Eigenvector Basis</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.parseval_eigenvector">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000554"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.parseval_eigenvector" class="lean_decl">AlonChung.parseval_eigenvector</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(A\) be Hermitian on \(V\) with orthonormal eigenvector basis \((v_j)\). For any \(x : V \to \mathbb {R}\), </p>
+<div class="displaymath" id="a0000000555">
+  \[  \| x\| ^2 \; =\;  \sum _{j \in V} (x \cdot v_j)^2.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000554">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(U\) be the eigenvector unitary. We first show \(\| x\| ^2 = \| y\| ^2\) where \(y = U^\top x\). Indeed, by the orthogonality identity \(UU^\top = I\) (from the unitary property and \(\star U = U^\top \)): </p>
+<div class="displaymath" id="a0000000556">
+  \[  \| y\| ^2 = y^\top D_1 y = (U^\top x)^\top (U^\top x) = x^\top (UU^\top ) x = x^\top x = \| x\| ^2,  \]
+</div>
+<p> computed via the chain \(\| y\| ^2 = \operatorname {vecMul}(U^\top x, U^\top ) \cdot x = U(U^\top x) \cdot x = (UU^\top x) \cdot x = x \cdot x\). Then \(\| y\| ^2 = \sum _j y_j^2\), and since \(y_j = x \cdot v_j\), this gives \(\| x\| ^2 = \sum _j (x\cdot v_j)^2\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.quadratic_le_bound">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">313</span>
+    <span class="lemma_thmtitle">Quadratic Form Bounded by Maximum Eigenvalue</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.quadratic_le_bound">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000557"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">Lemma 311</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.parseval_eigenvector">Lemma 312</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">Lemma 311</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.parseval_eigenvector">Lemma 312</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.quadratic_le_bound" class="lean_decl">AlonChung.quadratic_le_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(A\) be Hermitian on \(V\) and suppose all eigenvalues satisfy \(\lambda _j \leq C\). Then for any \(x : V \to \mathbb {R}\), </p>
+<div class="displaymath" id="a0000000558">
+  \[  x^\top A x \; \leq \;  C\, \| x\| ^2.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000557">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Rewrite using the spectral decomposition (Lemma&#160;<a href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">311</a>) and Parseval identity (Lemma&#160;<a href="sect0027.html#lem:AlonChung.parseval_eigenvector">312</a>): </p>
+<div class="displaymath" id="a0000000559">
+  \[  x^\top Ax = \sum _j \lambda _j (x\cdot v_j)^2 \; \leq \;  \sum _j C(x \cdot v_j)^2 = C\sum _j (x\cdot v_j)^2 = C\, \| x\| ^2,  \]
+</div>
+<p> where the inequality uses \(\lambda _j \leq C\) and \((x\cdot v_j)^2 \geq 0\) term by term. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.eigenvalue_le_degree">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">314</span>
+    <span class="lemma_thmtitle">All Eigenvalues of a Regular Graph Are at Most the Degree</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.eigenvalue_le_degree">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000560"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.parseval_eigenvector">Lemma 312</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.eigenvalue_le_degree" class="lean_decl">AlonChung.eigenvalue_le_degree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(G\) is \(s\)-regular and \(j \in V\), then \(\lambda _j(A(G)) \leq s\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000560">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(v = v_j\) be the \(j\)-th orthonormal eigenvector. By the Rayleigh quotient characterisation, \(\lambda _j = v^\top A v\) (since \(\| v\|  = 1\)). We bound \(v^\top Av\) by the AM–GM inequality. </p>
+<p>Since \(G\) is \(s\)-regular, the adjacency matrix satisfies \(A_{pq} = \mathbf{1}[G.\operatorname {Adj}(p,q)]\) and \(\sum _q \mathbf{1}[G.\operatorname {Adj}(p,q)] = s\) for all \(p\). </p>
+<p><b class="bfseries">Unit norm.</b> The orthonormality of the eigenvector basis gives \(v^\top v = \sum _i v_i^2 = 1\) (after converting the Euclidean norm condition \(\| v\|  = 1\) via \(\sqrt{\sum _i |v_i|^2} = 1\)). </p>
+<p><b class="bfseries">AM–GM bound.</b> For all \(a, b \in \mathbb {R}\): \(ab \leq (a^2 + b^2)/2\) (since \((a-b)^2 \geq 0\)). Therefore </p>
+<div class="displaymath" id="a0000000561">
+  \[  v^\top Av = \sum _p \sum _q \mathbf{1}[G.\operatorname {Adj}(p,q)]\,  v_p v_q \; \leq \;  \sum _p\sum _q \mathbf{1}[G.\operatorname {Adj}(p,q)]\, \frac{v_p^2 + v_q^2}{2}.  \]
+</div>
+<p> Splitting the sum: \(\sum _p\sum _q \mathbf{1}[G.\operatorname {Adj}(p,q)] v_p^2/2 = (s/2)\sum _p v_p^2\) by regularity, and symmetrically for the \(v_q^2\) terms (using \(G.\operatorname {Adj}(p,q) \Leftrightarrow G.\operatorname {Adj}(q,p)\)). Thus the bound equals \(s\sum _p v_p^2 = s\). Since \(v^\top v = 1\), we obtain \(\lambda _j = v^\top Av \leq s\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.degree_mem_eigenvalues">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">315</span>
+    <span class="lemma_thmtitle">The Degree is an Eigenvalue of a Regular Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.degree_mem_eigenvalues">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000562"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.degree_mem_eigenvalues" class="lean_decl">AlonChung.degree_mem_eigenvalues</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(G\) is \(s\)-regular and \(|V| \geq 1\), then \(s \in \operatorname {Spec}(A(G))\), i.e. \(s\) equals some eigenvalue. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000562">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We show \((s : \mathbb {R})\) lies in the spectrum of \(A(G)\) by proving it is not in the resolvent. Assume for contradiction that \(sI - A\) is invertible. The all-ones vector \(\mathbf{1} : V \to \mathbb {R}\) is in the kernel of \(sI - A\): for each \(v\), </p>
+<div class="displaymath" id="a0000000563">
+  \[  ((sI - A)\mathbf{1})_v = s - \sum _w A_{vw} = s - \deg (v) = s - s = 0  \]
+</div>
+<p> by regularity. Since \(\mathbf{1} \neq 0\) (it evaluates to \(1\) at any vertex), injectivity of \(sI - A\) is contradicted. Hence \(s \in \operatorname {Spec}(A(G))\), and by the spectral theorem for real Hermitian matrices this coincides with the range of the eigenvalue function. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.max_eigenvalue_eq_degree">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">316</span>
+    <span class="lemma_thmtitle">The Largest Eigenvalue of a Regular Graph Equals the Degree</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000564"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.eigenvalue_le_degree">Lemma 314</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.degree_mem_eigenvalues">Lemma 315</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.eigenvalue_le_degree">Lemma 314</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.degree_mem_eigenvalues">Lemma 315</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.max_eigenvalue_eq_degree" class="lean_decl">AlonChung.max_eigenvalue_eq_degree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(G\) is \(s\)-regular and \(|V| \geq 2\), then \(\lambda _1(A(G)) = s\), i.e. the largest eigenvalue equals \(s\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000564">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(\lambda _1 = \operatorname {adjEigenvalues}(G)\langle 0, \cdot \rangle \) (the largest eigenvalue in descending order). </p>
+<p><b class="bfseries">Upper bound</b> \(\lambda _1 \leq s\): Express \(\lambda _1\) in terms of the Hermitian eigenvalue function and apply Lemma&#160;<a href="sect0027.html#lem:AlonChung.eigenvalue_le_degree">314</a>. </p>
+<p><b class="bfseries">Lower bound</b> \(s \leq \lambda _1\): By \(|V| \geq 2\) the graph is nonempty, so by Lemma&#160;<a href="sect0027.html#lem:AlonChung.degree_mem_eigenvalues">315</a> there exists an index \(j\) with \(\lambda _j = s\). Expressing \(\lambda _j\) via the equivalence from \(\operatorname {Fin}(|V|)\) and using the antitone property \(\lambda _k \leq \lambda _1\) for all \(k\) (Lemma&#160;<a href="sect0020.html#thm:GraphExpansion.adjEigenvalues_antitone">241</a>), we get \(s = \lambda _j \leq \lambda _1\). </p>
+<p>Combining, \(\lambda _1 = s\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.indicatorVec_dotProduct_self">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">317</span>
+    <span class="lemma_thmtitle">Norm of the Indicator Vector</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.indicatorVec_dotProduct_self">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000565"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.indicatorVec_dotProduct_self" class="lean_decl">AlonChung.indicatorVec_dotProduct_self</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(S \subseteq V\), </p>
+<div class="displaymath" id="a0000000566">
+  \[  \mathbf{1}_S \cdot \mathbf{1}_S \; =\;  |S|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000565">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Expanding the dot product and using that \(\mathbf{1}_S(v)^2 = \mathbf{1}_S(v)\) (since values are \(0\) or \(1\)), we obtain \(\sum _{v \in V} \mathbf{1}_S(v) = |S \cap V| = |S|\) by the boolean sum formula. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.regular_mulVec_const">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">318</span>
+    <span class="lemma_thmtitle">Adjacency Action on Constant Vectors</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.regular_mulVec_const">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000567"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.regular_mulVec_const" class="lean_decl">AlonChung.regular_mulVec_const</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(G\) is \(s\)-regular and \(c \in \mathbb {R}\), then \(A(G)\, \mathbf{c} = (sc)\, \mathbf{1}\), i.e. the constant vector \(\mathbf{c} : V \to \mathbb {R}\) with value \(c\) is an eigenvector of \(A(G)\) with eigenvalue \(s\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000567">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>For each \(v \in V\): \((A(G)\mathbf{c})_v = \sum _w A_{vw} c = c \sum _w \mathbf{1}[G.\operatorname {Adj}(v,w)] = c\cdot s = sc\) by regularity. Hence \(A(G)\mathbf{c} = sc\, \mathbf{1}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.quadratic_decomp">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">319</span>
+    <span class="lemma_thmtitle">Quadratic Form Decomposition</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.quadratic_decomp">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000568"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.regular_mulVec_const">Lemma 318</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.regular_mulVec_const">Lemma 318</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.quadratic_decomp" class="lean_decl">AlonChung.quadratic_decomp</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be \(s\)-regular. Suppose \(x = \gamma \mathbf{1} + z\) where \(\sum _v z_v = 0\). Then </p>
+<div class="displaymath" id="a0000000569">
+  \[  x^\top A(G)\, x \; =\;  s\gamma ^2|V| + z^\top A(G)\, z.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000568">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(x_v = \gamma + z_v\), we compute \(A(G)x\) using linearity and Lemma&#160;<a href="sect0027.html#lem:AlonChung.regular_mulVec_const">318</a>: \((A(G)x)_v = s\gamma + (A(G)z)_v\). Expanding the quadratic form: </p>
+<div class="displaymath" id="a0000000570">
+  \[  x^\top A(G)x = \sum _v (\gamma + z_v)(s\gamma + (Az)_v) = \sum _v \bigl[s\gamma ^2 + \gamma (Az)_v + s\gamma z_v + z_v(Az)_v\bigr].  \]
+</div>
+<p> Summing term by term: </p>
+<ul class="itemize">
+  <li><p>\(\sum _v s\gamma ^2 = s\gamma ^2|V|\). </p>
+</li>
+  <li><p>\(\sum _v \gamma (Az)_v = \gamma \sum _v(Az)_v = \gamma \cdot s\sum _v z_v = 0\), since \(\sum _v (Az)_v = \sum _v\sum _w A_{vw}z_w = \sum _w z_w\sum _v A_{vw} = s\sum _w z_w = 0\) using symmetry of adjacency and regularity, together with \(\sum _v z_v = 0\). </p>
+</li>
+  <li><p>\(\sum _v s\gamma z_v = s\gamma \sum _v z_v = 0\). </p>
+</li>
+  <li><p>\(\sum _v z_v(Az)_v = z^\top Az\). </p>
+</li>
+</ul>
+<p> Therefore \(x^\top Ax = s\gamma ^2|V| + z^\top Az\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonChung.regular_eigenvector_s_constant">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">320</span>
+    <span class="theorem_thmtitle">Axiom: Regularity Implies Eigenvalue-\(s\) Eigenvectors Are Constant</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#thm:AlonChung.regular_eigenvector_s_constant">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.regular_eigenvector_s_constant" class="lean_decl">AlonChung.regular_eigenvector_s_constant</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(G\) be an \(s\)-regular graph with \(s \geq 1\) and \(|V| \geq 2\). Suppose the largest eigenvalue \(\lambda _1\) is strictly larger than the second-largest: </p>
+<div class="displaymath" id="a0000000571">
+  \[  \lambda _1(A(G)) {\gt} \lambda _2(A(G)).  \]
+</div>
+<p> If \(v : V \to \mathbb {R}\) satisfies \(A(G)\, v = s\cdot v\), then \(v\) is globally constant, i.e. there exists \(c \in \mathbb {R}\) such that \(v = c\, \mathbf{1}\). </p>
+<p><i class="itshape">Note: This is stated as an axiom because the required infrastructure (harmonic function theory on graphs and eigenspace dimension theory) is not currently available in Mathlib. The result combines two classical facts: (1) the discrete maximum principle shows eigenvectors for eigenvalue \(s\) are constant on connected components, and (2) a simple top eigenvalue implies the graph is connected (otherwise each component contributes an independent eigenvector, giving multiplicity \(\geq 2\)).</i> </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonChung.spectral_bound">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">321</span>
+    <span class="lemma_thmtitle">Spectral Bound on the Quadratic Form</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#lem:AlonChung.spectral_bound">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000572"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.quadratic_decomp">Lemma 319</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">Lemma 311</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.parseval_eigenvector">Lemma 312</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">Lemma 316</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.regular_eigenvector_s_constant">Theorem 320</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.quadratic_decomp">Lemma 319</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">Lemma 311</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.parseval_eigenvector">Lemma 312</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">Lemma 316</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.regular_eigenvector_s_constant">Theorem 320</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.spectral_bound" class="lean_decl">AlonChung.spectral_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be \(s\)-regular with \(s \geq 1\), \(|V| \geq 2\). Let \(n = |V|\), \(\gamma = |S|/n\), and \(\lambda _2 = \lambda _2(A(G))\). Then </p>
+<div class="displaymath" id="a0000000573">
+  \[  \mathbf{1}_S^\top A(G)\, \mathbf{1}_S \; \leq \;  s\gamma ^2 n + \lambda _2 \gamma (1-\gamma )n.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000572">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axiom: thm:AlonChung.regular_eigenvector_s_constant]</b> </p>
+<p>Set \(z_v = \mathbf{1}_S(v) - \gamma \). Since \(n {\gt} 0\) and \(\gamma = |S|/n\): </p>
+<div class="displaymath" id="a0000000574">
+  \[  \sum _v z_v = |S| - \gamma n = |S| - |S| = 0.  \]
+</div>
+<p> Write \(\mathbf{1}_S = \gamma \mathbf{1} + z\). By the quadratic decomposition (Lemma&#160;<a href="sect0027.html#lem:AlonChung.quadratic_decomp">319</a>): </p>
+<div class="displaymath" id="a0000000575">
+  \[  \mathbf{1}_S^\top A\mathbf{1}_S = s\gamma ^2 n + z^\top Az.  \]
+</div>
+<p> It suffices to show \(z^\top Az \leq \lambda _2\, \| z\| ^2\), since \(\| z\| ^2 = \gamma (1-\gamma )n\) (computed by expanding \(\sum _v(1_S(v)-\gamma )^2 = |S| - 2\gamma |S| + n\gamma ^2 = \gamma (1-\gamma )n\)). </p>
+<p>We use the spectral decomposition (Lemma&#160;<a href="sect0027.html#lem:AlonChung.spectral_decomp_quadratic">311</a>) and Parseval (Lemma&#160;<a href="sect0027.html#lem:AlonChung.parseval_eigenvector">312</a>): </p>
+<div class="displaymath" id="a0000000576">
+  \[  z^\top Az = \sum _j \lambda _j(z\cdot v_j)^2, \qquad \| z\| ^2 = \sum _j (z\cdot v_j)^2.  \]
+</div>
+<p> We need \(\sum _j \lambda _j c_j^2 \leq \lambda _2 \sum _j c_j^2\) where \(c_j = z\cdot v_j\). </p>
+<p><b class="bfseries">Case 1</b>: All eigenvalues \(\leq \lambda _2\). Then term by term \(\lambda _j c_j^2 \leq \lambda _2 c_j^2\), so the sum inequality holds. </p>
+<p><b class="bfseries">Case 2</b>: Some eigenvalue \({\gt} \lambda _2\). This forces a gap \(\lambda _1 {\gt} \lambda _2\). For each \(j\): </p>
+<ul class="itemize">
+  <li><p>If \(\lambda _j \leq \lambda _2\): \(\lambda _j c_j^2 \leq \lambda _2 c_j^2\). </p>
+</li>
+  <li><p>If \(\lambda _j {\gt} \lambda _2\): By the antitone ordering of eigenvalues and the gap, \(j\) must correspond to index \(0\) (the largest), i.e. \(\lambda _j = \lambda _1 = s\) (Lemma&#160;<a href="sect0027.html#lem:AlonChung.max_eigenvalue_eq_degree">316</a>). The eigenvector \(v_j\) satisfies \(A v_j = s\, v_j\), and by the axiom (Theorem&#160;<a href="sect0027.html#thm:AlonChung.regular_eigenvector_s_constant">320</a>), \(v_j = c\mathbf{1}\) for some constant \(c\). Then \(z\cdot v_j = c\sum _v z_v = 0\), so \(c_j = 0\) and \(\lambda _j c_j^2 = 0 \leq \lambda _2 c_j^2\). </p>
+</li>
+</ul>
+<p> Summing over all \(j\) gives \(z^\top Az \leq \lambda _2\| z\| ^2\), completing the proof. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonChung.alonChung">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">322</span>
+    <span class="theorem_thmtitle">Alon–Chung Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0027.html#thm:AlonChung.alonChung">#</a>
+    
+    <a class="icon proof" href="sect0027.html#a0000000577"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.quadratic_form_eq_twice_inducedEdges">Lemma 309</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.spectral_bound">Lemma 321</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.inducedEdges">Definition 305</a></li>
+          
+          <li><a href="sect0027.html#def:AlonChung.indicatorVec">Definition 308</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.quadratic_form_eq_twice_inducedEdges">Lemma 309</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.spectral_bound">Lemma 321</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.regular_eigenvector_s_constant">Theorem 320</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonChung.alonChung" class="lean_decl">AlonChung.alonChung</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite \(s\)-regular simple graph with \(s \geq 1\) and \(|V| \geq 2\). Let \(\lambda _2 = \lambda _2(A(G))\) be the second-largest eigenvalue of the adjacency matrix. For any nonempty proper subset \(S \subsetneq V\), set \(n = |V|\), \(\gamma = |S|/n\), and </p>
+<div class="displaymath" id="a0000000578">
+  \[  \alpha \; =\;  \gamma ^2 + \frac{\lambda _2}{s}\, \gamma (1-\gamma ).  \]
+</div>
+<p> Then the number of edges in the induced subgraph on \(S\) satisfies </p>
+<div class="displaymath" id="a0000000579">
+  \[  |X(S)_1| \; \leq \;  \alpha \, |E(G)|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000577">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axiom: thm:AlonChung.regular_eigenvector_s_constant]</b> </p>
+<p><b class="bfseries">Step 1.</b> By the quadratic form identity (Lemma&#160;<a href="sect0027.html#lem:AlonChung.quadratic_form_eq_twice_inducedEdges">309</a>): </p>
+<div class="displaymath" id="a0000000580">
+  \[  \mathbf{1}_S^\top A(G)\mathbf{1}_S = 2\, |X(S)_1|.  \]
+</div>
+<p><b class="bfseries">Step 2.</b> By the spectral bound (Lemma&#160;<a href="sect0027.html#lem:AlonChung.spectral_bound">321</a>): </p>
+<div class="displaymath" id="a0000000581">
+  \[  \mathbf{1}_S^\top A(G)\mathbf{1}_S \leq s\gamma ^2 n + \lambda _2\gamma (1-\gamma )n.  \]
+</div>
+<p> Combining Steps 1 and 2 by linear arithmetic: </p>
+<div class="displaymath" id="a0000000582">
+  \[  2\, |X(S)_1| \leq s\gamma ^2 n + \lambda _2\gamma (1-\gamma )n.  \]
+</div>
+<p><b class="bfseries">Step 3.</b> By the edge count formula (Lemma&#160;<a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">310</a>): \(2|E(G)| = sn\), so \(|E(G)| = sn/2\). </p>
+<p><b class="bfseries">Step 4.</b> We expand \(\alpha \, |E(G)|\): </p>
+<div class="displaymath" id="a0000000583">
+  \[  \alpha \, |E(G)| = \left(\gamma ^2 + \frac{\lambda _2}{s}\gamma (1-\gamma )\right)\cdot \frac{sn}{2} = \frac{(s\gamma ^2 + \lambda _2\gamma (1-\gamma ))\, n}{2},  \]
+</div>
+<p> where the field simplification uses \(s {\gt} 0\). Combining with Step 2 and \(n {\gt} 0\), \(s {\gt} 0\): </p>
+<div class="displaymath" id="a0000000584">
+  \[  |X(S)_1| = \frac{2|X(S)_1|}{2} \leq \frac{s\gamma ^2 n + \lambda _2\gamma (1-\gamma )n}{2} = \alpha \, |E(G)|. \qedhere  \]
+</div>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0026.html" title="Thm 5: Alon–Boppana Bound"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0028.html" title="Cor 1: Alon–Chung Contrapositive"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

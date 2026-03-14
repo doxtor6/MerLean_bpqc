@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 7: Cell Complex</title>
+<link rel="next" href="sect0011.html" title="Def 8: Cycle Graph" />
+<link rel="prev" href="sect0009.html" title="Def 6: Subsystem CSS Code" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000011">10 Def 7: Cell Complex</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">81</span>
+    <span class="definition_thmtitle">Cell Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#def:CellComplex">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex" class="lean_decl">CellComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>A <b class="bfseries">regular cell complex</b> \(X\) consists of: </p>
+<ul class="itemize">
+  <li><p>A family of types \(X_n\) (for each \(n \in \mathbb {Z}\)), whose elements are called \(n\)-cells, each equipped with a <span class="ttfamily">Fintype</span> instance and a <span class="ttfamily">DecidableEq</span> instance. </p>
+</li>
+  <li><p>A boundary map \(\partial \): for each \(n\)-cell \(\sigma \in X_n\), a finite set \(\partial \sigma \subseteq X_{n-1}\) of \((n-1)\)-cells in the boundary of \(\sigma \). </p>
+</li>
+  <li><p>The <b class="bfseries">chain complex condition</b>: for every \(n \in \mathbb {Z}\), every \(n\)-cell \(\sigma \in X_n\), and every \((n-2)\)-cell \(\rho \in X_{n-2}\), the cardinality </p>
+<div class="displaymath" id="a0000000162">
+  \[  \left|\{ \,  \tau \in \partial \sigma \mid \rho \in \partial \tau \, \} \right|  \]
+</div>
+<p> is even (i.e., \(\equiv 0 \pmod{2}\)). </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.differentialMap">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">82</span>
+    <span class="definition_thmtitle">Differential Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#def:CellComplex.differentialMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.differentialMap" class="lean_decl">CellComplex.differentialMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(X\) be a cell complex and let \(C_i(X) = (X_i \to \mathbb {F}_2)\) denote the free \(\mathbb {F}_2\)-vector space on the \(i\)-cells (i.e., functions from \(X_i\) to \(\mathbb {F}_2\)). The <b class="bfseries">differential</b> </p>
+<div class="displaymath" id="a0000000163">
+  \[  \partial _n : C_n(X) \longrightarrow C_{n-1}(X)  \]
+</div>
+<p> is the \(\mathbb {F}_2\)-linear map defined for \(f \in C_n(X)\) and \(\tau \in X_{n-1}\) by </p>
+<div class="displaymath" id="a0000000164">
+  \[  \partial _n(f)(\tau ) \; =\;  \sum _{\substack {\sigma \in X_n \\ \tau \, \in \,  \partial \sigma }} f(\sigma ).  \]
+</div>
+<p> Equivalently, on a basis element \(e_\sigma \) (the indicator function of \(\sigma \)), we have \(\partial _n(e_\sigma ) = \sum _{\tau \in \partial \sigma } e_\tau \), extended linearly. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CellComplex.differentialMap_comp">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">83</span>
+    <span class="theorem_thmtitle">Chain Complex Condition: \(\partial _{n-1} \circ \partial _n = 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#thm:CellComplex.differentialMap_comp">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000165"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex.differentialMap">Definition 82</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex.differentialMap">Definition 82</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.differentialMap_comp" class="lean_decl">CellComplex.differentialMap_comp</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(X\) be a cell complex. For every \(n \in \mathbb {Z}\), </p>
+<div class="displaymath" id="a0000000166">
+  \[  \partial _{n-1} \circ \partial _n = 0 : C_n(X) \longrightarrow C_{n-2}(X).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000165">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(f \in C_n(X)\) and \(\rho \in X_{n-2}\) be arbitrary. By extensionality, it suffices to show </p>
+<div class="displaymath" id="a0000000167">
+  \[  (\partial _{n-1} \circ \partial _n)(f)(\rho ) = 0.  \]
+</div>
+<p> Simplifying using the definition of \(\partial _{n-1}\), \(\partial _n\), and the zero map, the left-hand side becomes </p>
+<div class="displaymath" id="a0000000168">
+  \[  \sum _{\tau \; \in \;  X_{n-1},\;  \rho \, \in \,  \partial \tau } \left(\sum _{\sigma \; \in \;  X_n,\;  \tau \, \in \,  \partial \sigma } f(\sigma )\right).  \]
+</div>
+<p> We rewrite the inner filtered sum using the identity \(\sum _{\sigma \in S,\,  P(\sigma )} f(\sigma ) = \sum _{\sigma \in S} \mathbf{1}_{P(\sigma )}\,  f(\sigma )\), converting to a sum over all of \(X_n\) with an indicator. Then we swap the order of summation (both index sets are finite), obtaining </p>
+<div class="displaymath" id="a0000000169">
+  \[  \sum _{\sigma \in X_n} \left(\sum _{\tau \; \in \;  X_{n-1},\;  \rho \, \in \,  \partial \tau } \mathbf{1}_{\tau \, \in \,  \partial \sigma }\,  f(\sigma )\right).  \]
+</div>
+<p> It suffices to show each inner summand (over \(\sigma \)) is zero. For fixed \(\sigma \in X_n\), we apply the identity for sums of if-then-else expressions: the sum over \(\tau \) splits as </p>
+<div class="displaymath" id="a0000000170">
+  \[  \sum _{\substack {\tau \in X_{n-1} \\ \rho \, \in \,  \partial \tau }} \mathbf{1}_{\tau \, \in \,  \partial \sigma }\,  f(\sigma ) \; =\;  f(\sigma ) \cdot \left|\bigl\{ \,  \tau \in X_{n-1} \; \big|\;  \rho \in \partial \tau \; \text{ and }\;  \tau \in \partial \sigma \, \bigr\} \right|_{\mathbb {F}_2}.  \]
+</div>
+<p> Combining the two filter conditions with <span class="ttfamily">filter_filter</span>, we identify the counting set as </p>
+<div class="displaymath" id="a0000000171">
+  \[  \bigl\{ \,  \tau \in \partial \sigma \; \big|\;  \rho \in \partial \tau \, \bigr\} ,  \]
+</div>
+<p> whose cardinality equals \(\left|\{ \tau \in \partial \sigma \mid \rho \in \partial \tau \} \right|\). By the chain complex condition (<span class="ttfamily">bdry_bdry</span>) applied to \(\sigma \) and \(\rho \), this cardinality is even. Since the cardinality of an even set, cast to \(\mathbb {F}_2\), equals \(0\) (by <span class="ttfamily">Even.natCast_zmod_two</span>), we have \(f(\sigma ) \cdot 0 = 0\). Hence the entire sum is zero. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.chainComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">84</span>
+    <span class="definition_thmtitle">Associated Chain Complex \(C(X)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#def:CellComplex.chainComplex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex.differentialMap">Definition 82</a></li>
+          
+          <li><a href="sect0010.html#thm:CellComplex.differentialMap_comp">Theorem 83</a></li>
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.chainComplex" class="lean_decl">CellComplex.chainComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(X\) be a cell complex. The <b class="bfseries">associated chain complex</b> \(C(X) = (C_\bullet (X), \partial )\) is the \(\mathbb {F}_2\)-chain complex defined as follows: </p>
+<ul class="itemize">
+  <li><p>In degree \(i \in \mathbb {Z}\), the chain module is \(C_i(X) = (X_i \to \mathbb {F}_2)\), the free \(\mathbb {F}_2\)-vector space on the \(i\)-cells. </p>
+</li>
+  <li><p>The differential \(d_{i,j} : C_i(X) \to C_j(X)\) is the linear map \(\partial _{j+1}\) when \(j + 1 = i\), and zero otherwise. </p>
+</li>
+</ul>
+<p> The chain complex condition \(d_{j} \circ d_{j+1} = 0\) is verified by composing the differentials and applying <span class="ttfamily">differentialMap_comp</span>, after cancelling the coherence isomorphisms (<span class="ttfamily">eqToHom</span>) that arise from the <span class="ttfamily">ModuleCat</span> packaging. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CellComplex.cellHomology">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">85</span>
+    <span class="definition_thmtitle">Cell Homology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#def:CellComplex.cellHomology">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#def:CellComplex">Definition 81</a></li>
+          
+          <li><a href="sect0010.html#def:CellComplex.chainComplex">Definition 84</a></li>
+          
+          <li><a href="sect0004.html#def:ChainComplexF2.homologyPrime">Definition 26</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CellComplex.cellHomology" class="lean_decl">CellComplex.cellHomology</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(X\) be a cell complex. The <b class="bfseries">homology</b> of \(X\) in degree \(i \in \mathbb {Z}\) is </p>
+<div class="displaymath" id="a0000000172">
+  \[  H_i(X) \; :=\;  H_i(C(X)),  \]
+</div>
+<p> where \(H_i(C(X))\) is the \(i\)-th homology of the associated chain complex \(C(X)\) (as defined in the chain complex homology construction of Definition&#160;1). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0009.html" title="Def 6: Subsystem CSS Code"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0011.html" title="Def 8: Cycle Graph"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

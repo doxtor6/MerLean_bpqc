@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 28: Iota and Pi Maps</title>
+<link rel="next" href="sect0047.html" title="Thm 12: Encoding Rate (Circle Case)" />
+<link rel="prev" href="sect0045.html" title="Def 27: Horizontal/Vertical Homology Splitting" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000047">46 Def 28: Iota and Pi Maps</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.quotientLocalView">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">612</span>
+    <span class="definition_thmtitle">Quotient Local View</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.quotientLocalView">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientEdges">Definition 540</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientVertices">Definition 539</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.quotientLabeling">Definition 569</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.quotientLocalView" class="lean_decl">IotaPiMaps.quotientLocalView</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(X\) be a finite graph with a free right \(H\)-action, \(\Lambda \) a cell labeling with \(s\) local code bits, and \(h_\Lambda \) a proof that \(\Lambda \) is \(H\)-invariant. For a vertex orbit \(V \in X_0/H\), the <em>quotient local view</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001054">
+  \[  \operatorname {quotientLocalView}(V) : (X_1/H \to \mathbb {F}_2) \to (\operatorname {Fin}(s) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \(c \mapsto \bigl(i \mapsto c\bigl((\Lambda ^{X/H}_V)^{-1}(i)\bigr)\bigr)\), where \(\Lambda ^{X/H}_V\) is the quotient labeling bijection at \(V\). </p>
+<p>Linearity follows: for \(c_1, c_2 : X_1/H \to \mathbb {F}_2\) and \(r \in \mathbb {F}_2\), </p>
+<div class="displaymath" id="a0000001055">
+  \[  \operatorname {quotientLocalView}(V)(c_1 + c_2) = \operatorname {quotientLocalView}(V)(c_1) + \operatorname {quotientLocalView}(V)(c_2),  \]
+</div>
+<div class="displaymath" id="a0000001056">
+  \[  \operatorname {quotientLocalView}(V)(r \cdot c) = r \cdot \operatorname {quotientLocalView}(V)(c).  \]
+</div>
+<p> Both properties follow by extensionality and simplification of the pointwise operations. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.quotientTannerDifferential">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">613</span>
+    <span class="definition_thmtitle">Quotient Tanner Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.quotientTannerDifferential">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientEdges">Definition 540</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientVertices">Definition 539</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientLocalView">Definition 612</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.quotientTannerDifferential" class="lean_decl">IotaPiMaps.quotientTannerDifferential</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>quotient Tanner differential</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001057">
+  \[  \partial : (X_1/H \to \mathbb {F}_2) \to (X_0/H \to \operatorname {Fin}(s) \to \mathbb {F}_2)  \]
+</div>
+<p> defined by \(c \mapsto (V \mapsto \operatorname {quotientLocalView}(V)(c))\). </p>
+<p>Linearity: for \(c_1, c_2 : X_1/H \to \mathbb {F}_2\) and \(r \in \mathbb {F}_2\), the result follows by extensionality over vertex orbits \(V\) and local indices \(i\), together with simplification of the pointwise addition and scalar multiplication. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.quotientTannerComplex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">614</span>
+    <span class="definition_thmtitle">Quotient Tanner Code Complex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.quotientTannerComplex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientEdges">Definition 540</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction.quotientVertices">Definition 539</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerDifferential">Definition 613</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.quotientTannerComplex" class="lean_decl">IotaPiMaps.quotientTannerComplex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>quotient Tanner code complex</em> \(C(X/H, L)\) is the chain complex over \(\mathbb {F}_2\) with chain spaces </p>
+<div class="displaymath" id="a0000001058">
+  \[  C_1(X/H) = (X_1/H \to \mathbb {F}_2), \qquad C_0(X/H) = (X_0/H \to \operatorname {Fin}(s) \to \mathbb {F}_2),  \]
+</div>
+<p> and \(C_i = 0\) for \(i \geq 2\) or \(i {\lt} 0\). The differential is </p>
+<div class="displaymath" id="a0000001059">
+  \[  d_{1,0} = \partial : C_1(X/H) \to C_0(X/H)  \]
+</div>
+<p> (the quotient Tanner differential), and all other differentials are zero. </p>
+<p>The chain complex condition \(d \circ d = 0\) is verified: </p>
+<ul class="itemize">
+  <li><p>For the pair \((i,j,k) = (1,0,k)\): we have \(d_{1,0} \circ 0 = 0\) by the zero postcomposition rule. </p>
+</li>
+  <li><p>For \(i = 0\): the outgoing differential is zero, so the composition vanishes. </p>
+</li>
+  <li><p>For \(i \geq 2\) or \(i {\lt} 0\): the incoming differential is zero, so the composition vanishes by the zero precomposition rule. </p>
+</li>
+  <li><p>All cases with non-adjacent indices satisfy the shape condition vacuously (the shape predicate fails, verified by positivity or simplification). </p>
+</li>
+</ul>
+<p>The homology in degree 1 is denoted \(H_1(C(X/H, L)) := \ker (d_{1,0}) / \operatorname {im}(0) = \ker (\partial )\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.quotientTannerHomology">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">615</span>
+    <span class="definition_thmtitle">Quotient Tanner Homology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerComplex">Definition 614</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.quotientTannerHomology" class="lean_decl">IotaPiMaps.quotientTannerHomology</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>quotient Tanner homology</em> is the degree-1 homology of the quotient Tanner code complex: </p>
+<div class="displaymath" id="a0000001060">
+  \[  H_1(C(X/H, L)) := \bigl(\operatorname {quotientTannerComplex}(X, \Lambda , h_\Lambda )\bigr).H_1.  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.iotaMap">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">616</span>
+    <span class="theorem_thmtitle">Axiom: Iota Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.iotaMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaMap" class="lean_decl">IotaPiMaps.iotaMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>There exists an \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001061">
+  \[  \iota : H_1(C(X/H, L)) \to H_1^h(C(X,L) \otimes _H C(C_\ell )),  \]
+</div>
+<p> where \(H_1^h = H_1^h(X, \Lambda , \ell , h_\Lambda , h_{\mathrm{compat}})\) is the horizontal homology of the balanced product Tanner cycle code from Definition 27. </p>
+<p>The map \(\iota \) is defined on homology classes as follows: given \([\sum _{\mathcal{E}} a_{\mathcal{E}} \mathcal{E}] \in H_1(C(X/H,L))\) (where \(\mathcal{E} = eH\) ranges over edge orbits), set </p>
+<div class="displaymath" id="a0000001062">
+  \[  \iota \! \left[\sum _{\mathcal{E}} a_{\mathcal{E}} \mathcal{E}\right] = \left[\left(\sum _{\mathcal{E}} a_{\mathcal{E}} \sum _{e \in \mathcal{E}} e \otimes y_0,\;  0\right)\right],  \]
+</div>
+<p> where \(y_0\) is a fixed \(0\)-cell of the cycle graph \(C_\ell \). </p>
+<p>Well-definedness: the orbit indicator \(\sum _{e \in \mathcal{E}} \delta _e\) is \(H\)-invariant in \(C_1(X,L)\), so tensoring with \(\delta _{y_0} \in C_0(C_\ell )\) gives a well-defined element of \(C_1(X,L) \otimes _H C_0(C_\ell )\). The map sends cycles to cycles (the quotient differential is compatible with the balanced product differential) and boundaries to boundaries (well-defined on homology). </p>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.piMap">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">617</span>
+    <span class="theorem_thmtitle">Axiom: Pi Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.piMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.piMap" class="lean_decl">IotaPiMaps.piMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>There exists an \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000001063">
+  \[  \pi : H_1^h(C(X,L) \otimes _H C(C_\ell )) \to H_1(C(X/H, L)).  \]
+</div>
+<p> The map \(\pi \) projects from horizontal homology to quotient Tanner code homology by collapsing orbits. By the Künneth decomposition, elements of \(H_1^h = H_1(C(X,L)) \otimes _H H_0(C_\ell )\) are represented by cycles of the form \((\sum _e a_e\,  e \otimes y_0, 0)\) with coefficients \(a_e\) constant on \(H\)-orbits. The map sends this class to </p>
+<div class="displaymath" id="a0000001064">
+  \[  \pi \! \left[\left(\sum _e a_e\,  e \otimes y_0, 0\right)\right] = \left[\sum _e a_e\,  eH\right] \in H_1(C(X/H,L)).  \]
+</div>
+<p> Well-definedness: since \(a_e\) is constant on orbits, each orbit \(\mathcal{E} = eH\) contributes \(a_{\mathcal{E}} \cdot \mathcal{E}\), and the quotient differential is compatible with the balanced product differential. </p>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.piMap_comp_iotaMap">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">618</span>
+    <span class="theorem_thmtitle">Axiom: \(\pi \circ \iota = \mathrm{id}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.piMap_comp_iotaMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.piMap_comp_iotaMap" class="lean_decl">IotaPiMaps.piMap_comp_iotaMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, we have </p>
+<div class="displaymath" id="a0000001065">
+  \[  \pi \circ \iota = \mathrm{id}_{H_1(C(X/H,L))}.  \]
+</div>
+<p> Each orbit \(\mathcal{E} = eH\) has \(|H| = \ell \) elements. Applying \(\iota \) to \([\mathcal{E}]\) gives \([\sum _{e \in \mathcal{E}} e \otimes y_0]\), and then \(\pi \) maps each \(e \otimes y_0\) back to \(\mathcal{E}\), yielding \(\ell \cdot [\mathcal{E}]\). Since \(\ell \) is odd, \(\ell \equiv 1 \pmod{2}\), so \(\ell \cdot [\mathcal{E}] = [\mathcal{E}]\) in \(\mathbb {F}_2\). </p>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.iotaMap_comp_piMap">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">619</span>
+    <span class="theorem_thmtitle">Axiom: \(\iota \circ \pi = \mathrm{id}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.iotaMap_comp_piMap">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaMap_comp_piMap" class="lean_decl">IotaPiMaps.iotaMap_comp_piMap</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, we have </p>
+<div class="displaymath" id="a0000001066">
+  \[  \iota \circ \pi = \mathrm{id}_{H_1^h}.  \]
+</div>
+<p> For a horizontal class \([(\sum _e a_e\,  e \otimes y_0, 0)]\) with \(a_e\) constant on orbits, \(\pi \) sends it to \([\sum _e a_e\,  eH]\), and \(\iota \) lifts back to \([(\sum _e a_e \sum _{e' \in eH} e' \otimes y_0, 0)]\). Since each orbit of size \(\ell \) contributes \(\ell \) copies and \(\ell \equiv 1 \pmod{2}\), this equals the original class. </p>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization.</i> </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.witnessGraph">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">620</span>
+    <span class="definition_thmtitle">Witness Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.witnessGraph">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.witnessGraph" class="lean_decl">IotaPiMaps.witnessGraph</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>witness graph</em> is a trivial graph with a single vertex and a single edge, equipped with the trivial \(\mathrm{Unit}\)-action: the group \(H = \mathrm{Unit}\) acts on both vertices and edges as the identity. The cell sets are \(\mathrm{cells}(n) = \mathrm{Unit}\) for all \(n\), with empty boundary maps (satisfying \(\partial \circ \partial = 0\) vacuously). Both the vertex and edge actions are free (since the only element of \(\mathrm{Unit}\) fixing a cell is the identity). This provides a non-trivial graph with at least one vertex and one edge on which all required hypotheses hold. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.witnessLabeling">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">621</span>
+    <span class="definition_thmtitle">Witness Labeling</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.witnessLabeling">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.witnessLabeling" class="lean_decl">IotaPiMaps.witnessLabeling</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>witness labeling</em> is a cell labeling \(\Lambda : \operatorname {witnessGraph}.\operatorname {CellLabeling}(0)\) with \(s = 0\) local code bits. Since \(s = 0\), the labeling map at any vertex is a bijection from the empty set of incident edges to \(\operatorname {Fin}(0) = \emptyset \). It is defined by: for each vertex, the labeling bijection sends any element \(e\) with \(e \in \emptyset \) to its absurdity (by <span class="ttfamily">Finset.notMem_empty</span>), and the inverse sends any element of \(\operatorname {Fin}(0)\) to its absurdity (by <span class="ttfamily">Fin.elim0</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.witnessLabeling_invariant">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">622</span>
+    <span class="lemma_thmtitle">Witness Labeling is Invariant</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.witnessLabeling_invariant">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001067"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.witnessLabeling_invariant" class="lean_decl">IotaPiMaps.witnessLabeling_invariant</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The witness labeling is \(H\)-invariant: </p>
+<div class="displaymath" id="a0000001068">
+  \[  \operatorname {GraphWithGroupAction.IsInvariantLabeling}(\operatorname {witnessLabeling}).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001067">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>For any vertex \(v\), group element \(h\), and incident edge \(e\), we need \(\Lambda (v)(e) = \Lambda (h \cdot v)(h \cdot e)\). Since the labeling has \(s = 0\) and the edge \(e\) must satisfy \(e \in \emptyset \) (the empty boundary), the hypothesis \(e.2 \in \operatorname {Finset.empty}\) is absurd, so the conclusion holds vacuously by <span class="ttfamily">Finset.notMem_empty</span>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.witnessUnitMulAction">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">623</span>
+    <span class="definition_thmtitle">Witness Unit Mul Action</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.witnessUnitMulAction" class="lean_decl">IotaPiMaps.witnessUnitMulAction</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>witness \(\mathrm{Unit}\) action on \(\operatorname {Fin}(3)\)</em> is the trivial \(\mathrm{MulAction}\) where the unique group element \(() \in \mathrm{Unit}\) acts on every \(i \in \operatorname {Fin}(3)\) as the identity: \(() \cdot i = i\). The axioms \(\mathtt{one\_ smul}\) and \(\mathtt{mul\_ smul}\) hold by reflexivity. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.witnessCycleCompat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">624</span>
+    <span class="lemma_thmtitle">Witness Cycle Compatibility</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.witnessCycleCompat">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001069"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.witnessCycleCompat" class="lean_decl">IotaPiMaps.witnessCycleCompat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>With the witness \(\mathrm{Unit}\)-action on \(\operatorname {Fin}(3)\), the cycle-compatible action condition holds for \(H = \mathrm{Unit}\) and \(\ell = 3\): </p>
+<div class="displaymath" id="a0000001070">
+  \[  \operatorname {BalancedProductTannerCycleCode.CycleCompatibleAction}(\mathrm{Unit}, 3).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001069">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>For any \(h : \mathrm{Unit}\) and \(i : \operatorname {Fin}(3)\), the condition requires a compatibility between the group action and the cycle graph structure. By the definition of \(\operatorname {witnessUnitMulAction}\), the action is trivial: \(h \cdot i = i\). The required identity holds after unfolding the definition and simplifying. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.iotaMap_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">625</span>
+    <span class="lemma_thmtitle">Iota Map Premises Satisfiable</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.iotaMap_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001071"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.CellLabeling">Definition 560</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#lem:IotaPiMaps.witnessLabeling_invariant">Lemma 622</a></li>
+          
+          <li><a href="sect0046.html#lem:IotaPiMaps.witnessCycleCompat">Lemma 624</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaMap_satisfiable" class="lean_decl">IotaPiMaps.iotaMap_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The premises of the iota map are satisfiable: there exist a group \(H\), a graph with \(H\)-action \(X\), a cell labeling \(\Lambda \), a natural number \(\ell \), a group action of \(H\) on \(\operatorname {Fin}(\ell )\), invariance \(h_\Lambda \), and cycle-compatibility \(h_{\mathrm{compat}}\), such that the underlying graph has at least one vertex and one edge. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001071">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We take \(H = \mathrm{Unit}\), \(X = \operatorname {witnessGraph}\), \(s = 0\), \(\Lambda = \operatorname {witnessLabeling}\), \(\ell = 3\), the action from \(\operatorname {witnessUnitMulAction}\), invariance from \(\operatorname {witnessLabeling_invariant}\), and compatibility from \(\operatorname {witnessCycleCompat}\). The witness graph has \(\operatorname {cells}(0) = \mathrm{Unit}\) and \(\operatorname {cells}(1) = \mathrm{Unit}\), so \((() , \operatorname {trivial})\) witnesses both a vertex and an edge. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.piMap_comp_iotaMap_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">626</span>
+    <span class="lemma_thmtitle">\(\pi \circ \iota \) Premises Satisfiable</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.piMap_comp_iotaMap_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001072"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#lem:IotaPiMaps.witnessLabeling_invariant">Lemma 622</a></li>
+          
+          <li><a href="sect0046.html#lem:IotaPiMaps.witnessCycleCompat">Lemma 624</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.piMap_comp_iotaMap_satisfiable" class="lean_decl">IotaPiMaps.piMap_comp_iotaMap_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The premises of \(\pi \circ \iota = \mathrm{id}\) (including \(\ell \geq 3\), \(\ell \) odd, and \(|H|\) odd) are satisfiable with a non-trivial graph. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001072">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We take the same witnesses as in \(\operatorname {iotaMap_satisfiable}\), additionally verifying: \(\ell = 3 \geq 3\) (by reflexivity of \(\leq \)); \(3 \bmod 2 = 1\) (by reflexivity); and \(\operatorname {Fintype.card}(\mathrm{Unit}) = 1\) is odd, witnessed by \((0, \operatorname {rfl})\) since \(1 = 2 \cdot 0 + 1\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.iotaMap_comp_piMap_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">627</span>
+    <span class="lemma_thmtitle">\(\iota \circ \pi \) Premises Satisfiable</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.iotaMap_comp_piMap_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001073"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessGraph">Definition 620</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessLabeling">Definition 621</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.witnessUnitMulAction">Definition 623</a></li>
+          
+          <li><a href="sect0046.html#lem:IotaPiMaps.witnessLabeling_invariant">Lemma 622</a></li>
+          
+          <li><a href="sect0046.html#lem:IotaPiMaps.witnessCycleCompat">Lemma 624</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaMap_comp_piMap_satisfiable" class="lean_decl">IotaPiMaps.iotaMap_comp_piMap_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The premises of \(\iota \circ \pi = \mathrm{id}\) (including \(\ell \geq 3\), \(\ell \) odd, and \(|H|\) odd) are satisfiable with a non-trivial graph. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001073">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We use the same witnesses as in \(\operatorname {piMap_comp_iotaMap_satisfiable}\). The oddness of \(|H| = |\mathrm{Unit}| = 1\) is witnessed by the pair \((0, \operatorname {rfl})\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.iotaMap_injective">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">628</span>
+    <span class="theorem_thmtitle">\(\iota \) is Injective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.iotaMap_injective">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001074"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaMap_injective" class="lean_decl">IotaPiMaps.iotaMap_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the map \(\iota \) is injective: </p>
+<div class="displaymath" id="a0000001075">
+  \[  \operatorname {Function.Injective}(\iota ).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001074">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We apply \(\pi \circ \iota = \mathrm{id}\) (from <span class="ttfamily">piMap_comp_iotaMap</span>). Let \(a, b\) be such that \(\iota (a) = \iota (b)\). We have </p>
+<div class="displaymath" id="a0000001076">
+  \[  \pi (\iota (a)) = \pi (\iota (b)).  \]
+</div>
+<p> Rewriting using \(\pi \circ \iota = \mathrm{id}\), we obtain \(\mathrm{id}(a) = \mathrm{id}(b)\), i.e., \(a = b\). Concretely, using <span class="ttfamily">congr_arg</span> with \(\pi \) applied to the hypothesis \(\iota (a) = \iota (b)\), then rewriting via <span class="ttfamily">LinearMap.comp_apply</span> in both directions and applying the composite identity, we get \(\mathrm{id}(a) = \mathrm{id}(b)\), hence \(a = b\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.piMap_surjective">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">629</span>
+    <span class="theorem_thmtitle">\(\pi \) is Surjective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.piMap_surjective">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001077"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.piMap_surjective" class="lean_decl">IotaPiMaps.piMap_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the map \(\pi \) is surjective: </p>
+<div class="displaymath" id="a0000001078">
+  \[  \operatorname {Function.Surjective}(\pi ).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001077">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We apply \(\pi \circ \iota = \mathrm{id}\). Given any \(y \in H_1(C(X/H,L))\), we claim \(\iota (y)\) is a preimage of \(y\) under \(\pi \). By <span class="ttfamily">LinearMap.ext_iff</span> applied to the identity \(\pi \circ \iota = \mathrm{id}\) at \(y\), we get \(\pi (\iota (y)) = \mathrm{id}(y) = y\), after simplifying via <span class="ttfamily">LinearMap.comp_apply</span> and <span class="ttfamily">LinearMap.id_apply</span>. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.piMap_injective">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">630</span>
+    <span class="theorem_thmtitle">\(\pi \) is Injective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.piMap_injective">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001079"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.piMap_injective" class="lean_decl">IotaPiMaps.piMap_injective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the map \(\pi \) is injective: </p>
+<div class="displaymath" id="a0000001080">
+  \[  \operatorname {Function.Injective}(\pi ).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001079">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We apply \(\iota \circ \pi = \mathrm{id}\) (from <span class="ttfamily">iotaMap_comp_piMap</span>). Let \(a, b\) satisfy \(\pi (a) = \pi (b)\). Applying \(\iota \) to both sides via <span class="ttfamily">congr_arg</span>, we get \(\iota (\pi (a)) = \iota (\pi (b))\). Rewriting via <span class="ttfamily">LinearMap.comp_apply</span> and the identity \(\iota \circ \pi = \mathrm{id}\), we obtain \(\mathrm{id}(a) = \mathrm{id}(b)\), i.e., \(a = b\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:IotaPiMaps.iotaMap_surjective">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">631</span>
+    <span class="theorem_thmtitle">\(\iota \) is Surjective</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#thm:IotaPiMaps.iotaMap_surjective">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001081"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaMap_surjective" class="lean_decl">IotaPiMaps.iotaMap_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the map \(\iota \) is surjective: </p>
+<div class="displaymath" id="a0000001082">
+  \[  \operatorname {Function.Surjective}(\iota ).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001081">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We apply \(\iota \circ \pi = \mathrm{id}\). Given any \(y \in H_1^h\), we exhibit \(\pi (y)\) as a preimage under \(\iota \). By <span class="ttfamily">LinearMap.ext_iff</span> applied to \(\iota \circ \pi = \mathrm{id}\) at \(y\), we get \(\iota (\pi (y)) = \mathrm{id}(y) = y\), after simplifying via <span class="ttfamily">LinearMap.comp_apply</span> and <span class="ttfamily">LinearMap.id_apply</span>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.iotaEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">632</span>
+    <span class="definition_thmtitle">Iota Linear Equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.iotaEquiv">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaEquiv" class="lean_decl">IotaPiMaps.iotaEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the map \(\iota \) is a linear isomorphism: </p>
+<div class="displaymath" id="a0000001083">
+  \[  \iota : H_1(C(X/H, L)) \xrightarrow {\; \sim \; } H_1^h.  \]
+</div>
+<p> This equivalence \(\iota ^{\equiv }\) is constructed via \(\operatorname {LinearEquiv.ofBijective}(\iota , \langle h_{\mathrm{inj}}, h_{\mathrm{surj}}\rangle )\), where \(h_{\mathrm{inj}}\) is from <span class="ttfamily">iotaMap_injective</span> and \(h_{\mathrm{surj}}\) from <span class="ttfamily">iotaMap_surjective</span>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:IotaPiMaps.piEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">633</span>
+    <span class="definition_thmtitle">Pi Linear Equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#def:IotaPiMaps.piEquiv">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.piEquiv" class="lean_decl">IotaPiMaps.piEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the map \(\pi \) is a linear isomorphism: </p>
+<div class="displaymath" id="a0000001084">
+  \[  \pi : H_1^h \xrightarrow {\; \sim \; } H_1(C(X/H, L)).  \]
+</div>
+<p> This equivalence \(\pi ^{\equiv }\) is constructed via \(\operatorname {LinearEquiv.ofBijective}(\pi , \langle h_{\mathrm{inj}}, h_{\mathrm{surj}}\rangle )\), where \(h_{\mathrm{inj}}\) is from <span class="ttfamily">piMap_injective</span> and \(h_{\mathrm{surj}}\) from <span class="ttfamily">piMap_surjective</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.quotientTannerHomology_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">634</span>
+    <span class="lemma_thmtitle">Quotient Tanner Homology is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.quotientTannerHomology_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001085"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.quotientTannerHomology_nonempty" class="lean_decl">IotaPiMaps.quotientTannerHomology_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The quotient Tanner homology \(H_1(C(X/H, L))\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001085">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>The zero element \(0 \in H_1(C(X/H, L))\) witnesses non-emptiness: \(\langle 0 \rangle \). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:IotaPiMaps.iotaEquiv_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">635</span>
+    <span class="lemma_thmtitle">Iota Equivalence is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0046.html#lem:IotaPiMaps.iotaEquiv_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0046.html#a0000001086"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0042.html#def:GraphWithGroupAction">Definition 538</a></li>
+          
+          <li><a href="sect0043.html#def:GraphWithGroupAction.IsInvariantLabeling">Definition 563</a></li>
+          
+          <li><a href="sect0044.html#def:BalancedProductTannerCycleCode.CycleCompatibleAction">Definition 578</a></li>
+          
+          <li><a href="sect0045.html#def:HorizontalVerticalHomologySplitting.H1h">Definition 595</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.quotientTannerHomology">Definition 615</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.iotaEquiv">Definition 632</a></li>
+          
+          <li><a href="sect0046.html#def:IotaPiMaps.iotaEquiv">Definition 632</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/IotaPiMaps.iotaEquiv_nonempty" class="lean_decl">IotaPiMaps.iotaEquiv_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Assuming \(\ell \equiv 1 \pmod{2}\) and \(|H|\) is odd, the type of linear isomorphisms \(H_1(C(X/H, L)) \simeq _{\mathbb {F}_2} H_1^h\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001086">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>The equivalence \(\operatorname {iotaEquiv}(X, \Lambda , \ell , h_\Lambda , h_{\mathrm{compat}}, h_{\ell \mathrm{odd}}, h_{\mathrm{odd}})\) witnesses non-emptiness. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0045.html" title="Def 27: Horizontal/Vertical Homology Splitting"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0047.html" title="Thm 12: Encoding Rate (Circle Case)"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

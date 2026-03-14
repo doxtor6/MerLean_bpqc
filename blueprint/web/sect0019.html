@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 4: Projection Induces Isomorphism</title>
+<link rel="next" href="sect0020.html" title="Def 14: Graph Expansion" />
+<link rel="prev" href="sect0018.html" title="Def 13: Augmented Complex" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000020">19 Thm 4: Projection Induces Isomorphism</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarDeg1Lin">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">226</span>
+    <span class="definition_thmtitle">Projection Map \(\pi _*\) at Degree 1</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#def:FiberBundle.piStarDeg1Lin">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarDeg1Lin" class="lean_decl">FiberBundle.piStarDeg1Lin</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(\varepsilon : (\mathbb {F}_2^{m_2}) \to \mathbb {F}_2\) be a linear map (the augmentation of \(F_0\)). The projection \(\pi _*\) at degree 1 is the linear map </p>
+<div class="displaymath" id="a0000000390">
+  \[  \pi _*^{(1)} : \bigl((\mathbb {F}_2^{n_1} \otimes \mathbb {F}_2^{m_2}) \times (\mathbb {F}_2^{m_1} \otimes \mathbb {F}_2^{n_2})\bigr) \; \longrightarrow \;  \mathbb {F}_2^{n_1}  \]
+</div>
+<p> defined by </p>
+<div class="displaymath" id="a0000000391">
+  \[  \pi _*^{(1)}(x_{10},\,  x_{01}) \; =\;  (\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(x_{10}),  \]
+</div>
+<p> where \(\operatorname {rid}\) denotes the right-unit isomorphism \(V \otimes \mathbb {F}_2 \simeq V\). Concretely, on simple tensors \(\pi _*^{(1)}(b \otimes f,\,  0) = \varepsilon (f) \cdot b\), and \(\pi _*^{(1)}\) is zero on the \(\mathbb {F}_2^{m_1} \otimes \mathbb {F}_2^{n_2}\) component. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.epsilon_comp_alpha0_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">227</span>
+    <span class="lemma_thmtitle">Augmentation Is Invariant Under the Connection</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#lem:FiberBundle.epsilon_comp_alpha0_eq">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000392"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.epsilon_comp_alpha0_eq" class="lean_decl">FiberBundle.epsilon_comp_alpha0_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(d_F : \mathbb {F}_2^{n_2} \to \mathbb {F}_2^{m_2}\) be a linear map, let \(\psi \) be a chain automorphism of \(d_F\), and let \(\varepsilon : \mathbb {F}_2^{m_2} \to \mathbb {F}_2\) be a linear map satisfying \(\varepsilon \circ d_F = 0\). If \(\psi \) acts as the identity on the homology of \(d_F\) (i.e. \(\psi .\operatorname {ActsAsIdOnHomology}\)), then </p>
+<div class="displaymath" id="a0000000393">
+  \[  \varepsilon \circ \psi .\alpha _0 = \varepsilon .  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000392">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(v\) be arbitrary. By extensionality it suffices to show \(\varepsilon (\psi .\alpha _0\,  v) = \varepsilon (v)\). </p>
+<p>Since \(\psi \) acts as the identity on homology at degree 0, we have \(\psi .\alpha _0\,  v - v \in \operatorname {im}(d_F)\). Obtaining \(w\) such that \(d_F(w) = \psi .\alpha _0\,  v - v\), we compute: </p>
+<div class="displaymath" id="a0000000394">
+  \[  \varepsilon (\psi .\alpha _0\,  v - v) = \varepsilon (d_F(w)) = (\varepsilon \circ d_F)(w) = 0,  \]
+</div>
+<p> using the hypothesis \(\varepsilon \circ d_F = 0\). Applying \(\operatorname {map_sub}\) and \(\operatorname {sub_eq_zero}\), we conclude \(\varepsilon (\psi .\alpha _0\,  v) = \varepsilon (v)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStar_chainmap_twistedDh">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">228</span>
+    <span class="lemma_thmtitle">Chain Map Property of \(\pi _*\) for the Twisted Differential</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#lem:FiberBundle.piStar_chainmap_twistedDh">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000395"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.Connection">Definition 180</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.epsilon_comp_alpha0_eq">Lemma 227</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStar_chainmap_twistedDh" class="lean_decl">FiberBundle.piStar_chainmap_twistedDh</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(d_B\), \(d_F\), and \(\varphi \) be given, and let \(\varepsilon \) satisfy \(\varepsilon \circ d_F = 0\), with \(\varphi \) acting as the identity on homology. For any \(x \in \mathbb {F}_2^{n_1} \otimes \mathbb {F}_2^{m_2}\), </p>
+<div class="displaymath" id="a0000000396">
+  \[  (\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))\bigl(\widetilde{d}_h^0(x)\bigr) = d_B\bigl((\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(x)\bigr),  \]
+</div>
+<p> where \(\widetilde{d}_h^0\) is the twisted horizontal differential at bidegree \((1,0)\). That is, \(\pi _*^{(1)}\) intertwines \(\widetilde{d}_h^0\) with \(d_B\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000395">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We proceed by induction on \(x\) using the tensor product induction principle. </p>
+<p><i class="itshape">Zero case:</i> Both sides vanish trivially. </p>
+<p><i class="itshape">Additivity:</i> Both sides are linear, so the identity extends from simple tensors. </p>
+<p><i class="itshape">Simple tensor case \(x = b \otimes f\):</i> Expanding \(\widetilde{d}_h^0(b \otimes f)\) via <span class="ttfamily">twistedDhLin_tmul</span> and simplifying <span class="ttfamily">autAtDeg</span>, we obtain </p>
+<div class="displaymath" id="a0000000397">
+  \[  \sum _{b_1, b_0} b(b_1) \cdot d_B(e_{b_1})(b_0) \cdot \varepsilon (\alpha _0^{\varphi (b_1,b_0)} f) \cdot e_{b_0}.  \]
+</div>
+<p> For each term, by <span class="ttfamily">epsilon_comp_alpha0_eq</span> (when \(d_B(e_{b_1})(b_0) \neq 0\), the chain automorphism \(\varphi (b_1,b_0)\) acts as the identity on homology), we replace \(\varepsilon (\alpha _0^{\varphi (b_1,b_0)} f)\) by \(\varepsilon (f)\). After this substitution the sum becomes </p>
+<div class="displaymath" id="a0000000398">
+  \[  \sum _{b_1, b_0} b(b_1) \cdot d_B(e_{b_1})(b_0) \cdot \varepsilon (f) \cdot e_{b_0}.  \]
+</div>
+<p> Proceeding pointwise and applying the basis expansion \(d_B(b) = \sum _{b_1} b(b_1) \cdot d_B(e_{b_1})\), we obtain \(\varepsilon (f) \cdot d_B(b) = d_B(\varepsilon (f) \cdot b)\), which equals \(d_B((\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(b \otimes f))\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarDeg1_maps_cycles">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">229</span>
+    <span class="lemma_thmtitle">\(\pi _*\) Maps Cycles to \(\ker (d_B)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#lem:FiberBundle.piStarDeg1_maps_cycles">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000399"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.piStar_chainmap_twistedDh">Lemma 228</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.piStar_chainmap_twistedDh">Lemma 228</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarDeg1_maps_cycles" class="lean_decl">FiberBundle.piStarDeg1_maps_cycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Under the same hypotheses, for any \(z \in \operatorname {totZ}_1\) (the total 1-cycles of \(B \otimes _\varphi F\)), </p>
+<div class="displaymath" id="a0000000400">
+  \[  \pi _*^{(1)}(z) \; \in \;  \ker (d_B).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000399">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We must show \(d_B(\pi _*^{(1)}(z)) = 0\). Since \(z \in \operatorname {totZ}_1 = \ker (d_1)\), we have \(d_1(z) = 0\), i.e. \(\widetilde{d}_h^0(z_1) + d_v^0(z_2) = 0\) (as \(d_1 = \operatorname {coprod}(\widetilde{d}_h^0, d_v^0)\)). </p>
+<p>Applying \(\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon )\) to this equation: </p>
+<div class="displaymath" id="a0000000401">
+  \[  (\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))\bigl(\widetilde{d}_h^0(z_1) + d_v^0(z_2)\bigr) = 0.  \]
+</div>
+<p> The \(d_v^0\)-term vanishes since \(d_v^0 = \operatorname {lTensor}(d_F)\), and \((\operatorname {id} \otimes \varepsilon ) \circ (\operatorname {id} \otimes d_F) = \operatorname {id} \otimes (\varepsilon \circ d_F) = 0\) by hypothesis. Thus: </p>
+<div class="displaymath" id="a0000000402">
+  \[  (\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))\bigl(\widetilde{d}_h^0(z_1)\bigr) = 0.  \]
+</div>
+<p> By the chain map property (Lemma <a href="sect0019.html#lem:FiberBundle.piStar_chainmap_twistedDh">228</a>), this equals \(d_B((\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(z_1)) = d_B(\pi _*^{(1)}(z)) = 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarOnCycles">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">230</span>
+    <span class="definition_thmtitle">Restriction of \(\pi _*\) to Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#def:FiberBundle.piStarOnCycles">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.piStarDeg1_maps_cycles">Lemma 229</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarOnCycles" class="lean_decl">FiberBundle.piStarOnCycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The restriction of \(\pi _*^{(1)}\) to \(\operatorname {totZ}_1\), landing in \(\ker (d_B)\): </p>
+<div class="displaymath" id="a0000000403">
+  \[  \pi _*|_{\operatorname {cycles}} : \operatorname {totZ}_1 \; \longrightarrow \;  \ker (d_B), \quad z \; \mapsto \;  \bigl(\pi _*^{(1)}(z),\;  \pi _*^{(1)}(z) \in \ker (d_B)\bigr).  \]
+</div>
+<p> This is a well-defined \(\mathbb {F}_2\)-linear map by Lemma <a href="sect0019.html#lem:FiberBundle.piStarDeg1_maps_cycles">229</a>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarOnCycles_maps_boundaries">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">231</span>
+    <span class="lemma_thmtitle">\(\pi _*\) Maps Boundaries to Zero</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#lem:FiberBundle.piStarOnCycles_maps_boundaries">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000404"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarOnCycles">Definition 230</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarOnCycles">Definition 230</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarOnCycles_maps_boundaries" class="lean_decl">FiberBundle.piStarOnCycles_maps_boundaries</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Under the same hypotheses, </p>
+<div class="displaymath" id="a0000000405">
+  \[  \operatorname {totB}_1^{Z_1} \; \leq \;  \ker (\pi _*|_{\operatorname {cycles}}),  \]
+</div>
+<p> i.e. \(\pi _*^{(1)}\) vanishes on the total 1-boundaries \(\operatorname {totB}_1\) (embedded in \(\operatorname {totZ}_1\)). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000404">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(z \in \operatorname {totB}_1^{Z_1}\). Rewriting \(\operatorname {totB}_1^{Z_1}\) as the preimage under inclusion of \(\operatorname {totB}_1 = \operatorname {im}(d_2)\), we obtain \(w\) such that \(d_2(w) = z.\operatorname {val}\). In particular, \(z.\operatorname {val}.1 = d_v^1(w)\) (from the first component of \(d_2\)). </p>
+<p>We must show \(\pi _*^{(1)}(z.\operatorname {val}) = 0\). By definition of \(\pi _*^{(1)}\) as \(\operatorname {coprod}(\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ),\;  0)\), it suffices to show </p>
+<div class="displaymath" id="a0000000406">
+  \[  (\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(z.\operatorname {val}.1) = 0.  \]
+</div>
+<p> Substituting \(z.\operatorname {val}.1 = d_v^1(w) = \operatorname {lTensor}(d_F)(w)\): </p>
+<div class="displaymath" id="a0000000407">
+  \[  (\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(\operatorname {lTensor}(d_F)(w)) = (\operatorname {rid} \circ \operatorname {lTensor}(\varepsilon \circ d_F))(w) = 0,  \]
+</div>
+<p> since \(\varepsilon \circ d_F = 0\) by hypothesis. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarH1">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">232</span>
+    <span class="definition_thmtitle">Induced Map \(H_1(\pi _*)\) on Homology</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#def:FiberBundle.piStarH1">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarOnCycles">Definition 230</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.piStarOnCycles_maps_boundaries">Lemma 231</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarH1" class="lean_decl">FiberBundle.piStarH1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The map induced by \(\pi _*\) on degree-1 homology, </p>
+<div class="displaymath" id="a0000000408">
+  \[  H_1(\pi _*) : H_1(B \otimes _\varphi F) = \operatorname {totH}_1 \; \longrightarrow \;  \ker (d_B),  \]
+</div>
+<p> defined as the quotient lift </p>
+<div class="displaymath" id="a0000000409">
+  \[  H_1(\pi _*) \; =\;  \operatorname {liftQ}\bigl(\operatorname {totB}_1^{Z_1},\;  \pi _*|_{\operatorname {cycles}},\;  \pi _*|_{\operatorname {cycles}}(\operatorname {totB}_1^{Z_1}) = 0\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.piStarH1_surjective">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">233</span>
+    <span class="lemma_thmtitle">Surjectivity of \(H_1(\pi _*)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#lem:FiberBundle.piStarH1_surjective">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000410"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarH1">Definition 232</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarH1">Definition 232</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarH1_surjective" class="lean_decl">FiberBundle.piStarH1_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Assume additionally that \(\varepsilon : \mathbb {F}_2^{m_2} \to \mathbb {F}_2\) is surjective. Then </p>
+<div class="displaymath" id="a0000000411">
+  \[  H_1(\pi _*) : \operatorname {totH}_1 \; \twoheadrightarrow \;  \ker (d_B)  \]
+</div>
+<p> is surjective. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000410">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(\varepsilon \) is surjective, there exists \(f_0 \in \mathbb {F}_2^{m_2}\) with \(\varepsilon (f_0) = 1\). </p>
+<p>Let \(v \in \ker (d_B)\). We construct a preimage in \(\operatorname {totH}_1\) mapping to \(v\). </p>
+<p>First, we show \(\widetilde{d}_h^0(v \otimes f_0) \in \operatorname {im}(d_v^0)\): since \(v \in \ker (d_B)\) and the connection acts as the identity on homology, for each basis vector \(e_{b_1}\) with \(d_B(e_{b_1})(b_0) \neq 0\), the automorphism \((\varphi (b_1,b_0)).\alpha _0\,  f_0 - f_0 \in \operatorname {im}(d_F)\). After expanding via <span class="ttfamily">twistedDhLin_tmul</span>, the sum splits into a term \(d_B(v) \otimes f_0 = 0\) (since \(v \in \ker (d_B)\)) and a sum of terms of the form \(e_{b_0} \otimes d_F(g)\), each lying in \(\operatorname {im}(\operatorname {lTensor}(d_F))\). </p>
+<p>Obtaining \(y\) with \(d_v^0(y) = \widetilde{d}_h^0(v \otimes f_0)\), we set \(z = (v \otimes f_0,\;  y)\). Over \(\mathbb {F}_2\), \(\widetilde{d}_h^0(v \otimes f_0) + d_v^0(y) = 0\), so \(z \in \operatorname {totZ}_1\). </p>
+<p>The class \([z] \in \operatorname {totH}_1\) satisfies \(H_1(\pi _*)([z]) = \pi _*|_{\operatorname {cycles}}(z)\). By definition, this equals \((\operatorname {rid} \circ (\operatorname {id} \otimes \varepsilon ))(v \otimes f_0) = \varepsilon (f_0) \cdot v = 1 \cdot v = v\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:FiberBundle.finrank_totH1_eq_finrank_kerDB">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">234</span>
+    <span class="lemma_thmtitle">Equal Dimension: \(\operatorname {totH}_1\) and \(\ker (d_B)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#lem:FiberBundle.finrank_totH1_eq_finrank_kerDB">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000412"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">Theorem 212</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">Theorem 212</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.finrank_totH1_eq_finrank_kerDB" class="lean_decl">FiberBundle.finrank_totH1_eq_finrank_kerDB</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Assume: </p>
+<ol class="enumerate">
+  <li><p>\(\varphi \) acts as the identity on the homology of \(F\), </p>
+</li>
+  <li><p>the augmentation induces an isomorphism \(\bar{\varepsilon } : H_0(F) = (\mathbb {F}_2^{m_2} / \operatorname {im}(d_F)) \xrightarrow {\sim } \mathbb {F}_2\), </p>
+</li>
+  <li><p>\(H_0(B) = 0\), i.e. \(\operatorname {im}(d_B) = \mathbb {F}_2^{m_1}\) (surjectivity). </p>
+</li>
+</ol>
+<p> Then </p>
+<div class="displaymath" id="a0000000413">
+  \[  \dim _{\mathbb {F}_2} \operatorname {totH}_1 \; =\;  \dim _{\mathbb {F}_2} \ker (d_B).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000412">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By Theorem <a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">212</a>, there is a linear equivalence </p>
+<div class="displaymath" id="a0000000414">
+  \[  e : \operatorname {totH}_1 \; \simeq \;  \bigl(\ker (d_B) \otimes H_0(F)\bigr) \; \times \;  \bigl(H_0(B) \otimes \ker (d_F)\bigr).  \]
+</div>
+<p> Hence \(\dim \operatorname {totH}_1 = \dim (\ker (d_B) \otimes H_0(F)) + \dim (H_0(B) \otimes \ker (d_F))\). </p>
+<p>Since \(\operatorname {im}(d_B) = \top \), the cokernel \(H_0(B) = \mathbb {F}_2^{m_1} / \operatorname {im}(d_B)\) is the quotient by \(\top \), which is subsingleton. Therefore \(H_0(B) \otimes \ker (d_F)\) is also subsingleton (as a tensor product with a zero module), and its dimension is \(0\). </p>
+<p>Since \(\bar{\varepsilon } : H_0(F) \simeq \mathbb {F}_2\), we have </p>
+<div class="displaymath" id="a0000000415">
+  \[  \dim (\ker (d_B) \otimes H_0(F)) = \dim (\ker (d_B) \otimes \mathbb {F}_2) = \dim (\ker (d_B)),  \]
+</div>
+<p> using \(\operatorname {lTensor}(\bar{\varepsilon })\) and the right-unit isomorphism \(\ker (d_B) \otimes \mathbb {F}_2 \simeq \ker (d_B)\). </p>
+<p>Combining: \(\dim \operatorname {totH}_1 = \dim \ker (d_B) + 0 = \dim \ker (d_B)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:FiberBundle.piStarH1_isLinearEquiv">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">235</span>
+    <span class="theorem_thmtitle">\(H_1(\pi _*)\) Is an Isomorphism</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#thm:FiberBundle.piStarH1_isLinearEquiv">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000416"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">Theorem 212</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">Theorem 212</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.piStarH1_surjective">Lemma 233</a></li>
+          
+          <li><a href="sect0019.html#lem:FiberBundle.finrank_totH1_eq_finrank_kerDB">Lemma 234</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarH1_isLinearEquiv" class="lean_decl">FiberBundle.piStarH1_isLinearEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Under the following three hypotheses: </p>
+<ol class="enumerate">
+  <li><p>the connection \(\varphi \) acts as the identity on the homology of \(F\), </p>
+</li>
+  <li><p>\(\bar{\varepsilon } : H_0(F) \xrightarrow {\sim } \mathbb {F}_2\) (the augmentation \(\varepsilon \) induces an isomorphism on \(H_0(F)\)), </p>
+</li>
+  <li><p>\(\operatorname {im}(d_B) = \top \) (surjectivity of \(d_B\), equivalently \(H_0(B) = 0\)), </p>
+</li>
+</ol>
+<p> and assuming \(\varepsilon \) itself is surjective, the map </p>
+<div class="displaymath" id="a0000000417">
+  \[  H_1(\pi _*) : H_1(B \otimes _\varphi F) \; \xrightarrow {\sim }\;  H_1(B) = \ker (d_B)  \]
+</div>
+<p> is a bijection (hence a linear isomorphism, since it is a linear map between finite-dimensional \(\mathbb {F}_2\)-vector spaces of equal dimension). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000416">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Surjectivity follows from Lemma <a href="sect0019.html#lem:FiberBundle.piStarH1_surjective">233</a>. By Lemma <a href="sect0019.html#lem:FiberBundle.finrank_totH1_eq_finrank_kerDB">234</a>, \(\dim \operatorname {totH}_1 = \dim \ker (d_B)\). </p>
+<p>We verify that both spaces are finite-dimensional: \(\operatorname {totH}_1\) is finite-dimensional because by Theorem <a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">212</a> it is linearly equivalent to a product of tensor products of finite-dimensional spaces; \(\ker (d_B)\) is finite-dimensional as a submodule of a finite-dimensional space. </p>
+<p>Since \(H_1(\pi _*)\) is a surjective linear map between finite-dimensional spaces of equal dimension, it is also injective by the rank-nullity theorem (as applied via <span class="ttfamily">LinearMap.injective_iff_surjective_of_finrank_eq_finrank</span>). Hence \(H_1(\pi _*)\) is bijective. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piStarH1Equiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">236</span>
+    <span class="definition_thmtitle">\(H_1(\pi _*)\) as a Linear Equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#def:FiberBundle.piStarH1Equiv">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#thm:FiberBundle.piStarH1_isLinearEquiv">Theorem 235</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarH1">Definition 232</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piStarH1Equiv" class="lean_decl">FiberBundle.piStarH1Equiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Under the same hypotheses as Theorem <a href="sect0019.html#thm:FiberBundle.piStarH1_isLinearEquiv">235</a>, the map \(H_1(\pi _*)\) is packaged as a linear equivalence </p>
+<div class="displaymath" id="a0000000418">
+  \[  H_1(\pi _*)^{\simeq } : \operatorname {totH}_1 \; \xrightarrow {\; \sim \; } \ker (d_B),  \]
+</div>
+<p> constructed via <span class="ttfamily">LinearEquiv.ofBijective</span> applied to the bijection of Theorem <a href="sect0019.html#thm:FiberBundle.piStarH1_isLinearEquiv">235</a>. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:FiberBundle.piUpperStarH1Equiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">237</span>
+    <span class="definition_thmtitle">Induced Cohomology Isomorphism \(H^1(\pi ^*)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#def:FiberBundle.piUpperStarH1Equiv">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piStarH1Equiv">Definition 236</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piUpperStarH1Equiv" class="lean_decl">FiberBundle.piUpperStarH1Equiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Under the same hypotheses, and assuming \(\operatorname {totH}_1\) and \(\ker (d_B)\) are finite-dimensional, the dual of the isomorphism \(H_1(\pi _*)^{\simeq }\) yields a linear equivalence </p>
+<div class="displaymath" id="a0000000419">
+  \[  H^1(\pi ^*) : \operatorname {Hom}(\ker (d_B),\,  \mathbb {F}_2) \; \xrightarrow {\; \sim \; } \operatorname {Hom}(\operatorname {totH}_1,\,  \mathbb {F}_2).  \]
+</div>
+<p> Explicitly, for \(f \in \operatorname {Hom}(\ker (d_B), \mathbb {F}_2)\), we set \(H^1(\pi ^*)(f) = f \circ H_1(\pi _*)^{\simeq }\), and the inverse sends \(g \mapsto g \circ (H_1(\pi _*)^{\simeq })^{-1}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:FiberBundle.piUpperStarH1_isLinearEquiv">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">238</span>
+    <span class="theorem_thmtitle">\(H^1(\pi ^*)\) Is an Isomorphism</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0019.html#thm:FiberBundle.piUpperStarH1_isLinearEquiv">#</a>
+    
+    <a class="icon proof" href="sect0019.html#a0000000420"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0017.html#def:FiberBundle.ActsAsIdentityOnHomology">Definition 195</a></li>
+          
+          <li><a href="sect0016.html#def:FiberBundle.ChainAutomorphism">Definition 178</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0017.html#thm:FiberBundle.fiberBundleHomology_n1">Theorem 212</a></li>
+          
+          <li><a href="sect0017.html#def:FiberBundle.fiberBundleSmallDC">Definition 196</a></li>
+          
+          <li><a href="sect0019.html#def:FiberBundle.piUpperStarH1Equiv">Definition 237</a></li>
+          
+          <li><a href="sect0019.html#thm:FiberBundle.piStarH1_isLinearEquiv">Theorem 235</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/FiberBundle.piUpperStarH1_isLinearEquiv" class="lean_decl">FiberBundle.piUpperStarH1_isLinearEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Under the same hypotheses as Theorem <a href="sect0019.html#thm:FiberBundle.piStarH1_isLinearEquiv">235</a>, the cochain map \(\pi ^*\) induces an isomorphism on degree-1 cohomology: </p>
+<div class="displaymath" id="a0000000421">
+  \[  H^1(\pi ^*) : H^1(B) \; \xrightarrow {\; \sim \; } H^1(B \otimes _\varphi F).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000420">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The map \(H^1(\pi ^*)\) is defined as \(H^1(\pi ^*) = H_1(\pi _*)^{\simeq ,\operatorname {dual}}\), the dual of the linear equivalence \(H_1(\pi _*)^{\simeq }\). Since \(H_1(\pi _*)^{\simeq }\) is a linear equivalence (and in particular bijective), its dual \(H^1(\pi ^*)\) is also a linear equivalence, and its underlying linear map is bijective. This follows directly from <span class="ttfamily">LinearEquiv.bijective</span> applied to \(H^1(\pi ^*)\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0018.html" title="Def 13: Augmented Complex"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0020.html" title="Def 14: Graph Expansion"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

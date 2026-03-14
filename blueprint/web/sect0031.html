@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lem 3: Relative Vertex-to-Edge Expansion</title>
+<link rel="next" href="sect0032.html" title="Thm 7: Sipser–Spielman Expander Code Distance" />
+<link rel="prev" href="sect0030.html" title="Lem 2: Edge-to-Vertex Expansion" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000032">31 Lem 3: Relative Vertex-to-Edge Expansion</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">356</span>
+    <span class="definition_thmtitle">Edge Boundary at Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex" class="lean_decl">RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G = (V, E)\) be a simple graph and \(S \subseteq V\). For a vertex \(v \in V\), the <em>edge boundary at \(v\)</em> is the set of edges in the edge boundary \(\delta S\) that are incident to \(v\): </p>
+<div class="displaymath" id="a0000000653">
+  \[  (\delta S)_v \; :=\;  \{  e \in \delta S \mid v \in e \} .  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:RelativeVertexToEdgeExpansion.highExpansionVertices">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">357</span>
+    <span class="definition_thmtitle">High Expansion Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.highExpansionVertices" class="lean_decl">RelativeVertexToEdgeExpansion.highExpansionVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G = (V, E)\) be a simple graph, \(S \subseteq V\), \(s \in \mathbb {N}\), and \(b \in \mathbb {R}\). The set of <em>high expansion vertices</em> is </p>
+<div class="displaymath" id="a0000000654">
+  \[  A \; :=\;  \{  v \in S \mid s - b \; \leq \;  |(\delta S)_v| \} ,  \]
+</div>
+<p> i.e., the vertices in \(S\) whose local boundary degree is at least \(s - b\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">358</span>
+    <span class="lemma_thmtitle">\(A \subseteq S\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000655"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.highExpansionVertices_subset" class="lean_decl">RelativeVertexToEdgeExpansion.highExpansionVertices_subset</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any graph \(G\), subset \(S \subseteq V\), and parameters \(s \in \mathbb {N}\), \(b \in \mathbb {R}\), the set of high expansion vertices satisfies \(A \subseteq S\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000655">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(A\) is defined as a filtered subset of \(S\) (i.e., \(A = S.\operatorname {filter}(\cdots )\)), the inclusion \(A \subseteq S\) follows immediately from the fact that any filtered subset of a finset is contained in that finset. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeVertexToEdgeExpansion.highExpansionVertices_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">359</span>
+    <span class="lemma_thmtitle">Nonemptiness of High Expansion Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000656"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.highExpansionVertices_nonempty" class="lean_decl">RelativeVertexToEdgeExpansion.highExpansionVertices_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If there exists a vertex \(v \in S\) with \(|(\delta S)_v| \geq s - b\), then \(A\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000656">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Assume there exist \(v \in S\) and a proof \(h_{vb}\) that \(s - b \leq |(\delta S)_v|\). Decomposing the hypothesis, we obtain the vertex \(v\), its membership \(v \in S\), and the bound \(h_{vb}\). Then \(v \in A\) follows directly from the membership criterion \(A = S.\operatorname {filter}(s - b \leq |(\delta S)_\cdot |)\), and hence \(A\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">360</span>
+    <span class="lemma_thmtitle">Partition Sum of Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000657"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">Theorem 278</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">Theorem 278</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum" class="lean_decl">RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any graph \(G\) and subset \(S \subseteq V\), the edge boundary decomposes as a disjoint union over vertices in \(S\): </p>
+<div class="displaymath" id="a0000000658">
+  \[  |\delta S| \; =\;  \sum _{v \in S} |(\delta S)_v|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000657">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We first show that \(\delta S = \bigcup _{v \in S} (\delta S)_v\). For the forward direction: given \(e \in \delta S\), by the characterization of the edge boundary (using <span class="ttfamily">mem_edgeBoundary</span>), \(e = \{ a, b\} \) with \(a \in S\) and \(b \notin S\); thus \(e \in (\delta S)_a\) and \(a \in S\), so \(e\) lies in the big union. For the reverse direction: if \(e \in (\delta S)_v\) for some \(v \in S\), then \(e \in \delta S\) by the filter condition. </p>
+<p>Next, we show the family \(\{ (\delta S)_v\} _{v \in S}\) is pairwise disjoint. Suppose \(e \in (\delta S)_v \cap (\delta S)_w\) with \(v \neq w\). Then \(e \in \delta S\), and by <span class="ttfamily">mem_edgeBoundary</span>, \(e = \{ a,b\} \) with \(a \in S\), \(b \notin S\). Both \(v \in e\) and \(w \in e\) hold. By the membership condition for \(\operatorname {Sym2}\), each of \(v, w\) equals either \(a\) or \(b\). Since \(b \notin S\) but \(v, w \in S\), both \(v = a\) and \(w = a\), contradicting \(v \neq w\). </p>
+<p>Having established the disjoint partition, the cardinality identity follows from the finset big-union cardinality formula for pairwise disjoint families. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">361</span>
+    <span class="lemma_thmtitle">Boundary Degree Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000659"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.edgeBoundary_subset_edgeFinset">Theorem 279</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.edgeBoundary_subset_edgeFinset">Theorem 279</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree" class="lean_decl">RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be an \(s\)-regular graph. For any \(S \subseteq V\) and \(v \in V\), </p>
+<div class="displaymath" id="a0000000660">
+  \[  |(\delta S)_v| \; \leq \;  s.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000659">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We compute: </p>
+<div class="displaymath" id="a0000000661">
+  \[  |(\delta S)_v| \; \leq \;  |G.\operatorname {incidenceFinset}(v)| \; =\;  \deg _G(v) \; =\;  s.  \]
+</div>
+<p> The first inequality holds because \((\delta S)_v \subseteq G.\operatorname {incidenceFinset}(v)\): any edge \(e \in (\delta S)_v\) lies in the edge boundary \(\delta S \subseteq E(G)\) (by <span class="ttfamily">edgeBoundary_subset_edgeFinset</span>) and satisfies \(v \in e\), hence \(e \in G.\operatorname {incidenceFinset}(v)\). The equality of the incidence finset cardinality with \(\deg _G(v)\) follows from the standard identity, and \(\deg _G(v) = s\) by \(s\)-regularity. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeVertexToEdgeExpansion.relativeCheeger_le">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">362</span>
+    <span class="lemma_thmtitle">Relative Cheeger with Non-strict Inequality</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#lem:RelativeVertexToEdgeExpansion.relativeCheeger_le">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000662"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0025.html#thm:RelativeCheeger.spectralLaplacianBound">Theorem 288</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0025.html#thm:RelativeCheeger.spectralLaplacianBound">Theorem 288</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.relativeCheeger_le" class="lean_decl">RelativeVertexToEdgeExpansion.relativeCheeger_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a finite, connected, \(s\)-regular graph on \(|V| \geq 2\) vertices with second-largest eigenvalue \(\lambda _2\). For \(\alpha \in (0,1)\) and \(S \subseteq V\) with \(0 {\lt} |S|\) and \(|S| \leq \alpha |V|\), </p>
+<div class="displaymath" id="a0000000663">
+  \[  (1 - \alpha )(s - \lambda _2)|S| \; \leq \;  |\delta S|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000662">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We have \(|S| {\gt} 0\) (given) and \(|V| {\gt} 0\) (since \(|V| \geq 2\)). Since \(|S| \leq \alpha |V|\) and \(\alpha {\lt} 1\), we deduce \(|S| {\lt} |V|\), so \(S\) is a proper nonempty subset. </p>
+<p>We split into two cases based on the sign of \(s - \lambda _2\). </p>
+<p><b class="bfseries">Case 1: \(s - \lambda _2 \geq 0\).</b> Apply the spectral Laplacian bound (<span class="ttfamily">spectralLaplacianBound</span>): </p>
+<div class="displaymath" id="a0000000664">
+  \[  (s - \lambda _2)|S|\! \left(1 - \frac{|S|}{|V|}\right) \; \leq \;  |\delta S|.  \]
+</div>
+<p> Since \(|S|/|V| \leq \alpha \) (as \(|S| \leq \alpha |V|\)), we have \(1 - \alpha \leq 1 - |S|/|V|\). Multiplying both sides of the latter by the nonneg quantity \((s-\lambda _2)|S| \geq 0\) preserves the inequality, yielding </p>
+<div class="displaymath" id="a0000000665">
+  \[  (1-\alpha )(s-\lambda _2)|S| \; \leq \;  (s-\lambda _2)|S|\! \left(1-\frac{|S|}{|V|}\right) \; \leq \;  |\delta S|.  \]
+</div>
+<p><b class="bfseries">Case 2: \(s - \lambda _2 {\lt} 0\).</b> Then \((1-\alpha )(s-\lambda _2) {\lt} 0\) (since \(1-\alpha {\gt} 0\)), so \((1-\alpha )(s-\lambda _2)|S| {\lt} 0 \leq |\delta S|\) by linear arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">363</span>
+    <span class="lemma_thmtitle">Upper Bound on Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000666"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum">Lemma 360</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">Lemma 361</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum">Lemma 360</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">Lemma 361</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound" class="lean_decl">RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be an \(s\)-regular graph, \(S \subseteq V\), \(b \in \mathbb {R}\), and \(A = \{ v \in S \mid |(\delta S)_v| \geq s - b\} \). Then </p>
+<div class="displaymath" id="a0000000667">
+  \[  |\delta S| \; \leq \;  s|A| + (s - b)(|S| - |A|).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000666">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(B := S \setminus A\). Since \(A \subseteq S\), we have the disjoint decomposition \(S = A \sqcup B\). </p>
+<p>By the partition sum identity (Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_partition_sum">360</a>): </p>
+<div class="displaymath" id="a0000000668">
+  \[  |\delta S| \; =\;  \sum _{v \in S} |(\delta S)_v| \; =\;  \sum _{v \in A} |(\delta S)_v| + \sum _{v \in B} |(\delta S)_v|.  \]
+</div>
+<p>For the sum over \(A\): since each \(|(\delta S)_v| \leq s\) by \(s\)-regularity (Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex_le_degree">361</a>), the bounded sum inequality gives \(\sum _{v \in A} |(\delta S)_v| \leq s|A|\). </p>
+<p>For the sum over \(B\): for any \(v \in B = S \setminus A\), we have \(v \notin A\), meaning \(|(\delta S)_v| {\lt} s - b\) (i.e., the defining condition for \(A\) fails). Hence \(|(\delta S)_v| \leq s - b\) (strict inequality implies \(\leq \)), and again by the bounded sum inequality, \(\sum _{v \in B} |(\delta S)_v| \leq (s-b)|B|\). </p>
+<p>Finally, \(|B| = |S \setminus A| = |S| - |A|\) (since \(A \subseteq S\)), obtained by the cardinality identity for set differences. Combining all estimates gives \(|\delta S| \leq s|A| + (s-b)(|S| - |A|)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">364</span>
+    <span class="theorem_thmtitle">Relative Vertex-to-Edge Expansion</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">#</a>
+    
+    <a class="icon proof" href="sect0031.html#a0000000669"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.edgeBoundary_subset_edgeFinset">Theorem 279</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">Theorem 278</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.relativeCheeger_le">Lemma 362</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound">Lemma 363</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.relativeCheeger_le">Lemma 362</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound">Lemma 363</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion" class="lean_decl">RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite, connected, \(s\)-regular graph on vertex set \(V\) with \(|V| \geq 2\) and second-largest eigenvalue \(\lambda _2\). Let \(\alpha \in (0,1)\), \(b \in \mathbb {R}\) with \(0 {\lt} b \leq s\), and \(S \subseteq V\) with \(|S| \leq \alpha |V|\). Define </p>
+<div class="displaymath" id="a0000000670">
+  \[  A \; :=\;  \bigl\{  v \in S \; \big|\;  |(\delta S)_v| \geq s - b \bigr\} , \qquad \beta \; :=\;  \frac{(b - \lambda _2) - \alpha (s - \lambda _2)}{b}.  \]
+</div>
+<p> Then </p>
+<div class="displaymath" id="a0000000671">
+  \[  |A| \; \geq \;  \beta \,  |S|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000669">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> <b class="bfseries">Step 0: Trivial case.</b> If \(|S| = 0\), then both sides are zero and the inequality holds trivially by simplification. Henceforth assume \(|S| {\gt} 0\). </p>
+<p><b class="bfseries">Step 1: Lower bound on \(|\delta S|\).</b> By Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.relativeCheeger_le">362</a> (relative Cheeger with \(\leq \)): </p>
+<div class="displaymath" id="a0000000672">
+  \[  (1-\alpha )(s - \lambda _2)|S| \; \leq \;  |\delta S|.  \]
+</div>
+<p><b class="bfseries">Step 2: Upper bound on \(|\delta S|\).</b> By Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.edgeBoundary_upper_bound">363</a>: </p>
+<div class="displaymath" id="a0000000673">
+  \[  |\delta S| \; \leq \;  s|A| + (s-b)(|S| - |A|).  \]
+</div>
+<p><b class="bfseries">Step 3: Combine.</b> From Steps 1 and 2 by linear arithmetic: </p>
+<div class="displaymath" id="a0000000674">
+  \[  (1-\alpha )(s-\lambda _2)|S| \; \leq \;  s|A| + (s-b)(|S| - |A|).  \]
+</div>
+<p> Expanding the right side: \(s|A| + (s-b)|S| - (s-b)|A| = b|A| + (s-b)|S|\). Hence: </p>
+<div class="displaymath" id="a0000000675">
+  \[  (1-\alpha )(s-\lambda _2)|S| - (s-b)|S| \; \leq \;  b|A|.  \]
+</div>
+<p><b class="bfseries">Step 4: Simplify the coefficient.</b> We compute by ring arithmetic: </p>
+<div class="displaymath" id="a0000000676">
+  \[  (1-\alpha )(s-\lambda _2) - (s-b) \; =\;  (b - \lambda _2) - \alpha (s-\lambda _2).  \]
+</div>
+<p> Thus: </p>
+<div class="displaymath" id="a0000000677">
+  \[  \bigl[(b-\lambda _2) - \alpha (s-\lambda _2)\bigr]|S| \; \leq \;  b|A|.  \]
+</div>
+<p><b class="bfseries">Step 5: Divide by \(b\).</b> Since \(b {\gt} 0\), dividing both sides by \(b\) gives: </p>
+<div class="displaymath" id="a0000000678">
+  \[  \frac{(b-\lambda _2) - \alpha (s-\lambda _2)}{b} \cdot |S| \; \leq \;  |A|,  \]
+</div>
+<p> which is the desired conclusion. This final step is performed by rewriting with \(\operatorname {div_mul_eq_mul_div}\), applying \(\operatorname {div_le_iff}\) with \(b {\gt} 0\), and concluding by linear arithmetic. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0030.html" title="Lem 2: Edge-to-Vertex Expansion"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0032.html" title="Thm 7: Sipser–Spielman Expander Code Distance"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

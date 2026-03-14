@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 6: Subsystem CSS Code</title>
+<link rel="next" href="sect0010.html" title="Def 7: Cell Complex" />
+<link rel="prev" href="sect0008.html" title="Def 5: LDPC Code" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000010">9 Def 6: Subsystem CSS Code</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.boundariesInCycles">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">63</span>
+    <span class="definition_thmtitle">Boundaries in Cycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:CSSCode.boundariesInCycles">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.boundariesInCycles" class="lean_decl">CSSCode.boundariesInCycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q\) be a CSS code with parity check matrices \(H_X\) and \(H_Z^T\). The submodule of <em>boundaries inside cycles</em> is </p>
+<div class="displaymath" id="a0000000142">
+  \[  \operatorname {im}(H_Z^T) \cap \ker (H_X),  \]
+</div>
+<p> viewed as a submodule of \(\ker (H_X)\) via the comap of the subtype inclusion. Formally, it is the \(\mathbb {F}_2\)-submodule </p>
+<div class="displaymath" id="a0000000143">
+  \[  (\operatorname {im}(H_Z^T)).\operatorname {comap}(\ker (H_X).\operatorname {subtype}) \; \subseteq \;  \ker (H_X).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.Homology0">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">64</span>
+    <span class="definition_thmtitle">Homology Type \(H_0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:CSSCode.Homology0">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0009.html#def:CSSCode.boundariesInCycles">Definition 63</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.Homology₀" class="lean_decl">CSSCode.Homology₀</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>homology type</em> of a CSS code \(Q\) is the quotient \(\mathbb {F}_2\)-vector space </p>
+<div class="displaymath" id="a0000000144">
+  \[  H_0 \; =\;  \ker (H_X) \, /\,  \operatorname {im}(H_Z^T),  \]
+</div>
+<p> i.e., the quotient of \(\ker (H_X)\) by the submodule of boundaries in cycles. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.coboundariesInCocycles">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">65</span>
+    <span class="definition_thmtitle">Coboundaries in Cocycles</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:CSSCode.coboundariesInCocycles">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.coboundariesInCocycles" class="lean_decl">CSSCode.coboundariesInCocycles</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The submodule of <em>coboundaries inside cocycles</em> is </p>
+<div class="displaymath" id="a0000000145">
+  \[  \operatorname {im}(H_X^T) \cap \ker (H_Z),  \]
+</div>
+<p> where \(H_Z = (H_Z^T)^T = \operatorname {dualMap}(H_Z^T)\) and \(H_X^T = \operatorname {dualMap}(H_X)\), viewed as a submodule of \(\ker (H_Z)\). Formally, it is </p>
+<div class="displaymath" id="a0000000146">
+  \[  (\operatorname {im}(\operatorname {dualMap}(H_X))).\operatorname {comap}(\ker (\operatorname {dualMap}(H_Z^T)).\operatorname {subtype}).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.Cohomology0">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">66</span>
+    <span class="definition_thmtitle">Cohomology Type \(H^0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:CSSCode.Cohomology0">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0009.html#def:CSSCode.coboundariesInCocycles">Definition 65</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.Cohomology₀" class="lean_decl">CSSCode.Cohomology₀</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>cohomology type</em> of a CSS code \(Q\) is the quotient \(\mathbb {F}_2\)-vector space </p>
+<div class="displaymath" id="a0000000147">
+  \[  H^0 \; =\;  \ker (H_Z) \, /\,  \operatorname {im}(H_X^T),  \]
+</div>
+<p> i.e., the quotient of \(\ker (\operatorname {dualMap}(H_Z^T))\) by the submodule of coboundaries in cocycles. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.homologyMkQ">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">67</span>
+    <span class="definition_thmtitle">Homology Quotient Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:CSSCode.homologyMkQ">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:CSSCode.Homology0">Definition 64</a></li>
+          
+          <li><a href="sect0009.html#def:CSSCode.boundariesInCycles">Definition 63</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.homologyMkQ" class="lean_decl">CSSCode.homologyMkQ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>homology quotient map</em> is the canonical \(\mathbb {F}_2\)-linear surjection </p>
+<div class="displaymath" id="a0000000148">
+  \[  \pi _H \; :\;  \ker (H_X) \; \longrightarrow \;  H_0,  \]
+</div>
+<p> defined as the module quotient map \(\operatorname {mkQ}\) for the submodule of boundaries in cycles. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.cohomologyMkQ">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">68</span>
+    <span class="definition_thmtitle">Cohomology Quotient Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:CSSCode.cohomologyMkQ">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:CSSCode.Cohomology0">Definition 66</a></li>
+          
+          <li><a href="sect0009.html#def:CSSCode.coboundariesInCocycles">Definition 65</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.cohomologyMkQ" class="lean_decl">CSSCode.cohomologyMkQ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>cohomology quotient map</em> is the canonical \(\mathbb {F}_2\)-linear surjection </p>
+<div class="displaymath" id="a0000000149">
+  \[  \pi _{H^0} \; :\;  \ker (H_Z) \; \longrightarrow \;  H^0,  \]
+</div>
+<p> defined as the module quotient map \(\operatorname {mkQ}\) for the submodule of coboundaries in cocycles. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">69</span>
+    <span class="definition_thmtitle">Subsystem CSS Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode" class="lean_decl">SubsystemCSSCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>subsystem CSS code</em> with parameters \(n, r_X, r_Z \in \mathbb {N}\) is a CSS code \(Q\) (Definition&#160;<a href="sect0007.html#def:CSSCode">50</a>) together with the following data: </p>
+<ul class="itemize">
+  <li><p>A <em>logical subspace</em> \(H_0^L \subseteq H_0\): an \(\mathbb {F}_2\)-submodule of the homology \(H_0 = \ker (H_X)/\operatorname {im}(H_Z^T)\). </p>
+</li>
+  <li><p>A <em>gauge subspace</em> \(H_0^G \subseteq H_0\): an \(\mathbb {F}_2\)-submodule of the homology. </p>
+</li>
+  <li><p>A <em>direct sum decomposition</em> \(H_0 = H_0^L \oplus H_0^G\): the pair \((H_0^L, H_0^G)\) satisfies \(\operatorname {IsCompl}(H_0^L, H_0^G)\), meaning \(H_0^L \cap H_0^G = 0\) and \(H_0^L + H_0^G = H_0\). </p>
+</li>
+  <li><p>A <em>linear equivalence</em> \(\phi : H_0 \xrightarrow {\; \sim \; } H^0\) between the homology and cohomology, encoding the nondegenerate pairing. The cohomology splitting is induced by \(\phi \): \(H^0_L = \phi (H_0^L)\) and \(H^0_G = \phi (H_0^G)\), ensuring that \(H_0^L\) pairs nondegenerately with \(H^0_L\), \(H_0^G\) pairs nondegenerately with \(H^0_G\), and the cross-pairings vanish. </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.coHL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">70</span>
+    <span class="definition_thmtitle">Logical Cohomology Subspace</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.coHL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.coHL" class="lean_decl">SubsystemCSSCode.coHL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(S\) be a subsystem CSS code with equivalence \(\phi : H_0 \xrightarrow {\; \sim \; } H^0\). The <em>logical cohomology subspace</em> is </p>
+<div class="displaymath" id="a0000000150">
+  \[  H^0_L \; :=\;  \phi (H_0^L) \; =\;  \operatorname {Submodule.map}(\phi , H_0^L) \; \subseteq \;  H^0.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.coHG">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">71</span>
+    <span class="definition_thmtitle">Gauge Cohomology Subspace</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.coHG">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.coHG" class="lean_decl">SubsystemCSSCode.coHG</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(S\) be a subsystem CSS code with equivalence \(\phi : H_0 \xrightarrow {\; \sim \; } H^0\). The <em>gauge cohomology subspace</em> is </p>
+<div class="displaymath" id="a0000000151">
+  \[  H^0_G \; :=\;  \phi (H_0^G) \; =\;  \operatorname {Submodule.map}(\phi , H_0^G) \; \subseteq \;  H^0.  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:SubsystemCSSCode.cohcompl">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">72</span>
+    <span class="theorem_thmtitle">Cohomology Direct Sum Decomposition</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#thm:SubsystemCSSCode.cohcompl">#</a>
+    
+    <a class="icon proof" href="sect0009.html#a0000000152"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.coHL">Definition 70</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.coHG">Definition 71</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.coHL">Definition 70</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.coHG">Definition 71</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.cohcompl" class="lean_decl">SubsystemCSSCode.cohcompl</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(S\) be a subsystem CSS code. The cohomology splitting \(H^0 = H^0_L \oplus H^0_G\) holds, i.e., \(\operatorname {IsCompl}(H^0_L, H^0_G)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000152">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We prove both conditions of \(\operatorname {IsCompl}(H^0_L, H^0_G)\) separately. </p>
+<p><b class="bfseries">Disjointness</b> (\(H^0_L \cap H^0_G = 0\)): We use the definition of \(\operatorname {Submodule.disjoint_def}\). Let \(x \in H^0_L \cap H^0_G\). Since \(x \in H^0_L = \phi (H_0^L)\), there exists \(a \in H_0^L\) with \(\phi (a) = x\). Since \(x \in H^0_G = \phi (H_0^G)\), there exists \(b \in H_0^G\) with \(\phi (b) = x\). By injectivity of \(\phi \), we have \(a = b\). Therefore \(a \in H_0^L \cap H_0^G\). Since \(H_0 = H_0^L \oplus H_0^G\) (i.e., \(\operatorname {IsCompl}(H_0^L, H_0^G)\)), we have \(H_0^L \cap H_0^G = 0\), so \(a = 0\). Hence \(x = \phi (a) = \phi (0) = 0\) by the linear map property, and \(x = 0\) follows by simplification. </p>
+<p><b class="bfseries">Codisjointness</b> (\(H^0_L + H^0_G = H^0\)): Unfolding \(H^0_L = \phi (H_0^L)\) and \(H^0_G = \phi (H_0^G)\), we rewrite using codisjointness and compute </p>
+<div class="displaymath" id="a0000000153">
+  \[  H^0_L + H^0_G = \phi (H_0^L) + \phi (H_0^G) = \phi (H_0^L + H_0^G).  \]
+</div>
+<p> Since \(H_0 = H_0^L \oplus H_0^G\), we have \(H_0^L + H_0^G = H_0\) (i.e., \(\operatorname {sup_eq_top}\)). Therefore \(\phi (H_0) = \operatorname {Submodule.map_top}(\phi )\). By surjectivity of \(\phi \), \(\operatorname {LinearMap.range_eq_top}\) gives \(\operatorname {range}(\phi ) = H^0\), so \(H^0_L + H^0_G = H^0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.projL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">73</span>
+    <span class="definition_thmtitle">Logical Projection</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.projL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.projL" class="lean_decl">SubsystemCSSCode.projL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>logical projection</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000000154">
+  \[  \pi _L \; :\;  H_0 \; \longrightarrow \;  H_0^L,  \]
+</div>
+<p> defined as the linear projection onto \(H_0^L\) along \(H_0^G\), using the direct sum decomposition \(H_0 = H_0^L \oplus H_0^G\) (via \(\operatorname {Submodule.linearProjOfIsCompl}\)). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.coprojL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">74</span>
+    <span class="definition_thmtitle">Logical Cohomology Projection</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.coprojL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.coHL">Definition 70</a></li>
+          
+          <li><a href="sect0009.html#thm:SubsystemCSSCode.cohcompl">Theorem 72</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.coprojL" class="lean_decl">SubsystemCSSCode.coprojL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>logical cohomology projection</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000000155">
+  \[  \pi _{L}^* \; :\;  H^0 \; \longrightarrow \;  H^0_L,  \]
+</div>
+<p> defined as the linear projection onto \(H^0_L\) along \(H^0_G\), using the induced cohomology direct sum decomposition \(H^0 = H^0_L \oplus H^0_G\) (via \(\operatorname {Submodule.linearProjOfIsCompl}\) and \(\operatorname {cohcompl}\)). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.logicalQubits">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">75</span>
+    <span class="definition_thmtitle">Number of Logical Qubits</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.logicalQubits">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.logicalQubits" class="lean_decl">SubsystemCSSCode.logicalQubits</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>number of logical qubits</em> of a subsystem CSS code \(S\) is </p>
+<div class="displaymath" id="a0000000156">
+  \[  k \; :=\;  \dim _{\mathbb {F}_2}(H_0^L),  \]
+</div>
+<p> i.e., the \(\mathbb {F}_2\)-dimension (finrank) of the logical subspace \(H_0^L\). In a subsystem code, only \(H_0^L\) encodes logical information, while \(H_0^G\) corresponds to gauge degrees of freedom. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.dZ">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">76</span>
+    <span class="definition_thmtitle">Z-Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.dZ">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.projL">Definition 73</a></li>
+          
+          <li><a href="sect0009.html#def:CSSCode.homologyMkQ">Definition 67</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.dZ" class="lean_decl">SubsystemCSSCode.dZ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>Z-distance</em> \(d_Z\) of a subsystem CSS code \(S\) is the minimum Hamming weight of a representative \(z \in \ker (H_X)\) of a homology class \([z] \in H_0\) whose projection onto the logical subspace is nonzero: </p>
+<div class="displaymath" id="a0000000157">
+  \[  d_Z \; :=\;  \inf \bigl\{ \,  \operatorname {wt}(z) \; \bigm |\;  z \in \ker (H_X),\;  \pi _L([z]) \neq 0 \, \bigr\} ,  \]
+</div>
+<p> where \(\operatorname {wt}(z) = \operatorname {hammingWeight}(z)\) denotes the Hamming weight of \(z \in \mathbb {F}_2^n\), \([z] = \pi _H(z)\) is the image under the homology quotient map, and \(\pi _L : H_0 \to H_0^L\) is the logical projection. By convention, \(d_Z = 0\) when no such class exists (i.e., \(H_0^L = 0\)). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.dX">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">77</span>
+    <span class="definition_thmtitle">X-Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.dX">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.coprojL">Definition 74</a></li>
+          
+          <li><a href="sect0009.html#def:CSSCode.cohomologyMkQ">Definition 68</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.dX" class="lean_decl">SubsystemCSSCode.dX</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>X-distance</em> \(d_X\) of a subsystem CSS code \(S\) is the minimum Hamming weight (under the identification \(\operatorname {dotProductEquiv} : (\mathbb {F}_2^n)^* \cong \mathbb {F}_2^n\)) of a representative \(\zeta \in \ker (H_Z)\) of a cohomology class \([\zeta ] \in H^0\) whose projection onto \(H^0_L\) is nonzero: </p>
+<div class="displaymath" id="a0000000158">
+  \[  d_X \; :=\;  \inf \bigl\{ \,  \operatorname {wt}(\phi ^{-1}(\zeta )) \; \bigm |\;  \zeta \in \ker (H_Z),\;  \pi _L^*([\zeta ]) \neq 0 \, \bigr\} ,  \]
+</div>
+<p> where \(\phi : \mathbb {F}_2^n \xrightarrow {\; \sim \; } (\mathbb {F}_2^n)^*\) is the dot-product equivalence, \([\zeta ] = \pi _{H^0}(\zeta )\) is the image under the cohomology quotient map, and \(\pi _L^* : H^0 \to H^0_L\) is the logical cohomology projection. By convention, \(d_X = 0\) when \(H^0_L = 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.distance">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">78</span>
+    <span class="definition_thmtitle">Distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.distance">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.dX">Definition 77</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.dZ">Definition 76</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.distance" class="lean_decl">SubsystemCSSCode.distance</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>distance</em> of a subsystem CSS code \(S\) is </p>
+<div class="displaymath" id="a0000000159">
+  \[  d \; :=\;  \min (d_X,\,  d_Z).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.IsNKDCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">79</span>
+    <span class="definition_thmtitle">\([\! [n,k,d]\! ]\)-Code Predicate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.IsNKDCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.logicalQubits">Definition 75</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.distance">Definition 78</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.IsNKDCode" class="lean_decl">SubsystemCSSCode.IsNKDCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A subsystem CSS code \(S\) is an \([\! [n,k,d]\! ]\)-code (written \(\operatorname {IsNKDCode}(k, d)\)) if </p>
+<div class="displaymath" id="a0000000160">
+  \[  \dim _{\mathbb {F}_2}(H_0^L) = k \quad \text{and} \quad d_S = d,  \]
+</div>
+<p> i.e., it encodes \(k\) logical qubits with overall distance \(d\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:SubsystemCSSCode.IsNKDXZCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">80</span>
+    <span class="definition_thmtitle">\([\! [n,k,d_X,d_Z]\! ]\)-Code Predicate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#def:SubsystemCSSCode.IsNKDXZCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.logicalQubits">Definition 75</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.dX">Definition 77</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.dZ">Definition 76</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/SubsystemCSSCode.IsNKDXZCode" class="lean_decl">SubsystemCSSCode.IsNKDXZCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A subsystem CSS code \(S\) is an \([\! [n,k,d_X,d_Z]\! ]\)-code (written \(\operatorname {IsNKDXZCode}(k, d_X, d_Z)\)) if </p>
+<div class="displaymath" id="a0000000161">
+  \[  \dim _{\mathbb {F}_2}(H_0^L) = k, \quad d_X^S = d_X, \quad \text{and} \quad d_Z^S = d_Z,  \]
+</div>
+<p> i.e., it encodes \(k\) logical qubits with X-distance \(d_X\) and Z-distance \(d_Z\) separately specified. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0008.html" title="Def 5: LDPC Code"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0010.html" title="Def 7: Cell Complex"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

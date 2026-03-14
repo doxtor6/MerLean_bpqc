@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lem 2: Edge-to-Vertex Expansion</title>
+<link rel="next" href="sect0031.html" title="Lem 3: Relative Vertex-to-Edge Expansion" />
+<link rel="prev" href="sect0029.html" title="Def 19: Edge Boundary and Vertex Incidence for Cell Complexes" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000031">30 Lem 2: Edge-to-Vertex Expansion</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:EdgeToVertexExpansion.gammaOfAlpha">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">345</span>
+    <span class="definition_thmtitle">Quadratic Inverse \(\gamma (\alpha )\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.gammaOfAlpha" class="lean_decl">EdgeToVertexExpansion.gammaOfAlpha</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(s, \lambda _2, a \in \mathbb {R}\). The <em>quadratic inverse</em> is defined by </p>
+<div class="displaymath" id="a0000000624">
+  \[  \gamma (s, \lambda _2, a) \; :=\;  \frac{\sqrt{\lambda _2^2 + 4s(s - \lambda _2)\, a} - \lambda _2}{2(s - \lambda _2)}.  \]
+</div>
+<p> This is the solution \(g\) to the equation \(a = g^2 + \tfrac {\lambda _2}{s}\, g(1-g)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:EdgeToVertexExpansion.betaParam">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">346</span>
+    <span class="definition_thmtitle">Expansion Parameter \(\beta \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#def:EdgeToVertexExpansion.betaParam">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.betaParam" class="lean_decl">EdgeToVertexExpansion.betaParam</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(s, \lambda _2, a \in \mathbb {R}\). The <em>expansion parameter</em> is defined by </p>
+<div class="displaymath" id="a0000000625">
+  \[  \beta (s, \lambda _2, a) \; :=\;  \frac{\sqrt{\lambda _2^2 + 4s(s - \lambda _2)\, a} - \lambda _2}{s(s-\lambda _2)\, a}.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.betaParam_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">347</span>
+    <span class="lemma_thmtitle">\(\beta \) Equals \(2\gamma / (s\alpha )\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.betaParam_eq">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000626"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.betaParam_eq" class="lean_decl">EdgeToVertexExpansion.betaParam_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(s, \lambda _2, a \in \mathbb {R}\) with \(s \neq 0\) and \(a \neq 0\). Then </p>
+<div class="displaymath" id="a0000000627">
+  \[  \beta (s, \lambda _2, a) \; =\;  \frac{2\, \gamma (s, \lambda _2, a)}{s \cdot a}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000626">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definitions of \(\beta \) and \(\gamma \) and simplifying the field expressions, the equality holds by algebraic manipulation. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.discriminant_nonneg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">348</span>
+    <span class="lemma_thmtitle">Discriminant Nonnegativity</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000628"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.discriminant_nonneg" class="lean_decl">EdgeToVertexExpansion.discriminant_nonneg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(s, \lambda _2, a \in \mathbb {R}\) with \(0 {\lt} s\), \(\lambda _2 {\lt} s\), and \(0 \leq a\). Then </p>
+<div class="displaymath" id="a0000000629">
+  \[  0 \; \leq \;  \lambda _2^2 + 4s(s - \lambda _2)\, a.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000628">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We observe that \(0 \leq \lambda _2^2\) (since it is a square), \(0 {\lt} s - \lambda _2\) (since \(\lambda _2 {\lt} s\)), and hence \(0 \leq 4s(s-\lambda _2)a\) by positivity (since \(s {\gt} 0\), \(s - \lambda _2 {\gt} 0\), \(a \geq 0\)). The result follows by linear arithmetic from these three facts. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.sqrt_ge_lam2">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">349</span>
+    <span class="lemma_thmtitle">\(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)a} \geq \lambda _2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000630"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">Lemma 348</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">Lemma 348</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.sqrt_ge_lam2" class="lean_decl">EdgeToVertexExpansion.sqrt_ge_lam2</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(s, \lambda _2, a \in \mathbb {R}\) with \(0 {\lt} s\), \(\lambda _2 {\lt} s\), and \(0 \leq a\). Then </p>
+<div class="displaymath" id="a0000000631">
+  \[  \lambda _2 \; \leq \;  \sqrt{\lambda _2^2 + 4s(s - \lambda _2)\, a}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000630">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We proceed by cases on whether \(\lambda _2 \geq 0\) or \(\lambda _2 {\lt} 0\). </p>
+<p><b class="bfseries">Case 1:</b> \(\lambda _2 \geq 0\). We apply the fact that \(\lambda _2 \leq \sqrt{D}\) whenever \(\lambda _2^2 \leq D\) and \(D \geq 0\). Since \(4s(s-\lambda _2)a \geq 0\) (using \(s {\gt} 0\), \(s - \lambda _2 {\gt} 0\), \(a \geq 0\)), we have \(\lambda _2^2 \leq \lambda _2^2 + 4s(s-\lambda _2)a\), from which the result follows. </p>
+<p><b class="bfseries">Case 2:</b> \(\lambda _2 {\lt} 0\). Since \(\sqrt{\cdot } \geq 0\), we have \(\lambda _2 {\lt} 0 \leq \sqrt{\lambda _2^2 + 4s(s-\lambda _2)a}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.gammaOfAlpha_nonneg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">350</span>
+    <span class="lemma_thmtitle">\(\gamma (s, \lambda _2, a) \geq 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_nonneg">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000632"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">Lemma 349</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">Lemma 349</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.gammaOfAlpha_nonneg" class="lean_decl">EdgeToVertexExpansion.gammaOfAlpha_nonneg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(s, \lambda _2, a \in \mathbb {R}\) with \(0 {\lt} s\), \(\lambda _2 {\lt} s\), and \(0 \leq a\). Then \(\gamma (s, \lambda _2, a) \geq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000632">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition, \(\gamma (s, \lambda _2, a) = (\sqrt{\lambda _2^2 + 4s(s-\lambda _2)a} - \lambda _2) / (2(s-\lambda _2))\). The numerator is nonneg by the lemma \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)a} \geq \lambda _2\), and the denominator \(2(s - \lambda _2) {\gt} 0\) since \(\lambda _2 {\lt} s\). Hence the quotient is nonneg. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.gammaOfAlpha_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">351</span>
+    <span class="lemma_thmtitle">\(\gamma (s, \lambda _2, 0) = 0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_zero">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000633"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.gammaOfAlpha_zero" class="lean_decl">EdgeToVertexExpansion.gammaOfAlpha_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(s, \lambda _2 \in \mathbb {R}\) with \(0 {\lt} s\), \(\lambda _2 {\lt} s\), and \(\lambda _2 \geq 0\). Then \(\gamma (s, \lambda _2, 0) = 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000633">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition and substituting \(a = 0\), we compute: </p>
+<div class="displaymath" id="a0000000634">
+  \[  \gamma (s, \lambda _2, 0) = \frac{\sqrt{\lambda _2^2 + 4s(s-\lambda _2) \cdot 0} - \lambda _2}{2(s-\lambda _2)} = \frac{\sqrt{\lambda _2^2} - \lambda _2}{2(s-\lambda _2)} = \frac{\lambda _2 - \lambda _2}{2(s-\lambda _2)} = 0,  \]
+</div>
+<p> using \(\sqrt{\lambda _2^2} = \lambda _2\) (since \(\lambda _2 \geq 0\)) by simplification. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.gammaOfAlpha_concavity">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">352</span>
+    <span class="lemma_thmtitle">Concavity of \(\gamma \)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_concavity">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000635"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">Lemma 348</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">Lemma 349</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">Lemma 348</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">Lemma 349</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.gammaOfAlpha_concavity" class="lean_decl">EdgeToVertexExpansion.gammaOfAlpha_concavity</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(s, \lambda _2, \alpha , \tilde{\alpha } \in \mathbb {R}\) with \(0 {\lt} s\), \(\lambda _2 {\lt} s\), \(0 {\lt} \alpha \), \(0 \leq \tilde{\alpha }\), and \(\tilde{\alpha } \leq \alpha \). Then </p>
+<div class="displaymath" id="a0000000636">
+  \[  \gamma (s, \lambda _2, \alpha ) \cdot \tilde{\alpha } \; \leq \;  \gamma (s, \lambda _2, \tilde{\alpha }) \cdot \alpha .  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000635">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definitions and cross-multiplying by \(2(s - \lambda _2) {\gt} 0\), it suffices to show </p>
+<div class="displaymath" id="a0000000637">
+  \[  (\sqrt{D} - \lambda _2)\, \tilde{\alpha } \; \leq \;  (\sqrt{\tilde{D}} - \lambda _2)\, \alpha ,  \]
+</div>
+<p> where \(D = \lambda _2^2 + c\alpha \), \(\tilde{D} = \lambda _2^2 + c\tilde{\alpha }\), and \(c = 4s(s-\lambda _2) {\gt} 0\). </p>
+<p>Set \(u = \sqrt{\tilde{D}}\) and \(v = \sqrt{D}\). Both are nonneg, and \(\lambda _2 \leq u \leq v\) (by the lemma \(\sqrt{\cdot } \geq \lambda _2\) and monotonicity of square root: \(\tilde{D} \leq D\) since \(c {\gt} 0\) and \(\tilde{\alpha } \leq \alpha \)). In particular, \((u - \lambda _2)(v - \lambda _2) \geq 0\). </p>
+<p>It suffices to show \((v - \lambda _2)\tilde{\alpha } \leq (u - \lambda _2)\alpha \), which in turn follows from the intermediate claim </p>
+<div class="displaymath" id="a0000000638">
+  \[  (v - u)\, \tilde{\alpha } \; \leq \;  (u - \lambda _2)\, (\alpha - \tilde{\alpha }),  \]
+</div>
+<p> since adding \((u - \lambda _2)\tilde{\alpha }\) to both sides yields the desired inequality. </p>
+<p>We prove this intermediate claim by cases on whether \(v + u {\gt} 0\) or \(v + u = 0\). </p>
+<p><b class="bfseries">Case 1:</b> \(v + u {\gt} 0\). We multiply through by \(v + u\) and compute: </p>
+<div class="displaymath" id="a0000000639">
+  \begin{align*}  (v - u)\, \tilde{\alpha }\, (v + u) & = \tilde{\alpha }\, ((v-u)(v+u)) = \tilde{\alpha }\, (v^2 - u^2) = \tilde{\alpha }\, c(\alpha - \tilde{\alpha }) \\ & = c\tilde{\alpha }(\alpha - \tilde{\alpha }) = (u^2 - \lambda _2^2)(\alpha - \tilde{\alpha }) = (u-\lambda _2)(u+\lambda _2)(\alpha - \tilde{\alpha }) \\ & \leq (u - \lambda _2)(v + \lambda _2)(\alpha - \tilde{\alpha }) \end{align*}
+</div>
+<p> using \(u \leq v\) and \(u - \lambda _2 \geq 0\) and \(\alpha - \tilde{\alpha } \geq 0\). Then \((u-\lambda _2)(v+\lambda _2)(\alpha -\tilde{\alpha }) \leq (u-\lambda _2)(\alpha -\tilde{\alpha })(v+u)\) using \(\lambda _2 \leq u\). Dividing by \(v + u {\gt} 0\) gives the claim. </p>
+<p><b class="bfseries">Case 2:</b> \(v + u = 0\). Since \(u, v \geq 0\), we have \(u = v = 0\). Then \(\lambda _2 \leq u = 0\), so \(\lambda _2 \leq 0\). Setting \(u = v = 0\) and simplifying, both sides reduce to \(0 \leq (-\lambda _2)(\alpha - \tilde{\alpha })\), which holds since \(-\lambda _2 \geq 0\) and \(\alpha - \tilde{\alpha } \geq 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.edgeFinset_eq_half_sn">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">353</span>
+    <span class="lemma_thmtitle">Handshaking: \(|E(G)| = \tfrac {s}{2}|V|\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.edgeFinset_eq_half_sn">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000640"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+          <li><a href="sect0027.html#lem:AlonChung.twice_card_edgeFinset_eq">Lemma 310</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.edgeFinset_eq_half_sn" class="lean_decl">EdgeToVertexExpansion.edgeFinset_eq_half_sn</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a finite \(s\)-regular simple graph on \(V\). Then </p>
+<div class="displaymath" id="a0000000641">
+  \[  |E(G)| \; =\;  \frac{s}{2}\, |V|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000640">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately from the handshaking lemma <span class="ttfamily">twice_card_edgeFinset_eq</span>, which gives \(2|E(G)| = s\, |V|\), by linear arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:EdgeToVertexExpansion.incidentVertices_ge_gamma">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">354</span>
+    <span class="lemma_thmtitle">\(|\Gamma (E)| \geq \gamma (\tilde{\alpha })\, |V|\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#lem:EdgeToVertexExpansion.incidentVertices_ge_gamma">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000642"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">Lemma 326</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_concavity">Lemma 352</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">Lemma 348</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">Lemma 349</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.alonChung">Theorem 322</a></li>
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">Lemma 326</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.discriminant_nonneg">Lemma 348</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.sqrt_ge_lam2">Lemma 349</a></li>
+          
+          <li><a href="sect0027.html#thm:AlonChung.alonChung">Theorem 322</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.incidentVertices_ge_gamma" class="lean_decl">EdgeToVertexExpansion.incidentVertices_ge_gamma</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a finite connected \(s\)-regular simple graph on \(V\) with \(|V| \geq 2\) and second-largest eigenvalue \(\lambda _2 {\lt} s\). Let \(E \subseteq E(G)\) be a nonempty set of edges, and set \(\tilde{\alpha } = |E|/|E(G)|\). Then </p>
+<div class="displaymath" id="a0000000643">
+  \[  |\Gamma (E)| \; \geq \;  \gamma (s, \lambda _2, \tilde{\alpha })\, |V|,  \]
+</div>
+<p> where \(\Gamma (E) = \operatorname {incidentVertices}(E)\) is the set of vertices incident to some edge in \(E\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000642">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Set \(S = \Gamma (E)\), \(n = |V|\), and \(\tilde{\alpha } = |E|/|E(G)|\). </p>
+<p>First, \(S\) is nonempty: take any edge \(e \in E\); writing \(e = \{ a, b\} \), the vertex \(a\) satisfies \(a \in \Gamma (E)\) by the membership criterion <span class="ttfamily">mem_incidentVertices</span>. </p>
+<p>Moreover, \(E \subseteq \operatorname {inducedEdges}(G, S)\) by the lemma <span class="ttfamily">subset_inducedEdges_incidentVertices</span>. </p>
+<p>We consider two cases based on whether \(S = V\) or \(S \subsetneq V\). </p>
+<p><b class="bfseries">Case 1:</b> \(|S| = |V|\) (i.e., \(S\) is all of \(V\)). We must show \(\gamma (s, \lambda _2, \tilde{\alpha })\, n \leq |S| = n\), i.e., \(\gamma (s,\lambda _2,\tilde{\alpha }) \leq 1\). Unfolding the definition, this is \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\tilde{\alpha }} - \lambda _2 \leq 2(s-\lambda _2)\), i.e., \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\tilde{\alpha }} \leq 2s - \lambda _2\). Since \(\tilde{\alpha } \leq 1\) (as \(|E| \leq |E(G)|\)), we have \(\lambda _2^2 + 4s(s-\lambda _2)\tilde{\alpha } \leq \lambda _2^2 + 4s(s-\lambda _2) = (2s - \lambda _2)^2\). Taking square roots and using \(2s - \lambda _2 \geq 0\), we conclude \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\tilde{\alpha }} \leq 2s - \lambda _2\). </p>
+<p><b class="bfseries">Case 2:</b> \(|S| {\lt} |V|\). Let \(\gamma ' = |S|/n\). Apply the Alon–Chung theorem (<span class="ttfamily">alonChung</span>) to \(G\) and \(S\): </p>
+<div class="displaymath" id="a0000000644">
+  \[  |\operatorname {inducedEdges}(G,S)| \; \leq \;  \left(\gamma '^2 + \frac{\lambda _2}{s}\, \gamma '(1-\gamma ')\right)|E(G)|.  \]
+</div>
+<p> Since \(|E| \leq |\operatorname {inducedEdges}(G,S)|\), we obtain \(\tilde{\alpha } \leq \gamma '^2 + \tfrac {\lambda _2}{s}\gamma '(1-\gamma ')\). </p>
+<p>It remains to show \(\gamma (s,\lambda _2,\tilde{\alpha }) \leq \gamma '\). Unfolding, this is </p>
+<div class="displaymath" id="a0000000645">
+  \[  \sqrt{\lambda _2^2 + 4s(s-\lambda _2)\tilde{\alpha }} \; \leq \;  \lambda _2 + 2(s-\lambda _2)\gamma '.  \]
+</div>
+<p> Let \(R = \lambda _2 + 2(s-\lambda _2)\gamma '\). We verify \(R {\gt} 0\): since \(\tilde{\alpha } {\gt} 0\) and \(\tilde{\alpha } \leq \alpha (\gamma ')\), the quantity \(\alpha (\gamma ') {\gt} 0\), which implies \(\gamma ' + \tfrac {\lambda _2}{s}(1-\gamma ') {\gt} 0\), and hence \(\lambda _2 + (s-\lambda _2)\gamma ' {\gt} 0\); adding \((s-\lambda _2)\gamma ' {\gt} 0\) gives \(R {\gt} 0\). </p>
+<p>Squaring both sides (both nonneg), we need \(\lambda _2^2 + 4s(s-\lambda _2)\tilde{\alpha } \leq R^2 = \lambda _2^2 + 4(s-\lambda _2)\lambda _2\gamma ' + 4(s-\lambda _2)^2\gamma '^2\), i.e., </p>
+<div class="displaymath" id="a0000000646">
+  \[  4s(s-\lambda _2)\tilde{\alpha } \; \leq \;  4(s-\lambda _2)\bigl(\lambda _2\gamma ' + (s-\lambda _2)\gamma '^2\bigr) = 4(s-\lambda _2)\, s\, \alpha (\gamma ').  \]
+</div>
+<p> Dividing by \(4(s-\lambda _2) {\gt} 0\), this becomes \(s\tilde{\alpha } \leq s\, \alpha (\gamma ')\), which follows from \(\tilde{\alpha } \leq \alpha (\gamma ')\) by multiplying by \(s {\gt} 0\). Taking square roots gives the desired inequality, completing the proof. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:EdgeToVertexExpansion.edgeToVertexExpansion">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">355</span>
+    <span class="theorem_thmtitle">Edge-to-Vertex Expansion</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0030.html#thm:EdgeToVertexExpansion.edgeToVertexExpansion">#</a>
+    
+    <a class="icon proof" href="sect0030.html#a0000000647"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">Lemma 326</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.betaParam_eq">Lemma 347</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_concavity">Lemma 352</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.incidentVertices_ge_gamma">Lemma 354</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.edgeFinset_eq_half_sn">Lemma 353</a></li>
+          
+          <li><a href="sect0028.html#def:AlonChungContrapositive.incidentVertices">Definition 323</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.mem_incidentVertices">Lemma 324</a></li>
+          
+          <li><a href="sect0028.html#lem:AlonChungContrapositive.subset_inducedEdges_incidentVertices">Lemma 326</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.gammaOfAlpha">Definition 345</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.betaParam_eq">Lemma 347</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_concavity">Lemma 352</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.incidentVertices_ge_gamma">Lemma 354</a></li>
+          
+          <li><a href="sect0030.html#lem:EdgeToVertexExpansion.edgeFinset_eq_half_sn">Lemma 353</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/EdgeToVertexExpansion.edgeToVertexExpansion" class="lean_decl">EdgeToVertexExpansion.edgeToVertexExpansion</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite connected \(s\)-regular simple graph on \(V\) with \(|V| \geq 2\) and second-largest eigenvalue \(\lambda _2 {\lt} s\). Let \(0 {\lt} \alpha \leq 1\) and let \(E \subseteq E(G)\) be a set of edges with \(|E| \leq \alpha \, |E(G)|\). Then </p>
+<div class="displaymath" id="a0000000648">
+  \[  |\Gamma (E)| \; \geq \;  \beta (s, \lambda _2, \alpha )\, |E|,  \]
+</div>
+<p> where \(\beta (s, \lambda _2, \alpha ) = \dfrac {\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\alpha } - \lambda _2}{s(s-\lambda _2)\alpha }\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000647">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We first handle the edge case \(E = \emptyset \): the bound \(|\Gamma (\emptyset )| \geq \beta \cdot 0 = 0\) holds trivially by <span class="ttfamily">simp</span>. </p>
+<p>Assume \(E \neq \emptyset \). Let \(n = |V|\), \(\tilde{\alpha } = |E|/|E(G)|\). We have \(0 {\lt} \tilde{\alpha } \leq \alpha \) (the upper bound since \(|E| \leq \alpha |E(G)|\)). </p>
+<p><b class="bfseries">Step 1 (lower bound via \(\gamma \)).</b> By Lemma&#160;<a href="sect0030.html#lem:EdgeToVertexExpansion.incidentVertices_ge_gamma">354</a>, </p>
+<div class="displaymath" id="a0000000649">
+  \[  |\Gamma (E)| \; \geq \;  \gamma (s, \lambda _2, \tilde{\alpha })\, n.  \]
+</div>
+<p><b class="bfseries">Step 2 (concavity).</b> By Lemma&#160;<a href="sect0030.html#lem:EdgeToVertexExpansion.gammaOfAlpha_concavity">352</a> (with \(\tilde{\alpha } \leq \alpha \)), </p>
+<div class="displaymath" id="a0000000650">
+  \[  \gamma (s, \lambda _2, \alpha )\, \tilde{\alpha } \; \leq \;  \gamma (s, \lambda _2, \tilde{\alpha })\, \alpha .  \]
+</div>
+<p><b class="bfseries">Step 3 (handshaking).</b> By Lemma&#160;<a href="sect0030.html#lem:EdgeToVertexExpansion.edgeFinset_eq_half_sn">353</a>, \(|E(G)| = \tfrac {s}{2}n\), so </p>
+<div class="displaymath" id="a0000000651">
+  \[  \tilde{\alpha } \cdot n = \frac{|E|}{|E(G)|}\, n = \frac{|E| \cdot n}{\tfrac {s}{2}n} = \frac{2|E|}{s}.  \]
+</div>
+<p><b class="bfseries">Combining.</b> Using Lemma&#160;<a href="sect0030.html#lem:EdgeToVertexExpansion.betaParam_eq">347</a> (\(\beta = 2\gamma (\alpha )/(s\alpha )\)), we compute: </p>
+<div class="displaymath" id="a0000000652">
+  \begin{align*}  \beta (s,\lambda _2,\alpha )\, |E| & = \frac{2\, \gamma (s,\lambda _2,\alpha )}{s\, \alpha }\, |E| = \frac{\gamma (s,\lambda _2,\alpha )}{\alpha }\cdot \frac{2|E|}{s} = \frac{\gamma (s,\lambda _2,\alpha )}{\alpha }\cdot (\tilde{\alpha }\, n) \\ & = \frac{\gamma (s,\lambda _2,\alpha )\, \tilde{\alpha }}{\alpha }\, n \; \leq \;  \frac{\gamma (s,\lambda _2,\tilde{\alpha })\, \alpha }{\alpha }\, n = \gamma (s,\lambda _2,\tilde{\alpha })\, n \; \leq \;  |\Gamma (E)|, \end{align*}
+</div>
+<p> where the first inequality uses Step 2 and \(\alpha {\gt} 0\), and the last uses Step 1. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0029.html" title="Def 19: Edge Boundary and Vertex Incidence for Cell Complexes"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0031.html" title="Lem 3: Relative Vertex-to-Edge Expansion"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 22: Balanced Product of Vector Spaces</title>
+<link rel="next" href="sect0040.html" title="Def 23: Balanced Product Chain Complex" />
+<link rel="prev" href="sect0038.html" title="Thm 11: LPS Graphs are Ramanujan" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000040">39 Def 22: Balanced Product of Vector Spaces</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:balancedProduct">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">505</span>
+    <span class="definition_thmtitle">Balanced Product</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#def:balancedProduct">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct" class="lean_decl">balancedProduct</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(H\) be a group, let \(V\) and \(W\) be \(\mathbb {F}_2\)-modules equipped with \(H\)-representations \(\rho _V : H \to \operatorname {End}_{\mathbb {F}_2}(V)\) and \(\rho _W : H \to \operatorname {End}_{\mathbb {F}_2}(W)\). The <em>balanced product</em> \(V \otimes _H W\) is defined as the coinvariants of the diagonal \(H\)-action on \(V \otimes _{\mathbb {F}_2} W\): </p>
+<div class="displaymath" id="a0000000911">
+  \[  V \otimes _H W \; :=\;  \operatorname {Coinv}(\rho _V \otimes \rho _W),  \]
+</div>
+<p> where the diagonal action is \(h \cdot (v \otimes w) = \rho _V(h)(v) \otimes \rho _W(h)(w)\). Equivalently, this is the tensor product \(V \otimes _{\mathbb {F}_2[H]} W\) over the group algebra. Concretely, </p>
+<div class="displaymath" id="a0000000912">
+  \[  V \otimes _H W \; =\;  (V \otimes _{\mathbb {F}_2} W) \, /\,  \langle \rho _V(h)(v) \otimes \rho _W(h)(w) - v \otimes w \mid h \in H,\,  v \in V,\,  w \in W \rangle .  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:balancedProduct.mk">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">506</span>
+    <span class="definition_thmtitle">Quotient Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#def:balancedProduct.mk">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct.mk" class="lean_decl">balancedProduct.mk</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>quotient map</em> \(\operatorname {mk} : V \otimes _{\mathbb {F}_2} W \to V \otimes _H W\) is the canonical \(\mathbb {F}_2\)-linear surjection onto the balanced product, defined as the coinvariants quotient map of the diagonal representation \(\rho _V \otimes \rho _W\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:balancedProduct.diagonal_balanced">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">507</span>
+    <span class="theorem_thmtitle">Diagonal Balance Relation</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#thm:balancedProduct.diagonal_balanced">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000913"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct.diagonal_balanced" class="lean_decl">balancedProduct.diagonal_balanced</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For all \(h \in H\), \(v \in V\), \(w \in W\), the following equality holds in \(V \otimes _H W\): </p>
+<div class="displaymath" id="a0000000914">
+  \[  [\rho _V(h)(v) \otimes \rho _W(h)(w)] \; =\;  [v \otimes w].  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000913">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Rewriting using the definition of the diagonal tensor product representation, we have </p>
+<div class="displaymath" id="a0000000915">
+  \[  \rho _V(h)(v) \otimes _{\mathbb {F}_2} \rho _W(h)(w) \; =\;  (\rho _V \otimes \rho _W)(h)(v \otimes w),  \]
+</div>
+<p> which follows by simplification using \(\operatorname {tprod_apply}\) and \(\operatorname {TensorProduct.map_tmul}\). The result then follows immediately from the defining property of coinvariants: \(\operatorname {mk}((\rho _V \otimes \rho _W)(h)(x)) = \operatorname {mk}(x)\) for all \(h \in H\) and \(x \in V \otimes W\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:balancedProduct.balanced">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">508</span>
+    <span class="theorem_thmtitle">Balancing Relation</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#thm:balancedProduct.balanced">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000916"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#thm:balancedProduct.diagonal_balanced">Theorem 507</a></li>
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#thm:balancedProduct.diagonal_balanced">Theorem 507</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct.balanced" class="lean_decl">balancedProduct.balanced</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For all \(h \in H\), \(v \in V\), \(w \in W\), the following equality holds in \(V \otimes _H W\): </p>
+<div class="displaymath" id="a0000000917">
+  \[  [\rho _V(h^{-1})(v) \otimes w] \; =\;  [v \otimes \rho _W(h)(w)].  \]
+</div>
+<p> In right-action notation, this is the familiar relation \([v h \otimes w] = [v \otimes h w]\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000916">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Apply the diagonal balance relation (Theorem&#160;<a href="sect0039.html#thm:balancedProduct.diagonal_balanced">507</a>) with \(h\) and with \(v\) replaced by \(\rho _V(h^{-1})(v)\) and \(w\) replaced by \(w\), obtaining: </p>
+<div class="displaymath" id="a0000000918">
+  \[  [\rho _V(h)(\rho _V(h^{-1})(v)) \otimes \rho _W(h)(w)] \; =\;  [\rho _V(h^{-1})(v) \otimes w].  \]
+</div>
+<p> We establish that \(\rho _V(h)(\rho _V(h^{-1})(v)) = v\). Indeed, \((\rho _V(h) \circ \rho _V(h^{-1}))(v) = (\rho _V(h \cdot h^{-1}))(v)\) by the homomorphism property, and since \(h \cdot h^{-1} = 1\) we get \(\rho _V(1)(v) = v\) by the identity axiom. Rewriting with this, the equation becomes \([v \otimes \rho _W(h)(w)] = [\rho _V(h^{-1})(v) \otimes w]\), which gives the result by symmetry. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:balancedProduct.balanced'">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">509</span>
+    <span class="theorem_thmtitle">Inverse Balancing Relation</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#thm:balancedProduct.balanced'">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000919"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#thm:balancedProduct.balanced">Theorem 508</a></li>
+          
+          <li><a href="sect0039.html#thm:balancedProduct.balanced">Theorem 508</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct.balanced'" class="lean_decl">balancedProduct.balanced'</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For all \(h \in H\), \(v \in V\), \(w \in W\), the following equality holds in \(V \otimes _H W\): </p>
+<div class="displaymath" id="a0000000920">
+  \[  [\rho _V(h)(v) \otimes w] \; =\;  [v \otimes \rho _W(h^{-1})(w)].  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000919">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Apply the balancing relation (Theorem&#160;<a href="sect0039.html#thm:balancedProduct.balanced">508</a>) with \(h\) replaced by \(h^{-1}\), obtaining \([\rho _V(h^{-1\, -1})(v) \otimes w] = [v \otimes \rho _W(h^{-1})(w)]\). Simplifying \(h^{-1\, -1} = h\) by the involution property of group inversion gives the result. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:balancedProduct.ext'">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">510</span>
+    <span class="theorem_thmtitle">Extensionality for Maps from the Balanced Product</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#thm:balancedProduct.ext'">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000921"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct.ext'" class="lean_decl">balancedProduct.ext'</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(X\) be an \(\mathbb {F}_2\)-module and let \(f, g : V \otimes _H W \to _{\mathbb {F}_2} X\) be \(\mathbb {F}_2\)-linear maps. If </p>
+<div class="displaymath" id="a0000000922">
+  \[  f([\, v \otimes w\, ]) \; =\;  g([\, v \otimes w\, ]) \quad \text{for all } v \in V,\,  w \in W,  \]
+</div>
+<p> then \(f = g\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000921">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We apply the coinvariants extensionality principle \(\operatorname {Coinvariants.hom_ext}\) for \(\rho _V \otimes \rho _W\), which reduces equality of maps from the quotient to equality on the span of pure tensors. It then suffices to check equality on pure tensors \(v \otimes w\), which is exactly the hypothesis. This follows by applying \(\operatorname {TensorProduct.ext’}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:balancedProduct.mk_surjective">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">511</span>
+    <span class="theorem_thmtitle">Surjectivity of the Quotient Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#thm:balancedProduct.mk_surjective">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000923"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct.mk">Definition 506</a></li>
+          
+          <li><a href="sect0039.html#def:balancedProduct.mk">Definition 506</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct.mk_surjective" class="lean_decl">balancedProduct.mk_surjective</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The quotient map \(\operatorname {mk} : V \otimes _{\mathbb {F}_2} W \twoheadrightarrow V \otimes _H W\) is surjective. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000923">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows directly from the general fact that coinvariant quotient maps are surjective: \(\operatorname {Coinvariants.mk_surjective}(\rho _V \otimes \rho _W)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:avgDescended">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">512</span>
+    <span class="definition_thmtitle">Descended Averaging Map</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#def:avgDescended">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/avgDescended" class="lean_decl">avgDescended</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Assume \(H\) is a finite group and \(|H|\) is invertible in \(\mathbb {F}_2\). The <em>descended averaging map</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000000924">
+  \[  \overline{\operatorname {avg}} : V \otimes _H W \; \longrightarrow \;  (V \otimes _{\mathbb {F}_2} W)^H,  \]
+</div>
+<p> defined by lifting the averaging map \(\operatorname {avg} : V \otimes _{\mathbb {F}_2} W \to (V \otimes _{\mathbb {F}_2} W)^H\), </p>
+<div class="displaymath" id="a0000000925">
+  \[  \operatorname {avg}(x) \; =\;  \frac{1}{|H|} \sum _{h \in H} (\rho _V \otimes \rho _W)(h)(x),  \]
+</div>
+<p> through the coinvariants quotient. This is well-defined because the kernel of the coinvariants quotient is contained in the kernel of \(\operatorname {avg}\): if \(x = (\rho _V \otimes \rho _W)(g)(y) - y\) for some \(g \in H\), then \(\operatorname {avg}(x) = 0\) since the sum \(\sum _{h \in H} (\rho _V \otimes \rho _W)(hg)(y) = \sum _{h \in H} (\rho _V \otimes \rho _W)(h)(y)\) by re-indexing. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:invToBalanced">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">513</span>
+    <span class="definition_thmtitle">Inclusion of Invariants into the Balanced Product</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#def:invToBalanced">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#def:avgDescended">Definition 512</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/invToBalanced" class="lean_decl">invToBalanced</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>inclusion map</em> is the \(\mathbb {F}_2\)-linear map </p>
+<div class="displaymath" id="a0000000926">
+  \[  \iota : (V \otimes _{\mathbb {F}_2} W)^H \; \longrightarrow \;  V \otimes _H W,  \]
+</div>
+<p> defined as the composition of the submodule inclusion \((V \otimes _{\mathbb {F}_2} W)^H \hookrightarrow V \otimes _{\mathbb {F}_2} W\) followed by the quotient map \(\operatorname {mk} : V \otimes _{\mathbb {F}_2} W \to V \otimes _H W\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:balancedProductInvariantsEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">514</span>
+    <span class="definition_thmtitle">Isomorphism of Balanced Product with Invariants</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#def:balancedProductInvariantsEquiv">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000927"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#def:avgDescended">Definition 512</a></li>
+          
+          <li><a href="sect0039.html#def:invToBalanced">Definition 513</a></li>
+          
+          <li><a href="sect0039.html#def:avgDescended">Definition 512</a></li>
+          
+          <li><a href="sect0039.html#def:invToBalanced">Definition 513</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProductInvariantsEquiv" class="lean_decl">balancedProductInvariantsEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Assume \(H\) is a finite group and \(|H|\) is invertible in \(\mathbb {F}_2\) (i.e., \(|H|\) is odd). There is a canonical \(\mathbb {F}_2\)-linear equivalence </p>
+<div class="displaymath" id="a0000000928">
+  \[  V \otimes _H W \; \cong _{\mathbb {F}_2}\;  (V \otimes _{\mathbb {F}_2} W)^H.  \]
+</div>
+<p> The forward map sends \([v \otimes w] \mapsto \frac{1}{|H|}\sum _{h \in H} \rho _V(h)(v) \otimes \rho _W(h)(w)\), and the inverse sends an invariant element \(x \in (V \otimes W)^H\) to its class \([x]\) in \(V \otimes _H W\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000927">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We verify the two inverse conditions. <b class="bfseries">Left inverse:</b> Let \([x] \in V \otimes _H W\). By induction on coinvariants, it suffices to take \(x \in V \otimes _{\mathbb {F}_2} W\). Unfolding definitions, \(\iota (\overline{\operatorname {avg}}([x])) = [\operatorname {avg}(x)]\). We must show \([\operatorname {avg}(x)] = [x]\), i.e., \(\operatorname {avg}(x) - x \in \ker (\operatorname {mk})\). Expanding the averaging map, \(\operatorname {avg}(x) = \frac{1}{|H|}\sum _{h \in H} (\rho _V \otimes \rho _W)(h)(x)\). Using the fact that each \([(\rho _V \otimes \rho _W)(h)(x)] = [x]\) in coinvariants, we get \([\operatorname {avg}(x)] = \frac{1}{|H|} \cdot |H| \cdot [x] = [x]\) (using that \(|H|\) is invertible). This uses \(\operatorname {invOf_mul_self}\) and the coinvariant quotient property. <b class="bfseries">Right inverse:</b> Let \((x, hx) \in (V \otimes W)^H\) where \(hx\) is the invariance proof. Then \(\overline{\operatorname {avg}}(\iota (x)) = \overline{\operatorname {avg}}([x]) = \operatorname {avg}(x)\). Since \(x\) is invariant, \((\rho _V \otimes \rho _W)(h)(x) = x\) for all \(h\), so \(\operatorname {avg}(x) = \frac{1}{|H|} \cdot |H| \cdot x = x\), which follows from \(\operatorname {averageMap_id}\). The \(\mathbb {F}_2\)-linearity of the equivalence is inherited from \(\overline{\operatorname {avg}}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:balancedProductCoinvariantsEquiv">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">515</span>
+    <span class="definition_thmtitle">Isomorphism with Coinvariants</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#def:balancedProductCoinvariantsEquiv">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000929"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProductCoinvariantsEquiv" class="lean_decl">balancedProductCoinvariantsEquiv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    There is a canonical \(\mathbb {F}_2\)-linear equivalence </p>
+<div class="displaymath" id="a0000000930">
+  \[  \operatorname {Coinv}(\rho _V \otimes \mathbf{1}) \; \cong _{\mathbb {F}_2}\;  \operatorname {Coinv}(\rho _V),  \]
+</div>
+<p> where \(\mathbf{1}\) denotes the trivial \(H\)-representation on \(\mathbb {F}_2\). In other words, \(V \otimes _H \mathbb {F}_2 \cong V_H\), identifying the balanced product of \(V\) with the trivial module \(\mathbb {F}_2\) with the coinvariant module of \(\rho _V\). This isomorphism is induced by the canonical \(\mathbb {F}_2\)-linear isomorphism \(\operatorname {rid} : V \otimes _{\mathbb {F}_2} \mathbb {F}_2 \xrightarrow {\sim } V\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000929">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We show that \(\operatorname {rid} : V \otimes _{\mathbb {F}_2} \mathbb {F}_2 \xrightarrow {\sim } V\) maps the coinvariant kernel of \(\rho _V \otimes \mathbf{1}\) isomorphically onto the coinvariant kernel of \(\rho _V\), establishing </p>
+<div class="displaymath" id="a0000000931">
+  \[  \operatorname {(Coinv.ker}(\rho _V \otimes \mathbf{1})).\operatorname {map}(\operatorname {rid}) \; =\;  \operatorname {Coinv.ker}(\rho _V).  \]
+</div>
+<p> We prove both inclusions. <b class="bfseries">Forward inclusion (\(\subseteq \)):</b> By induction on the coinvariant kernel, it suffices to handle generators of the form \((\rho _V \otimes \mathbf{1})(g)(t) - t\) for \(g \in H\), \(t \in V \otimes \mathbb {F}_2\). By further induction on \(t\) using \(\operatorname {TensorProduct.induction_on}\): for zero tensors the result is trivial; for pure tensors \(v \otimes a\), using the trivial action \(\mathbf{1}(g) = \operatorname {id}\), we compute \(\operatorname {rid}((\rho _V \otimes \mathbf{1})(g)(v \otimes a) - v \otimes a) = a \cdot (\rho _V(g)(v) - v)\), which lies in \(\operatorname {Coinv.ker}(\rho _V)\) since \(\rho _V(g)(v) - v\) is a generator and the submodule is closed under scalar multiplication; the addition case follows by linearity of \(\operatorname {rid}\) and closure under addition. <b class="bfseries">Backward inclusion (\(\supseteq \)):</b> By induction on \(\operatorname {Coinv.ker}(\rho _V)\), generators have the form \(\rho _V(g)(v') - v'\). We exhibit a preimage: \(\rho _V(g)(v') \otimes 1 - v' \otimes 1 \in \operatorname {Coinv.ker}(\rho _V \otimes \mathbf{1})\) (using the trivial action on \(1 \in \mathbb {F}_2\)), and \(\operatorname {rid}(\rho _V(g)(v') \otimes 1 - v' \otimes 1) = \rho _V(g)(v') - v'\) as required; closures under addition and scalar multiplication are handled by decomposing preimages. The desired linear equivalence then follows from \(\operatorname {Submodule.Quotient.equiv}\) applied to \(\operatorname {rid}\) with this kernel compatibility. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:balancedProduct_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">516</span>
+    <span class="lemma_thmtitle">Balanced Product is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0039.html#lem:balancedProduct_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0039.html#a0000000932"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+          <li><a href="sect0039.html#def:balancedProduct">Definition 505</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/balancedProduct_nonempty" class="lean_decl">balancedProduct_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    The balanced product \(V \otimes _H W\) is nonempty. Specifically, \(0 \in V \otimes _H W\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000932">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> The zero element \(0\) is an element of \(V \otimes _H W\), witnessing nonemptiness. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0038.html" title="Thm 11: LPS Graphs are Ramanujan"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0040.html" title="Def 23: Balanced Product Chain Complex"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

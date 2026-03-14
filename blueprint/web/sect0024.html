@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 18: Cheeger Constant</title>
+<link rel="next" href="sect0025.html" title="Lem 1: Relative Cheeger Inequality" />
+<link rel="prev" href="sect0023.html" title="Def 17: Binary Entropy Function" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000025">24 Def 18: Cheeger Constant</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CheegerConstant.edgeBoundary">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">277</span>
+    <span class="definition_thmtitle">Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#def:CheegerConstant.edgeBoundary">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.edgeBoundary" class="lean_decl">CheegerConstant.edgeBoundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Let \(G = (V, E)\) be a finite simple graph with a decidable adjacency relation, and let \(S \subseteq V\) be a finite subset of vertices. The <em>edge boundary</em> \(\delta S\) is the finite set of edges in \(G\) that cross the cut determined by \(S\): </p>
+<div class="displaymath" id="a0000000492">
+  \[  \delta S \; =\;  \bigl\{ \,  e \in E(G) \; \big|\;  \text{one endpoint of } e \text{ lies in } S \text{ and the other does not}\, \bigr\} .  \]
+</div>
+<p> Formally, using the quotient representation \(\operatorname {Sym2}(V)\) for unordered pairs, we set </p>
+<div class="displaymath" id="a0000000493">
+  \[  \delta S \; =\;  \bigl\{ \,  e \in G.\operatorname {edgeFinset} \; \big|\;  (e.\operatorname {out}_1 \in S \land e.\operatorname {out}_2 \notin S) \lor (e.\operatorname {out}_2 \in S \land e.\operatorname {out}_1 \notin S)\, \bigr\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CheegerConstant.mem_edgeBoundary">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">278</span>
+    <span class="theorem_thmtitle">Membership in the Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">#</a>
+    
+    <a class="icon proof" href="sect0024.html#a0000000494"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.mem_edgeBoundary" class="lean_decl">CheegerConstant.mem_edgeBoundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite simple graph with decidable adjacency, \(S \subseteq V\) a finite subset, and \(e \in \operatorname {Sym2}(V)\). Then </p>
+<div class="displaymath" id="a0000000495">
+  \[  e \in \delta S \; \Longleftrightarrow \;  e \in E(G) \; \land \;  \exists \,  a \in S,\,  b \notin S \text{ such that } \{ a, b\}  = e.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000494">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We prove both directions. </p>
+<p>\((\Rightarrow )\): Assume \(e \in \delta S\). By the definition of \(\delta S\) (filtering \(G.\operatorname {edgeFinset}\)), we obtain \(e \in E(G)\) and the disjunction \((e.\operatorname {out}_1 \in S \land e.\operatorname {out}_2 \notin S) \lor (e.\operatorname {out}_2 \in S \land e.\operatorname {out}_1 \notin S)\). In the first case, set \(a = e.\operatorname {out}_1\) and \(b = e.\operatorname {out}_2\); then \(\{ a, b\}  = e\) by the identity \(e = \operatorname {Sym2.mk}(e.\operatorname {out})\), and \(a \in S\), \(b \notin S\). In the second case, set \(a = e.\operatorname {out}_2\) and \(b = e.\operatorname {out}_1\); then \(\{ a, b\}  = \{ b, a\}  = e\) by symmetry of \(\operatorname {Sym2}\), and again \(a \in S\), \(b \notin S\). </p>
+<p>\((\Leftarrow )\): Assume \(e \in E(G)\) and there exist \(a \in S\), \(b \notin S\) with \(\{ a, b\}  = e\). We substitute \(e = \{ a, b\} \). Let \((p, q) = \{ a, b\} .\operatorname {out}\); by the characterization \(\operatorname {Sym2.mk_eq_mk_iff}\), either \((p, q) = (a, b)\) or \((p, q) = (b, a)\). In the first sub-case, \(p = a \in S\) and \(q = b \notin S\), giving the left disjunct. In the second sub-case, \(p = b\) and \(q = a\), so \(q = a \in S\) and \(p = b \notin S\), giving the right disjunct. Hence \(e \in \delta S\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CheegerConstant.edgeBoundary_subset_edgeFinset">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">279</span>
+    <span class="theorem_thmtitle">Edge Boundary Subset of Edge Set</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#thm:CheegerConstant.edgeBoundary_subset_edgeFinset">#</a>
+    
+    <a class="icon proof" href="sect0024.html#a0000000496"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.edgeBoundary_subset_edgeFinset" class="lean_decl">CheegerConstant.edgeBoundary_subset_edgeFinset</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For any finite simple graph \(G\) with decidable adjacency and any \(S \subseteq V\), the edge boundary satisfies \(\delta S \subseteq E(G)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000496">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> This follows immediately from the fact that \(\delta S\) is defined as a filter of \(G.\operatorname {edgeFinset}\), and any filter of a finset is a subset of it: \(\operatorname {Finset.filter_subset}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CheegerConstant.adj_mem_edgeBoundary">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">280</span>
+    <span class="theorem_thmtitle">Adjacent Edge Lies in Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#thm:CheegerConstant.adj_mem_edgeBoundary">#</a>
+    
+    <a class="icon proof" href="sect0024.html#a0000000497"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">Theorem 278</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">Theorem 278</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.adj_mem_edgeBoundary" class="lean_decl">CheegerConstant.adj_mem_edgeBoundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite simple graph, \(S \subseteq V\) a finite subset, and \(u, v \in V\) with \(G.\operatorname {Adj}(u, v)\). If \(u \in S\) and \(v \notin S\), then \(\{ u, v\}  \in \delta S\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000497">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We rewrite using the membership characterization of the edge boundary (Theorem <a href="sect0024.html#thm:CheegerConstant.mem_edgeBoundary">278</a>). It suffices to provide \(\{ u, v\}  \in E(G)\) (which holds since \(G.\operatorname {Adj}(u, v)\) implies \(\{ u, v\}  \in G.\operatorname {edgeFinset}\)) and the witnesses \(a = u \in S\), \(b = v \notin S\) with \(\{ u, v\}  = \{ u, v\} \) (by reflexivity). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CheegerConstant.EligibleSubset">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">281</span>
+    <span class="definition_thmtitle">Eligible Subset</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#def:CheegerConstant.EligibleSubset">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.EligibleSubset" class="lean_decl">CheegerConstant.EligibleSubset</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>A finite subset \(S \subseteq V\) is called <em>eligible</em> (for the Cheeger constant) if: </p>
+<ol class="enumerate">
+  <li><p>\(S\) is nonempty: \(S \neq \emptyset \), and </p>
+</li>
+  <li><p>\(S\) is at most half the vertex set: \(2|S| \leq |V|\). </p>
+</li>
+</ol>
+<p> Formally, \(\operatorname {EligibleSubset}(S) \; \Longleftrightarrow \;  S.\operatorname {Nonempty} \land 2 \cdot |S| \leq |V|\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CheegerConstant.isoperimetricRatio">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">282</span>
+    <span class="definition_thmtitle">Isoperimetric Ratio</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#def:CheegerConstant.isoperimetricRatio">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.edgeBoundary">Definition 277</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.isoperimetricRatio" class="lean_decl">CheegerConstant.isoperimetricRatio</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G\) be a finite simple graph with decidable adjacency, and let \(S \subseteq V\) be a finite subset. The <em>isoperimetric ratio</em> of \(S\) is </p>
+<div class="displaymath" id="a0000000498">
+  \[  h(S) \; =\;  \frac{|\delta S|}{|S|} \; \in \;  \mathbb {R},  \]
+</div>
+<p> where \(|\delta S|\) denotes the cardinality of the edge boundary and \(|S|\) the cardinality of \(S\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CheegerConstant.cheegerConstant">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">283</span>
+    <span class="definition_thmtitle">Cheeger Constant</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#def:CheegerConstant.cheegerConstant">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.EligibleSubset">Definition 281</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.isoperimetricRatio">Definition 282</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.cheegerConstant" class="lean_decl">CheegerConstant.cheegerConstant</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G\) be a finite simple graph with decidable adjacency. The <em>Cheeger constant</em> (or <em>isoperimetric number</em>) of \(G\) is </p>
+<div class="displaymath" id="a0000000499">
+  \[  h(G) \; =\;  \inf _{\substack {S \subseteq V \\ \operatorname {EligibleSubset}(S)}} \frac{|\delta S|}{|S|} \; =\;  \operatorname {sInf}\bigl\{ \,  r \in \mathbb {R} \; \big|\;  \exists \,  S,\;  \operatorname {EligibleSubset}(S) \land h(S) = r\, \bigr\} ,  \]
+</div>
+<p> where the infimum is taken over all eligible subsets \(S\) (nonempty subsets with \(2|S| \leq |V|\)). When no eligible subset exists (i.e., \(|V| {\lt} 2\)), the set is empty and \(h(G) = 0\) by the convention \(\operatorname {sInf}\, \emptyset = 0\) for \(\mathbb {R}\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CheegerConstant.eligibleSubset_nonempty">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">284</span>
+    <span class="theorem_thmtitle">Eligible Subsets Exist When \(|V| \geq 2\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#thm:CheegerConstant.eligibleSubset_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0024.html#a0000000500"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.EligibleSubset">Definition 281</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.EligibleSubset">Definition 281</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.eligibleSubset_nonempty" class="lean_decl">CheegerConstant.eligibleSubset_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    If \(|V| \geq 2\), then there exists an eligible subset \(S \subseteq V\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000500">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(|V| \geq 2 {\gt} 0\), the type \(V\) is nonempty. Obtain a vertex \(v \in V\). Consider the singleton \(S = \{ v\} \). Then \(S\) is nonempty by \(\operatorname {Finset.singleton_nonempty}\), and \(|S| = 1\), so \(2 \cdot |S| = 2 \leq |V|\) by hypothesis. By integer arithmetic (\(\omega \)), the condition \(2 \cdot 1 \leq |V|\) follows from \(|V| \geq 2\). Hence \(\{ v\} \) is an eligible subset. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:CheegerConstant.cheegerConstant_nonneg">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">285</span>
+    <span class="theorem_thmtitle">Cheeger Constant is Nonnegative</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#thm:CheegerConstant.cheegerConstant_nonneg">#</a>
+    
+    <a class="icon proof" href="sect0024.html#a0000000501"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0024.html#def:CheegerConstant.cheegerConstant">Definition 283</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.EligibleSubset">Definition 281</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.isoperimetricRatio">Definition 282</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.eligibleSubset_nonempty">Theorem 284</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.cheegerConstant">Definition 283</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.EligibleSubset">Definition 281</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.isoperimetricRatio">Definition 282</a></li>
+          
+          <li><a href="sect0024.html#thm:CheegerConstant.eligibleSubset_nonempty">Theorem 284</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CheegerConstant.cheegerConstant_nonneg" class="lean_decl">CheegerConstant.cheegerConstant_nonneg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    For any finite simple graph \(G\) with decidable adjacency, \(h(G) \geq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000501">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We unfold the definition of \(h(G)\) and consider two cases. </p>
+<p><b class="bfseries">Case 1: \(|V| \geq 2\).</b> By Theorem <a href="sect0024.html#thm:CheegerConstant.eligibleSubset_nonempty">284</a>, obtain an eligible subset \(S\). The set \(\bigl\{ \,  r \; \big|\;  \exists \,  S',\; \operatorname {EligibleSubset}(S') \land h(S') = r\, \bigr\} \) is nonempty (witnessed by \(h(S)\)). We apply \(\operatorname {le_csInf}\): it suffices to show every element \(r = h(S')\) in the set satisfies \(0 \leq r\). But \(r = |\delta S'| / |S'|\), which is nonneg by positivity (both numerator and denominator are nonneg naturals cast to \(\mathbb {R}\)). </p>
+<p><b class="bfseries">Case 2: \(|V| {\lt} 2\).</b> Since \(|V| {\lt} 2\), any eligible subset \(S\) would require \(S\) nonempty (\(|S| \geq 1\)) and \(2|S| \leq |V| {\lt} 2\), giving \(|S| {\lt} 1\), a contradiction. Hence no eligible subset exists, the defining set is empty, and \(h(G) = \operatorname {sInf}\, \emptyset = 0 \geq 0\) by the real conditionally complete lattice convention. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:cheegerInequalities">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">286</span>
+    <span class="theorem_thmtitle">Axiom: Cheeger Inequalities</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0024.html#thm:cheegerInequalities">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0024.html#def:CheegerConstant.cheegerConstant">Definition 283</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/cheegerInequalities" class="lean_decl">cheegerInequalities</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(G\) be a connected \(s\)-regular finite simple graph on vertex set \(V\) with \(|V| \geq 2\). Let \(\lambda _2 = \lambda _2(G)\) denote the second-largest adjacency eigenvalue of \(G\) (Definition <a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">242</a>), and let \(h(G)\) be the Cheeger constant of \(G\) (Definition <a href="sect0024.html#def:CheegerConstant.cheegerConstant">283</a>). Then the following <em>Cheeger inequalities</em> hold: </p>
+<div class="displaymath" id="a0000000502">
+  \[  \frac{s - \lambda _2}{2} \; \leq \;  h(G) \; \leq \;  \sqrt{2s(s - \lambda _2)}.  \]
+</div>
+<p> The lower bound follows from the variational characterization of \(\lambda _2\) via the Courant–Fischer min-max theorem, and the upper bound follows from a sweep-cut argument applied to the second eigenvector. </p>
+<p><i class="itshape">Note: This is stated as an axiom because the proof requires spectral theory infrastructure (the Courant–Fischer min-max theorem and sweep-cut analysis) that is not available in Mathlib.</i> </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0023.html" title="Def 17: Binary Entropy Function"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0025.html" title="Lem 1: Relative Cheeger Inequality"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

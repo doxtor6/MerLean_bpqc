@@ -1,0 +1,3535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 21: LPS Expander Graphs</title>
+<link rel="next" href="sect0038.html" title="Thm 11: LPS Graphs are Ramanujan" />
+<link rel="prev" href="sect0036.html" title="Def 20: Cayley Graph" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000038">37 Def 21: LPS Expander Graphs</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.PGL2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">453</span>
+    <span class="definition_thmtitle">Projective General Linear Group</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.PGL2">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.PGL2" class="lean_decl">LPS.PGL2</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>projective general linear group</em> \(\operatorname {PGL}(2, q) = \operatorname {GL}(2, \mathbb {F}_q) / Z(\operatorname {GL}(2, \mathbb {F}_q))\) is defined as the quotient of \(\operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z})\) by its center: </p>
+<div class="displaymath" id="a0000000855">
+  \[  \operatorname {PGL}_2(q) \; :=\;  \operatorname {GL}(\operatorname {Fin}~ 2,\,  \mathbb {Z}/q\mathbb {Z}) \, \big/\,  Z\! \left(\operatorname {GL}(\operatorname {Fin}~ 2,\,  \mathbb {Z}/q\mathbb {Z})\right).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.PSL2">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">454</span>
+    <span class="definition_thmtitle">Projective Special Linear Group</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.PSL2">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.PSL2" class="lean_decl">LPS.PSL2</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>The <em>projective special linear group</em> \(\operatorname {PSL}(2, q) = \operatorname {SL}(2, \mathbb {F}_q) / Z(\operatorname {SL}(2, \mathbb {F}_q))\) is defined as the quotient of \(\operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z})\) by its center: </p>
+<div class="displaymath" id="a0000000856">
+  \[  \operatorname {PSL}_2(q) \; :=\;  \operatorname {SL}(\operatorname {Fin}~ 2,\,  \mathbb {Z}/q\mathbb {Z}) \, \big/\,  Z\! \left(\operatorname {SL}(\operatorname {Fin}~ 2,\,  \mathbb {Z}/q\mathbb {Z})\right).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.SpTilde">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">455</span>
+    <span class="definition_thmtitle">The Set \(\widetilde{S}_p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.SpTilde">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.SpTilde" class="lean_decl">LPS.SpTilde</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a natural number \(p\), define the set </p>
+<div class="displaymath" id="a0000000857">
+  \[  \widetilde{S}_p \; :=\;  \bigl\{ (a,b,c,d) \in \mathbb {Z}^4 \; \big|\;  a^2 + b^2 + c^2 + d^2 = p\bigr\} .  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.Sp">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">456</span>
+    <span class="definition_thmtitle">The Normalized Subset \(S_p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.Sp">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.Sp" class="lean_decl">LPS.Sp</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For an odd prime \(p\) (i.e. \(p \equiv 1\) or \(3 \pmod{4}\)), the <em>normalized subset</em> \(S_p \subseteq \widetilde{S}_p\) is the finite set of integer \(4\)-tuples \((a,b,c,d)\) with \(a^2+b^2+c^2+d^2 = p\) satisfying the normalization condition: </p>
+<ul class="itemize">
+  <li><p>If \(p \equiv 1 \pmod{4}\): \(a {\gt} 0\) and \(a\) is odd. </p>
+</li>
+  <li><p>If \(p \equiv 3 \pmod{4}\): \(a\) is even and the first nonzero coordinate among \((a,b,c,d)\) is positive. </p>
+</li>
+</ul>
+<p> Concretely, \(S_p\) is obtained by filtering \(\{ -p, \ldots , p\} ^4\) by the predicate \(\operatorname {SpPred}(p)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.Sp_subset_SpTilde">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">457</span>
+    <span class="lemma_thmtitle">Every Element of \(S_p\) Lies in \(\widetilde{S}_p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.Sp_subset_SpTilde">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000858"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.Sp_subset_SpTilde" class="lean_decl">LPS.Sp_subset_SpTilde</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every odd prime \(p\) and every \(t \in S_p\), we have \(t \in \widetilde{S}_p\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000858">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(t \in S_p\). Unfolding the definition of \(S_p\) as a filter, the first component of the predicate \(\operatorname {SpPred}(p)\) requires precisely that \(t.1^2 + t.2.1^2 + t.2.2.1^2 + t.2.2.2^2 = p\), which is the membership condition for \(\widetilde{S}_p\). Hence \(t \in \widetilde{S}_p\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.Sp_card">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">458</span>
+    <span class="theorem_thmtitle">Axiom: Cardinality of \(S_p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.Sp_card">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.Sp_card" class="lean_decl">LPS.Sp_card</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For every odd prime \(p\), </p>
+<div class="displaymath" id="a0000000859">
+  \[  |S_p| = p + 1.  \]
+</div>
+<p><i class="itshape">Note: This follows from Jacobi’s four-square theorem: the number of representations of an odd prime \(p\) as a sum of four integer squares is \(r_4(p) = 8(p+1)\), and the normalization conditions select exactly \(p+1\) representatives. Jacobi’s four-square theorem is not available in Mathlib, so this is stated as an axiom.</i> </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.SpTilde_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">459</span>
+    <span class="lemma_thmtitle">\(\widetilde{S}_p\) is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.SpTilde_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000860"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.Sp_card">Theorem 458</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.Sp_subset_SpTilde">Lemma 457</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.Sp_card">Theorem 458</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.Sp_subset_SpTilde">Lemma 457</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.SpTilde_nonempty" class="lean_decl">LPS.SpTilde_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every odd prime \(p\), \(\widetilde{S}_p\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000860">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By \(\operatorname {Sp_card}\), we have \(|S_p| = p+1 \geq 2 {\gt} 0\), so \(S_p\) is nonempty. Rewriting with the cardinality: if \(S_p\) were empty then \(|S_p| = 0 \neq p+1\) (since \(p \geq 2\)), a contradiction by integer arithmetic. Obtaining \(t \in S_p\), by \(\operatorname {Sp_subset_SpTilde}\), \(t \in \widetilde{S}_p\), so \(\widetilde{S}_p\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.Sp_nonempty">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">460</span>
+    <span class="lemma_thmtitle">\(S_p\) is Nonempty</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.Sp_nonempty">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000861"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.Sp_card">Theorem 458</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.Sp_card">Theorem 458</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.Sp_nonempty" class="lean_decl">LPS.Sp_nonempty</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every odd prime \(p\), \(S_p\) is nonempty. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000861">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Assume for contradiction that \(S_p = \emptyset \). Then \(|S_p| = 0\). But by \(\operatorname {Sp_card}\), \(|S_p| = p+1\). Since \(p \geq 2\), we have \(p+1 \geq 3 {\gt} 0\), contradicting \(|S_p| = 0\) by integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.lpsMatrixVal">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">461</span>
+    <span class="definition_thmtitle">LPS Matrix \(M(a,b,c,d)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.lpsMatrixVal">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsMatrixVal" class="lean_decl">LPS.lpsMatrixVal</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>Given \(x, y \in \mathbb {Z}/q\mathbb {Z}\) and a tuple \(t = (a,b,c,d) \in \mathbb {Z}^4\), the <em>LPS matrix</em> is the \(2 \times 2\) matrix over \(\mathbb {Z}/q\mathbb {Z}\) defined by </p>
+<div class="displaymath" id="a0000000862">
+  \[  M(a,b,c,d) \; :=\;  \begin{pmatrix}  \iota (a) + \iota (b)x + \iota (d)y 
+
+&  -\iota (b)y + \iota (c) + \iota (d)x 
+
+\\ -\iota (b)y - \iota (c) + \iota (d)x 
+
+&  \iota (a) - \iota (b)x - \iota (d)y 
+
+\end{pmatrix},  \]
+</div>
+<p> where \(\iota : \mathbb {Z} \to \mathbb {Z}/q\mathbb {Z}\) denotes the canonical ring homomorphism. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.lpsMatrixVal_det">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">462</span>
+    <span class="lemma_thmtitle">Determinant of the LPS Matrix</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.lpsMatrixVal_det">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000863"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsMatrixVal_det" class="lean_decl">LPS.lpsMatrixVal_det</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(x, y \in \mathbb {Z}/q\mathbb {Z}\) with \(x^2 + y^2 + 1 = 0\) and any \(t = (a,b,c,d) \in \mathbb {Z}^4\), </p>
+<div class="displaymath" id="a0000000864">
+  \[  \det M(a,b,c,d) \; =\;  \iota (a)^2 + \iota (b)^2 + \iota (c)^2 + \iota (d)^2.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000863">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the definition of \(M(a,b,c,d)\) and computing the \(2\times 2\) determinant using \(\det \begin{pmatrix}  p 
+
+&  q 
+
+\\ r 
+
+&  s 
+
+\end{pmatrix} = ps - qr\), the result follows by a linear combination using the hypothesis \(x^2 + y^2 + 1 = 0\): specifically, \(\det M = \iota (a)^2 + \iota (b)^2 + \iota (c)^2 + \iota (d)^2\) after simplification via \(-(\iota (b)^2 + \iota (d)^2)(x^2 + y^2 + 1) = 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.lpsMatrixVal_det_ne_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">463</span>
+    <span class="lemma_thmtitle">LPS Matrix is Invertible for \((a,b,c,d) \in \widetilde{S}_p\), \(p \neq q\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.lpsMatrixVal_det_ne_zero">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000865"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_det">Lemma 462</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_det">Lemma 462</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsMatrixVal_det_ne_zero" class="lean_decl">LPS.lpsMatrixVal_det_ne_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For distinct odd primes \(p, q\) and \(x, y \in \mathbb {Z}/q\mathbb {Z}\) with \(x^2 + y^2 + 1 = 0\), if \(t \in \widetilde{S}_p\) then \(\det M(t) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000865">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By <span class="ttfamily">lpsMatrixVal_det</span>, it suffices to show \(\iota (a)^2 + \iota (b)^2 + \iota (c)^2 + \iota (d)^2 \neq 0\) in \(\mathbb {Z}/q\mathbb {Z}\). Since \(t \in \widetilde{S}_p\), we have \(a^2 + b^2 + c^2 + d^2 = p\) in \(\mathbb {Z}\). Applying \(\iota : \mathbb {Z} \to \mathbb {Z}/q\mathbb {Z}\) and using \(\operatorname {push_cast}\), the sum equals \(\iota (p) = (p : \mathbb {Z}/q\mathbb {Z})\). We must show \((p : \mathbb {Z}/q\mathbb {Z}) \neq 0\), i.e. \(q \nmid p\). Since \(p\) and \(q\) are distinct primes, by primality of \(p\): \(q \mid p\) implies \(q = 1\) or \(q = p\), the former contradicting \(q\) prime and the latter contradicting \(p \neq q\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.negConj">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">464</span>
+    <span class="definition_thmtitle">Conjugate Tuple</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.negConj">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.negConj" class="lean_decl">LPS.negConj</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For \(t = (a,b,c,d) \in \mathbb {Z}^4\), the <em>conjugate tuple</em> is \(\bar{t} := (a, -b, -c, -d)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.negConj_mem_SpTilde">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">465</span>
+    <span class="lemma_thmtitle">Conjugate Tuple Lies in \(\widetilde{S}_p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.negConj_mem_SpTilde">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000866"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.negConj_mem_SpTilde" class="lean_decl">LPS.negConj_mem_SpTilde</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(t \in \widetilde{S}_p\) then \(\bar{t} \in \widetilde{S}_p\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000866">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(t \in \widetilde{S}_p\), we have \(a^2 + b^2 + c^2 + d^2 = p\). For \(\bar{t} = (a,-b,-c,-d)\), we compute \(a^2 + (-b)^2 + (-c)^2 + (-d)^2 = a^2 + b^2 + c^2 + d^2 = p\) by the fact that squaring negates signs, which follows by a nonlinear arithmetic argument using \(b^2 \geq 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.lpsMatrixVal_negConj">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">466</span>
+    <span class="lemma_thmtitle">LPS Matrix of Conjugate Equals Adjugate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.lpsMatrixVal_negConj">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000867"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsMatrixVal_negConj" class="lean_decl">LPS.lpsMatrixVal_negConj</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(x, y \in \mathbb {Z}/q\mathbb {Z}\) and \(t \in \mathbb {Z}^4\), </p>
+<div class="displaymath" id="a0000000868">
+  \[  M(\bar{t}) \; =\;  \operatorname {adj}(M(t)),  \]
+</div>
+<p> where \(\operatorname {adj}\) denotes the matrix adjugate. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000867">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We check equality entry by entry using extensionality. For each of the four entries \((i,j) \in \{ 0,1\} ^2\), unfolding the definitions of \(M(\bar{t})\) (with \((a,-b,-c,-d)\)) and of \(\operatorname {adj}(M(t))\) (using the \(2\times 2\) adjugate formula \(\operatorname {adj}\begin{pmatrix} p
+
+& q
+
+\\ r
+
+& s
+
+\end{pmatrix} = \begin{pmatrix} s
+
+& -q
+
+\\ -r
+
+& p
+
+\end{pmatrix}\)) and simplifying by ring arithmetic confirms equality. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.lpsMatrixVal_negConj_zero_fst">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">467</span>
+    <span class="lemma_thmtitle">LPS Matrix of Conjugate When \(a=0\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.lpsMatrixVal_negConj_zero_fst">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000869"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsMatrixVal_negConj_zero_fst" class="lean_decl">LPS.lpsMatrixVal_negConj_zero_fst</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(a = t.1 = 0\), then \(M(\bar{t}) = -M(t)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000869">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> When \(a = 0\), entry-by-entry verification using the definitions of \(M(\bar{t}) = M(0,-b,-c,-d)\) and \(-M(t) = -M(0,b,c,d)\) shows equality via ring arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.negConj_mem_Sp_of_fst_pos">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">468</span>
+    <span class="lemma_thmtitle">Conjugate of an Element in \(S_p\) with \(a {\gt} 0\) Stays in \(S_p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.negConj_mem_Sp_of_fst_pos">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000870"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.negConj_mem_Sp_of_fst_pos" class="lean_decl">LPS.negConj_mem_Sp_of_fst_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(p\) be an odd prime, \(t \in S_p\), and suppose \(a = t.1 {\gt} 0\). Then \(\bar{t} \in S_p\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000870">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We unfold the membership condition for \(S_p\) for both \(t\) and \(\bar{t} = (a,-b,-c,-d)\), obtaining bounds and the predicate \(\operatorname {SpPred}\). The bounds \(-p \leq \pm b, \pm c, \pm d \leq p\) are preserved by negation. For the normalization condition: in both the \(p \equiv 1 \pmod{4}\) and \(p \equiv 3 \pmod{4}\) cases, since \(a {\gt} 0\) is unchanged and is the first coordinate, the condition \(a {\gt} 0\) (and \(a\) odd if \(p \equiv 1\)) is preserved, and \(\operatorname {firstNonzeroPositive}(\bar{t}) = \operatorname {Or.inl}(a {\gt} 0)\) holds. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.projPGL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">469</span>
+    <span class="definition_thmtitle">Canonical Projection to \(\operatorname {PGL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.projPGL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.projPGL" class="lean_decl">LPS.projPGL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The canonical group homomorphism \(\pi _{\operatorname {PGL}} : \operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z}) \to \operatorname {PGL}_2(q)\) is the quotient map \(\operatorname {QuotientGroup.mk’}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.projPSL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">470</span>
+    <span class="definition_thmtitle">Canonical Projection to \(\operatorname {PSL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.projPSL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.projPSL" class="lean_decl">LPS.projPSL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The canonical group homomorphism \(\pi _{\operatorname {PSL}} : \operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z}) \to \operatorname {PSL}_2(q)\) is the quotient map \(\operatorname {QuotientGroup.mk’}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.matToGL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">471</span>
+    <span class="definition_thmtitle">Lift Matrix to \(\operatorname {GL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.matToGL">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.matToGL" class="lean_decl">LPS.matToGL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a prime \(q\) and a matrix \(M \in M_2(\mathbb {Z}/q\mathbb {Z})\) with \(\det M \neq 0\), the element \(\operatorname {matToGL}(M) \in \operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z})\) is the unit corresponding to \(M\) (using the fact that invertibility of matrices over a field is equivalent to nonzero determinant). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.tupleToGLElement">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">472</span>
+    <span class="definition_thmtitle">Map Tuple to \(\operatorname {GL}\) Element</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.tupleToGLElement">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.matToGL">Definition 471</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_det_ne_zero">Lemma 463</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.tupleToGLElement" class="lean_decl">LPS.tupleToGLElement</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For distinct odd primes \(p, q\), \(x, y \in \mathbb {Z}/q\mathbb {Z}\) with \(x^2 + y^2 + 1 = 0\), and \(t \in \widetilde{S}_p\), define </p>
+<div class="displaymath" id="a0000000871">
+  \[  \operatorname {tupleToGL}(t) \; :=\;  \operatorname {matToGL}\! \left(M(t)\right) \; \in \;  \operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z}),  \]
+</div>
+<p> using \(\det M(t) \neq 0\) from <span class="ttfamily">lpsMatrixVal_det_ne_zero</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.lpsMatrix_not_in_center">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">473</span>
+    <span class="lemma_thmtitle">LPS Matrix Not in Center of \(\operatorname {GL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.lpsMatrix_not_in_center">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000872"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsMatrix_not_in_center" class="lean_decl">LPS.lpsMatrix_not_in_center</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(p, q\) be distinct odd primes with \(q {\gt} 2\sqrt{p}\), and let \(x, y \in \mathbb {Z}/q\mathbb {Z}\) satisfy \(x^2 + y^2 + 1 = 0\). For any \(t \in \widetilde{S}_p\), the element \(\operatorname {tupleToGL}(t)\) does not lie in the center \(Z(\operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z}))\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000872">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose for contradiction that \(M = \operatorname {tupleToGL}(t) \in Z(\operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z}))\), i.e. \(M\) commutes with every element. We construct the elementary matrices \(E_{12} = \begin{pmatrix} 1
+
+& 1
+
+\\ 0
+
+& 1
+
+\end{pmatrix}\) and \(E_{21} = \begin{pmatrix} 1
+
+& 0
+
+\\ 1
+
+& 1
+
+\end{pmatrix}\) as \(\operatorname {GL}\) elements (their determinants equal \(1 \neq 0\)). From commutativity \(E_{12} M_{\text{mat}} = M_{\text{mat}} E_{12}\): entry \((1,0)\) gives \(M_{10} = 0\) and entries \((0,0),(1,1)\) give \(M_{00} = M_{11}\). From \(E_{21} M_{\text{mat}} = M_{\text{mat}} E_{21}\): entry \((0,1)\) gives \(M_{01} = 0\). </p>
+<p>Translating to the LPS matrix entries with \(\iota (b) = \bar{b}\), \(\iota (c) = \bar{c}\), \(\iota (d) = \bar{d}\): the equations yield \(\bar{c} = 0\) (from \(2\bar{c} = 0\) and \(2 \neq 0\) in \(\mathbb {Z}/q\mathbb {Z}\) since \(q\) is odd), \(\bar{d}x = \bar{b}y\), and \(\bar{b}x + \bar{d}y = 0\). </p>
+<p>Since \(x^2 + y^2 = -1\), multiplying: \(\bar{b}(x^2+y^2) = 0\) by a linear combination \(-y(\bar{d}x - \bar{b}y) + x(\bar{b}x + \bar{d}y) = 0\), giving \(-\bar{b} = 0\) so \(\bar{b} = 0\). Similarly \(\bar{d} = 0\) (if \(\bar{d} \neq 0\) then both \(x = 0\) and \(y = 0\) from the equations, but then \(x^2 + y^2 = 0 \neq -1\), contradiction). </p>
+<p>Now \(b, c, d\) all have \(\mathbb {Z}/q\mathbb {Z}\)-images zero, and each satisfies \(b^2 \leq p\) (from \(a^2 + b^2 + c^2 + d^2 = p\)). Since \(q {\gt} 2\sqrt{p}\), the lemma <span class="ttfamily">int_eq_zero_of_zmod_eq_zero_of_sq_le</span> implies \(b = c = d = 0\) in \(\mathbb {Z}\). Then \(a^2 = p\), contradicting the fact that no prime is a perfect square (<span class="ttfamily">Nat.Prime.not_perfect_square</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.projPGL_negConj_eq_inv">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">474</span>
+    <span class="lemma_thmtitle">Projection of Conjugate Equals Inverse in \(\operatorname {PGL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.projPGL_negConj_eq_inv">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000873"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.negConj_mem_SpTilde">Lemma 465</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj">Lemma 466</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.negConj_mem_SpTilde">Lemma 465</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj">Lemma 466</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.projPGL_negConj_eq_inv" class="lean_decl">LPS.projPGL_negConj_eq_inv</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For distinct odd primes \(p, q\), \(x, y\) with \(x^2+y^2+1=0\), and \(t \in \widetilde{S}_p\): </p>
+<div class="displaymath" id="a0000000874">
+  \[  \pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(\bar{t})) \; =\;  \pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(t))^{-1}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000873">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> It suffices to show \(\pi _{\operatorname {PGL}}(g \cdot g') = 1\) where \(g = \operatorname {tupleToGL}(t)\) and \(g' = \operatorname {tupleToGL}(\bar{t})\). We compute \(g \cdot g'\) using \(g'.{\rm val} = \operatorname {adj}(g.{\rm val})\) (from <span class="ttfamily">lpsMatrixVal_negConj</span>): \(g.{\rm val} \cdot g'.{\rm val} = M(t) \cdot \operatorname {adj}(M(t)) = \det (M(t)) \cdot I\). Thus \(g \cdot g'\) is a scalar matrix \(\det (M(t)) \cdot I\). A scalar matrix lies in the center of \(\operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z})\), so it maps to \(1 \in \operatorname {PGL}_2(q)\) via \(\pi _{\operatorname {PGL}} = \operatorname {QuotientGroup.mk’}\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.projPGL_negConj_eq_self_of_fst_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">475</span>
+    <span class="lemma_thmtitle">Projection of Conjugate Equals Self When \(a = 0\) in \(\operatorname {PGL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.projPGL_negConj_eq_self_of_fst_zero">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000875"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj_zero_fst">Lemma 467</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.projPGL_negConj_eq_inv">Lemma 474</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj_zero_fst">Lemma 467</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.projPGL_negConj_eq_inv">Lemma 474</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.projPGL_negConj_eq_self_of_fst_zero" class="lean_decl">LPS.projPGL_negConj_eq_self_of_fst_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(t \in \widetilde{S}_p\) and \(a = t.1 = 0\), then </p>
+<div class="displaymath" id="a0000000876">
+  \[  \pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(\bar{t})) \; =\;  \pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(t)).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000875">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(g = \operatorname {tupleToGL}(t)\) and \(g' = \operatorname {tupleToGL}(\bar{t})\). We show \(\pi _{\operatorname {PGL}}(g') = \pi _{\operatorname {PGL}}(g)\), equivalently \(g^{\prime -1} g \in Z(\operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z}))\). Since \(a = 0\), by <span class="ttfamily">lpsMatrixVal_negConj_zero_fst</span>, \(g'.{\rm val} = -g.{\rm val}\). We compute \((g^{\prime -1} g).{\rm val}\): from \((-g.{\rm val})(g^{\prime -1}.{\rm val} \cdot g.{\rm val}) = g.{\rm val}\) (using \(g' \cdot g^{\prime -1} = 1\)), it follows that \(g.{\rm val} \cdot (g^{\prime -1}.{\rm val} \cdot g.{\rm val}) = -g.{\rm val}\). Multiplying on the left by \(g^{-1}.{\rm val}\) and using \(g^{-1} \cdot g = 1\), we get \((g^{\prime -1}g).{\rm val} = -(1)\). Since \(-I\) commutes with every matrix, \(g^{\prime -1}g \in Z(\operatorname {GL}(2, \mathbb {Z}/q\mathbb {Z}))\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.Sp_fst_nonneg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">476</span>
+    <span class="lemma_thmtitle">\(S_p\) Elements Have Nonnegative First Coordinate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.Sp_fst_nonneg">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000877"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.Sp_fst_nonneg" class="lean_decl">LPS.Sp_fst_nonneg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For every odd prime \(p\) and \(t \in S_p\), we have \(t.1 \geq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000877">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding the filter condition for \(S_p\): in the case \(p \equiv 1 \pmod{4}\), the predicate requires \(a {\gt} 0\), so \(a \geq 0\). In the case \(p \equiv 3 \pmod{4}\), the predicate requires \(\operatorname {firstNonzeroPositive}(t)\), which by case analysis gives either \(a {\gt} 0\) (so \(a \geq 0\)), or \(a = 0\) (so \(a \geq 0\)) in all remaining cases. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.lpsGenSetPGL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">477</span>
+    <span class="definition_thmtitle">LPS Generating Set in \(\operatorname {PGL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.lpsGenSetPGL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0036.html#def:CayleyGraph.SymmGenSet">Definition 448</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToGLElement">Definition 472</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPGL">Definition 469</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrix_not_in_center">Lemma 473</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.negConj_mem_Sp_of_fst_pos">Lemma 468</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.projPGL_negConj_eq_inv">Lemma 474</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.Sp_fst_nonneg">Lemma 476</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGenSetPGL" class="lean_decl">LPS.lpsGenSetPGL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For distinct odd primes \(p, q\) with \(q {\gt} 2\sqrt{p}\) and \(x, y \in \mathbb {Z}/q\mathbb {Z}\) with \(x^2+y^2+1=0\), the <em>LPS generating set in \(\operatorname {PGL}_2(q)\)</em> is the symmetric generating set </p>
+<div class="displaymath" id="a0000000878">
+  \[  S_{p,q}^{\operatorname {PGL}} \; :=\;  \bigl\{ \pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(t)) \; \big|\;  t \in S_p\bigr\}  \; \subseteq \;  \operatorname {PGL}_2(q).  \]
+</div>
+<p> This is a <span class="ttfamily">SymmGenSet</span> (i.e. closed under inverses and not containing the identity), verified by: </p>
+<ul class="itemize">
+  <li><p><em>\(1 \notin S_{p,q}^{\operatorname {PGL}}\)</em>: If \(\pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(t)) = 1\), then \(\operatorname {tupleToGL}(t) \in Z(\operatorname {GL})\), contradicting <span class="ttfamily">lpsMatrix_not_in_center</span>. </p>
+</li>
+  <li><p><em>Closure under inverses</em>: For \(t \in S_p\) with \(a {\gt} 0\), use \(\bar{t} \in S_p\) and \(\pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(\bar{t})) = \pi _{\operatorname {PGL}}(\operatorname {tupleToGL}(t))^{-1}\). For \(a = 0\), the element is its own inverse. </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.matToSL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">478</span>
+    <span class="definition_thmtitle">Scale Matrix to \(\operatorname {SL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.matToSL">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.matToSL" class="lean_decl">LPS.matToSL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a prime \(q\), a matrix \(M \in M_2(\mathbb {Z}/q\mathbb {Z})\), and \(r \in \mathbb {Z}/q\mathbb {Z}\) with \(r \neq 0\) and \(r^2 = \det M\), define </p>
+<div class="displaymath" id="a0000000879">
+  \[  \operatorname {matToSL}(M, r) \; :=\;  r^{-1} M \; \in \;  \operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z}).  \]
+</div>
+<p> This has determinant \(1\) since \(\det (r^{-1} M) = (r^{-1})^2 \det M = r^{-2} r^2 = 1\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.legendreSqrt">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">479</span>
+    <span class="definition_thmtitle">Legendre Symbol Square Root</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.legendreSqrt">#</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.legendreSqrt" class="lean_decl">LPS.legendreSqrt</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For distinct odd primes \(p, q\) with Legendre symbol \(\left(\frac{p}{q}\right) = 1\), the element \(\operatorname {legendreSqrt}(q, p) \in \mathbb {Z}/q\mathbb {Z}\) is the square root of \(p\) in \(\mathbb {Z}/q\mathbb {Z}\), obtained via <span class="ttfamily">ZMod.isSquare_of_jacobiSym_eq_one</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.legendreSqrt_sq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">480</span>
+    <span class="lemma_thmtitle">Legendre Square Root Satisfies \(r^2 = p\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.legendreSqrt_sq">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000880"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.legendreSqrt">Definition 479</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.legendreSqrt">Definition 479</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.legendreSqrt_sq" class="lean_decl">LPS.legendreSqrt_sq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\operatorname {legendreSqrt}(q,p)^2 = (p : \mathbb {Z}/q\mathbb {Z})\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000880">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By the defining property of <span class="ttfamily">legendreSqrt</span> via <span class="ttfamily">ZMod.isSquare_of_jacobiSym_eq_one.choose_spec</span>, the chosen element \(r\) satisfies \(r \cdot r = (p : \mathbb {Z}/q\mathbb {Z})\), which equals \(r^2\) by definition of squaring. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.legendreSqrt_ne_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">481</span>
+    <span class="lemma_thmtitle">Legendre Square Root is Nonzero</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.legendreSqrt_ne_zero">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000881"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.legendreSqrt">Definition 479</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.legendreSqrt">Definition 479</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.legendreSqrt_ne_zero" class="lean_decl">LPS.legendreSqrt_ne_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    \(\operatorname {legendreSqrt}(q,p) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000881">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose \(r = 0\). Then \(r^2 = 0\). But by <span class="ttfamily">legendreSqrt_sq</span>, \(r^2 = (p : \mathbb {Z}/q\mathbb {Z})\). So \((p : \mathbb {Z}/q\mathbb {Z}) = 0\), meaning \(q \mid p\). Since \(p, q\) are distinct primes, by primality of \(p\): either \(q = 1\) (contradicting \(q\) prime) or \(q = p\) (contradicting \(p \neq q\)). Contradiction. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.tupleToSLElement">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">482</span>
+    <span class="definition_thmtitle">Map Tuple to \(\operatorname {SL}\) Element</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.tupleToSLElement">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.matToSL">Definition 478</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsMatrixVal">Definition 461</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.legendreSqrt">Definition 479</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.SpTilde">Definition 455</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_ne_zero">Lemma 481</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.tupleToSLElement" class="lean_decl">LPS.tupleToSLElement</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For distinct odd primes \(p, q\) with \(\left(\frac{p}{q}\right) = 1\), \(x, y \in \mathbb {Z}/q\mathbb {Z}\) with \(x^2+y^2+1=0\), and \(t \in \widetilde{S}_p\), define </p>
+<div class="displaymath" id="a0000000882">
+  \[  \operatorname {tupleToSL}(t) \; :=\;  \operatorname {matToSL}\! \left(M(t),\,  r\right) \; =\;  r^{-1} M(t) \; \in \;  \operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z}),  \]
+</div>
+<p> where \(r = \operatorname {legendreSqrt}(q,p)\) satisfies \(r^2 = \det M(t) = (p : \mathbb {Z}/q\mathbb {Z})\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.tupleToSL_negConj_mul_self_eq_one">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">483</span>
+    <span class="lemma_thmtitle">\(\operatorname {tupleToSL}(\bar{t}) \cdot \operatorname {tupleToSL}(t) = 1\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.tupleToSL_negConj_mul_self_eq_one">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000883"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.tupleToSLElement">Definition 482</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.negConj_mem_SpTilde">Lemma 465</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj">Lemma 466</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_ne_zero">Lemma 481</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToSLElement">Definition 482</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.negConj_mem_SpTilde">Lemma 465</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj">Lemma 466</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_ne_zero">Lemma 481</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.tupleToSL_negConj_mul_self_eq_one" class="lean_decl">LPS.tupleToSL_negConj_mul_self_eq_one</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For \(t \in \widetilde{S}_p\): </p>
+<div class="displaymath" id="a0000000884">
+  \[  \operatorname {tupleToSL}(\bar{t}) \cdot \operatorname {tupleToSL}(t) \; =\;  1 \; \in \;  \operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z}).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000883">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By definition, \(\operatorname {tupleToSL}(\bar{t}).{\rm val} = r^{-1} \operatorname {adj}(M(t))\) (using <span class="ttfamily">lpsMatrixVal_negConj</span>) and \(\operatorname {tupleToSL}(t).{\rm val} = r^{-1} M(t)\). Their product is \(r^{-1} \operatorname {adj}(M(t)) \cdot r^{-1} M(t) = r^{-1} r^{-1} (\operatorname {adj}(M(t)) \cdot M(t)) = r^{-2} \det (M(t)) \cdot I\). By <span class="ttfamily">legendreSqrt_sq</span>, \(\det M(t) = r^2\). So the product equals \(r^{-2} r^2 \cdot I = I\). Setting \(r^{-1} \cdot r^{-1} \cdot r^2 = (r^{-1} \cdot r^{-1} \cdot r) \cdot r = r^{-1} \cdot 1 \cdot r = 1\) by repeated use of \(r^{-1} \cdot r = 1\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LPS.projPSL_negConj_eq_self_of_fst_zero">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">484</span>
+    <span class="lemma_thmtitle">Projection of Conjugate Equals Self When \(a = 0\) in \(\operatorname {PSL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#lem:LPS.projPSL_negConj_eq_self_of_fst_zero">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000885"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToSLElement">Definition 482</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.tupleToSL_negConj_mul_self_eq_one">Lemma 483</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj_zero_fst">Lemma 467</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_ne_zero">Lemma 481</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToSLElement">Definition 482</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.negConj">Definition 464</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.tupleToSL_negConj_mul_self_eq_one">Lemma 483</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.lpsMatrixVal_negConj_zero_fst">Lemma 467</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_sq">Lemma 480</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.legendreSqrt_ne_zero">Lemma 481</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.projPSL_negConj_eq_self_of_fst_zero" class="lean_decl">LPS.projPSL_negConj_eq_self_of_fst_zero</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(t \in \widetilde{S}_p\) and \(a = t.1 = 0\), then </p>
+<div class="displaymath" id="a0000000886">
+  \[  \pi _{\operatorname {PSL}}(\operatorname {tupleToSL}(\bar{t})) \; =\;  \pi _{\operatorname {PSL}}(\operatorname {tupleToSL}(t)).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000885">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(\operatorname {nc} = \operatorname {tupleToSL}(\bar{t})\) and \(\operatorname {tt} = \operatorname {tupleToSL}(t)\). We show \(\operatorname {nc}^{-1} \cdot \operatorname {tt} \in Z(\operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z}))\). </p>
+<p>By <span class="ttfamily">tupleToSL_negConj_mul_self_eq_one</span>, \(\operatorname {nc} \cdot \operatorname {tt} = 1\), so \(\operatorname {nc}^{-1} = \operatorname {tt}\), hence \(\operatorname {nc}^{-1} \cdot \operatorname {tt} = \operatorname {tt}^2\). </p>
+<p>We compute \((\operatorname {tt}^2).{\rm val}\): since \(\operatorname {tt}.{\rm val} = r^{-1} M(t)\), we get \((\operatorname {tt}^2).{\rm val} = r^{-2} M(t)^2\). Since \(a = 0\), \(\operatorname {adj}(M(t)) = -M(t)\) by <span class="ttfamily">lpsMatrixVal_negConj_zero_fst</span>, so \(M(t)^2 = -\det (M(t)) \cdot I\). Using \(\det (M(t)) = r^2\): \((\operatorname {tt}^2).{\rm val} = r^{-2} \cdot (-r^2 \cdot I) = -I\). </p>
+<p>Since \(-I\) commutes with every matrix (as \((-I)g = g(-I)\) for all \(g\)), \(\operatorname {tt}^2 \in Z(\operatorname {SL}(2, \mathbb {Z}/q\mathbb {Z}))\), completing the proof. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.lpsGenSetPSL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">485</span>
+    <span class="definition_thmtitle">LPS Generating Set in \(\operatorname {PSL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.lpsGenSetPSL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0036.html#def:CayleyGraph.SymmGenSet">Definition 448</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.Sp">Definition 456</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.tupleToSLElement">Definition 482</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.projPSL">Definition 470</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.tupleToSL_negConj_mul_self_eq_one">Lemma 483</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.negConj_mem_Sp_of_fst_pos">Lemma 468</a></li>
+          
+          <li><a href="sect0037.html#lem:LPS.Sp_fst_nonneg">Lemma 476</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGenSetPSL" class="lean_decl">LPS.lpsGenSetPSL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For distinct odd primes \(p, q\) with \(q {\gt} 2\sqrt{p}\) and \(\left(\frac{p}{q}\right) = 1\), and \(x, y \in \mathbb {Z}/q\mathbb {Z}\) with \(x^2+y^2+1=0\), the <em>LPS generating set in \(\operatorname {PSL}_2(q)\)</em> is the symmetric generating set </p>
+<div class="displaymath" id="a0000000887">
+  \[  S_{p,q}^{\operatorname {PSL}} \; :=\;  \bigl\{ \pi _{\operatorname {PSL}}(\operatorname {tupleToSL}(t)) \; \big|\;  t \in S_p\bigr\}  \; \subseteq \;  \operatorname {PSL}_2(q).  \]
+</div>
+<p> This is a <span class="ttfamily">SymmGenSet</span>, verified by the same argument as for \(\operatorname {PGL}_2(q)\) but using the \(\operatorname {SL}\) variants of the matrix lemmas. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGenSetPGL_card">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">486</span>
+    <span class="theorem_thmtitle">Axiom: Cardinality of LPS Generating Set in \(\operatorname {PGL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGenSetPGL_card">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPGL">Definition 477</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGenSetPGL_card" class="lean_decl">LPS.lpsGenSetPGL_card</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>\(|S_{p,q}^{\operatorname {PGL}}| = p + 1\). </p>
+<p><i class="itshape">Note: The injectivity of the map \(S_p \to \operatorname {PGL}_2(q)\) (distinct tuples give distinct projective classes) requires deep number-theoretic arguments about quaternion arithmetic modulo \(q\). Together with \(|S_p| = p+1\), this gives \(|S_{p,q}^{\operatorname {PGL}}| = p+1\). This is stated as an axiom because the required infrastructure is not available in Mathlib.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGenSetPSL_card">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">487</span>
+    <span class="theorem_thmtitle">Axiom: Cardinality of LPS Generating Set in \(\operatorname {PSL}\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGenSetPSL_card">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPSL">Definition 485</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGenSetPSL_card" class="lean_decl">LPS.lpsGenSetPSL_card</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>\(|S_{p,q}^{\operatorname {PSL}}| = p + 1\). </p>
+<p><i class="itshape">Note: As with \(\operatorname {PGL}\), the injectivity of \(S_p \to \operatorname {PSL}_2(q)\) via scaled matrices requires the same quaternion-arithmetic arguments. This is stated as an axiom.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGenSetPGL_generates">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">488</span>
+    <span class="theorem_thmtitle">Axiom: \(S_{p,q}\) Generates \(\operatorname {PGL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGenSetPGL_generates">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPGL">Definition 477</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGenSetPGL_generates" class="lean_decl">LPS.lpsGenSetPGL_generates</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>The subgroup generated by \(S_{p,q}^{\operatorname {PGL}}\) equals all of \(\operatorname {PGL}_2(q)\): </p>
+<div class="displaymath" id="a0000000888">
+  \[  \langle S_{p,q}^{\operatorname {PGL}} \rangle \; =\;  \operatorname {PGL}_2(q).  \]
+</div>
+<p><i class="itshape">Note: This deep result follows from the strong approximation theorem for quaternion algebras (Lubotzky–Phillips–Sarnak), which is far beyond current Mathlib infrastructure.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGenSetPSL_generates">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">489</span>
+    <span class="theorem_thmtitle">Axiom: \(S_{p,q}\) Generates \(\operatorname {PSL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGenSetPSL_generates">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPSL">Definition 485</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGenSetPSL_generates" class="lean_decl">LPS.lpsGenSetPSL_generates</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>The subgroup generated by \(S_{p,q}^{\operatorname {PSL}}\) equals all of \(\operatorname {PSL}_2(q)\): </p>
+<div class="displaymath" id="a0000000889">
+  \[  \langle S_{p,q}^{\operatorname {PSL}} \rangle \; =\;  \operatorname {PSL}_2(q).  \]
+</div>
+<p><i class="itshape">Note: Follows from the same strong approximation theorem for quaternion algebras (Lubotzky–Phillips–Sarnak).</i> </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.lpsGraphPGL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">490</span>
+    <span class="definition_thmtitle">LPS Graph on \(\operatorname {PGL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.lpsGraphPGL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0036.html#def:CayleyGraph.cayleyGraph">Definition 449</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPGL">Definition 477</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PGL2">Definition 453</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGraphPGL" class="lean_decl">LPS.lpsGraphPGL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>LPS graph on \(\operatorname {PGL}_2(q)\)</em> is the Cayley graph </p>
+<div class="displaymath" id="a0000000890">
+  \[  \operatorname {Cay}(\operatorname {PGL}_2(q),\,  S_{p,q}^{\operatorname {PGL}}) \; :=\;  \operatorname {cayleyGraph}(S_{p,q}^{\operatorname {PGL}}).  \]
+</div>
+<p> When \(\left(\frac{p}{q}\right) = -1\) (i.e. the Legendre symbol is \(-1\)), this is the LPS expander graph on the group \(\operatorname {PGL}_2(q)\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:LPS.lpsGraphPSL">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">491</span>
+    <span class="definition_thmtitle">LPS Graph on \(\operatorname {PSL}_2(q)\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#def:LPS.lpsGraphPSL">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0036.html#def:CayleyGraph.cayleyGraph">Definition 449</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPSL">Definition 485</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.PSL2">Definition 454</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGraphPSL" class="lean_decl">LPS.lpsGraphPSL</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The <em>LPS graph on \(\operatorname {PSL}_2(q)\)</em> is the Cayley graph </p>
+<div class="displaymath" id="a0000000891">
+  \[  \operatorname {Cay}(\operatorname {PSL}_2(q),\,  S_{p,q}^{\operatorname {PSL}}) \; :=\;  \operatorname {cayleyGraph}(S_{p,q}^{\operatorname {PSL}}).  \]
+</div>
+<p> When \(\left(\frac{p}{q}\right) = 1\) (i.e. the Legendre symbol is \(1\)), this is the LPS expander graph on the group \(\operatorname {PSL}_2(q)\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGraphPGL_isRegularOfDegree">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">492</span>
+    <span class="theorem_thmtitle">LPS Graph on \(\operatorname {PGL}\) is \((p+1)\)-Regular</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGraphPGL_isRegularOfDegree">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000892"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0036.html#def:CayleyGraph.SymmGenSet">Definition 448</a></li>
+          
+          <li><a href="sect0036.html#def:CayleyGraph.cayleyGraph">Definition 449</a></li>
+          
+          <li><a href="sect0036.html#thm:CayleyGraph.cayleyGraph_isRegularOfDegree">Theorem 450</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPGL">Definition 477</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGenSetPGL_card">Theorem 486</a></li>
+          
+          <li><a href="sect0036.html#thm:CayleyGraph.cayleyGraph_isRegularOfDegree">Theorem 450</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPGL">Definition 477</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGenSetPGL_card">Theorem 486</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGraphPGL_isRegularOfDegree" class="lean_decl">LPS.lpsGraphPGL_isRegularOfDegree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The LPS graph \(\operatorname {Cay}(\operatorname {PGL}_2(q), S_{p,q}^{\operatorname {PGL}})\) is \((p+1)\)-regular: every vertex has exactly \(p+1\) neighbors. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000892">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By <span class="ttfamily">cayleyGraph_isRegularOfDegree</span>, the Cayley graph \(\operatorname {cayleyGraph}(S)\) is \(|S|\)-regular for any symmetric generating set \(S\). Applying this to \(S = S_{p,q}^{\operatorname {PGL}}\) and rewriting with <span class="ttfamily">lpsGenSetPGL_card</span> (which gives \(|S_{p,q}^{\operatorname {PGL}}| = p+1\)), we obtain the \((p+1)\)-regularity. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGraphPSL_isRegularOfDegree">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">493</span>
+    <span class="theorem_thmtitle">LPS Graph on \(\operatorname {PSL}\) is \((p+1)\)-Regular</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGraphPSL_isRegularOfDegree">#</a>
+    
+    <a class="icon proof" href="sect0037.html#a0000000893"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0036.html#def:CayleyGraph.SymmGenSet">Definition 448</a></li>
+          
+          <li><a href="sect0036.html#def:CayleyGraph.cayleyGraph">Definition 449</a></li>
+          
+          <li><a href="sect0036.html#thm:CayleyGraph.cayleyGraph_isRegularOfDegree">Theorem 450</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPSL">Definition 485</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGenSetPSL_card">Theorem 487</a></li>
+          
+          <li><a href="sect0036.html#thm:CayleyGraph.cayleyGraph_isRegularOfDegree">Theorem 450</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+          <li><a href="sect0037.html#def:LPS.lpsGenSetPSL">Definition 485</a></li>
+          
+          <li><a href="sect0037.html#thm:LPS.lpsGenSetPSL_card">Theorem 487</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGraphPSL_isRegularOfDegree" class="lean_decl">LPS.lpsGraphPSL_isRegularOfDegree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    The LPS graph \(\operatorname {Cay}(\operatorname {PSL}_2(q), S_{p,q}^{\operatorname {PSL}})\) is \((p+1)\)-regular. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000893">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By <span class="ttfamily">cayleyGraph_isRegularOfDegree</span>, applying it to \(S = S_{p,q}^{\operatorname {PSL}}\) and rewriting with <span class="ttfamily">lpsGenSetPSL_card</span> (giving \(|S_{p,q}^{\operatorname {PSL}}| = p+1\)) yields \((p+1)\)-regularity. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGraphPGL_independent_of_xy">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">494</span>
+    <span class="theorem_thmtitle">Axiom: Independence of \((x,y)\) for \(\operatorname {PGL}\) LPS Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGraphPGL_independent_of_xy">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPGL">Definition 490</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGraphPGL_independent_of_xy" class="lean_decl">LPS.lpsGraphPGL_independent_of_xy</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For any two pairs \((x_1, y_1)\) and \((x_2, y_2)\) in \(\mathbb {Z}/q\mathbb {Z}\) both satisfying \(x_i^2 + y_i^2 + 1 = 0\), the LPS graphs \(\operatorname {Cay}(\operatorname {PGL}_2(q), S_{p,q}^{\operatorname {PGL}}(x_1,y_1))\) and \(\operatorname {Cay}(\operatorname {PGL}_2(q), S_{p,q}^{\operatorname {PGL}}(x_2,y_2))\) are isomorphic as simple graphs. </p>
+<p><i class="itshape">Note: The proof requires constructing an explicit element of the orthogonal group of the norm form \(x^2 + y^2 + 1\) over \(\mathbb {F}_q\), conjugating one quaternion embedding to the other. This algebraic infrastructure is not available in Mathlib.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:LPS.lpsGraphPSL_independent_of_xy">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">495</span>
+    <span class="theorem_thmtitle">Axiom: Independence of \((x,y)\) for \(\operatorname {PSL}\) LPS Graph</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0037.html#thm:LPS.lpsGraphPSL_independent_of_xy">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0037.html#def:LPS.lpsGraphPSL">Definition 491</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/LPS.lpsGraphPSL_independent_of_xy" class="lean_decl">LPS.lpsGraphPSL_independent_of_xy</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For any two pairs \((x_1, y_1)\) and \((x_2, y_2)\) in \(\mathbb {Z}/q\mathbb {Z}\) both satisfying \(x_i^2 + y_i^2 + 1 = 0\), the LPS graphs \(\operatorname {Cay}(\operatorname {PSL}_2(q), S_{p,q}^{\operatorname {PSL}}(x_1,y_1))\) and \(\operatorname {Cay}(\operatorname {PSL}_2(q), S_{p,q}^{\operatorname {PSL}}(x_2,y_2))\) are isomorphic as simple graphs. </p>
+<p><i class="itshape">Note: The conjugation by \(g \in \operatorname {GL}(2, \mathbb {F}_q)\) preserves \(\operatorname {SL}(2, \mathbb {F}_q)\) up to scaling, hence descends to \(\operatorname {PSL}_2(q)\). Requires the same orthogonal group infrastructure as the \(\operatorname {PGL}\) case.</i> </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0036.html" title="Def 20: Cayley Graph"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0038.html" title="Thm 11: LPS Graphs are Ramanujan"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

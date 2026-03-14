@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 5: Alon–Boppana Bound</title>
+<link rel="next" href="sect0027.html" title="Thm 6: Alon–Chung Bound" />
+<link rel="prev" href="sect0025.html" title="Lem 1: Relative Cheeger Inequality" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000027">26 Thm 5: Alon–Boppana Bound</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonBoppana.card_ge_two_of_diam_ge_two">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">293</span>
+    <span class="lemma_thmtitle">Diameter Implies At Least Two Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#lem:AlonBoppana.card_ge_two_of_diam_ge_two">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000514"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.card_ge_two_of_diam_ge_two" class="lean_decl">AlonBoppana.card_ge_two_of_diam_ge_two</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(G\) be a connected simple graph on a finite vertex type \(V\) with \(\operatorname {diam}(G) \geq 2\). Then \(|V| \geq 2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000514">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>By contradiction, assume \(|V| \leq 1\). Then \(V\) is a subsingleton, so every simple graph on \(V\) has extended diameter \(\operatorname {ediam}(G) = 0\) (by <span class="ttfamily">SimpleGraph.ediam_eq_zero_of_subsingleton</span>). But then \(\operatorname {diam}(G) = 0\), contradicting \(\operatorname {diam}(G) \geq 2\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonBoppana.card_ge_two_of_regular">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">294</span>
+    <span class="lemma_thmtitle">Regular Graph Has At Least Two Vertices</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#lem:AlonBoppana.card_ge_two_of_regular">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000515"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.card_ge_two_of_regular" class="lean_decl">AlonBoppana.card_ge_two_of_regular</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>Let \(G\) be a connected simple graph on a finite vertex type \(V\) that is \(s\)-regular for some \(s \geq 3\). Then \(|V| \geq 2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000515">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>By contradiction, assume \(|V| \leq 1\). Then \(V\) is a subsingleton. Since \(G\) is connected, \(V\) is nonempty; obtain a vertex \(v\). Since \(V\) is a subsingleton, the only element is \(v\), so the neighborhood of \(v\) in the simple graph is empty: for any neighbor \(w\) of \(v\), adjacency implies \(v \neq w\), yet \(v = w\) in a subsingleton, a contradiction. Hence \(\deg (v) = 0\). But by \(s\)-regularity, \(\deg (v) = s \geq 3\), a contradiction. We conclude by integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.alonBoppanaBound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">295</span>
+    <span class="theorem_thmtitle">Axiom: Alon–Boppana Bound (Quantitative Form, Nilli 1991)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.alonBoppanaBound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0026.html#lem:AlonBoppana.card_ge_two_of_diam_ge_two">Lemma 293</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.alonBoppanaBound" class="lean_decl">AlonBoppana.alonBoppanaBound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(G\) be a finite, connected \(s\)-regular simple graph on a finite vertex type \(V\) with \(s \geq 3\) and diameter \(D = \operatorname {diam}(G) \geq 2\). Let \(\lambda _2\) denote the second-largest eigenvalue of the adjacency matrix of \(G\). Then </p>
+<div class="displaymath" id="a0000000516">
+  \[  \lambda _2 \geq 2\sqrt{s-1} - \frac{2\sqrt{s-1} - 1}{\lfloor D/2 \rfloor }.  \]
+</div>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof (using Nilli’s edge-based Laplacian approach, constructing test vectors supported on BFS layers and bounding the Rayleigh quotient) was not completed in the formalization.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.alonBoppanaBound_satisfiable">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">296</span>
+    <span class="theorem_thmtitle">Satisfiability of Alon–Boppana Hypotheses</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.alonBoppanaBound_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000517"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.alonBoppanaBound">Theorem 295</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.alonBoppanaBound">Theorem 295</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.alonBoppanaBound_satisfiable" class="lean_decl">AlonBoppana.alonBoppanaBound_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    There exist a finite vertex type \(V\), a simple graph \(G\) on \(V\), and \(s \geq 3\) such that \(G\) is connected, \(s\)-regular, and \(\operatorname {diam}(G) \geq 2\). In particular, the hypotheses of <span class="ttfamily">alonBoppanaBound</span> are satisfiable. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000517">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We exhibit the complete bipartite graph \(K_{3,3}\) on vertex set \(\operatorname {Fin}(6)\), with parts \(\{ 0,1,2\} \) and \(\{ 3,4,5\} \), where \(i\) and \(j\) are adjacent iff \(i {\lt} 3 \leq j\) or \(j {\lt} 3 \leq i\). </p>
+<p><b class="bfseries">Connected:</b> For any two vertices \(u, v\), we find a path by cases. If both \(u, v \in \{ 0,1,2\} \), use the path \(u \to 3 \to v\). If both \(u, v \in \{ 3,4,5\} \), use the path \(u \to 0 \to v\). If \(u \in \{ 0,1,2\} \) and \(v \in \{ 3,4,5\} \) (or vice versa), then \(u\) and \(v\) are directly adjacent. </p>
+<p><b class="bfseries">3-regular:</b> For each vertex \(v \in \operatorname {Fin}(6)\), \(\deg (v) = 3\) is verified by computation (<span class="ttfamily">native_decide</span>). </p>
+<p><b class="bfseries">Diameter \(\geq 2\):</b> Let \(v_0 = 0\), \(v_1 = 1\), \(v_3 = 3\). The walk \(v_0 \to v_3 \to v_1\) has length 2, so \(\operatorname {dist}(v_0, v_1) \leq 2\). Since \(v_0 \neq v_1\) (by computation) and \(v_0, v_1\) are not adjacent (both in \(\{ 0,1,2\} \), by computation), we have \(\operatorname {dist}(v_0, v_1) \neq 0\) and \(\neq 1\), hence \(\operatorname {dist}(v_0, v_1) = 2\) by integer arithmetic. Since \(K_{3,3}\) is connected its extended diameter is finite, and \(\operatorname {diam}(K_{3,3}) \geq \operatorname {dist}(v_0, v_1) = 2\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.moore_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">297</span>
+    <span class="theorem_thmtitle">Moore Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.moore_bound">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000518"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0026.html#lem:AlonBoppana.card_ge_two_of_regular">Lemma 294</a></li>
+          
+          <li><a href="sect0026.html#lem:AlonBoppana.card_ge_two_of_regular">Lemma 294</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.moore_bound" class="lean_decl">AlonBoppana.moore_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite, connected \(s\)-regular simple graph on vertex type \(V\) with \(s \geq 3\). Let \(D = \operatorname {diam}(G)\). Then </p>
+<div class="displaymath" id="a0000000519">
+  \[  \frac{|V| \cdot (s - 2)}{s} \leq (s-1)^D.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000518">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We use the real-valued bound \(|V| \cdot (s-2) / s \leq (s-1)^D\) (rewriting via <span class="ttfamily">Real.rpow_natCast</span>). It suffices to prove the natural number inequality \(|V| \cdot (s-2) \leq s \cdot (s-1)^D\) and then cast to \(\mathbb {R}\). </p>
+<p><b class="bfseries">Geometric sum:</b> We establish by induction on \(D\) that </p>
+<div class="displaymath" id="a0000000520">
+  \[  (s-2) \cdot \sum _{k=0}^{D-1} (s-1)^k = (s-1)^D - 1.  \]
+</div>
+<p> The base case \(D = 0\) is trivial. For the inductive step, expanding \(\sum _{k=0}^{D} (s-1)^k = \sum _{k=0}^{D-1}(s-1)^k + (s-1)^D\) and using the induction hypothesis, with careful handling of natural number subtraction (using <span class="ttfamily">zify</span> and <span class="ttfamily">ring</span> after establishing nonnegativity conditions), we verify the telescoping identity. </p>
+<p><b class="bfseries">BFS layer decomposition:</b> Fix a vertex \(v_0\). Define layers \(L_k = \{ w : \operatorname {dist}(v_0, w) = k\} \) for \(k \in \{ 0, \ldots , D\} \). Since \(G\) is connected, every vertex lies within distance \(D\) of \(v_0\), so </p>
+<div class="displaymath" id="a0000000521">
+  \[  |V| = \sum _{k=0}^{D} |L_k|.  \]
+</div>
+<p> The disjointness of distinct layers follows because vertices have unique distances. We have \(|L_0| = 1\) (only \(v_0\), since \(\operatorname {dist}(v_0, v_0) = 0\) and \(\operatorname {dist}(v_0, w) = 0\) implies \(w = v_0\) for a connected graph). </p>
+<p><b class="bfseries">Layer size bound:</b> We claim \(|L_k| \leq s \cdot (s-1)^{k-1}\) for all \(1 \leq k \leq D\), proved by induction on \(k\): </p>
+<ul class="itemize">
+  <li><p>\(k = 1\): The vertices at distance 1 are exactly the neighbors of \(v_0\), so \(|L_1| \leq \deg (v_0) = s\). </p>
+</li>
+  <li><p>\(k \geq 2\) (inductive step): We show \(|L_{k+1}| \leq (s-1) \cdot |L_k|\). For each \(w \in L_{k+1}\), let \(u\) be the penultimate vertex on a shortest walk from \(v_0\) to \(w\); then \(u \in L_k\) and \(G.\text{Adj}(u, w)\). Hence \(L_{k+1} \subseteq \bigcup _{u \in L_k} (\mathcal{N}(u) \cap L_{k+1})\). </p>
+<p>For each \(u \in L_k\), we bound \(|\mathcal{N}(u) \cap L_{k+1}| \leq s - 1\). Indeed, \(u\) has degree \(s\). Since \(k \geq 1\), there exists a predecessor vertex \(\operatorname {pred}(u)\) at distance \(k-1\) from \(v_0\) adjacent to \(u\) (the penultimate vertex of a shortest walk to \(u\)). This predecessor is not in \(L_{k+1}\), so it lies in \(\mathcal{N}(u) \setminus (\mathcal{N}(u) \cap L_{k+1})\), giving \(|\mathcal{N}(u) \cap L_{k+1}| {\lt} |\mathcal{N}(u)| = s\), i.e., \(|\mathcal{N}(u) \cap L_{k+1}| \leq s - 1\). </p>
+<p>By \(\texttt{Finset.card\_ biUnion\_ le}\) and summing over \(L_k\): </p>
+<div class="displaymath" id="a0000000522">
+  \[  |L_{k+1}| \leq \sum _{u \in L_k} |\mathcal{N}(u) \cap L_{k+1}| \leq |L_k| \cdot (s-1).  \]
+</div>
+<p> Combined with the inductive hypothesis \(|L_k| \leq s \cdot (s-1)^{k-1}\), we get \(|L_{k+1}| \leq s \cdot (s-1)^k\). </p>
+</li>
+</ul>
+<p><b class="bfseries">Combining:</b> By the Finset sum reindexing (<span class="ttfamily">Finset.sum_range_succ’</span>), </p>
+<div class="displaymath" id="a0000000523">
+  \[  |V| = 1 + \sum _{k=0}^{D-1} |L_{k+1}| \leq 1 + s \cdot \sum _{k=0}^{D-1} (s-1)^k.  \]
+</div>
+<p> Using the geometric sum identity and natural number arithmetic: </p>
+<div class="displaymath" id="a0000000524">
+  \begin{align*}  |V| \cdot (s-2) & \leq \left(1 + s \cdot \sum _{k=0}^{D-1}(s-1)^k\right)(s-2) \\ & = (s-2) + s \cdot (s-2) \cdot \sum _{k=0}^{D-1}(s-1)^k \\ & = (s-2) + s \cdot ((s-1)^D - 1) \leq s \cdot (s-1)^D, \end{align*}
+</div>
+<p> where the last step follows since \((s-2) \leq s \cdot 1 \leq s \cdot (s-1)^D\), verified by <span class="ttfamily">nlinarith</span> after <span class="ttfamily">zify</span>. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.diam_lower_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">298</span>
+    <span class="theorem_thmtitle">Diameter Lower Bound via Moore Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.diam_lower_bound">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000525"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.moore_bound">Theorem 297</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.moore_bound">Theorem 297</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.diam_lower_bound" class="lean_decl">AlonBoppana.diam_lower_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a finite, connected \(s\)-regular simple graph on vertex type \(V\) with \(s \geq 3\). Then </p>
+<div class="displaymath" id="a0000000526">
+  \[  \log _{s-1}\! \left(\frac{|V| \cdot (s-2)}{s}\right) \leq \operatorname {diam}(G).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000525">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We have \(1 {\lt} s - 1\) since \(s \geq 3\). We consider two cases. </p>
+<p><b class="bfseries">Case 1:</b> \(|V| \cdot (s-2) / s \leq 0\). Then \(\log _{s-1}(|V| \cdot (s-2)/s) \leq 0\) (since the argument is \(\leq 1\) after noting it is \(\geq 0\) by nonnegativity of \(|V|\), \(s-2\), and \(s\)). The right-hand side \(\operatorname {diam}(G)\) is a natural number, hence \(\geq 0\). The inequality follows. </p>
+<p><b class="bfseries">Case 2:</b> \(|V| \cdot (s-2)/s {\gt} 0\). By <span class="ttfamily">Real.logb_le_iff_le_rpow</span> (valid since \(s-1 {\gt} 1\) and the argument is positive), the inequality \(\log _{s-1}(|V|\cdot (s-2)/s) \leq D\) is equivalent to \(|V|\cdot (s-2)/s \leq (s-1)^D\). This follows directly from the Moore bound (<span class="ttfamily">moore_bound</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonBoppana.diam_lower_bound_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">299</span>
+    <span class="lemma_thmtitle">Satisfiability of Diameter Lower Bound Hypotheses</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#lem:AlonBoppana.diam_lower_bound_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000527"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.diam_lower_bound">Theorem 298</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.diam_lower_bound">Theorem 298</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.diam_lower_bound_satisfiable" class="lean_decl">AlonBoppana.diam_lower_bound_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    There exist a finite vertex type \(V\), a simple graph \(G\) on \(V\), and \(s \geq 3\) such that \(G\) is connected and \(s\)-regular. In particular, the hypotheses of <span class="ttfamily">diam_lower_bound</span> are satisfiable. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000527">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We use \(V = \operatorname {Fin}(4)\) and \(G = \top \) (the complete graph on 4 vertices). The complete graph on \(\operatorname {Fin}(4)\) is connected by <span class="ttfamily">SimpleGraph.connected_top</span> and is 3-regular (each vertex has degree \(4 - 1 = 3\)), verified via <span class="ttfamily">SimpleGraph.IsRegularOfDegree.top</span> and simplification with \(|\operatorname {Fin}(4)| = 4\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.alonBoppana_liminf">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">300</span>
+    <span class="theorem_thmtitle">Axiom: Asymptotic Alon–Boppana Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.alonBoppana_liminf">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.alonBoppanaBound">Theorem 295</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.diam_lower_bound">Theorem 298</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.alonBoppana_liminf" class="lean_decl">AlonBoppana.alonBoppana_liminf</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>Let \(s \geq 3\), let \(n : \mathbb {N} \to \mathbb {N}\), and let \(G_i\) be a connected \(s\)-regular simple graph on \(\operatorname {Fin}(n(i))\) for each \(i\), with \(|\operatorname {Fin}(n(i))| \geq 2\) for all \(i\). If \(n(i) \to \infty \), then </p>
+<div class="displaymath" id="a0000000528">
+  \[  2\sqrt{s-1} \leq \liminf _{i \to \infty } \lambda _2(G_i),  \]
+</div>
+<p> where \(\lambda _2(G_i)\) denotes the second-largest eigenvalue of the adjacency matrix of \(G_i\). </p>
+<p><i class="itshape">Note: This follows conceptually from <span class="ttfamily">alonBoppanaBound</span> and <span class="ttfamily">diam_lower_bound</span>: since \(n(i) \to \infty \), the Moore bound gives \(\operatorname {diam}(G_i) \to \infty \), so for large \(i\) the correction term \((2\sqrt{s-1} - 1)/\lfloor D_i/2 \rfloor \to 0\) and the bound approaches \(2\sqrt{s-1}\). It is stated as an axiom because connecting <span class="ttfamily">SimpleGraph.diam</span> growth with <span class="ttfamily">Filter.liminf</span> through logarithmic estimates requires infrastructure not directly available for <span class="ttfamily">SimpleGraph</span> in Mathlib.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.adjEigenvalue_abs_le">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">301</span>
+    <span class="theorem_thmtitle">Gershgorin Eigenvalue Bound for Regular Graphs</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.adjEigenvalue_abs_le">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000529"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.adjEigenvalues">Definition 240</a></li>
+          
+          <li><a href="sect0020.html#lem:GraphExpansion.adjMatrix_isHermitian">Lemma 239</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.adjEigenvalue_abs_le" class="lean_decl">AlonBoppana.adjEigenvalue_abs_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be an \(s\)-regular simple graph on a finite vertex type \(W\). For each \(i \in \operatorname {Fin}(|W|)\), </p>
+<div class="displaymath" id="a0000000530">
+  \[  |\lambda _i(G)| \leq s,  \]
+</div>
+<p> where \(\lambda _i(G)\) denotes the \(i\)-th adjacency eigenvalue of \(G\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000529">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> <b class="bfseries">Step 1.</b> We show the eigenvalue \(\lambda _i = (\texttt{adjMatrix\_ isHermitian}\  G).\texttt{eigenvalues}_0\  i\) lies in the \(\mathbb {R}\)-spectrum of the adjacency matrix \(A = G.\texttt{adjMatrix}\  \mathbb {R}\), using <span class="ttfamily">IsHermitian.eigenvalues_mem_spectrum_real</span>. </p>
+<p><b class="bfseries">Step 2.</b> Since the spectrum of \(A\) as a matrix equals the spectrum of the corresponding linear endomorphism \(\texttt{toLin}'(A)\) (via <span class="ttfamily">Matrix.spectrum_toLin’</span>), we obtain a module eigenvalue via <span class="ttfamily">Module.End.HasEigenvalue</span>. </p>
+<p><b class="bfseries">Step 3.</b> We apply the <b class="bfseries">Gershgorin circle theorem</b> (<span class="ttfamily">eigenvalue_mem_ball</span>): every eigenvalue lies in a closed disk centered at some diagonal entry \(A_{kk}\) with radius \(\sum _{j \neq k} |A_{kj}|\) for some row index \(k\). </p>
+<p><b class="bfseries">Step 4.</b> The diagonal entry satisfies \(A_{kk} = 0\) since \(G\) has no self-loops (<span class="ttfamily">SimpleGraph.adjMatrix_apply</span> with <span class="ttfamily">G.loopless</span>). </p>
+<p><b class="bfseries">Step 5.</b> We compute the Gershgorin radius of row \(k\): since \(|A_{kj}| = 1\) if \(G.\text{Adj}(k, j)\) and \(0\) otherwise, and since \(G\) has no self-loops, </p>
+<div class="displaymath" id="a0000000531">
+  \[  \sum _{j \neq k} |A_{kj}| = |\{ j : G.\text{Adj}(k, j)\} | = \deg (k) = s.  \]
+</div>
+<p> This uses the identification of the filtered set with the neighbor finset and the regularity hypothesis <span class="ttfamily">hreg k</span>. </p>
+<p><b class="bfseries">Step 6.</b> From the Gershgorin bound with center \(0\) and radius \(s\), we obtain \(|\lambda _i| \leq s\) via <span class="ttfamily">Metric.mem_closedBall</span> and <span class="ttfamily">Real.norm_eq_abs</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonBoppana.adjEigenvalue_abs_le_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">302</span>
+    <span class="lemma_thmtitle">Satisfiability of Eigenvalue Bound Hypotheses</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#lem:AlonBoppana.adjEigenvalue_abs_le_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000532"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.adjEigenvalue_abs_le">Theorem 301</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.adjEigenvalue_abs_le">Theorem 301</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.adjEigenvalue_abs_le_satisfiable" class="lean_decl">AlonBoppana.adjEigenvalue_abs_le_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    There exist a finite vertex type \(W\), a simple graph \(G\) on \(W\), and \(s \geq 0\) such that \(G\) is \(s\)-regular. In particular, the hypotheses of <span class="ttfamily">adjEigenvalue_abs_le</span> are satisfiable. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000532">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We use \(W = \operatorname {Fin}(4)\), \(G = \top \) (the complete graph), and \(s = 3\), witnessing \(G.\text{IsRegularOfDegree}(3)\) via <span class="ttfamily">SimpleGraph.IsRegularOfDegree.top</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:AlonBoppana.secondLargestEigenvalue_ge_neg">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">303</span>
+    <span class="lemma_thmtitle">Second-Largest Eigenvalue Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#lem:AlonBoppana.secondLargestEigenvalue_ge_neg">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000533"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.adjEigenvalue_abs_le">Theorem 301</a></li>
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.adjEigenvalue_abs_le">Theorem 301</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.secondLargestEigenvalue_ge_neg" class="lean_decl">AlonBoppana.secondLargestEigenvalue_ge_neg</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be an \(s\)-regular simple graph on a finite vertex type \(W\) with \(|W| \geq 2\). Then </p>
+<div class="displaymath" id="a0000000534">
+  \[  -s \leq \lambda _2(G),  \]
+</div>
+<p> where \(\lambda _2(G)\) denotes the second-largest eigenvalue of the adjacency matrix of \(G\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000533">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Apply <span class="ttfamily">adjEigenvalue_abs_le</span> at index \(i = \langle 1, \cdot \rangle \in \operatorname {Fin}(|W|)\) (valid since \(|W| \geq 2\)) to obtain \(|\lambda _2(G)| \leq s\). By the absolute value bound (<span class="ttfamily">abs_le</span>), this gives both \(\lambda _2(G) \leq s\) and \(-s \leq \lambda _2(G)\); we use the latter. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:AlonBoppana.ramanujan_bound_optimal">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">304</span>
+    <span class="theorem_thmtitle">Ramanujan Bound Is Tight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0026.html#thm:AlonBoppana.ramanujan_bound_optimal">#</a>
+    
+    <a class="icon proof" href="sect0026.html#a0000000535"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0020.html#def:GraphExpansion.secondLargestEigenvalue">Definition 242</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.alonBoppana_liminf">Theorem 300</a></li>
+          
+          <li><a href="sect0026.html#lem:AlonBoppana.secondLargestEigenvalue_ge_neg">Lemma 303</a></li>
+          
+          <li><a href="sect0026.html#thm:AlonBoppana.alonBoppana_liminf">Theorem 300</a></li>
+          
+          <li><a href="sect0026.html#lem:AlonBoppana.secondLargestEigenvalue_ge_neg">Lemma 303</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/AlonBoppana.ramanujan_bound_optimal" class="lean_decl">AlonBoppana.ramanujan_bound_optimal</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(s \geq 3\), let \(n : \mathbb {N} \to \mathbb {N}\), and let \(G_i\) be a connected \(s\)-regular simple graph on \(\operatorname {Fin}(n(i))\) for each \(i\), with \(|\operatorname {Fin}(n(i))| \geq 2\) and \(n(i) \to \infty \). Suppose that there exists \(\varepsilon {\gt} 0\) such that </p>
+<div class="displaymath" id="a0000000536">
+  \[  \lambda _2(G_i) \leq s - \varepsilon \quad \text{for all } i.  \]
+</div>
+<p> Then \(\varepsilon \leq s - 2\sqrt{s-1}\). In particular, any uniform spectral gap for an expander family cannot exceed \(s - 2\sqrt{s-1}\), so the Ramanujan bound \(\lambda _2 \leq 2\sqrt{s-1}\) is best possible. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000535">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> <b class="bfseries">Step 1.</b> By the asymptotic Alon–Boppana bound (<span class="ttfamily">alonBoppana_liminf</span>), since \(n(i) \to \infty \) and each \(G_i\) is connected and \(s\)-regular with \(|V_i| \geq 2\): </p>
+<div class="displaymath" id="a0000000537">
+  \[  2\sqrt{s-1} \leq \liminf _{i \to \infty } \lambda _2(G_i).  \]
+</div>
+<p><b class="bfseries">Step 2.</b> The uniform bound \(\lambda _2(G_i) \leq s - \varepsilon \) holds for all \(i\). By <span class="ttfamily">Filter.Frequently.of_forall</span>, this event occurs frequently (in fact, always), so: </p>
+<div class="displaymath" id="a0000000538">
+  \[  \liminf _{i \to \infty } \lambda _2(G_i) \leq s - \varepsilon ,  \]
+</div>
+<p> using <span class="ttfamily">Filter.liminf_le_of_frequently_le</span>. The required lower boundedness of \((\lambda _2(G_i))_i\) is provided by \(\lambda _2(G_i) \geq -s\) (<span class="ttfamily">secondLargestEigenvalue_ge_neg</span>), establishing <span class="ttfamily">Filter.IsBoundedUnder</span> via <span class="ttfamily">Filter.Eventually.of_forall</span>. </p>
+<p><b class="bfseries">Step 3.</b> Combining Steps 1 and 2: </p>
+<div class="displaymath" id="a0000000539">
+  \[  2\sqrt{s-1} \leq \liminf _{i\to \infty } \lambda _2(G_i) \leq s - \varepsilon ,  \]
+</div>
+<p> hence \(\varepsilon \leq s - 2\sqrt{s-1}\) by linear arithmetic (<span class="ttfamily">linarith</span>). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0025.html" title="Lem 1: Relative Cheeger Inequality"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0027.html" title="Thm 6: Alon–Chung Bound"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

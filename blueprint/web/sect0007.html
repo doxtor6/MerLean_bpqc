@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Def 4: CSS Code</title>
+<link rel="next" href="sect0008.html" title="Def 5: LDPC Code" />
+<link rel="prev" href="sect0006.html" title="Def 3: Classical Code" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000008">7 Def 4: CSS Code</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">50</span>
+    <span class="definition_thmtitle">CSS Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:F2">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode" class="lean_decl">CSSCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>CSS (Calderbank–Shor–Steane) quantum code</em> of parameters \((n, r_X, r_Z)\) consists of: </p>
+<ul class="itemize">
+  <li><p>An <em>X-type parity check matrix</em> \(H_X : \mathbb {F}_2^n \to \mathbb {F}_2^{r_X}\), a linear map over \(\mathbb {F}_2\). </p>
+</li>
+  <li><p>A <em>Z-type parity check matrix transpose</em> \(H_Z^T : \mathbb {F}_2^{r_Z} \to \mathbb {F}_2^n\), a linear map over \(\mathbb {F}_2\). </p>
+</li>
+  <li><p>The <em>CSS condition</em>: \(H_X \circ H_Z^T = 0\). </p>
+</li>
+</ul>
+<p> The map \(H_Z^T\) serves as the differential from degree \(1\) to degree \(0\) in the associated chain complex \(C_1 \xrightarrow {H_Z^T} C_0 \xrightarrow {H_X} C_{-1}\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.complex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">51</span>
+    <span class="definition_thmtitle">Three-term chain complex of a CSS code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.complex">#</a>
+    
+    <a class="icon proof" href="sect0007.html#a0000000126"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.complex" class="lean_decl">CSSCode.complex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q = (H_X, H_Z^T)\) be a CSS code with parameters \((n, r_X, r_Z)\). The <em>associated chain complex</em> \(\operatorname {complex}(Q)\) is the three-term chain complex in \(\operatorname {Mod}_{\mathbb {F}_2}\) of the form </p>
+<div class="displaymath" id="a0000000127">
+  \[  C_1 \xrightarrow {\, H_Z^T\, } C_0 \xrightarrow {\, H_X\, } C_{-1},  \]
+</div>
+<p> where the objects are </p>
+<div class="displaymath" id="a0000000128">
+  \[  C_i = \begin{cases}  \mathbb {F}_2^{r_Z} &  \text{if } i = 1, \\ \mathbb {F}_2^n &  \text{if } i = 0, \\ \mathbb {F}_2^{r_X} &  \text{if } i = -1, \\ 0 &  \text{otherwise,} \end{cases}  \]
+</div>
+<p> and the differentials are \(d_{1,0} = H_Z^T\) and \(d_{0,-1} = H_X\), with all other differentials zero. This is well-defined as a chain complex because \(\partial ^2 = 0\), which follows from the CSS condition \(H_X \circ H_Z^T = 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000126">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> We must verify that \(d \circ d = 0\), i.e., for all integers \(i, j, k\) with \(j + 1 = i\) and \(k + 1 = j\), the composition \(d_{i,j} \circ d_{j,k} = 0\). </p>
+<p>For degrees \(i, j, k\) with \(j + 1 = i\) and \(k + 1 = j\), the only non-trivial case occurs when \(i = 1\), \(j = 0\), and \(k = -1\) (since all other differentials are zero by definition). In this case, we must show </p>
+<div class="displaymath" id="a0000000129">
+  \[  d_{1,0} \circ d_{0,-1} = H_Z^T \circ H_X = 0.  \]
+</div>
+<p>We expand the composition: rewriting using \(i = 1\), the first differential is \(d_{1,0} = \operatorname {eqToHom} \circ H_Z^T \circ \operatorname {eqToHom}\), and the second is \(d_{0,-1} = \operatorname {eqToHom} \circ H_X \circ \operatorname {eqToHom}\). Applying associativity of composition and composing the adjacent \(\operatorname {eqToHom}\) morphisms (which cancel to the identity since they are inverse transport maps), we reduce to showing </p>
+<div class="displaymath" id="a0000000130">
+  \[  H_Z^T \circ H_X = 0.  \]
+</div>
+<p> We have \(\operatorname {ofHom}(H_Z^T) \circ \operatorname {ofHom}(H_X) = \operatorname {ofHom}(H_Z^T \circ H_X)\), and by the CSS condition \(Q.\mathtt{css\_ condition}\), we have \(H_X \circ H_Z^T = 0\), which gives \(H_Z^T \circ H_X = 0\) after noting the composition order. Thus the composition is \(0\). </p>
+<p>For all other combinations of \(i, j, k\): if \(i = 1\) but \(j \neq 0\), this contradicts \(j + 1 = 1\), hence \(j = 0\) by integer arithmetic. If \(i \neq 1\) and \(i = 0\), \(j = -1\), then \(k = -2\), and \(d_{-1,-2} = 0\) by the shape condition (neither \(-1 \to 0\) nor \(-1 \to -2\) are non-trivial differentials), so the composition is \(0\). In all remaining cases, \(d_{i,j} = 0\), making the composition immediately \(0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.numQubits">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">52</span>
+    <span class="definition_thmtitle">Number of physical qubits</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.numQubits">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.numQubits" class="lean_decl">CSSCode.numQubits</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q\) be a CSS code with parameters \((n, r_X, r_Z)\). The <em>number of physical qubits</em> is </p>
+<div class="displaymath" id="a0000000131">
+  \[  n(Q) := n = \dim C_0.  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.logicalQubits">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">53</span>
+    <span class="definition_thmtitle">Number of logical qubits</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.logicalQubits">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.complex">Definition 51</a></li>
+          
+          <li><a href="sect0002.html#def:ChainComplexF2">Definition 6</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.logicalQubits" class="lean_decl">CSSCode.logicalQubits</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q = (H_X, H_Z^T)\) be a CSS code. The <em>number of logical qubits</em> is the dimension of the degree-\(0\) homology of the chain complex: </p>
+<div class="displaymath" id="a0000000132">
+  \[  k(Q) := \dim _{\mathbb {F}_2} H_0(Q) = \dim _{\mathbb {F}_2}\! \left(\ker H_X \, \big/\,  \operatorname {im}(H_Z^T)\big|_{\ker H_X}\right).  \]
+</div>
+<p> More precisely, \(k(Q) = \operatorname {finrank}_{\mathbb {F}_2}\bigl(\ker H_X \, /\,  (\operatorname {range}(H_Z^T))^{-1}(\ker H_X)\bigr)\), where the quotient is taken of the subspace of \(\ker H_X\) by the image of \(H_Z^T\) within \(\ker H_X\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.dX">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">54</span>
+    <span class="definition_thmtitle">X-distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.dX">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.dX" class="lean_decl">CSSCode.dX</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q = (H_X, H_Z^T)\) be a CSS code. The <em>X-distance</em> is the minimum Hamming weight of a vector in \(\ker H_X\) that does not lie in \(\operatorname {im}(H_Z^T)\): </p>
+<div class="displaymath" id="a0000000133">
+  \[  d_X(Q) := \inf \bigl\{ \,  \operatorname {wt}(x) \mid x \in \ker H_X,\;  x \notin \operatorname {im}(H_Z^T) \, \bigr\} ,  \]
+</div>
+<p> where \(\operatorname {wt}(x) = |\operatorname {supp}(x)|\) is the Hamming weight. By convention, \(d_X = 0\) when \(\ker H_X = \operatorname {im}(H_Z^T)\) (trivial homology), since the infimum of the empty set is \(0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.dZ">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">55</span>
+    <span class="definition_thmtitle">Z-distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.dZ">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0003.html#def:hammingWeight">Definition 17</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.dZ" class="lean_decl">CSSCode.dZ</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q = (H_X, H_Z^T)\) be a CSS code. The <em>Z-distance</em> is defined using the dual maps. Since \(H_Z = (H_Z^T)^T\), the kernel of \(H_Z\) corresponds to the kernel of the dual map \((H_Z^T)^\vee : ({\mathbb {F}_2^n})^\vee \to ({\mathbb {F}_2^{r_Z}})^\vee \), and the image of \(H_X^T\) corresponds to the range of the dual map \(H_X^\vee : ({\mathbb {F}_2^{r_X}})^\vee \to ({\mathbb {F}_2^n})^\vee \). Over \(\mathbb {F}_2\) with canonical bases, \((\mathbb {F}_2^n)^\vee \cong \mathbb {F}_2^n\) via the dot product equivalence. Using this identification, the <em>Z-distance</em> is </p>
+<div class="displaymath" id="a0000000134">
+  \[  d_Z(Q) := \inf \bigl\{ \,  \operatorname {wt}(\varphi ) \mid \varphi \in \ker \bigl((H_Z^T)^\vee \bigr),\;  \varphi \notin \operatorname {im}(H_X^\vee ) \, \bigr\} ,  \]
+</div>
+<p> where \(\operatorname {wt}(\varphi )\) is the Hamming weight of \(\varphi \) viewed as a vector in \(\mathbb {F}_2^n\) via the dot product isomorphism. By convention, \(d_Z = 0\) when the cohomology is trivial. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.distance">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">56</span>
+    <span class="definition_thmtitle">CSS code distance</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.distance">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.dX">Definition 54</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.dZ">Definition 55</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.distance" class="lean_decl">CSSCode.distance</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q\) be a CSS code. The <em>overall distance</em> is </p>
+<div class="displaymath" id="a0000000135">
+  \[  d(Q) := \min \bigl(d_X(Q),\,  d_Z(Q)\bigr).  \]
+</div>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.IsNKDCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">57</span>
+    <span class="definition_thmtitle">\([\! [n,k,d]\! ]\)-code predicate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.IsNKDCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.logicalQubits">Definition 53</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.distance">Definition 56</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.IsNKDCode" class="lean_decl">CSSCode.IsNKDCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q\) be a CSS code and let \(k, d \in \mathbb {N}\). We say \(Q\) is an <em>\([\! [n,k,d]\! ]\)-code</em> if </p>
+<div class="displaymath" id="a0000000136">
+  \[  k(Q) = k \quad \text{and} \quad d(Q) = d,  \]
+</div>
+<p> i.e., \(Q\) encodes exactly \(k\) logical qubits with overall distance \(d\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:CSSCode.IsNKDXZCode">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">58</span>
+    <span class="definition_thmtitle">\([\! [n,k,d_X,d_Z]\! ]\)-code predicate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0007.html#def:CSSCode.IsNKDXZCode">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.logicalQubits">Definition 53</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.dX">Definition 54</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode.dZ">Definition 55</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/CSSCode.IsNKDXZCode" class="lean_decl">CSSCode.IsNKDXZCode</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(Q\) be a CSS code and let \(k, d_X, d_Z \in \mathbb {N}\). We say \(Q\) is an <em>\([\! [n,k,d_X,d_Z]\! ]\)-code</em> if </p>
+<div class="displaymath" id="a0000000137">
+  \[  k(Q) = k, \quad d_X(Q) = d_X, \quad \text{and} \quad d_Z(Q) = d_Z.  \]
+</div>
+<p> This predicate is used when the X- and Z-distances are distinct and one wishes to record both separately. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0006.html" title="Def 3: Classical Code"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0008.html" title="Def 5: LDPC Code"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

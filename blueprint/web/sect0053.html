@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 15: Explicit Family of Quantum Codes</title>
+<link rel="next" href="sect0054.html" title="Cor 3: Distance-Balanced Family of Quantum Codes" />
+<link rel="prev" href="sect0052.html" title="Def 30: Unipotent Subgroup for LPS Graphs" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000054">53 Thm 15: Explicit Family of Quantum Codes</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExplicitFamilyQuantumCodes.ValidPrime">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">701</span>
+    <span class="definition_thmtitle">Valid Prime</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.ValidPrime" class="lean_decl">ExplicitFamilyQuantumCodes.ValidPrime</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    A <em>valid prime</em> for the LPS construction with \(p = 401\) is a structure consisting of: </p>
+<ul class="itemize">
+  <li><p>A prime \(q \in \mathbb {N}\) with \(q\) odd, \(q \neq 401\), and \(q {\gt} 2\sqrt{401}\), </p>
+</li>
+  <li><p>Elements \(x, y \in \mathbb {Z}/q\mathbb {Z}\) satisfying \(x^2 + y^2 + 1 = 0\). </p>
+</li>
+</ul>
+<p> The condition \(x^2 + y^2 + 1 = 0\) witnesses that \(-1\) is not a quadratic residue mod \(q\), i.e., the Legendre symbol \((p/q) = -1\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExplicitFamilyQuantumCodes.codeLength">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">702</span>
+    <span class="definition_thmtitle">Code Length</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.codeLength" class="lean_decl">ExplicitFamilyQuantumCodes.codeLength</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a valid prime \(q\), the code length is </p>
+<div class="displaymath" id="a0000001195">
+  \[  N = 3 \cdot 201 \cdot q(q^2 - 1).  \]
+</div>
+<p> This equals \(3|X_1|\) where \(|X_1| = \tfrac {s}{2} \cdot |\operatorname {PGL}(2,q)| = 201 \cdot q(q^2-1)\) is the number of edges of the LPS graph, obtained by the handshaking lemma for \(s\)-regular graphs with \(|X_0| = |\operatorname {PGL}(2,q)| = q(q^2-1)\) vertices and \(s = 402\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExplicitFamilyQuantumCodes.ldpcWeightBound">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">703</span>
+    <span class="definition_thmtitle">LDPC Weight Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#def:ExplicitFamilyQuantumCodes.ldpcWeightBound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.ldpcWeightBound" class="lean_decl">ExplicitFamilyQuantumCodes.ldpcWeightBound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The LDPC weight bound is \(w = 2s = 804\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExplicitFamilyQuantumCodes.LPSCodeData">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">704</span>
+    <span class="definition_thmtitle">LPS Code Data</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSCodeData">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.LPSCodeData" class="lean_decl">ExplicitFamilyQuantumCodes.LPSCodeData</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a valid prime \(q\), the <em>LPS code data</em> is a structure consisting of: </p>
+<ul class="itemize">
+  <li><p>The number of \(X\)-type check rows \(r_X \in \mathbb {N}\), </p>
+</li>
+  <li><p>The number of \(Z\)-type check rows \(r_Z \in \mathbb {N}\), </p>
+</li>
+  <li><p>A subsystem CSS code of length \(N = \operatorname {codeLength}(q)\). </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExplicitFamilyQuantumCodes.LPSConstructionData">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">705</span>
+    <span class="definition_thmtitle">LPS Construction Data</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSConstructionData">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ldpcWeightBound">Definition 703</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode">Definition 69</a></li>
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.LPSConstructionData" class="lean_decl">ExplicitFamilyQuantumCodes.LPSConstructionData</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a valid prime \(q\), the <em>LPS construction data</em> is a structure consisting of: </p>
+<ul class="itemize">
+  <li><p>The number of \(X\)-type check rows \(r_X \in \mathbb {N}\), </p>
+</li>
+  <li><p>The number of \(Z\)-type check rows \(r_Z \in \mathbb {N}\), </p>
+</li>
+  <li><p>A subsystem CSS code of length \(N = \operatorname {codeLength}(q)\), </p>
+</li>
+  <li><p>A proof that the \(X\)-type parity check matrix \(H_X\) has bounded weight \(\leq 2s = 804\) (LDPC property), </p>
+</li>
+  <li><p>A proof that the \(Z\)-type parity check matrix \(H_{ZT}\) has bounded weight \(\leq 2s = 804\) (LDPC property). </p>
+</li>
+</ul>
+<p> The bound \(2s = 804\) arises from the Kronecker product structure: the Tanner code differential has weight \(\leq s\) (from \(s\)-regularity) and the cycle graph differential has weight \(2\), giving total weight \(\leq 2s\) after the balanced product quotient. </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.balanced_product_code">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">706</span>
+    <span class="theorem_thmtitle">Axiom: Balanced Product Subsystem CSS Code</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.balanced_product_code">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSCodeData">Definition 704</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.balanced_product_code" class="lean_decl">ExplicitFamilyQuantumCodes.balanced_product_code</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For every valid prime \(q\), the balanced product \(C(X, L) \otimes _{\mathbb {Z}_q} C(C_q)\) yields a subsystem CSS code of length \(N = \operatorname {codeLength}(q)\), with the horizontal/vertical homology splitting providing the logical/gauge decomposition. </p>
+<p><i class="itshape">Note: This is stated as an axiom citing Panteleev–Kalachev <span class="cite">
+	[
+</span>, Def.&#160;26 and Def.&#160;29. The full formalization of the balanced product construction was not completed.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.balanced_product_ldpc">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">707</span>
+    <span class="theorem_thmtitle">Axiom: LDPC Property of Balanced Product Codes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.balanced_product_ldpc">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ldpcWeightBound">Definition 703</a></li>
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.balanced_product_code">Theorem 706</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.balanced_product_ldpc" class="lean_decl">ExplicitFamilyQuantumCodes.balanced_product_ldpc</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For every valid prime \(q\), the parity check matrices of the balanced product code have bounded weight: </p>
+<div class="displaymath" id="a0000001196">
+  \[  H_X \text{ has bounded weight} \leq 2s = 804, \quad H_{ZT} \text{ has bounded weight} \leq 2s = 804.  \]
+</div>
+<p><i class="itshape">Note: This is stated as an axiom citing Panteleev–Kalachev <span class="cite">
+	[
+</span>, §4.3, Step&#160;8. The bound \(2s = 804\) follows from the Kronecker product structure.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">708</span>
+    <span class="theorem_thmtitle">Axiom: Infinitely Many Valid Primes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes" class="lean_decl">ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For any \(M \in \mathbb {N}\), there exists a valid prime \(q {\gt} M\). </p>
+<p><i class="itshape">Note: This is stated as an axiom appealing to Dirichlet’s theorem on primes in arithmetic progressions (Dirichlet 1837) and quadratic reciprocity for the Legendre symbol condition. The required Dirichlet theorem infrastructure was not formalized from scratch.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">709</span>
+    <span class="theorem_thmtitle">Axiom: Logical Qubit Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSConstructionData">Definition 705</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.logicalQubits">Definition 75</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.lps_K_lower_bound" class="lean_decl">ExplicitFamilyQuantumCodes.lps_K_lower_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(q\), letting \(D\) denote the balanced product construction data, </p>
+<div class="displaymath" id="a0000001197">
+  \[  c \cdot (q^2 - 1) \leq K,  \]
+</div>
+<p> where \(K = \operatorname {logicalQubits}(D.\operatorname {code})\) is the number of logical qubits. </p>
+<p><i class="itshape">Note: This is stated as an axiom citing Sipser–Spielman 1996 (Theorem&#160;7 in this work). Since \(k_L {\gt} s/2 = 201\) and \(|X_1|/\ell = 201(q^2-1)\), one obtains \(K \geq c(q^2-1)\) for a constant \(c {\gt} 0\).</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">710</span>
+    <span class="theorem_thmtitle">Axiom: Logical Qubit Upper Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSConstructionData">Definition 705</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.logicalQubits">Definition 75</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.lps_K_upper_bound" class="lean_decl">ExplicitFamilyQuantumCodes.lps_K_upper_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>There exists a constant \(C {\gt} 0\) such that for every valid prime \(q\), letting \(D\) denote the balanced product construction data, </p>
+<div class="displaymath" id="a0000001198">
+  \[  K \leq C \cdot (q^2 - 1),  \]
+</div>
+<p> where \(K = \operatorname {logicalQubits}(D.\operatorname {code})\). </p>
+<p><i class="itshape">Note: This is stated as an axiom appealing to the Rank–Nullity Theorem (Axler, <i class="itshape">Linear Algebra Done Right</i>, Thm.&#160;3.22). The total chain module \(\operatorname {Tot}_1\) of the balanced product has dimension \(\in \Theta (q^3)\), giving \(K = \dim (H_1) \leq \dim (\operatorname {Tot}_1) \in O(q^2)\) after dividing by \(\ell = q\).</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">711</span>
+    <span class="theorem_thmtitle">Axiom: Z-Distance Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSConstructionData">Definition 705</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.dZ">Definition 76</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.lps_DZ_lower_bound" class="lean_decl">ExplicitFamilyQuantumCodes.lps_DZ_lower_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(q\), letting \(D\) denote the balanced product construction data, </p>
+<div class="displaymath" id="a0000001199">
+  \[  c \cdot q(q^2 - 1) \leq D_Z,  \]
+</div>
+<p> where \(D_Z = D.\operatorname {code}.\operatorname {dZ}\) is the \(Z\)-distance of the subsystem code. </p>
+<p><i class="itshape">Note: This is stated as an axiom citing Panteleev–Kalachev <span class="cite">
+	[
+</span>, Theorem&#160;13 (homological distance bound). Since \(|X_1| = 201 \cdot q(q^2-1)\), the bound gives \(D_Z \geq c \cdot q(q^2-1)\) for a constant \(c {\gt} 0\) determined by the expansion parameters \(\alpha _{ho} = 10^{-3}\) and \(\beta _{ho} {\gt} 0\) from Theorem&#160;8.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">712</span>
+    <span class="theorem_thmtitle">Axiom: X-Distance Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.LPSConstructionData">Definition 705</a></li>
+          
+          <li><a href="sect0009.html#def:SubsystemCSSCode.dX">Definition 77</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.lps_DX_lower_bound" class="lean_decl">ExplicitFamilyQuantumCodes.lps_DX_lower_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(q\), letting \(D\) denote the balanced product construction data, </p>
+<div class="displaymath" id="a0000001200">
+  \[  D_X \geq c \cdot q,  \]
+</div>
+<p> where \(D_X = D.\operatorname {code}.\operatorname {dX}\) is the \(X\)-distance of the subsystem code. </p>
+<p><i class="itshape">Note: This is stated as an axiom citing Panteleev–Kalachev <span class="cite">
+	[
+</span>, Theorem&#160;14 (cohomological distance bound). Using \(|X_0|s = 2|X_1| \in \Theta (q^3)\) and \(\ell = q\), the minimum over horizontal and vertical contributions is \(\Theta (q)\). Expansion parameters \(\alpha _{co} = 10^{-5}\) and \(\beta _{co} {\gt} 0\) come from Theorem&#160;9.</i> </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExplicitFamilyQuantumCodes.explicitFamilyQuantumCodes">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">713</span>
+    <span class="theorem_thmtitle">Explicit Family of Quantum Codes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0053.html#thm:ExplicitFamilyQuantumCodes.explicitFamilyQuantumCodes">#</a>
+    
+    <a class="icon proof" href="sect0053.html#a0000001201"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.balanced_product_code">Theorem 706</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.balanced_product_ldpc">Theorem 707</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">Theorem 709</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">Theorem 710</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">Theorem 711</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">Theorem 712</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExplicitFamilyQuantumCodes.explicitFamilyQuantumCodes" class="lean_decl">ExplicitFamilyQuantumCodes.explicitFamilyQuantumCodes</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axioms: thm:ExplicitFamilyQuantumCodes.balanced_product_code, thm:ExplicitFamilyQuantumCodes.balanced_product_ldpc, thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes, thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound, thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound, thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound, thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound]</b> </p>
+<p>There exists an explicit construction of an infinite family of \([\! [N, K, D_X, D_Z]\! ]\) LDPC subsystem CSS quantum codes satisfying the following simultaneously: </p>
+<ol class="enumerate">
+  <li><p><b class="bfseries">(Code existence)</b> For each valid prime \(q\), there exist row counts \(r_X, r_Z \in \mathbb {N}\) and a subsystem CSS code of length \(N = 3 \cdot 201 \cdot q(q^2-1)\) whose parity check matrices \(H_X\) and \(H_{ZT}\) both have bounded weight \(\leq 804\). </p>
+</li>
+  <li><p><b class="bfseries">(Infinite family)</b> For any \(M \in \mathbb {N}\), there exists a valid prime \(q\) with \(N {\gt} M\). </p>
+</li>
+  <li><p><b class="bfseries">(Logical qubit count)</b> There exist constants \(0 {\lt} c \leq C\) such that for every valid prime \(q\), </p>
+<div class="displaymath" id="a0000001202">
+  \[  c(q^2 - 1) \leq K \leq C(q^2 - 1),  \]
+</div>
+<p> i.e., \(K \in \Theta (q^2) = \Theta (N^{2/3})\). </p>
+</li>
+  <li><p><b class="bfseries">(X-distance)</b> There exists a constant \(c {\gt} 0\) such that for every valid prime \(q\), </p>
+<div class="displaymath" id="a0000001203">
+  \[  D_X \geq c \cdot q = \Omega (N^{1/3}).  \]
+</div>
+</li>
+  <li><p><b class="bfseries">(Z-distance)</b> There exist constants \(0 {\lt} c \leq C\) such that for every valid prime \(q\), </p>
+<div class="displaymath" id="a0000001204">
+  \[  c \cdot N \leq D_Z \leq C \cdot N,  \]
+</div>
+<p> i.e., \(D_Z \in \Theta (N)\). </p>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001201">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axioms as listed above.]</b> </p>
+<p>We prove each part in turn using the <span class="ttfamily">refine</span> tactic to split the conjunction. </p>
+<p><b class="bfseries">Part 1 (LDPC subsystem CSS code).</b> Let \(q\) be any valid prime. Define \(D = \operatorname {balanced_product_construction}(q)\), which packages the axioms <span class="ttfamily">balanced_product_code</span> and <span class="ttfamily">balanced_product_ldpc</span> into a single structure. We extract \(D.r_X\), \(D.r_Z\), \(D.\operatorname {code}\), \(D.\operatorname {isLDPC_HX}\), and \(D.\operatorname {isLDPC_HZT}\) to satisfy Part&#160;1. </p>
+<p><b class="bfseries">Part 2 (Infinite family).</b> This is exactly the content of the lemma <span class="ttfamily">codeLength_unbounded</span>, which is proved as follows. Let \(M \in \mathbb {N}\) be arbitrary. By the axiom <span class="ttfamily">infinitelyManyValidPrimes</span>, there exists a valid prime \(q {\gt} M\). Since \(q \geq 41\) (proved from the lower bound \(q {\gt} 2\sqrt{401} \geq 40\)), and \(q^2 - 1 \geq 1\), we compute: </p>
+<div class="displaymath" id="a0000001205">
+  \[  N = 3 \cdot 201 \cdot q(q^2-1) \geq 3 \cdot 201 \cdot q \cdot 1 \geq q {\gt} M.  \]
+</div>
+<p><b class="bfseries">Part 3 (\(K \in \Theta (q^2)\)).</b> From the axiom <span class="ttfamily">lps_K_lower_bound</span>, obtain \(c {\gt} 0\) and the bound \(c(q^2-1) \leq K\) for all valid primes. From the axiom <span class="ttfamily">lps_K_upper_bound</span>, obtain \(C {\gt} 0\) and the bound \(K \leq C(q^2-1)\) for all valid primes. Taking both together gives Part&#160;3. </p>
+<p><b class="bfseries">Part 4 (\(D_X \in \Omega (q)\)).</b> This follows directly from the axiom <span class="ttfamily">lps_DX_lower_bound</span>, which provides \(c {\gt} 0\) with \(D_X \geq c \cdot q\) for all valid primes. </p>
+<p><b class="bfseries">Part 5 (\(D_Z \in \Theta (N)\)).</b> From the axiom <span class="ttfamily">lps_DZ_lower_bound</span>, obtain \(c {\gt} 0\) and the bound \(c \cdot q(q^2-1) \leq D_Z\) for all valid primes. We set \(c' = c/(3 \cdot 201)\) and \(C' = 1\). </p>
+<p>For the lower bound: since \(N = 3 \cdot 201 \cdot q(q^2-1)\) (the lemma <span class="ttfamily">codeLength_eq_real</span>), we compute </p>
+<div class="displaymath" id="a0000001206">
+  \[  \frac{c}{3 \cdot 201} \cdot N = \frac{c}{3 \cdot 201} \cdot 3 \cdot 201 \cdot q(q^2-1) = c \cdot q(q^2-1) \leq D_Z.  \]
+</div>
+<p> This is verified by simplifying with <span class="ttfamily">field_simp</span> and applying linear arithmetic. </p>
+<p>For the upper bound: \(D_Z \leq N\) is the content of the lemma <span class="ttfamily">dZ_le_codeLength</span>. Indeed, \(D_Z\) is the infimum of a set of Hamming weights of nonzero logical \(Z\) codewords; if this set is empty, then \(D_Z = 0 \leq N\); otherwise any element \(w\) of the set satisfies \(w = \operatorname {hammingWeight}(x) \leq n = N\) (by <span class="ttfamily">SipserSpielman.hammingWeight_le_card</span>), so \(D_Z \leq w \leq N\). Hence \(D_Z \leq 1 \cdot N\). </p>
+
+  </div>
+</div>
+<p>[Paper Corrections] <b class="bfseries"><span style="None"></span>redErrata.</b> The following errors were identified in the original paper and corrected in this formalization: </p>
+<ul class="itemize">
+  <li><p>In Corollary (cor:distanceboundssybsystemcode), the D_X formula has second term α_co|X_1|/2 but should be α_co·β_co·|X_1|/2, derived from Theorem distco Case 1: |X_0|s·α_co·β_co/4 = 2|X_1|·α_co·β_co/4 = α_co·β_co·|X_1|/2. The β_co factor was dropped. This is a typo that does not affect the asymptotic result since the minimum is dominated by the ℓ·α_co·β_co/(4s) = Θ(q) terms, not the Θ(q³) terms. </p>
+</li>
+</ul>
+
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0052.html" title="Def 30: Unipotent Subgroup for LPS Graphs"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0054.html" title="Cor 3: Distance-Balanced Family of Quantum Codes"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

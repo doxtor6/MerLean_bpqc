@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cor 3: Distance-Balanced Family of Quantum Codes</title>
+<link rel="next" href="sect0055.html" title="Overview: Balanced Product Codes Formalization" />
+<link rel="prev" href="sect0053.html" title="Thm 15: Explicit Family of Quantum Codes" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class="">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000055">54 Cor 3: Distance-Balanced Family of Quantum Codes</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:DistanceBalancedFamily.classicalCodeLength">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">714</span>
+    <span class="definition_thmtitle">Classical Code Length</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.classicalCodeLength" class="lean_decl">DistanceBalancedFamily.classicalCodeLength</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a valid prime \(q\), the classical code length is \(n_c = q^2\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:DistanceBalancedFamily.balancedCodeLength">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">715</span>
+    <span class="definition_thmtitle">Balanced Code Length</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedCodeLength" class="lean_decl">DistanceBalancedFamily.balancedCodeLength</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a valid prime \(q\), the balanced code length is \(N = N_0 \cdot n_c = \operatorname {codeLength}(vp) \cdot q^2\), where \(N_0 = \operatorname {codeLength}(vp)\) is the subsystem code length from Theorem&#160;15. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:DistanceBalancedFamily.BalancedCodeData">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">716</span>
+    <span class="definition_thmtitle">Balanced Code Data</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#def:DistanceBalancedFamily.BalancedCodeData">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0007.html#def:CSSCode">Definition 50</a></li>
+          
+          <li><a href="sect0008.html#def:HasBoundedWeight">Definition 61</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.BalancedCodeData" class="lean_decl">DistanceBalancedFamily.BalancedCodeData</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a valid prime \(vp\), a <em>balanced code datum</em> is a structure bundling: </p>
+<ul class="itemize">
+  <li><p>row counts \(r_X, r_Z \in \mathbb {N}\) for the X- and Z-type parity checks, </p>
+</li>
+  <li><p>a CSS code \(\mathcal{C}\) of block length \(N = \operatorname {balancedCodeLength}(vp)\), </p>
+</li>
+  <li><p>a weight bound \(w \in \mathbb {N}\) such that the X-parity check matrix \(H_X\) and the transposed Z-parity check matrix \(H_{ZT}\) both have bounded row and column weight at most \(w\) (LDPC property), </p>
+</li>
+  <li><p>a lower bound on logical qubits: \(K \geq K_0 \cdot \lfloor n_c/2 \rfloor + 1\), where \(K_0\) is the logical qubit count of the subsystem code from Theorem&#160;15 and \(n_c = q^2\) is the classical code length, </p>
+</li>
+  <li><p>a lower bound on X-distance: \(D_X \geq D_{X,0} \cdot \lfloor n_c / 10 \rfloor \), where \(D_{X,0}\) is the X-distance of the subsystem code, </p>
+</li>
+  <li><p>an upper bound on logical qubits: \(K \leq K_0 \cdot n_c\), </p>
+</li>
+  <li><p>a lower bound on Z-distance: \(D_Z \geq D_{Z,0}\), where \(D_{Z,0}\) is the Z-distance of the subsystem code. </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:DistanceBalancedFamily.ekz_distance_balancing">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">717</span>
+    <span class="theorem_thmtitle">Axiom: Evra–Kaufman–Zemor Distance Balancing</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#thm:DistanceBalancedFamily.ekz_distance_balancing">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.BalancedCodeData">Definition 716</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.ekz_distance_balancing" class="lean_decl">DistanceBalancedFamily.ekz_distance_balancing</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p><b class="bfseries"><span style="None"></span>red[UNPROVEN AXIOM]</b> </p>
+<p>For every valid prime \(vp\), there exists a balanced code datum \(\operatorname {BalancedCodeData}(vp)\). </p>
+<p>That is, given the subsystem CSS code from Theorem&#160;15 (with parameters \([[N_0, K_0, D_{X,0}, D_{Z,0}]]\)) and the Gilbert–Varshamov classical code of length \(n_c = q^2\) (Theorem&#160;10), the Evra–Kaufman–Zemor distance balancing procedure (EKZ22, Theorem&#160;1) produces a (non-subsystem) CSS code with: </p>
+<ul class="itemize">
+  <li><p>Block length \(N = N_0 \cdot n_c\), </p>
+</li>
+  <li><p>Logical qubits \(K \geq K_0 \cdot k_c\) where \(k_c \geq n_c/2\), </p>
+</li>
+  <li><p>X-distance \(D_X \geq D_{X,0} \cdot d_c\) where \(d_c \geq n_c/10\), </p>
+</li>
+  <li><p>Z-distance \(D_Z \geq D_{Z,0}\), </p>
+</li>
+  <li><p>LDPC property preserved (row and column weights bounded by a constant). </p>
+</li>
+</ul>
+<p><i class="itshape">Note: This is stated as an axiom because the full proof was not completed in the formalization. The EKZ result is from: Evra, Kaufman, Zemor, “Decodable quantum LDPC codes beyond the \(\sqrt{n}\) distance barrier using high-dimensional expanders”, FOCS 2022.</i> </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.ekz_satisfiable">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">718</span>
+    <span class="lemma_thmtitle">EKZ Satisfiability</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.ekz_satisfiable">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001207"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+          <li><a href="sect0054.html#thm:DistanceBalancedFamily.ekz_distance_balancing">Theorem 717</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+          <li><a href="sect0054.html#thm:DistanceBalancedFamily.ekz_distance_balancing">Theorem 717</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.ekz_satisfiable" class="lean_decl">DistanceBalancedFamily.ekz_satisfiable</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a valid prime \(vp\) such that \(\operatorname {BalancedCodeData}(vp)\) is nonempty. In other words, the EKZ axiom’s hypothesis is satisfiable. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001207">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From <span class="ttfamily">infinitelyManyValidPrimes</span> applied at bound \(0\), we obtain a valid prime \(vp\). Then the axiom <span class="ttfamily">ekz_distance_balancing</span> applied to \(vp\) yields an element of \(\operatorname {BalancedCodeData}(vp)\), establishing nonemptiness. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:DistanceBalancedFamily.distanceBalancing">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">719</span>
+    <span class="definition_thmtitle">Distance Balancing</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.BalancedCodeData">Definition 716</a></li>
+          
+          <li><a href="sect0054.html#thm:DistanceBalancedFamily.ekz_distance_balancing">Theorem 717</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.distanceBalancing" class="lean_decl">DistanceBalancedFamily.distanceBalancing</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<p>For a valid prime \(vp\), \(\operatorname {distanceBalancing}(vp)\) is the balanced code datum obtained by applying the EKZ distance balancing axiom: \(\operatorname {distanceBalancing}(vp) := \operatorname {ekz_distance_balancing}(vp)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.classicalK_ge">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">720</span>
+    <span class="lemma_thmtitle">Classical \(k_c\) Lower Bound (I)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.classicalK_ge">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001208"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.classicalK_ge" class="lean_decl">DistanceBalancedFamily.classicalK_ge</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For any valid prime \(vp\), we have \(\lfloor n_c / 2 \rfloor + 1 \geq 1\), where \(n_c = \operatorname {classicalCodeLength}(vp) = q^2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001208">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This follows immediately by integer arithmetic (<span class="ttfamily">omega</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.classicalK_lower">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">721</span>
+    <span class="lemma_thmtitle">Classical \(k_c\) Lower Bound (II)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.classicalK_lower">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001209"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.classicalK_lower" class="lean_decl">DistanceBalancedFamily.classicalK_lower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For any valid prime \(vp\) (so \(q \geq 41\)), the real-valued inequality </p>
+<div class="displaymath" id="a0000001210">
+  \[  \lfloor n_c / 2 \rfloor + 1 \; \geq \;  \frac{q^2}{4}  \]
+</div>
+<p> holds, where \(n_c = q^2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001209">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Unfolding \(\operatorname {classicalCodeLength}\) gives \(n_c = q^2\). Casting to \(\mathbb {R}\) via <span class="ttfamily">push_cast</span> and using the fact that \(q^2 \geq 0\) by <span class="ttfamily">positivity</span>, the bound \(\lfloor q^2/2 \rfloor + 1 \geq q^2/4\) follows from linear arithmetic (<span class="ttfamily">linarith</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.classicalD_lower">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">722</span>
+    <span class="lemma_thmtitle">Classical \(d_c\) Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.classicalD_lower">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001211"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.classicalD_lower" class="lean_decl">DistanceBalancedFamily.classicalD_lower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For any valid prime \(vp\), the real-valued inequality </p>
+<div class="displaymath" id="a0000001212">
+  \[  \lfloor n_c / 10 \rfloor \; \geq \;  \frac{q^2}{20}  \]
+</div>
+<p> holds, where \(n_c = q^2\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001211">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Unfolding \(\operatorname {classicalCodeLength}\) gives \(n_c = q^2\). Casting to \(\mathbb {R}\) and using \(q^2 \geq 0\), the bound follows from linear arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedCodeLength_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">723</span>
+    <span class="lemma_thmtitle">Balanced Code Length Equation</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedCodeLength_eq">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001213"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedCodeLength_eq" class="lean_decl">DistanceBalancedFamily.balancedCodeLength_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>For any valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001214">
+  \[  \operatorname {balancedCodeLength}(vp) \; =\;  \operatorname {codeLength}(vp) \cdot \operatorname {classicalCodeLength}(vp).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001213">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>This holds by reflexivity of the definition. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedN_lower">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">724</span>
+    <span class="lemma_thmtitle">\(N\) Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedN_lower">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001215"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedN_lower" class="lean_decl">DistanceBalancedFamily.balancedN_lower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001216">
+  \[  c \cdot q^5 \; \leq \;  N,  \]
+</div>
+<p> where \(N = \operatorname {balancedCodeLength}(vp)\). Concretely, \(c = \frac{3 \cdot 201}{2}\) works. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001215">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We take \(c = 3 \cdot 201 / 2\), which is positive by <span class="ttfamily">positivity</span>. For any valid prime \(vp\), we simplify \(\operatorname {balancedCodeLength}(vp) = \operatorname {codeLength}(vp) \cdot q^2\) and cast to \(\mathbb {R}\). We have \(q \geq 41\) from <span class="ttfamily">validPrime_q_ge</span>. Using the explicit formula \(\operatorname {codeLength}(vp) = 3 \cdot q \cdot (q^2 - 1)\) (from <span class="ttfamily">codeLength_eq_real</span>), and the bounds \(q^2 - 1 \geq q^2/2\) (since \(q \geq 41\) implies \(q^2 \geq 41^2\)), the result follows by nonlinear arithmetic (<span class="ttfamily">nlinarith</span>). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedN_upper">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">725</span>
+    <span class="lemma_thmtitle">\(N\) Upper Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedN_upper">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001217"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedN_upper" class="lean_decl">DistanceBalancedFamily.balancedN_upper</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a constant \(C {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001218">
+  \[  N \; \leq \;  C \cdot q^5,  \]
+</div>
+<p> where \(N = \operatorname {balancedCodeLength}(vp)\). Concretely, \(C = 3 \cdot 201\) works. </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001217">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>We take \(C = 3 \cdot 201\), which is positive by <span class="ttfamily">positivity</span>. For any valid prime \(vp\), we simplify \(N = \operatorname {codeLength}(vp) \cdot q^2\) and cast to \(\mathbb {R}\). Using the formula \(\operatorname {codeLength}(vp) = 3q(q^2-1)\) and the bound \(q^2 - 1 \leq q^2\), the result \(3q(q^2-1) \cdot q^2 \leq 3 \cdot 201 \cdot q^5\) follows by nonlinear arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedK_lower">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">726</span>
+    <span class="lemma_thmtitle">\(K\) Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedK_lower">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001219"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">Theorem 709</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.classicalK_lower">Lemma 721</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">Theorem 709</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.classicalK_lower">Lemma 721</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedK_lower" class="lean_decl">DistanceBalancedFamily.balancedK_lower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001220">
+  \[  c \cdot q^4 \; \leq \;  K,  \]
+</div>
+<p> where \(K\) is the number of logical qubits of \(\operatorname {distanceBalancing}(vp).\mathcal{C}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001219">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From <span class="ttfamily">lps_K_lower_bound</span>, we obtain \(c_0 {\gt} 0\) such that \(K_0 \geq c_0 (q^2 - 1)\) for all valid primes. We take \(c = c_0/8\). For any valid prime \(vp\): </p>
+<ul class="itemize">
+  <li><p>From the EKZ axiom (<span class="ttfamily">hK</span> field of \(\operatorname {distanceBalancing}(vp)\)), we have \(K \geq K_0 \cdot (\lfloor n_c/2 \rfloor + 1)\). </p>
+</li>
+  <li><p>From <span class="ttfamily">lps_K_lower_bound</span>: \(K_0 \geq c_0(q^2 - 1)\). </p>
+</li>
+  <li><p>From <span class="ttfamily">classicalK_lower</span>: \(\lfloor n_c/2 \rfloor + 1 \geq q^2/4\). </p>
+</li>
+</ul>
+<p> Since \(q \geq 41\), we have \(q^2 - 1 \geq q^2/2\). Combining: </p>
+<div class="displaymath" id="a0000001221">
+  \[  K \; \geq \;  K_0 \cdot \frac{q^2}{4} \; \geq \;  c_0(q^2-1) \cdot \frac{q^2}{4} \; \geq \;  c_0 \cdot \frac{q^2}{2} \cdot \frac{q^2}{4} \; =\;  \frac{c_0}{8} q^4.  \]
+</div>
+<p> This chain of inequalities is verified by <span class="ttfamily">nlinarith</span> and <span class="ttfamily">linarith</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedK_upper">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">727</span>
+    <span class="lemma_thmtitle">\(K\) Upper Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedK_upper">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001222"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">Theorem 710</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">Theorem 710</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.classicalCodeLength">Definition 714</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedK_upper" class="lean_decl">DistanceBalancedFamily.balancedK_upper</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a constant \(C {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001223">
+  \[  K \; \leq \;  C \cdot q^4,  \]
+</div>
+<p> where \(K\) is the number of logical qubits of \(\operatorname {distanceBalancing}(vp).\mathcal{C}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001222">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From <span class="ttfamily">lps_K_upper_bound</span>, we obtain \(C_0 {\gt} 0\) such that \(K_0 \leq C_0(q^2 - 1)\) for all valid primes. We take \(C = C_0\). For any valid prime \(vp\): </p>
+<ul class="itemize">
+  <li><p>From the EKZ axiom (<span class="ttfamily">hK_upper</span> field): \(K \leq K_0 \cdot n_c\). </p>
+</li>
+  <li><p>From <span class="ttfamily">lps_K_upper_bound</span>: \(K_0 \leq C_0(q^2 - 1)\). </p>
+</li>
+  <li><p>By definition: \(n_c = q^2\). </p>
+</li>
+</ul>
+<p> Combining: \(K \leq K_0 \cdot q^2 \leq C_0(q^2-1) \cdot q^2 \leq C_0 q^4\), where the last step uses \(q^2 - 1 \leq q^2\), verified by <span class="ttfamily">nlinarith</span>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedDX_lower">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">728</span>
+    <span class="lemma_thmtitle">\(D_X\) Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedDX_lower">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001224"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">Theorem 712</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.classicalD_lower">Lemma 722</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">Theorem 712</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.classicalD_lower">Lemma 722</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedDX_lower" class="lean_decl">DistanceBalancedFamily.balancedDX_lower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001225">
+  \[  c \cdot q^3 \; \leq \;  D_X,  \]
+</div>
+<p> where \(D_X\) is the X-distance of \(\operatorname {distanceBalancing}(vp).\mathcal{C}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001224">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From <span class="ttfamily">lps_DX_lower_bound</span>, we obtain \(c_0 {\gt} 0\) such that \(D_{X,0} \geq c_0 \cdot q\) for all valid primes. We take \(c = c_0/20\). For any valid prime \(vp\): </p>
+<ul class="itemize">
+  <li><p>From the EKZ axiom (<span class="ttfamily">hDX</span> field): \(D_X \geq D_{X,0} \cdot \lfloor n_c/10 \rfloor \). </p>
+</li>
+  <li><p>From <span class="ttfamily">lps_DX_lower_bound</span>: \(D_{X,0} \geq c_0 q\). </p>
+</li>
+  <li><p>From <span class="ttfamily">classicalD_lower</span>: \(\lfloor n_c/10 \rfloor \geq q^2/20\). </p>
+</li>
+</ul>
+<p> Combining: </p>
+<div class="displaymath" id="a0000001226">
+  \[  D_X \; \geq \;  D_{X,0} \cdot \frac{q^2}{20} \; \geq \;  c_0 q \cdot \frac{q^2}{20} \; =\;  \frac{c_0}{20} q^3.  \]
+</div>
+<p> The chain is assembled by <span class="ttfamily">calc</span> steps using <span class="ttfamily">linarith</span> and exact casts. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedDZ_lower">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">729</span>
+    <span class="lemma_thmtitle">\(D_Z\) Lower Bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedDZ_lower">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001227"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">Theorem 711</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">Theorem 711</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedDZ_lower" class="lean_decl">DistanceBalancedFamily.balancedDZ_lower</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>There exists a constant \(c {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001228">
+  \[  c \cdot q^3 \; \leq \;  D_Z,  \]
+</div>
+<p> where \(D_Z\) is the Z-distance of \(\operatorname {distanceBalancing}(vp).\mathcal{C}\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001227">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>From <span class="ttfamily">lps_DZ_lower_bound</span>, we obtain \(c_0 {\gt} 0\) such that \(D_{Z,0} \geq c_0 \cdot q(q^2-1)\) for all valid primes. We take \(c = c_0/2\). For any valid prime \(vp\): </p>
+<ul class="itemize">
+  <li><p>From the EKZ axiom (<span class="ttfamily">hDZ</span> field): \(D_Z \geq D_{Z,0}\). </p>
+</li>
+  <li><p>From <span class="ttfamily">lps_DZ_lower_bound</span>: \(D_{Z,0} \geq c_0 q(q^2-1)\). </p>
+</li>
+  <li><p>Since \(q \geq 41\), we have \(q^2 \geq 41^2\), hence \(q^2 - 1 \geq q^2/2\). </p>
+</li>
+</ul>
+<p> Therefore \(q(q^2-1) \geq q \cdot q^2/2 = q^3/2\) (verified by <span class="ttfamily">nlinarith</span>), and: </p>
+<div class="displaymath" id="a0000001229">
+  \[  D_Z \; \geq \;  D_{Z,0} \; \geq \;  c_0 q(q^2-1) \; \geq \;  c_0 \cdot \frac{q^3}{2} \; =\;  \frac{c_0}{2} q^3.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:DistanceBalancedFamily.balancedN_unbounded">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">730</span>
+    <span class="lemma_thmtitle">\(N\) Unbounded</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#lem:DistanceBalancedFamily.balancedN_unbounded">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001230"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.balancedCodeLength">Definition 715</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedN_lower">Lemma 724</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedN_lower">Lemma 724</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.balancedN_unbounded" class="lean_decl">DistanceBalancedFamily.balancedN_unbounded</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  
+<p>The family is infinite: for every \(M \in \mathbb {N}\), there exists a valid prime \(vp\) such that \(\operatorname {balancedCodeLength}(vp) {\gt} M\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001230">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p>Let \(M \in \mathbb {N}\) be arbitrary. From <span class="ttfamily">balancedN_lower</span>, we obtain \(c {\gt} 0\) such that \(c \cdot q^5 \leq N\) for all valid primes. Applying <span class="ttfamily">infinitelyManyValidPrimes</span> at the bound \(\lceil (M+1)/c \rceil + 1\), we obtain a valid prime \(vp\) with \(q {\gt} \lceil (M+1)/c \rceil + 1\). Since \(\lceil (M+1)/c \rceil \geq (M+1)/c\), we have \(q {\gt} (M+1)/c\), i.e., \(cq {\gt} M+1\). Since \(q \geq 41 \geq 1\), we get \(q^5 \geq q^1 \geq q\), hence \(c q^5 \geq cq {\gt} M\). Therefore \(N \geq c q^5 {\gt} M\), establishing \(N {\gt} M\) (cast back to \(\mathbb {N}\)). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:DistanceBalancedFamily.distanceBalancedFamily">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">731</span>
+    <span class="theorem_thmtitle">Corollary 3: Distance-Balanced Family of Quantum Codes</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0054.html#thm:DistanceBalancedFamily.distanceBalancedFamily">#</a>
+    
+    <a class="icon proof" href="sect0054.html#a0000001231"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.ValidPrime">Definition 701</a></li>
+          
+          <li><a href="sect0053.html#def:ExplicitFamilyQuantumCodes.codeLength">Definition 702</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">Theorem 712</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">Theorem 711</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">Theorem 709</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">Theorem 710</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedN_unbounded">Lemma 730</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedK_lower">Lemma 726</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedK_upper">Lemma 727</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedDX_lower">Lemma 728</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedDZ_lower">Lemma 729</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedN_lower">Lemma 724</a></li>
+          
+          <li><a href="sect0054.html#lem:DistanceBalancedFamily.balancedN_upper">Lemma 725</a></li>
+          
+          <li><a href="sect0054.html#def:DistanceBalancedFamily.distanceBalancing">Definition 719</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.infinitelyManyValidPrimes">Theorem 708</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_lower_bound">Theorem 709</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_K_upper_bound">Theorem 710</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DX_lower_bound">Theorem 712</a></li>
+          
+          <li><a href="sect0053.html#thm:ExplicitFamilyQuantumCodes.lps_DZ_lower_bound">Theorem 711</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/DistanceBalancedFamily.distanceBalancedFamily" class="lean_decl">DistanceBalancedFamily.distanceBalancedFamily</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  
+<p>There exists an explicit construction of an infinite family of \([[N, K, D]]\) LDPC quantum CSS codes such that: </p>
+<ol class="enumerate">
+  <li><p><b class="bfseries">(LDPC existence)</b> For each valid prime \(vp\), there exists an LDPC CSS code of block length \(N = \operatorname {balancedCodeLength}(vp)\) with parity check matrices of bounded weight. </p>
+</li>
+  <li><p><b class="bfseries">(Infinitely many)</b> For every \(M \in \mathbb {N}\), there exists a valid prime \(vp\) with \(\operatorname {balancedCodeLength}(vp) {\gt} M\). </p>
+</li>
+  <li><p><b class="bfseries">(\(K \in \Theta (N^{4/5})\))</b> There exist constants \(0 {\lt} c \leq C\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001232">
+  \[  c \cdot q^4 \; \leq \;  K \; \leq \;  C \cdot q^4,  \]
+</div>
+<p> where \(K\) is the logical qubit count of the balanced code and \(N \in \Theta (q^5)\) gives \(q \in \Theta (N^{1/5})\). </p>
+</li>
+  <li><p><b class="bfseries">(\(D \in \Omega (N^{3/5})\))</b> There exists a constant \(c {\gt} 0\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001233">
+  \[  c \cdot q^3 \; \leq \;  \min (D_X, D_Z),  \]
+</div>
+<p> so \(D = \min (D_X, D_Z) \in \Omega (q^3) = \Omega (N^{3/5})\). </p>
+</li>
+  <li><p><b class="bfseries">(\(N \in \Theta (q^5)\))</b> There exist constants \(0 {\lt} c \leq C\) such that for every valid prime \(vp\), </p>
+<div class="displaymath" id="a0000001234">
+  \[  c \cdot q^5 \; \leq \;  N \; \leq \;  C \cdot q^5.  \]
+</div>
+</li>
+</ol>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000001231">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries"><span style="None"></span>orange[Uses unproven axiom: thm:DistanceBalancedFamily.ekz_distance_balancing (EKZ22, Theorem 1)]</b> </p>
+<p>We verify each part separately. </p>
+<p><b class="bfseries">Part 1 (LDPC existence).</b> For each valid prime \(vp\), let \(D = \operatorname {distanceBalancing}(vp)\). The fields \(D.r_X\), \(D.r_Z\), \(D.\mathcal{C}\), \(D.w\), \(D.\texttt{isLDPC\_ HX}\), and \(D.\texttt{isLDPC\_ HZT}\) directly provide the required LDPC CSS code. </p>
+<p><b class="bfseries">Part 2 (Infinitely many).</b> This is exactly the statement of <span class="ttfamily">balancedN_unbounded</span>. </p>
+<p><b class="bfseries">Part 3 (\(K \in \Theta (q^4)\)).</b> From <span class="ttfamily">balancedK_lower</span>, we obtain \(c {\gt} 0\) with \(c q^4 \leq K\) for all valid primes. From <span class="ttfamily">balancedK_upper</span>, we obtain \(C {\gt} 0\) with \(K \leq C q^4\) for all valid primes. We then set \(c, C\) and verify \(c q^4 \leq K \leq C q^4\) pointwise. </p>
+<p><b class="bfseries">Part 4 (\(D \in \Omega (q^3)\)).</b> From <span class="ttfamily">balancedDX_lower</span>, we obtain \(c_1 {\gt} 0\) with \(c_1 q^3 \leq D_X\). From <span class="ttfamily">balancedDZ_lower</span>, we obtain \(c_2 {\gt} 0\) with \(c_2 q^3 \leq D_Z\). Setting \(c = \min (c_1, c_2) {\gt} 0\) (since \(c {\gt} 0\) iff \(c_1 {\gt} 0\) and \(c_2 {\gt} 0\)), we verify: </p>
+<ul class="itemize">
+  <li><p>\(\min (c_1,c_2) q^3 \leq c_1 q^3 \leq D_X\), using \(\min (c_1,c_2) \leq c_1\) and \(q^3 \geq 0\). </p>
+</li>
+  <li><p>\(\min (c_1,c_2) q^3 \leq c_2 q^3 \leq D_Z\), using \(\min (c_1,c_2) \leq c_2\) and \(q^3 \geq 0\). </p>
+</li>
+</ul>
+<p> Both bounds are verified by <span class="ttfamily">le_min_iff</span> decomposition and <span class="ttfamily">calc</span>. </p>
+<p><b class="bfseries">Part 5 (\(N \in \Theta (q^5)\)).</b> From <span class="ttfamily">balancedN_lower</span> and <span class="ttfamily">balancedN_upper</span>, we obtain constants \(c, C {\gt} 0\) with \(c q^5 \leq N \leq C q^5\) for all valid primes. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0053.html" title="Thm 15: Explicit Family of Quantum Codes"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0055.html" title="Overview: Balanced Product Codes Formalization"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

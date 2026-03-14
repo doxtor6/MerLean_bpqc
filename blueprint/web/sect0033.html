@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thm 8: Expander Violated Checks</title>
+<link rel="next" href="sect0034.html" title="Thm 9: Expander Bit Degree" />
+<link rel="prev" href="sect0032.html" title="Thm 7: Sipser–Spielman Expander Code Distance" />
+<link rel="up" href="index.html" title="MerLean-example" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">MerLean-example</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Rem 1: Base Field</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Rem 2: Notation Conventions</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Rem 3: Expanding Matrix Definition</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">4</span> <span class="toc_entry">Def 1: Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0005.html"><span class="toc_ref">5</span> <span class="toc_entry">Def 2: Cochains and Cohomology</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">6</span> <span class="toc_entry">Def 3: Classical Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">7</span> <span class="toc_entry">Def 4: CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">8</span> <span class="toc_entry">Def 5: LDPC Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">9</span> <span class="toc_entry">Def 6: Subsystem CSS Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0010.html"><span class="toc_ref">10</span> <span class="toc_entry">Def 7: Cell Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">11</span> <span class="toc_entry">Def 8: Cycle Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">12</span> <span class="toc_entry">Def 9: Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0013.html"><span class="toc_ref">13</span> <span class="toc_entry">Def 10: Total Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0014.html"><span class="toc_ref">14</span> <span class="toc_entry">Def 11: Tensor Product Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0015.html"><span class="toc_ref">15</span> <span class="toc_entry">Thm 2: Small Double Complex Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0016.html"><span class="toc_ref">16</span> <span class="toc_entry">Def 12: Fiber Bundle Double Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0017.html"><span class="toc_ref">17</span> <span class="toc_entry">Thm 3: Fiber Bundle Homology</span></a>
+ </li>
+<li class="">
+  <a href="sect0018.html"><span class="toc_ref">18</span> <span class="toc_entry">Def 13: Augmented Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0019.html"><span class="toc_ref">19</span> <span class="toc_entry">Thm 4: Projection Induces Isomorphism</span></a>
+ </li>
+<li class="">
+  <a href="sect0020.html"><span class="toc_ref">20</span> <span class="toc_entry">Def 14: Graph Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0021.html"><span class="toc_ref">21</span> <span class="toc_entry">Def 15: Tanner Code Local System</span></a>
+ </li>
+<li class="">
+  <a href="sect0022.html"><span class="toc_ref">22</span> <span class="toc_entry">Def 16: Dual Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0023.html"><span class="toc_ref">23</span> <span class="toc_entry">Def 17: Binary Entropy Function</span></a>
+ </li>
+<li class="">
+  <a href="sect0024.html"><span class="toc_ref">24</span> <span class="toc_entry">Def 18: Cheeger Constant</span></a>
+ </li>
+<li class="">
+  <a href="sect0025.html"><span class="toc_ref">25</span> <span class="toc_entry">Lem 1: Relative Cheeger Inequality</span></a>
+ </li>
+<li class="">
+  <a href="sect0026.html"><span class="toc_ref">26</span> <span class="toc_entry">Thm 5: Alon–Boppana Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0027.html"><span class="toc_ref">27</span> <span class="toc_entry">Thm 6: Alon–Chung Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0028.html"><span class="toc_ref">28</span> <span class="toc_entry">Cor 1: Alon–Chung Contrapositive</span></a>
+ </li>
+<li class="">
+  <a href="sect0029.html"><span class="toc_ref">29</span> <span class="toc_entry">Def 19: Edge Boundary and Vertex Incidence for Cell Complexes</span></a>
+ </li>
+<li class="">
+  <a href="sect0030.html"><span class="toc_ref">30</span> <span class="toc_entry">Lem 2: Edge-to-Vertex Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0031.html"><span class="toc_ref">31</span> <span class="toc_entry">Lem 3: Relative Vertex-to-Edge Expansion</span></a>
+ </li>
+<li class="">
+  <a href="sect0032.html"><span class="toc_ref">32</span> <span class="toc_entry">Thm 7: Sipser–Spielman Expander Code Distance</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0033.html"><span class="toc_ref">33</span> <span class="toc_entry">Thm 8: Expander Violated Checks</span></a>
+ </li>
+<li class="">
+  <a href="sect0034.html"><span class="toc_ref">34</span> <span class="toc_entry">Thm 9: Expander Bit Degree</span></a>
+ </li>
+<li class="">
+  <a href="sect0035.html"><span class="toc_ref">35</span> <span class="toc_entry">Thm 10: Gilbert–Varshamov Plus</span></a>
+ </li>
+<li class="">
+  <a href="sect0036.html"><span class="toc_ref">36</span> <span class="toc_entry">Def 20: Cayley Graph</span></a>
+ </li>
+<li class="">
+  <a href="sect0037.html"><span class="toc_ref">37</span> <span class="toc_entry">Def 21: LPS Expander Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0038.html"><span class="toc_ref">38</span> <span class="toc_entry">Thm 11: LPS Graphs are Ramanujan</span></a>
+ </li>
+<li class="">
+  <a href="sect0039.html"><span class="toc_ref">39</span> <span class="toc_entry">Def 22: Balanced Product of Vector Spaces</span></a>
+ </li>
+<li class="">
+  <a href="sect0040.html"><span class="toc_ref">40</span> <span class="toc_entry">Def 23: Balanced Product Chain Complex</span></a>
+ </li>
+<li class="">
+  <a href="sect0041.html"><span class="toc_ref">41</span> <span class="toc_entry">Lem 4: Künneth Formula for Balanced Products</span></a>
+ </li>
+<li class="">
+  <a href="sect0042.html"><span class="toc_ref">42</span> <span class="toc_entry">Def 24: Quotient Graph Trivialization</span></a>
+ </li>
+<li class="">
+  <a href="sect0043.html"><span class="toc_ref">43</span> <span class="toc_entry">Def 25: Invariant Labeling</span></a>
+ </li>
+<li class="">
+  <a href="sect0044.html"><span class="toc_ref">44</span> <span class="toc_entry">Def 26: Balanced Product Tanner Cycle Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0045.html"><span class="toc_ref">45</span> <span class="toc_entry">Def 27: Horizontal/Vertical Homology Splitting</span></a>
+ </li>
+<li class="">
+  <a href="sect0046.html"><span class="toc_ref">46</span> <span class="toc_entry">Def 28: Iota and Pi Maps</span></a>
+ </li>
+<li class="">
+  <a href="sect0047.html"><span class="toc_ref">47</span> <span class="toc_entry">Thm 12: Encoding Rate (Circle Case)</span></a>
+ </li>
+<li class="">
+  <a href="sect0048.html"><span class="toc_ref">48</span> <span class="toc_entry">Def 29: Horizontal Subsystem Balanced Product Code</span></a>
+ </li>
+<li class="">
+  <a href="sect0049.html"><span class="toc_ref">49</span> <span class="toc_entry">Thm 13: Homological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0050.html"><span class="toc_ref">50</span> <span class="toc_entry">Thm 14: Cohomological Distance Bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0051.html"><span class="toc_ref">51</span> <span class="toc_entry">Cor 2: Subsystem Code Parameters</span></a>
+ </li>
+<li class="">
+  <a href="sect0052.html"><span class="toc_ref">52</span> <span class="toc_entry">Def 30: Unipotent Subgroup for LPS Graphs</span></a>
+ </li>
+<li class="">
+  <a href="sect0053.html"><span class="toc_ref">53</span> <span class="toc_entry">Thm 15: Explicit Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0054.html"><span class="toc_ref">54</span> <span class="toc_entry">Cor 3: Distance-Balanced Family of Quantum Codes</span></a>
+ </li>
+<li class="">
+  <a href="sect0055.html"><span class="toc_ref">55</span> <span class="toc_entry">Overview: Balanced Product Codes Formalization</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000034">33 Thm 8: Expander Violated Checks</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderViolatedChecks.beta'">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">387</span>
+    <span class="definition_thmtitle">Edge-to-Vertex Expansion Parameter \(\beta '\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#def:ExpanderViolatedChecks.beta'">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.beta'" class="lean_decl">ExpanderViolatedChecks.beta'</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The edge-to-vertex expansion parameter \(\beta '\) is defined as </p>
+<div class="displaymath" id="a0000000726">
+  \[  \beta '(s, \lambda _2, \alpha ) \; =\;  \frac{\sqrt{\lambda _2^2 + 4s(s - \lambda _2)\alpha } - \lambda _2}{s(s - \lambda _2)\alpha },  \]
+</div>
+<p> which is equal to \(\operatorname {betaParam}(s, \lambda _2, \alpha )\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderViolatedChecks.beta''">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">388</span>
+    <span class="definition_thmtitle">Vertex-to-Edge-Boundary Expansion Parameter \(\beta ''\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#def:ExpanderViolatedChecks.beta''">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.beta''" class="lean_decl">ExpanderViolatedChecks.beta''</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    The vertex-to-edge-boundary expansion parameter \(\beta ''\) is defined as </p>
+<div class="displaymath" id="a0000000727">
+  \[  \beta ''(s, \lambda _2, \alpha , d_L) \; =\;  \frac{(d_L - 1 - \lambda _2) - \alpha s(s - \lambda _2)}{d_L - 1}.  \]
+</div>
+<p> This arises from applying the relative vertex-to-edge expansion lemma with \(b = d_L - 1\) and \(\alpha ' = \alpha s\), ensuring that all high-expansion vertices have violated local checks. </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderViolatedChecks.differentialWeight">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">389</span>
+    <span class="definition_thmtitle">Differential Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#def:ExpanderViolatedChecks.differentialWeight">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.differentialWeight" class="lean_decl">ExpanderViolatedChecks.differentialWeight</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    Let \(G\) be a simple graph, \(\Lambda \) a labeling of \(G\) of degree \(s\), and \(\operatorname {parityCheck} : \mathbb {F}_2^s \to \mathbb {F}_2^m\) a linear map. The <em>differential weight</em> of a vector \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\) is </p>
+<div class="displaymath" id="a0000000728">
+  \[  \operatorname {differentialWeight}(G, \Lambda , \operatorname {parityCheck}, c) \; =\;  \bigl|\{ v \in V \mid \operatorname {parityCheck}(\operatorname {localView}_\Lambda (v, c)) \neq 0\} \bigr|,  \]
+</div>
+<p> counting the number of vertices at which the local parity check is violated. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.violated_check_of_small_support">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">390</span>
+    <span class="lemma_thmtitle">Violated Check from Small Support Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.violated_check_of_small_support">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000729"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.violated_check_of_small_support" class="lean_decl">ExpanderViolatedChecks.violated_check_of_small_support</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(\operatorname {parityCheck} : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be a linear map, \(d_L\) the minimum distance of \(\operatorname {ClassicalCode.ofParityCheck}(\operatorname {parityCheck})\), with \(d_L {\gt} 0\). If \(x \in \mathbb {F}_2^s\) satisfies \(x \neq 0\) and \(\operatorname {wt}(x) \leq d_L - 1\), then \(\operatorname {parityCheck}(x) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000729">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose for contradiction that \(\operatorname {parityCheck}(x) = 0\). Then \(x \in \ker (\operatorname {parityCheck})\), which by <span class="ttfamily">ClassicalCode.code_eq_ker</span> means \(x\) belongs to the classical code. Since \(x \neq 0\), the definition of minimum distance gives \(d_L \leq \operatorname {wt}(x)\). But \(\operatorname {wt}(x) \leq d_L - 1 {\lt} d_L\), a contradiction. Hence \(\operatorname {parityCheck}(x) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ExpanderViolatedChecks.supportEdgesAtVertex">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">391</span>
+    <span class="definition_thmtitle">Support Edges at Vertex</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#def:ExpanderViolatedChecks.supportEdgesAtVertex">#</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.supportEdgesAtVertex" class="lean_decl">ExpanderViolatedChecks.supportEdgesAtVertex</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  <p>    For a graph \(G\), a vector \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\), and a vertex \(v \in V\), the <em>support edges at \(v\)</em> is </p>
+<div class="displaymath" id="a0000000730">
+  \[  \operatorname {supportEdgesAtVertex}(G, c, v) \; =\;  \bigl|\{ e \in \operatorname {supportEdges}(G, c) \mid v \in e\} \bigr|.  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.supportEdges_both_endpoints_in_S">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">392</span>
+    <span class="lemma_thmtitle">Support Edges Have Both Endpoints in \(S\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_both_endpoints_in_S">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000731"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.supportEdges_both_endpoints_in_S" class="lean_decl">ExpanderViolatedChecks.supportEdges_both_endpoints_in_S</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(e \in \operatorname {supportEdges}(G, c)\) and \(w \in e\), then \(w \in \operatorname {incidentToSupport}(G, c)\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000731">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(e \in \operatorname {supportEdges}(G, c)\) and \(w \in e\). Unfolding definitions, \(e\) is the image of some edge \(e'\) in the support of \(c\) (i.e. \(c(e') \neq 0\)) with \(e = e'.val\). Since \(w \in e = e'.val\), we have \(w \in \operatorname {incidentToSupport}(G, c)\) by definition, as witnessed by the edge \(e'\) with \(c(e') \neq 0\) and \(w \in e'\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.supportEdge_not_in_edgeBoundary">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">393</span>
+    <span class="lemma_thmtitle">Support Edges Are Disjoint from the Edge Boundary</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.supportEdge_not_in_edgeBoundary">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000732"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_both_endpoints_in_S">Lemma 392</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_both_endpoints_in_S">Lemma 392</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.supportEdge_not_in_edgeBoundary" class="lean_decl">ExpanderViolatedChecks.supportEdge_not_in_edgeBoundary</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(e \in \operatorname {supportEdges}(G, c)\), then \(e \notin \partial _E(\operatorname {incidentToSupport}(G, c))\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000732">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Suppose \(e \in \partial _E(S)\) where \(S = \operatorname {incidentToSupport}(G, c)\). By membership in the edge boundary, there exist \(a, b\) with \(e = \{ a, b\} \), \(a \in S\), and \(b \notin S\). But since \(e \in \operatorname {supportEdges}(G, c)\) and \(b \in e\), by Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_both_endpoints_in_S">392</a> we have \(b \in S\), a contradiction. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.withinS_plus_boundary_eq_degree">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">394</span>
+    <span class="lemma_thmtitle">Within-\(S\) Edges Plus Boundary Edges Bounded by Degree</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.withinS_plus_boundary_eq_degree">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000733"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.withinS_plus_boundary_eq_degree" class="lean_decl">ExpanderViolatedChecks.withinS_plus_boundary_eq_degree</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be an \(s\)-regular graph, \(S \subseteq V\), and \(v \in S\). Then </p>
+<div class="displaymath" id="a0000000734">
+  \[  |(\partial _E S)_v| + |\{ e \in G.\operatorname {edgeFinset} \mid v \in e,\;  \forall w \in e,\,  w \in S\} | \; \leq \;  s,  \]
+</div>
+<p> where \((\partial _E S)_v\) denotes the edges in the boundary of \(S\) incident to \(v\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000733">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Both the set of boundary edges at \(v\) and the set of within-\(S\) edges at \(v\) are subsets of the incidence finset \(\operatorname {incidenceFinset}(v)\), which has cardinality \(\deg (v) = s\). Moreover, these two sets are disjoint: if \(e\) is in the edge boundary, then \(e\) has one endpoint outside \(S\), so it cannot have all endpoints in \(S\). By disjointness and the union bound: </p>
+<div class="displaymath" id="a0000000735">
+  \[  |\partial _E(S)_v| + |\text{within-}S\text{ edges at }v| = |\partial _E(S)_v \cup \text{within-}S| \leq |\operatorname {incidenceFinset}(v)| = s. \qedhere  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.localView_weight_le_withinS">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">395</span>
+    <span class="lemma_thmtitle">Local View Weight Bounded by Within-\(S\) Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_le_withinS">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000736"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.localView_weight_le_withinS" class="lean_decl">ExpanderViolatedChecks.localView_weight_le_withinS</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be a graph with labeling \(\Lambda \) of degree \(s\), \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\), and \(S \subseteq V\) such that every edge \(e\) with \(c(e) \neq 0\) has both endpoints in \(S\). Then for every \(v \in V\), </p>
+<div class="displaymath" id="a0000000737">
+  \[  \operatorname {wt}(\operatorname {localView}_\Lambda (v, c)) \; \leq \;  |\{ e \in G.\operatorname {edgeFinset} \mid v \in e,\;  \forall w \in e,\,  w \in S\} |.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000736">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(v \in V\). The Hamming weight \(\operatorname {wt}(\operatorname {localView}_\Lambda (v, c))\) equals \(|\{ i \in \operatorname {Fin}(s) \mid \operatorname {localView}_\Lambda (v, c)(i) \neq 0\} |\). Define a map \(\operatorname {mapEdge} : \operatorname {Fin}(s) \to \operatorname {Sym2}(V)\) by \(i \mapsto \{ v, (\Lambda (v))^{-1}(i)\} \). </p>
+<p>We show this map sends the support indices into the within-\(S\) edges: if \(\operatorname {localView}_\Lambda (v, c)(i) \neq 0\), then \(c(\{ v, (\Lambda (v))^{-1}(i)\} ) \neq 0\), so both endpoints lie in \(S\) by hypothesis. </p>
+<p>We then show \(\operatorname {mapEdge}\) is injective on the support indices: if \(\{ v, w_1\}  = \{ v, w_2\} \) as elements of \(\operatorname {Sym2}(V)\) with \(v \neq w_1\), then \(w_1 = w_2\), hence the preimages under \(\Lambda (v)\) coincide. </p>
+<p>By injectivity and inclusion, \(|\text{support indices}| = |\operatorname {image}| \leq |\text{within-}S\text{ edges at }v|\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.localView_weight_add_boundary_le">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">396</span>
+    <span class="lemma_thmtitle">Local View Weight Plus Boundary Bounded by Degree</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_add_boundary_le">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000738"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_le_withinS">Lemma 395</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.withinS_plus_boundary_eq_degree">Lemma 394</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_le_withinS">Lemma 395</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.withinS_plus_boundary_eq_degree">Lemma 394</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.localView_weight_add_boundary_le" class="lean_decl">ExpanderViolatedChecks.localView_weight_add_boundary_le</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Under the same hypotheses, for \(v \in S\), </p>
+<div class="displaymath" id="a0000000739">
+  \[  \operatorname {wt}(\operatorname {localView}_\Lambda (v, c)) + |(\partial _E S)_v| \; \leq \;  s.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000738">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Combine Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_le_withinS">395</a> (bounding the local view weight by within-\(S\) edge count) and Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.withinS_plus_boundary_eq_degree">394</a> (bounding the sum of within-\(S\) and boundary counts by \(s\)). The result follows by integer arithmetic. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.supportEdges_card_eq">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">397</span>
+    <span class="lemma_thmtitle">Support Edges Cardinality Equals Edge Hamming Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_card_eq">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000740"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.supportEdges_card_eq" class="lean_decl">ExpanderViolatedChecks.supportEdges_card_eq</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\), </p>
+<div class="displaymath" id="a0000000741">
+  \[  |\operatorname {supportEdges}(G, c)| \; =\;  \operatorname {edgeHammingWeight}(G, c).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000740">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding definitions, \(\operatorname {supportEdges}(G, c)\) is the image of the support of \(c\) under the injective map \(\operatorname {Subtype.val}\). The cardinality of the image under an injective map equals the cardinality of the domain, which is \(\operatorname {edgeHammingWeight}(G, c)\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">398</span>
+    <span class="lemma_thmtitle">Incident-to-Support Equals Incident Vertices of Support Edges</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000742"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices" class="lean_decl">ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\), </p>
+<div class="displaymath" id="a0000000743">
+  \[  \operatorname {incidentToSupport}(G, c) \; =\;  \operatorname {incidentVertices}(\operatorname {supportEdges}(G, c)).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000742">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By extensionality: a vertex \(v\) belongs to \(\operatorname {incidentToSupport}(G, c)\) if and only if there exists an edge \(e\) in the support of \(c\) with \(v \in e\), which holds if and only if there exists \(e \in \operatorname {supportEdges}(G, c)\) with \(v \in e\), i.e. \(v \in \operatorname {incidentVertices}(\operatorname {supportEdges}(G, c))\). Both directions follow by unfolding definitions and matching witnesses. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.regular_handshaking">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">399</span>
+    <span class="lemma_thmtitle">Handshaking Lemma for Regular Graphs</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.regular_handshaking">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000744"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.regular_handshaking" class="lean_decl">ExpanderViolatedChecks.regular_handshaking</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(G\) is \(s\)-regular, then \(2|G.\operatorname {edgeFinset}| = s \cdot |V|\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000744">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Apply the standard handshaking identity \(\sum _{v \in V} \deg (v) = 2|E|\). Since \(G\) is \(s\)-regular, \(\deg (v) = s\) for all \(v\), so \(\sum _{v \in V} s = s \cdot |V| = 2|E|\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.incidentToSupport_card_le_twice">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">400</span>
+    <span class="lemma_thmtitle">Incident-to-Support Cardinality at Most Twice Edge Weight</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_twice">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000745"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">Lemma 398</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_card_eq">Lemma 397</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">Lemma 398</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_card_eq">Lemma 397</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.incidentToSupport_card_le_twice" class="lean_decl">ExpanderViolatedChecks.incidentToSupport_card_le_twice</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    For any \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\), </p>
+<div class="displaymath" id="a0000000746">
+  \[  |\operatorname {incidentToSupport}(G, c)| \; \leq \;  2 \cdot \operatorname {edgeHammingWeight}(G, c).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000745">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Let \(E = \operatorname {supportEdges}(G, c)\). By Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">398</a>, \(|\operatorname {incidentToSupport}| = |\operatorname {incidentVertices}(E)|\). Since each edge \(e \in E\) contributes at most 2 vertices (as \(|\{ v \mid v \in e\} | \leq 2\) for any \(e \in \operatorname {Sym2}(V)\)), we have: </p>
+<div class="displaymath" id="a0000000747">
+  \[  |\operatorname {incidentVertices}(E)| \leq \sum _{e \in E} |\{ v \mid v \in e\} | \leq \sum _{e \in E} 2 = 2|E| = 2\, \operatorname {edgeHammingWeight}(G, c),  \]
+</div>
+<p> where the last equality uses Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_card_eq">397</a>. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.incidentToSupport_card_le_alphaS">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">401</span>
+    <span class="lemma_thmtitle">\(|S| \leq \alpha s |V|\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_alphaS">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000748"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_twice">Lemma 400</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.regular_handshaking">Lemma 399</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_twice">Lemma 400</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.regular_handshaking">Lemma 399</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.incidentToSupport_card_le_alphaS" class="lean_decl">ExpanderViolatedChecks.incidentToSupport_card_le_alphaS</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be \(s\)-regular, \(\alpha {\gt} 0\), and suppose \(\operatorname {edgeHammingWeight}(G, x) \leq \alpha |G.\operatorname {edgeFinset}|\). Then </p>
+<div class="displaymath" id="a0000000749">
+  \[  |\operatorname {incidentToSupport}(G, x)| \; \leq \;  \alpha s |V|.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000748">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_twice">400</a>, \(|S| \leq 2\, \operatorname {edgeHammingWeight}(G, x) \leq 2\alpha |G.\operatorname {edgeFinset}|\). By the handshaking lemma (Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.regular_handshaking">399</a>), \(2|G.\operatorname {edgeFinset}| = s|V|\). Therefore: </p>
+<div class="displaymath" id="a0000000750">
+  \[  |S| \leq 2\alpha |G.\operatorname {edgeFinset}| = \alpha \cdot 2|G.\operatorname {edgeFinset}| = \alpha \cdot s|V| = \alpha s |V|. \qedhere  \]
+</div>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">402</span>
+    <span class="lemma_thmtitle">Local View Nonzero for Vertices Incident to Support</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000751"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport" class="lean_decl">ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(v \in \operatorname {incidentToSupport}(G, c)\), then \(\operatorname {localView}_\Lambda (v, c) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000751">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Since \(v \in \operatorname {incidentToSupport}(G, c)\), there exists an edge \(e\) in the support of \(c\) (i.e. \(c(e) \neq 0\)) with \(v \in e\). Write \(e = \{ v, w\} \) for some neighbor \(w\) of \(v\). Let \(i = \Lambda (v)(w, \cdot )\) be the label assigned to \(w\). Then by definition of \(\operatorname {localView}\), \(\operatorname {localView}_\Lambda (v, c)(i) = c(e) \neq 0\). Hence \(\operatorname {localView}_\Lambda (v, c) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.differentialWeight_ge_highExpansion">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">403</span>
+    <span class="lemma_thmtitle">Differential Weight Bounds High-Expansion Vertex Count</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.differentialWeight_ge_highExpansion">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000752"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.violated_check_of_small_support">Lemma 390</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_add_boundary_le">Lemma 396</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport">Lemma 402</a></li>
+          
+          <li><a href="sect0021.html#def:Labeling">Definition 246</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.violated_check_of_small_support">Lemma 390</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_add_boundary_le">Lemma 396</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport">Lemma 402</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.differentialWeight_ge_highExpansion" class="lean_decl">ExpanderViolatedChecks.differentialWeight_ge_highExpansion</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    Let \(G\) be \(s\)-regular, \(\Lambda \) a labeling, \(\operatorname {parityCheck}\) a linear map with local code distance \(d_L {\gt} 0\), and \(c : G.\operatorname {edgeSet} \to \mathbb {F}_2\). Setting \(S = \operatorname {incidentToSupport}(G, c)\) and \(A = \operatorname {highExpansionVertices}(G, S, s, d_L - 1)\), we have </p>
+<div class="displaymath" id="a0000000753">
+  \[  |A| \; \leq \;  \operatorname {differentialWeight}(G, \Lambda , \operatorname {parityCheck}, c).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000752">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> It suffices to show \(A \subseteq \{ v \in V \mid \operatorname {parityCheck}(\operatorname {localView}_\Lambda (v, c)) \neq 0\} \). Let \(v \in A\). </p>
+<p>By Lemma&#160;<a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">358</a>, \(v \in S\). By the definition of high-expansion vertices, \(|(\partial _E S)_v| \geq s - (d_L - 1)\). </p>
+<p>Since every edge \(e\) with \(c(e) \neq 0\) has both endpoints in \(S\) (by definition of \(S = \operatorname {incidentToSupport}\)), Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.localView_weight_add_boundary_le">396</a> gives \(\operatorname {wt}(\operatorname {localView}_\Lambda (v, c)) + |(\partial _E S)_v| \leq s\). </p>
+<p>Therefore \(\operatorname {wt}(\operatorname {localView}_\Lambda (v, c)) \leq s - |(\partial _E S)_v| \leq d_L - 1\). </p>
+<p>Since \(v \in S = \operatorname {incidentToSupport}(G, c)\), Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.localView_ne_zero_of_incidentToSupport">402</a> gives \(\operatorname {localView}_\Lambda (v, c) \neq 0\). </p>
+<p>Applying Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.violated_check_of_small_support">390</a> with \(x = \operatorname {localView}_\Lambda (v, c)\), \(\operatorname {wt}(x) \leq d_L - 1\), and \(x \neq 0\), we conclude \(\operatorname {parityCheck}(x) \neq 0\). </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:ExpanderViolatedChecks.beta'_pos">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">404</span>
+    <span class="lemma_thmtitle">\(\beta '\) Is Positive</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#lem:ExpanderViolatedChecks.beta'_pos">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000754"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0033.html#def:ExpanderViolatedChecks.beta'">Definition 387</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0033.html#def:ExpanderViolatedChecks.beta'">Definition 387</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.beta'_pos" class="lean_decl">ExpanderViolatedChecks.beta'_pos</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>    If \(s \geq 1\), \(\lambda _2 {\lt} s\), and \(\alpha {\gt} 0\), then \(\beta '(s, \lambda _2, \alpha ) {\gt} 0\). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000754">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Unfolding \(\beta ' = \operatorname {betaParam}\), we have </p>
+<div class="displaymath" id="a0000000755">
+  \[  \beta '(s, \lambda _2, \alpha ) = \frac{\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\alpha } - \lambda _2}{s(s-\lambda _2)\alpha }.  \]
+</div>
+<p> The denominator satisfies \(s(s - \lambda _2)\alpha {\gt} 0\) since \(s \geq 1\), \(s - \lambda _2 {\gt} 0\), and \(\alpha {\gt} 0\). </p>
+<p>For the numerator \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\alpha } - \lambda _2 {\gt} 0\), we consider two cases: </p>
+<ul class="itemize">
+  <li><p>If \(\lambda _2 \geq 0\): since \(4s(s-\lambda _2)\alpha {\gt} 0\), we have \(\lambda _2^2 + 4s(s-\lambda _2)\alpha {\gt} \lambda _2^2\), so \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\alpha } {\gt} \sqrt{\lambda _2^2} = \lambda _2\) (using \(\lambda _2 \geq 0\)). Thus the numerator is positive. </p>
+</li>
+  <li><p>If \(\lambda _2 {\lt} 0\): then \(\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\alpha } \geq 0 {\gt} \lambda _2\), so the numerator is positive. </p>
+</li>
+</ul>
+<p> In both cases \(\beta ' {\gt} 0\). </p>
+
+  </div>
+</div>
+<div class="theorem_thmwrapper theorem-style-plain" id="thm:ExpanderViolatedChecks.expanderViolatedChecks">
+  <div class="theorem_thmheading">
+    <span class="theorem_thmcaption">
+    Theorem
+    </span>
+    <span class="theorem_thmlabel">405</span>
+    <span class="theorem_thmtitle">Expander Violated Checks</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0033.html#thm:ExpanderViolatedChecks.expanderViolatedChecks">#</a>
+    
+    <a class="icon proof" href="sect0033.html#a0000000756"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.supportEdges_subset">Lemma 378</a></li>
+          
+          <li><a href="sect0030.html#thm:EdgeToVertexExpansion.edgeToVertexExpansion">Theorem 355</a></li>
+          
+          <li><a href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">Theorem 364</a></li>
+          
+          <li><a href="sect0030.html#def:EdgeToVertexExpansion.betaParam">Definition 346</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.edgeBoundaryAtVertex">Definition 356</a></li>
+          
+          <li><a href="sect0031.html#def:RelativeVertexToEdgeExpansion.highExpansionVertices">Definition 357</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.edgeHammingWeight">Definition 371</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.incidentToSupport">Definition 372</a></li>
+          
+          <li><a href="sect0032.html#def:SipserSpielman.supportEdges">Definition 377</a></li>
+          
+          <li><a href="sect0031.html#lem:RelativeVertexToEdgeExpansion.highExpansionVertices_subset">Lemma 358</a></li>
+          
+          <li><a href="sect0032.html#lem:SipserSpielman.supportEdges_subset">Lemma 378</a></li>
+          
+          <li><a href="sect0030.html#thm:EdgeToVertexExpansion.edgeToVertexExpansion">Theorem 355</a></li>
+          
+          <li><a href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">Theorem 364</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.differentialWeight_ge_highExpansion">Lemma 403</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_alphaS">Lemma 401</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">Lemma 398</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_card_eq">Lemma 397</a></li>
+          
+          <li><a href="sect0033.html#def:ExpanderViolatedChecks.beta'">Definition 387</a></li>
+          
+          <li><a href="sect0033.html#def:ExpanderViolatedChecks.beta''">Definition 388</a></li>
+          
+          <li><a href="sect0033.html#lem:ExpanderViolatedChecks.beta'_pos">Lemma 404</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://doxtor6.github.io/MerLean-examples/docs/find/#doc/ExpanderViolatedChecks.expanderViolatedChecks" class="lean_decl">ExpanderViolatedChecks.expanderViolatedChecks</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="theorem_thmcontent">
+  <p>    Let \(G\) be a connected \(s\)-regular graph on \(|V| \geq 2\) vertices with second-largest eigenvalue \(\lambda _2 {\lt} s\). Let \(\operatorname {parityCheck} : \mathbb {F}_2^s \to \mathbb {F}_2^m\) be a linear map, \(\Lambda \) a labeling of \(G\), and \(d_L\) the minimum distance of the local code, with \(0 {\lt} d_L \leq s\). For \(\alpha \in (0, 1]\) and \(x : G.\operatorname {edgeSet} \to \mathbb {F}_2\) satisfying </p>
+<div class="displaymath" id="a0000000757">
+  \[  \operatorname {edgeHammingWeight}(G, x) \; \leq \;  \alpha \cdot |G.\operatorname {edgeFinset}|,  \]
+</div>
+<p> we have </p>
+<div class="displaymath" id="a0000000758">
+  \[  \operatorname {differentialWeight}(G, \Lambda , \operatorname {parityCheck}, x) \; \geq \;  \beta '(s, \lambda _2, \alpha ) \cdot \beta ''(s, \lambda _2, \alpha , d_L) \cdot \operatorname {edgeHammingWeight}(G, x),  \]
+</div>
+<p> where </p>
+<div class="displaymath" id="a0000000759">
+  \[  \beta '(s, \lambda _2, \alpha ) = \frac{\sqrt{\lambda _2^2 + 4s(s-\lambda _2)\alpha } - \lambda _2}{s(s-\lambda _2)\alpha }, \quad \beta ''(s, \lambda _2, \alpha , d_L) = \frac{(d_L - 1 - \lambda _2) - \alpha s(s - \lambda _2)}{d_L - 1}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000756">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  
+<p><b class="bfseries">Trivial case.</b> If \(\beta '(s, \lambda _2, \alpha ) \cdot \beta ''(s, \lambda _2, \alpha , d_L) \leq 0\), then the right-hand side is at most \(0 \leq \operatorname {differentialWeight}(\ldots )\), and the bound holds. </p>
+<p><b class="bfseries">Main case: \(\beta ' \cdot \beta '' {\gt} 0\).</b> </p>
+<p>By Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.beta'_pos">404</a>, \(\beta ' {\gt} 0\) holds whenever \(s \geq 1\), \(\lambda _2 {\lt} s\), \(\alpha {\gt} 0\). Since \(\beta ' \cdot \beta '' {\gt} 0\) and \(\beta ' {\gt} 0\), we also have \(\beta '' {\gt} 0\). </p>
+<p>From \(\beta '' {\gt} 0\), we deduce \(d_L \geq 2\) as follows: if \(d_L = 1\), then \(\beta '' = ({-\lambda _2 - \alpha s(s-\lambda _2)})/0 = 0\) in Lean’s division, contradicting \(\beta '' {\gt} 0\). </p>
+<p>From \(\beta '' {\gt} 0\), we also deduce \(\alpha s {\lt} 1\): since \(d_L \geq 2\), the denominator \(d_L - 1 {\gt} 0\), so the numerator \((d_L - 1 - \lambda _2) - \alpha s(s - \lambda _2) {\gt} 0\). If \(\alpha s \geq 1\), then \(\alpha s(s - \lambda _2) \geq s - \lambda _2 \geq d_L - \lambda _2 {\gt} d_L - 1 - \lambda _2\) (using \(d_L \leq s\)), contradicting positivity of the numerator. Hence \(\alpha s {\lt} 1\). </p>
+<p><b class="bfseries">Edge case: \(x = 0\).</b> If \(\operatorname {edgeHammingWeight}(G, x) = 0\), the right-hand side is \(0\) and the bound holds trivially. </p>
+<p><b class="bfseries">Main inequality chain.</b> Assume \(\operatorname {edgeHammingWeight}(G, x) {\gt} 0\). Set \(S = \operatorname {incidentToSupport}(G, x)\), \(E = \operatorname {supportEdges}(G, x)\), \(A = \operatorname {highExpansionVertices}(G, S, s, d_L - 1)\). </p>
+<p><b class="bfseries">Step 1: \(|A| \leq \operatorname {differentialWeight}(\ldots )\).</b> By Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.differentialWeight_ge_highExpansion">403</a>. </p>
+<p><b class="bfseries">Step 2: \(\beta ' \cdot \operatorname {edgeHammingWeight}(G, x) \leq |S|\).</b> Since \(E \subseteq G.\operatorname {edgeFinset}\) (by Lemma&#160;<a href="sect0032.html#lem:SipserSpielman.supportEdges_subset">378</a>) and \(|E| = \operatorname {edgeHammingWeight}(G, x)\) (by Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.supportEdges_card_eq">397</a>) with \(|E| \leq \alpha |G.\operatorname {edgeFinset}|\), we may apply the edge-to-vertex expansion theorem (Theorem&#160;<a href="sect0030.html#thm:EdgeToVertexExpansion.edgeToVertexExpansion">355</a>): </p>
+<div class="displaymath" id="a0000000760">
+  \[  |\operatorname {incidentVertices}(E)| \; \geq \;  \operatorname {betaParam}(s, \lambda _2, \alpha ) \cdot |E|.  \]
+</div>
+<p> Since \(S = \operatorname {incidentVertices}(E)\) (Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_eq_incidentVertices">398</a>) and \(\beta ' = \operatorname {betaParam}\), this yields \(|S| \geq \beta ' \cdot \operatorname {edgeHammingWeight}(G, x)\). </p>
+<p><b class="bfseries">Step 3: \(\beta '' \cdot |S| \leq |A|\).</b> Since \(|S| \leq \alpha s |V|\) (Lemma&#160;<a href="sect0033.html#lem:ExpanderViolatedChecks.incidentToSupport_card_le_alphaS">401</a>) and \(\alpha s {\lt} 1\), \(d_L - 1 \in (0, s]\), we apply the relative vertex-to-edge expansion theorem (Theorem&#160;<a href="sect0031.html#thm:RelativeVertexToEdgeExpansion.relativeVertexToEdgeExpansion">364</a>) with parameters \(\alpha ' = \alpha s\) and \(b = d_L - 1\): </p>
+<div class="displaymath" id="a0000000761">
+  \[  \frac{(d_L - 1 - \lambda _2) - \alpha s(s - \lambda _2)}{d_L - 1} \cdot |S| \; \leq \;  |A|,  \]
+</div>
+<p> which is exactly \(\beta '' \cdot |S| \leq |A|\). </p>
+<p><b class="bfseries">Combining.</b> The chain </p>
+<div class="displaymath" id="a0000000762">
+  \[  \beta ' \cdot \beta '' \cdot \operatorname {edgeHammingWeight}(G, x) \; \leq \;  \beta '' \cdot |S| \; \leq \;  |A| \; \leq \;  \operatorname {differentialWeight}(G, \Lambda , \operatorname {parityCheck}, x)  \]
+</div>
+<p> follows from Steps 2, 3, and 1 respectively (using \(\beta '' {\gt} 0\) in Step 2, and applying linear arithmetic to combine the bounds). </p>
+
+  </div>
+</div>
+<p>[Paper Corrections] <b class="bfseries"><span style="None"></span>redErrata.</b> The following errors were identified in the original paper and corrected in this formalization: </p>
+<ul class="itemize">
+  <li><p>Paper states |S| ≤ 2α|X₁| = (4α/s)|X₀|, but the correct derivation using the handshaking lemma 2|X₁| = s|X₀| gives 2α|X₁| = αs|X₀|, so α’ should be αs, not 4α/s. </p>
+</li>
+  <li><p>Paper uses b = d_L in Lemma 3 (defining A = v ∈ S | |(δS)_v| ≥ s - d_L), but the violated-check argument requires the local view weight to be strictly less than d_L (i.e., ≤ d_L - 1). This needs b = d_L - 1 (giving A = v | |(δS)_v| ≥ s - d_L + 1), so that within-S edges ≤ d_L - 1 &lt; d_L guarantees the nonzero local view is not a codeword. </p>
+</li>
+  <li><p>Consequently, β” should be ((d_L - 1 - λ₂) - αs(s - λ₂))/(d_L - 1), not ((d_L - λ₂) - (4α/s)(s - λ₂))/d_L as stated in the paper. The formalization’s formula is correct. </p>
+</li>
+</ul>
+
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0032.html" title="Thm 7: Sipser–Spielman Expander Code Distance"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="MerLean-example"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0034.html" title="Thm 9: Expander Bit Degree"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>
