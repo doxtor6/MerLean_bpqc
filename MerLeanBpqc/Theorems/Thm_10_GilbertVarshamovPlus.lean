@@ -346,7 +346,7 @@ lemma exists_code_with_good_dual_distance_premises_satisfiable :
 
 lemma key_nat_ineq_hundredth : (100 : ℕ) ^ 100 < 2 ^ 10 * 99 ^ 99 := by native_decide
 
-private lemma key_frac_ineq_hundredth :
+lemma key_frac_ineq_hundredth :
     (100 : ℝ) * ((100 : ℝ) / 99) ^ 99 < 2 ^ 10 := by
   rw [div_pow, ← mul_div_assoc, div_lt_iff₀ (by positivity)]
   calc (100 : ℝ) * 100 ^ 99
@@ -380,7 +380,7 @@ lemma binaryEntropy_at_one_hundredth_tight : binaryEntropy (1 / 100) < 499 / 100
 /-! ## Combined existence and main theorem -/
 
 /-- Helper for the Hamming ball bound used in both distance and dual distance arguments. -/
-private lemma hammingBall_lt_pow {δ : ℝ} {n : ℕ} {m : ℕ}
+lemma hammingBall_lt_pow {δ : ℝ} {n : ℕ} {m : ℕ}
     (hδ0 : 0 < δ) (hδhalf : δ ≤ 1 / 2) (hn : 0 < n)
     (hHn : binaryEntropy δ * n < m) :
     ((hammingBall n (δ * ↑n - 1)).card : ℝ) < (2 : ℝ) ^ (m : ℕ) := by

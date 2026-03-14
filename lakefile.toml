@@ -13,5 +13,9 @@ maxSynthPendingDepth = 3
 name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.28.0-rc1"
+[[require]]
+name = "checkdecls"
+git = "https://github.com/PatrickMassot/checkdecls.git"
+
 [[lean_lib]]
 name = "MerLeanBpqc"

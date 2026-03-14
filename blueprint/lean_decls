@@ -137,7 +137,7 @@ SmallDC.d₂
 SmallDC.d₁
 SmallDC.d₂_fst
 SmallDC.d₂_snd
-SmallDC.d₁_comp_d2
+SmallDC.d₁_comp_d₂
 SmallDC.totH₀
 SmallDC.totZ₁
 SmallDC.totB₁
@@ -146,9 +146,9 @@ SmallDC.totB₁InZ₁
 SmallDC.totH₁
 SmallDC.totH₂
 SmallDC.vH₀₀
-SmallDC.dh0_maps_range
+SmallDC.dh₀_maps_range
 SmallDC.barDh₀
-SmallDC.dh1_maps_ker
+SmallDC.dh₁_maps_ker
 SmallDC.barDh₁
 SmallDC.itH₀
 SmallDC.itH₂
@@ -158,7 +158,7 @@ SmallDC.ker_d₂_eq
 SmallDC.barDh₁_val
 SmallDC.barDh₁_ker_iff
 SmallDC.homologyEquiv_n2
-SmallDC.range_d1_eq
+SmallDC.range_d₁_eq
 SmallDC.barDh₀_range_eq
 SmallDC.homologyEquiv_n0
 SmallDC.piMap
@@ -203,10 +203,10 @@ FiberBundle.twistedDh1_single_tmul
 FiberBundle.twistedDh1_comp_lTensor_eq
 FiberBundle.kerEquivOfConjugate
 FiberBundle.quotientEquivOfConjugate
-FiberBundle.fiberBundleSmallDC_barDh1_conj
+FiberBundle.fiberBundleSmallDC_barDh₁_conj
 FiberBundle.twistedDh0_single_tmul_quotient
 FiberBundle.twistedDh0_comp_lTensor_quotient_eq
-FiberBundle.barDh0_lTensor_quotient_conj
+FiberBundle.barDh₀_lTensor_quotient_conj
 FiberBundle.fiberBundleHomology_n2
 FiberBundle.fiberBundleHomology_n0
 FiberBundle.fiberBundleHomology_n1
@@ -579,10 +579,10 @@ BalancedProductTannerCycleCode.CycleCompatibleAction
 BalancedProductTannerCycleCode.cycleChainAction
 BalancedProductTannerCycleCode.cycleGraphHEquivariant
 BalancedProductTannerCycleCode.balancedProductTannerCycleCode
-BalancedProductTannerCycleCode.iotaC1_tanner_component
-BalancedProductTannerCycleCode.iotaC1_cycle_component
-BalancedProductTannerCycleCode.iotaC2_component
-BalancedProductTannerCycleCode.iotaC0_component
+BalancedProductTannerCycleCode.ιC1_tanner_component
+BalancedProductTannerCycleCode.ιC1_cycle_component
+BalancedProductTannerCycleCode.ιC2_component
+BalancedProductTannerCycleCode.ιC0_component
 BalancedProductTannerCycleCode.zCheckMap
 BalancedProductTannerCycleCode.xCheckMap
 BalancedProductTannerCycleCode.balancedProductTannerCycleCode_C2_eq

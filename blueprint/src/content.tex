@@ -2213,7 +2213,7 @@ This holds by applying the identity $\operatorname{snd} \circ (\partial^v_1 \tim
 
 \begin{lemma}[Total Complex is a Complex]
 \label{lem:SmallDC.d1_comp_d2}
-\lean{SmallDC.d₁_comp_d2}
+\lean{SmallDC.d₁_comp_d₂}
 \leanok
 \uses{def:SmallDC.d1, def:SmallDC.d2, lem:SmallDC.d2_fst, lem:SmallDC.d2_snd}
 The composition $\partial_1 \circ \partial_2 = 0$.
@@ -2335,7 +2335,7 @@ Here $H^v_{p,0}$ is the degree-0 vertical homology in column $p$, and $H^v_{p,1}
 
 \begin{lemma}[Horizontal Map Preserves Vertical Boundaries]
 \label{lem:SmallDC.dh0_maps_range}
-\lean{SmallDC.dh0_maps_range}
+\lean{SmallDC.dh₀_maps_range}
 \leanok
 \uses{def:SmallDC}
 The map $\partial^h_0$ sends $\operatorname{im}(\partial^v_1)$ into $\operatorname{im}(\partial^v_0)$:
@@ -2368,7 +2368,7 @@ This is constructed as a quotient map $\operatorname{mapQ}$ applied to $\partial
 
 \begin{lemma}[Horizontal Map Preserves Vertical Cycles]
 \label{lem:SmallDC.dh1_maps_ker}
-\lean{SmallDC.dh1_maps_ker}
+\lean{SmallDC.dh₁_maps_ker}
 \leanok
 \uses{def:SmallDC}
 For every $x \in \ker(\partial^v_1)$, we have $\partial^h_1(x) \in \ker(\partial^v_0)$.
@@ -2521,7 +2521,7 @@ We construct an explicit $\mathbb{F}_2$-linear equivalence. By Lemma~\ref{lem:Sm
 
 \begin{lemma}[Image of $\partial_1$ Decomposes]
 \label{lem:SmallDC.range_d1_eq}
-\lean{SmallDC.range_d1_eq}
+\lean{SmallDC.range_d₁_eq}
 \leanok
 \uses{def:SmallDC.d1}
 The image of $\partial_1$ equals the join of the images of $\partial^h_0$ and $\partial^v_0$:
@@ -3252,7 +3252,7 @@ First, we show $e_2(\operatorname{im}(f)) = \operatorname{im}(g)$. For the forwa
 
 \begin{lemma}[Fiber Bundle $\bar{d}_h^1$ Conjugation]
 \label{lem:FiberBundle.fiberBundleSmallDC_barDh1_conj}
-\lean{FiberBundle.fiberBundleSmallDC_barDh1_conj}
+\lean{FiberBundle.fiberBundleSmallDC_barDh₁_conj}
 \leanok
 \uses{def:FiberBundle.fiberBundleSmallDC, def:FiberBundle.lTensor_ker_equiv, lem:FiberBundle.twistedDh1_comp_lTensor_eq}
 Let $E = \operatorname{fiberBundleSmallDC}(d_B, d_F, \varphi)$ and assume $\varphi$ acts as identity on homology. Then:
@@ -3316,7 +3316,7 @@ By $\operatorname{TensorProduct.ext'}$ it suffices to check on pure tensors $b \
 
 \begin{lemma}[Fiber Bundle $\bar{d}_h^0$ Quotient Conjugation (Unproven)]
 \label{lem:FiberBundle.barDh0_lTensor_quotient_conj}
-\lean{FiberBundle.barDh0_lTensor_quotient_conj}
+\lean{FiberBundle.barDh₀_lTensor_quotient_conj}
 \leanok
 \uses{def:FiberBundle.fiberBundleSmallDC, def:FiberBundle.lTensor_quotient_equiv, lem:FiberBundle.twistedDh0_comp_lTensor_quotient_eq}
 
@@ -10264,7 +10264,7 @@ where physical qubits correspond to $C_1$, Z-checks are given by $\partial_2 : C
 
 \begin{definition}[Inclusion of Tanner Component into $C_1$]
 \label{def:BalancedProductTannerCycleCode.iotaC1_tanner_component}
-\lean{BalancedProductTannerCycleCode.iotaC1_tanner_component}
+\lean{BalancedProductTannerCycleCode.ιC1_tanner_component}
 \leanok
 \uses{def:CSSCode.complex, def:HEquivariantChainComplex, def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode}
 The canonical inclusion map
@@ -10276,7 +10276,7 @@ is the map into the total complex at degree $1$ corresponding to the $(1,0)$-sum
 
 \begin{definition}[Inclusion of Cycle Component into $C_1$]
 \label{def:BalancedProductTannerCycleCode.iotaC1_cycle_component}
-\lean{BalancedProductTannerCycleCode.iotaC1_cycle_component}
+\lean{BalancedProductTannerCycleCode.ιC1_cycle_component}
 \leanok
 \uses{def:CSSCode.complex, def:HEquivariantChainComplex, def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode}
 The canonical inclusion map
@@ -10288,7 +10288,7 @@ is the map into the total complex at degree $1$ corresponding to the $(0,1)$-sum
 
 \begin{definition}[Inclusion into $C_2$]
 \label{def:BalancedProductTannerCycleCode.iotaC2_component}
-\lean{BalancedProductTannerCycleCode.iotaC2_component}
+\lean{BalancedProductTannerCycleCode.ιC2_component}
 \leanok
 \uses{def:CSSCode.complex, def:HEquivariantChainComplex, def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode}
 The canonical inclusion map
@@ -10300,7 +10300,7 @@ is the map into the total complex at degree $2$ corresponding to the $(1,1)$-sum
 
 \begin{definition}[Inclusion into $C_0$]
 \label{def:BalancedProductTannerCycleCode.iotaC0_component}
-\lean{BalancedProductTannerCycleCode.iotaC0_component}
+\lean{BalancedProductTannerCycleCode.ιC0_component}
 \leanok
 \uses{def:CSSCode.complex, def:HEquivariantChainComplex, def:BalancedProductTannerCycleCode.balancedProductTannerCycleCode}
 The canonical inclusion map

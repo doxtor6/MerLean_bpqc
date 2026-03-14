@@ -247,7 +247,7 @@ satisfies `|B₀(k)| ≤ 2^{H₂(δ) · n}` whenever `k + 1 ≤ δ · n`.
 The proof shows `|B₀(k)| · δ^k · (1-δ)^{n-k} ≤ 1` by summing Bernoulli weights,
 then converts to the entropy form. -/
 -- Helper: the logb inequality for the entropy bound
-private lemma entropy_logb_ineq {n : ℕ} {δ : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1 / 2)
+lemma entropy_logb_ineq {n : ℕ} {δ : ℝ} (hδ0 : 0 < δ) (hδ1 : δ ≤ 1 / 2)
     {k : ℕ} (hkn : k ≤ n) (hk : (k : ℝ) + 1 ≤ δ * ↑n) :
     -(↑k * Real.logb 2 δ + ↑(n - k) * Real.logb 2 (1 - δ)) ≤ binaryEntropy δ * ↑n := by
   unfold binaryEntropy
